@@ -3,197 +3,168 @@ import ChapterLayout from '../layouts/ChapterLayout.astro';
 ---
 
 <ChapterLayout 
-  title="My Tech Journey - Chapter II" 
-  description="Follow my path from curiosity to expertise, with all the learning moments in between"
+  title="From Curiosity to Code - Chapter II" 
+  description="Follow Kaustubh's path from computer repair curiosity to software engineering expertise"
   chapter="Chapter II" 
-  chapterTitle="My Tech Journey" 
+  chapterTitle="From Curiosity to Code" 
   chapterColor="sky"
 >
-  <!-- Main Content -->
+  <!-- Introduction -->
   <section class="py-20 bg-white">
-    <div class="max-w-6xl mx-auto px-6">
-      <!-- Introduction -->
-      <div class="text-center mb-20">
-        <h2 class="font-heading text-3xl lg:text-4xl font-semibold text-ink-800 mb-6">
-          From Curiosity to Code
-        </h2>
-        <p class="text-lg text-ink-700 max-w-3xl mx-auto leading-relaxed">
-          Every developer has a unique story of how they fell in love with code. Mine began with a simple question: 
-          "How do computers actually work?" This curiosity led me down a rabbit hole that I'm still exploring today.
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <h2 class="font-heading text-4xl font-semibold text-ink-800 mb-8">
+        Every developer has a spark
+      </h2>
+      <div class="prose text-ink-700 text-lg max-w-3xl mx-auto space-y-6">
+        <p>
+          Every developer has a spark — a moment when curiosity meets creation. Mine began with a single question:
+        </p>
+        <blockquote class="text-2xl font-heading text-sky-600 italic border-l-4 border-sky-300 pl-6 my-8">
+          "How do computers actually work?"
+        </blockquote>
+        <p>
+          That question sent me down a rabbit hole I'm still happily exploring today.
         </p>
       </div>
+    </div>
+  </section>
 
-      <!-- Timeline -->
+  <!-- Timeline -->
+  <section class="py-20 bg-gradient-to-br from-sky-50 to-mint-50">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="font-heading text-3xl font-semibold text-ink-800 mb-16 text-center">
+        Timeline of My Journey
+      </h2>
+      
       <div class="relative">
         <!-- Timeline Line -->
-        <div class="absolute left-4 lg:left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-sky-200 via-mint-200 to-blush-200 rounded-full transform lg:-translate-x-1/2"></div>
-
-        <!-- Timeline Items -->
+        <div class="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-sky-300 to-mint-300 h-full hidden lg:block"></div>
+        
         <div class="space-y-12">
-          <!-- Item 1: The Beginning -->
-          <div class="relative flex items-center">
-            <div class="lg:w-1/2 lg:pr-8 lg:text-right">
-              <div class="bg-gradient-to-br from-white to-sky-50 rounded-2xl p-6 shadow-soft border-l-4 border-sky-400 ml-12 lg:ml-0">
-                <div class="flex items-center mb-4 lg:justify-end">
-                  <div class="w-12 h-12 rounded-full bg-gradient-to-br from-sky-200 to-sky-400 flex items-center justify-center">
+          <!-- 2019 - The Spark -->
+          <div class="relative grid lg:grid-cols-2 gap-8 items-center">
+            <div class="lg:text-right">
+              <div class="inline-block p-6 rounded-2xl bg-gradient-to-br from-white to-sky-50 shadow-soft hover:shadow-chapter transition-all duration-300 lg:border-r-4 border-sky-400">
+                <div class="flex items-center lg:justify-end mb-4">
+                  <div class="w-12 h-12 rounded-full bg-gradient-to-br from-sky-400 to-sky-600 flex items-center justify-center mr-4 lg:mr-0 lg:ml-4 lg:order-2">
+                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8M12,10A2,2 0 0,0 10,12A2,2 0 0,0 12,14A2,2 0 0,0 14,12A2,2 0 0,0 12,10M10,22C9.75,22 9.54,21.82 9.5,21.58L9.13,18.93C8.5,18.68 7.96,18.34 7.44,17.94L4.95,18.95C4.73,19.03 4.46,18.95 4.34,18.73L2.34,15.27C2.21,15.05 2.27,14.78 2.46,14.63L4.57,12.97L4.5,12L4.57,11L2.46,9.37C2.27,9.22 2.21,8.95 2.34,8.73L4.34,5.27C4.46,5.05 4.73,4.96 4.95,5.05L7.44,6.05C7.96,5.66 8.5,5.32 9.13,5.07L9.5,2.42C9.54,2.18 9.75,2 10,2H14C14.25,2 14.46,2.18 14.5,2.42L14.87,5.07C15.5,5.32 16.04,5.66 16.56,6.05L19.05,5.05C19.27,4.96 19.54,5.05 19.66,5.27L21.66,8.73C21.79,8.95 21.73,9.22 21.54,9.37L19.43,11L19.5,12L19.43,13L21.54,14.63C21.73,14.78 21.79,15.05 21.66,15.27L19.66,18.73C19.54,18.95 19.27,19.04 19.05,18.95L16.56,17.95C16.04,18.34 15.5,18.68 14.87,18.93L14.5,21.58C14.46,21.82 14.25,22 14,22H10M11.25,4L10.88,6.61C9.68,6.86 8.62,7.5 7.85,8.39L5.44,7.35L4.69,8.65L6.8,10.2C6.4,11.37 6.4,12.64 6.8,13.8L4.68,15.36L5.43,16.66L7.86,15.62C8.63,16.5 9.68,17.14 10.87,17.38L11.24,20H12.76L13.13,17.39C14.32,17.14 15.37,16.5 16.14,15.62L18.57,16.66L19.32,15.36L17.2,13.81C17.6,12.64 17.6,11.37 17.2,10.2L19.31,8.65L18.56,7.35L16.15,8.39C15.38,7.5 14.32,6.86 13.12,6.62L12.75,4H11.25Z"/>
+                    </svg>
+                  </div>
+                  <span class="text-2xl font-heading font-semibold text-sky-600 lg:order-1">2019</span>
+                </div>
+                <h3 class="font-heading text-xl font-semibold text-ink-800 mb-3">The Spark</h3>
+                <p class="text-ink-700">
+                  It all started with a glitchy desktop and way too much curiosity. I ended up repairing it myself, which led to hours spent watching how-to videos and reading about computer systems. That's when I realized: <strong>tech is magic — logical, elegant, and limitless.</strong>
+                </p>
+              </div>
+            </div>
+            <div class="hidden lg:block"></div>
+          </div>
+
+          <!-- 2020 - Hello World -->
+          <div class="relative grid lg:grid-cols-2 gap-8 items-center">
+            <div class="hidden lg:block"></div>
+            <div class="lg:text-left">
+              <div class="inline-block p-6 rounded-2xl bg-gradient-to-br from-white to-mint-50 shadow-soft hover:shadow-chapter transition-all duration-300 lg:border-l-4 border-mint-400">
+                <div class="flex items-center mb-4">
+                  <div class="w-12 h-12 rounded-full bg-gradient-to-br from-mint-400 to-mint-600 flex items-center justify-center mr-4">
+                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M8,3A2,2 0 0,0 6,5V9A2,2 0 0,1 4,11H3V13H4A2,2 0 0,1 6,15V19A2,2 0 0,0 8,21H10V19H8V14A2,2 0 0,0 6,12A2,2 0 0,0 8,10V5H10V3M16,3A2,2 0 0,1 18,5V9A2,2 0 0,0 20,11H21V13H20A2,2 0 0,0 18,15V19A2,2 0 0,1 16,21H14V19H16V14A2,2 0 0,1 18,12A2,2 0 0,1 16,10V5H14V3H16Z"/>
+                    </svg>
+                  </div>
+                  <span class="text-2xl font-heading font-semibold text-mint-600">2020</span>
+                </div>
+                <h3 class="font-heading text-xl font-semibold text-ink-800 mb-3">Hello, World!</h3>
+                <p class="text-ink-700">
+                  My first official line of code was <code class="bg-mint-100 text-mint-700 px-2 py-1 rounded">print("Hello, World!")</code> in Python. It was a small moment, but it sparked something big. I loved how a few words on a screen could turn into something real, creative, and interactive.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2021 - The Deep Dive -->
+          <div class="relative grid lg:grid-cols-2 gap-8 items-center">
+            <div class="lg:text-right">
+              <div class="inline-block p-6 rounded-2xl bg-gradient-to-br from-white to-blush-50 shadow-soft hover:shadow-chapter transition-all duration-300 lg:border-r-4 border-blush-400">
+                <div class="flex items-center lg:justify-end mb-4">
+                  <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blush-400 to-blush-600 flex items-center justify-center mr-4 lg:mr-0 lg:ml-4 lg:order-2">
+                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12,3L1,9L12,15L21,10.09V17H23V9M5,13.18V17.18L12,21L19,17.18V13.18L12,17L5,13.18Z"/>
+                    </svg>
+                  </div>
+                  <span class="text-2xl font-heading font-semibold text-blush-600 lg:order-1">2021</span>
+                </div>
+                <h3 class="font-heading text-xl font-semibold text-ink-800 mb-3">The Deep Dive</h3>
+                <p class="text-ink-700">
+                  Determined to understand more, I enrolled in a <strong>Bachelor's in Information Technology</strong>. I learned data structures, algorithms, and core software design. Each concept felt like a puzzle waiting to be solved.
+                </p>
+              </div>
+            </div>
+            <div class="hidden lg:block"></div>
+          </div>
+
+          <!-- 2022 - First Real Project -->
+          <div class="relative grid lg:grid-cols-2 gap-8 items-center">
+            <div class="hidden lg:block"></div>
+            <div class="lg:text-left">
+              <div class="inline-block p-6 rounded-2xl bg-gradient-to-br from-white to-lavender-50 shadow-soft hover:shadow-chapter transition-all duration-300 lg:border-l-4 border-lavender-400">
+                <div class="flex items-center mb-4">
+                  <div class="w-12 h-12 rounded-full bg-gradient-to-br from-lavender-400 to-lavender-600 flex items-center justify-center mr-4">
+                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M10,4H14V6H10V4M4,6H6V4A2,2 0 0,1 8,2H16A2,2 0 0,1 18,4V6H20A2,2 0 0,1 22,8V19A2,2 0 0,1 20,21H4A2,2 0 0,1 2,19V8A2,2 0 0,1 4,6M4,8V19H20V8H4Z"/>
+                    </svg>
+                  </div>
+                  <span class="text-2xl font-heading font-semibold text-lavender-600">2022</span>
+                </div>
+                <h3 class="font-heading text-xl font-semibold text-ink-800 mb-3">First Real Project</h3>
+                <p class="text-ink-700">
+                  At <strong>PPLWork</strong>, I worked on my first real-world project — a custom task manager. I designed backend APIs in Java, implemented RESTful microservices, and collaborated with real developers on shipping real features. It was thrilling to build something others could use.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2023 - ML & AI -->
+          <div class="relative grid lg:grid-cols-2 gap-8 items-center">
+            <div class="lg:text-right">
+              <div class="inline-block p-6 rounded-2xl bg-gradient-to-br from-white to-butter-50 shadow-soft hover:shadow-chapter transition-all duration-300 lg:border-r-4 border-butter-400">
+                <div class="flex items-center lg:justify-end mb-4">
+                  <div class="w-12 h-12 rounded-full bg-gradient-to-br from-butter-400 to-butter-600 flex items-center justify-center mr-4 lg:mr-0 lg:ml-4 lg:order-2">
+                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12,2A2,2 0 0,1 14,4C14,4.74 13.6,5.39 13,5.73V7H14A7,7 0 0,1 21,14H22A1,1 0 0,1 23,15V18A1,1 0 0,1 22,19H21V20A2,2 0 0,1 19,22H5A2,2 0 0,1 3,20V19H2A1,1 0 0,1 1,18V15A1,1 0 0,1 2,14H3A7,7 0 0,1 10,7H11V5.73C10.4,5.39 10,4.74 10,4A2,2 0 0,1 12,2M7.5,13A2.5,2.5 0 0,0 5,15.5A2.5,2.5 0 0,0 7.5,18A2.5,2.5 0 0,0 10,15.5A2.5,2.5 0 0,0 7.5,13M16.5,13A2.5,2.5 0 0,0 14,15.5A2.5,2.5 0 0,0 16.5,18A2.5,2.5 0 0,0 19,15.5A2.5,2.5 0 0,0 16.5,13Z"/>
+                    </svg>
+                  </div>
+                  <span class="text-2xl font-heading font-semibold text-butter-600 lg:order-1">2023</span>
+                </div>
+                <h3 class="font-heading text-xl font-semibold text-ink-800 mb-3">Machine Learning & AI</h3>
+                <p class="text-ink-700">
+                  At <strong>TU Dublin</strong>, I dove into machine learning and AI. From neural networks to object detection, I was hooked. I realized the power of combining code with cognition — building systems that learn and adapt.
+                </p>
+              </div>
+            </div>
+            <div class="hidden lg:block"></div>
+          </div>
+
+          <!-- 2024 - Current -->
+          <div class="relative grid lg:grid-cols-2 gap-8 items-center">
+            <div class="hidden lg:block"></div>
+            <div class="lg:text-left">
+              <div class="inline-block p-6 rounded-2xl bg-gradient-to-br from-white to-sky-50 shadow-soft hover:shadow-chapter transition-all duration-300 lg:border-l-4 border-sky-400">
+                <div class="flex items-center mb-4">
+                  <div class="w-12 h-12 rounded-full bg-gradient-to-br from-sky-400 to-sky-600 flex items-center justify-center mr-4">
                     <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M12,2L13.09,8.26L22,9L13.09,9.74L12,16L10.91,9.74L2,9L10.91,8.26L12,2Z"/>
                     </svg>
                   </div>
-                  <span class="text-sky-600 font-medium ml-3 lg:mr-3 lg:ml-0">2019</span>
-                </div>
-                <h3 class="font-heading text-xl font-semibold text-ink-800 mb-3">The Spark</h3>
-                <p class="text-ink-700 text-sm">
-                  It all started with a broken computer and too much curiosity. Instead of taking it to a repair shop, 
-                  I spent hours watching YouTube videos learning how to fix it myself. That's when I realized technology 
-                  wasn't magic – it was logical, beautiful, and learnable.
-                </p>
-              </div>
-            </div>
-            
-            <!-- Timeline Dot -->
-            <div class="absolute left-4 lg:left-1/2 w-8 h-8 bg-gradient-to-br from-sky-400 to-sky-600 rounded-full transform lg:-translate-x-1/2 flex items-center justify-center">
-              <div class="w-3 h-3 bg-white rounded-full"></div>
-            </div>
-            
-            <div class="lg:w-1/2 lg:pl-8 hidden lg:block"></div>
-          </div>
-
-          <!-- Item 2: First Code -->
-          <div class="relative flex items-center">
-            <div class="lg:w-1/2 lg:pr-8 hidden lg:block"></div>
-            
-            <div class="absolute left-4 lg:left-1/2 w-8 h-8 bg-gradient-to-br from-mint-400 to-mint-600 rounded-full transform lg:-translate-x-1/2 flex items-center justify-center">
-              <div class="w-3 h-3 bg-white rounded-full"></div>
-            </div>
-            
-            <div class="lg:w-1/2 lg:pl-8">
-              <div class="bg-gradient-to-br from-white to-mint-50 rounded-2xl p-6 shadow-soft border-l-4 border-mint-400 ml-12 lg:ml-0">
-                <div class="flex items-center mb-4">
-                  <div class="w-12 h-12 rounded-full bg-gradient-to-br from-mint-200 to-mint-400 flex items-center justify-center">
-                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M8,3A2,2 0 0,0 6,5V9A2,2 0 0,1 4,11H3V13H4A2,2 0 0,1 6,15V19A2,2 0 0,0 8,21H10V19H8V14A2,2 0 0,0 6,12A2,2 0 0,0 8,10V5H10V3M16,3A2,2 0 0,1 18,5V9A2,2 0 0,0 20,11H21V13H20A2,2 0 0,0 18,15V19A2,2 0 0,1 16,21H14V19H16V14A2,2 0 0,1 18,12A2,2 0 0,1 16,10V5H14V3"/>
-                    </svg>
-                  </div>
-                  <span class="text-mint-600 font-medium ml-3">2020</span>
-                </div>
-                <h3 class="font-heading text-xl font-semibold text-ink-800 mb-3">Hello, World!</h3>
-                <p class="text-ink-700 text-sm">
-                  My first line of code was the classic "Hello, World!" in Python. I still remember the rush of excitement 
-                  when those two words appeared on my screen. It was like discovering a new language that could bring 
-                  ideas to life through logic and creativity.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Item 3: Deep Dive -->
-          <div class="relative flex items-center">
-            <div class="lg:w-1/2 lg:pr-8 lg:text-right">
-              <div class="bg-gradient-to-br from-white to-lavender-50 rounded-2xl p-6 shadow-soft border-l-4 border-lavender-400 ml-12 lg:ml-0">
-                <div class="flex items-center mb-4 lg:justify-end">
-                  <div class="w-12 h-12 rounded-full bg-gradient-to-br from-lavender-200 to-lavender-400 flex items-center justify-center">
-                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8Z"/>
-                    </svg>
-                  </div>
-                  <span class="text-lavender-600 font-medium ml-3 lg:mr-3 lg:ml-0">2021</span>
-                </div>
-                <h3 class="font-heading text-xl font-semibold text-ink-800 mb-3">The Deep Dive</h3>
-                <p class="text-ink-700 text-sm">
-                  I decided to take programming seriously and enrolled in computer science courses. Data structures, 
-                  algorithms, and object-oriented programming became my new obsessions. Every concept was a puzzle 
-                  waiting to be solved.
-                </p>
-              </div>
-            </div>
-            
-            <div class="absolute left-4 lg:left-1/2 w-8 h-8 bg-gradient-to-br from-lavender-400 to-lavender-600 rounded-full transform lg:-translate-x-1/2 flex items-center justify-center">
-              <div class="w-3 h-3 bg-white rounded-full"></div>
-            </div>
-            
-            <div class="lg:w-1/2 lg:pl-8 hidden lg:block"></div>
-          </div>
-
-          <!-- Item 4: First Project -->
-          <div class="relative flex items-center">
-            <div class="lg:w-1/2 lg:pr-8 hidden lg:block"></div>
-            
-            <div class="absolute left-4 lg:left-1/2 w-8 h-8 bg-gradient-to-br from-butter-400 to-butter-600 rounded-full transform lg:-translate-x-1/2 flex items-center justify-center">
-              <div class="w-3 h-3 bg-white rounded-full"></div>
-            </div>
-            
-            <div class="lg:w-1/2 lg:pl-8">
-              <div class="bg-gradient-to-br from-white to-butter-50 rounded-2xl p-6 shadow-soft border-l-4 border-butter-400 ml-12 lg:ml-0">
-                <div class="flex items-center mb-4">
-                  <div class="w-12 h-12 rounded-full bg-gradient-to-br from-butter-200 to-butter-400 flex items-center justify-center">
-                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M13,9H18.5L13,3.5V9M6,2H14L20,8V20A2,2 0 0,1 18,22H6C4.89,22 4,21.1 4,20V4C4,2.89 4.89,2 6,2M15,18V16H6V18H15M18,14V12H6V14H18Z"/>
-                    </svg>
-                  </div>
-                  <span class="text-butter-600 font-medium ml-3">2022</span>
-                </div>
-                <h3 class="font-heading text-xl font-semibold text-ink-800 mb-3">First Real Project</h3>
-                <p class="text-ink-700 text-sm">
-                  Built my first web application - a simple task manager. It wasn't pretty, but it worked! This project 
-                  taught me about databases, user interfaces, and the satisfaction of creating something others could 
-                  actually use.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Item 5: Advanced Learning -->
-          <div class="relative flex items-center">
-            <div class="lg:w-1/2 lg:pr-8 lg:text-right">
-              <div class="bg-gradient-to-br from-white to-blush-50 rounded-2xl p-6 shadow-soft border-l-4 border-blush-400 ml-12 lg:ml-0">
-                <div class="flex items-center mb-4 lg:justify-end">
-                  <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blush-200 to-blush-400 flex items-center justify-center">
-                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M5,3H7V5H5V10A2,2 0 0,1 3,8V5A2,2 0 0,1 5,3M19,3A2,2 0 0,1 21,5V8A2,2 0 0,1 19,10V5H17V3H19M3,13A2,2 0 0,1 5,11V16H7V18H5A2,2 0 0,1 3,16V13M21,13V16A2,2 0 0,1 19,18H17V16H19V11A2,2 0 0,1 21,13Z"/>
-                    </svg>
-                  </div>
-                  <span class="text-blush-600 font-medium ml-3 lg:mr-3 lg:ml-0">2023</span>
-                </div>
-                <h3 class="font-heading text-xl font-semibold text-ink-800 mb-3">Machine Learning & AI</h3>
-                <p class="text-ink-700 text-sm">
-                  Discovered the fascinating world of artificial intelligence and machine learning. Started with simple 
-                  linear regression and worked my way up to neural networks. The possibility of making computers 
-                  "think" was mind-blowing.
-                </p>
-              </div>
-            </div>
-            
-            <div class="absolute left-4 lg:left-1/2 w-8 h-8 bg-gradient-to-br from-blush-400 to-blush-600 rounded-full transform lg:-translate-x-1/2 flex items-center justify-center">
-              <div class="w-3 h-3 bg-white rounded-full"></div>
-            </div>
-            
-            <div class="lg:w-1/2 lg:pl-8 hidden lg:block"></div>
-          </div>
-
-          <!-- Item 6: Present -->
-          <div class="relative flex items-center">
-            <div class="lg:w-1/2 lg:pr-8 hidden lg:block"></div>
-            
-            <div class="absolute left-4 lg:left-1/2 w-8 h-8 bg-gradient-to-br from-sky-400 to-mint-400 rounded-full transform lg:-translate-x-1/2 flex items-center justify-center">
-              <div class="w-3 h-3 bg-white rounded-full"></div>
-            </div>
-            
-            <div class="lg:w-1/2 lg:pl-8">
-              <div class="bg-gradient-to-br from-white to-sky-50 rounded-2xl p-6 shadow-soft border-l-4 border-sky-400 ml-12 lg:ml-0">
-                <div class="flex items-center mb-4">
-                  <div class="w-12 h-12 rounded-full bg-gradient-to-br from-sky-200 to-mint-200 flex items-center justify-center">
-                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M16.2,16.2L11,13V7H12.5V12.2L17,15.4L16.2,16.2Z"/>
-                    </svg>
-                  </div>
-                  <span class="text-sky-600 font-medium ml-3">2024</span>
+                  <span class="text-2xl font-heading font-semibold text-sky-600">2024</span>
                 </div>
                 <h3 class="font-heading text-xl font-semibold text-ink-800 mb-3">The Journey Continues</h3>
-                <p class="text-ink-700 text-sm">
-                  Today, I'm working on my final year project, exploring cloud technologies, and contributing to 
-                  open-source projects. Every day brings new challenges and opportunities to grow. The best part? 
-                  I'm still as excited about coding as I was on day one.
+                <p class="text-ink-700">
+                  Today, I'm working on an <strong>AI-enabled Online Examination Portal</strong> as my final year project. I'm exploring secure backend systems in Python, ML-based proctoring, and cloud-native architecture — while also polishing my frontend and DevOps skills.
+                </p>
+                <p class="text-sky-600 font-medium mt-3">
+                  The best part? I'm still just as excited about coding as I was on day one.
                 </p>
               </div>
             </div>
@@ -204,71 +175,62 @@ import ChapterLayout from '../layouts/ChapterLayout.astro';
   </section>
 
   <!-- Key Learnings -->
-  <section class="py-20 bg-gradient-to-br from-sky-50 to-mint-50">
+  <section class="py-20 bg-white">
     <div class="max-w-6xl mx-auto px-6">
-      <div class="text-center mb-16">
-        <h2 class="font-heading text-3xl lg:text-4xl font-semibold text-ink-800 mb-6">
-          Key Learnings Along the Way
-        </h2>
-        <p class="text-ink-700 max-w-3xl mx-auto">
-          Every milestone taught me something valuable. Here are the most important lessons that shaped my approach to development.
-        </p>
-      </div>
-
+      <h2 class="font-heading text-3xl font-semibold text-ink-800 mb-12 text-center">
+        Key Learnings Along the Way
+      </h2>
+      
       <div class="grid md:grid-cols-2 gap-8">
-        <!-- Learning 1 -->
-        <div class="bg-white rounded-2xl p-8 shadow-soft">
-          <div class="w-16 h-16 rounded-full bg-gradient-to-br from-sky-300 to-sky-500 flex items-center justify-center mb-6 mx-auto">
+        <!-- Code is Communication -->
+        <div class="p-8 rounded-2xl bg-gradient-to-br from-sky-50 to-mint-50 shadow-soft hover:shadow-chapter transition-all duration-300">
+          <div class="w-16 h-16 rounded-full bg-gradient-to-br from-sky-400 to-mint-400 flex items-center justify-center mb-6">
             <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12,2C13.1,2 14,2.9 14,4C14,5.1 13.1,6 12,6C10.9,6 10,5.1 10,4C10,2.9 10.9,2 12,2M21,9V7L15,1H5C3.9,1 3,1.9 3,3V19C3,20.1 3.9,21 5,21H19C20.1,21 21,20.1 21,19V9M19,19H5V3H13V9H19V19Z"/>
+              <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M17,7L12,17L7,7H17Z"/>
             </svg>
           </div>
-          <h3 class="font-heading text-xl font-semibold text-ink-800 mb-4 text-center">Code is Communication</h3>
-          <p class="text-ink-700 text-center">
-            The best code isn't just functional—it tells a story. Writing clean, readable code isn't about showing off; 
-            it's about being kind to your future self and your teammates.
+          <h3 class="font-heading text-xl font-semibold text-ink-800 mb-4">Code is Communication</h3>
+          <p class="text-ink-700">
+            Writing clean code isn't about cleverness — it's about clarity. Every function tells a story your future self will thank you for.
           </p>
         </div>
 
-        <!-- Learning 2 -->
-        <div class="bg-white rounded-2xl p-8 shadow-soft">
-          <div class="w-16 h-16 rounded-full bg-gradient-to-br from-mint-300 to-mint-500 flex items-center justify-center mb-6 mx-auto">
+        <!-- Embrace the Struggle -->
+        <div class="p-8 rounded-2xl bg-gradient-to-br from-blush-50 to-lavender-50 shadow-soft hover:shadow-chapter transition-all duration-300">
+          <div class="w-16 h-16 rounded-full bg-gradient-to-br from-blush-400 to-lavender-400 flex items-center justify-center mb-6">
             <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M15,9H9V5H15M12,19.2L18,14.2V9L12,4L6,9V14.2L12,19.2M12,2L20,8V16L12,22L4,16V8L12,2Z"/>
+              <path d="M12,2C17.53,2 22,6.47 22,12C22,17.53 17.53,22 12,22C6.47,22 2,17.53 2,12C2,6.47 6.47,2 12,2M15.59,7L12,10.59L8.41,7L7,8.41L10.59,12L7,15.59L8.41,17L12,13.41L15.59,17L17,15.59L13.41,12L17,8.41L15.59,7Z"/>
             </svg>
           </div>
-          <h3 class="font-heading text-xl font-semibold text-ink-800 mb-4 text-center">Embrace the Struggle</h3>
-          <p class="text-ink-700 text-center">
-            Those moments when you're stuck debugging for hours? They're not failures—they're growth opportunities. 
-            Every error message is a teacher in disguise.
+          <h3 class="font-heading text-xl font-semibold text-ink-800 mb-4">Embrace the Struggle</h3>
+          <p class="text-ink-700">
+            Getting stuck is part of the process. Every bug is an opportunity to learn something deeper — persistence is the real superpower.
           </p>
         </div>
 
-        <!-- Learning 3 -->
-        <div class="bg-white rounded-2xl p-8 shadow-soft">
-          <div class="w-16 h-16 rounded-full bg-gradient-to-br from-lavender-300 to-lavender-500 flex items-center justify-center mb-6 mx-auto">
+        <!-- Community Matters -->
+        <div class="p-8 rounded-2xl bg-gradient-to-br from-mint-50 to-butter-50 shadow-soft hover:shadow-chapter transition-all duration-300">
+          <div class="w-16 h-16 rounded-full bg-gradient-to-br from-mint-400 to-butter-400 flex items-center justify-center mb-6">
             <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"/>
+              <path d="M16,13C15.71,13 15.38,13 15.03,13.05C16.19,13.89 17,15 17,16.5V19H23V16.5C23,14.17 18.33,13 16,13M8,13C5.67,13 1,14.17 1,16.5V19H15V16.5C15,14.17 10.33,13 8,13M8,11A3,3 0 0,0 11,8A3,3 0 0,0 8,5A3,3 0 0,0 5,8A3,3 0 0,0 8,11M16,11A3,3 0 0,0 19,8A3,3 0 0,0 16,5A3,3 0 0,0 13,8A3,3 0 0,0 16,11Z"/>
             </svg>
           </div>
-          <h3 class="font-heading text-xl font-semibold text-ink-800 mb-4 text-center">Community Matters</h3>
-          <p class="text-ink-700 text-center">
-            Programming might seem solitary, but it's actually deeply collaborative. The developer community is 
-            incredibly generous with knowledge, and giving back feels amazing.
+          <h3 class="font-heading text-xl font-semibold text-ink-800 mb-4">Community Matters</h3>
+          <p class="text-ink-700">
+            The open-source world showed me that developers are generous learners. Teaching, sharing, and contributing feels like second nature.
           </p>
         </div>
 
-        <!-- Learning 4 -->
-        <div class="bg-white rounded-2xl p-8 shadow-soft">
-          <div class="w-16 h-16 rounded-full bg-gradient-to-br from-butter-300 to-butter-500 flex items-center justify-center mb-6 mx-auto">
+        <!-- Technology Serves People -->
+        <div class="p-8 rounded-2xl bg-gradient-to-br from-lavender-50 to-sky-50 shadow-soft hover:shadow-chapter transition-all duration-300">
+          <div class="w-16 h-16 rounded-full bg-gradient-to-br from-lavender-400 to-sky-400 flex items-center justify-center mb-6">
             <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M2,21L23,12L2,3V10L17,12L2,14V21Z"/>
+              <path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z"/>
             </svg>
           </div>
-          <h3 class="font-heading text-xl font-semibold text-ink-800 mb-4 text-center">Technology Serves People</h3>
-          <p class="text-ink-700 text-center">
-            The coolest algorithm means nothing if it doesn't solve a real problem. Always ask: "How does this 
-            make someone's life better?"
+          <h3 class="font-heading text-xl font-semibold text-ink-800 mb-4">Technology Serves People</h3>
+          <p class="text-ink-700">
+            The best software solves real problems. Whether it's an API or an AI model, I always ask: How does this make someone's life better?
           </p>
         </div>
       </div>
@@ -282,7 +244,7 @@ import ChapterLayout from '../layouts/ChapterLayout.astro';
         Next: The Tools That Power My Journey
       </h2>
       <p class="text-ink-700 mb-8 max-w-2xl mx-auto">
-        Now that you've seen my path, let's explore the technologies, frameworks, and tools that help me bring ideas to life every day.
+        You've seen where I've been — now let's look at the tools, stacks, and frameworks that help me bring my ideas to life.
       </p>
       <a href="/toolkit" class="inline-flex items-center px-8 py-4 rounded-full bg-gradient-to-r from-sky-500 to-mint-500 text-white font-medium hover:shadow-chapter transition-all duration-300 hover:scale-105">
         <span>Read Chapter III: My Toolkit</span>
