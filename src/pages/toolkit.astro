@@ -3,345 +3,295 @@ import ChapterLayout from '../layouts/ChapterLayout.astro';
 ---
 
 <ChapterLayout 
-  title="My Toolkit - Chapter III" 
-  description="Explore the technologies and tools that help me bring ideas to life"
+  title="The Arsenal That Powers Innovation - Chapter III" 
+  description="Explore Kaustubh's curated toolkit of programming languages, frameworks, and cloud technologies"
   chapter="Chapter III" 
-  chapterTitle="My Toolkit" 
+  chapterTitle="The Arsenal That Powers Innovation" 
   chapterColor="mint"
 >
-  <!-- Main Content -->
+  <!-- Introduction -->
   <section class="py-20 bg-white">
-    <div class="max-w-6xl mx-auto px-6">
-      <!-- Introduction -->
-      <div class="text-center mb-20">
-        <h2 class="font-heading text-3xl lg:text-4xl font-semibold text-ink-800 mb-6">
-          The Arsenal That Powers Innovation
-        </h2>
-        <p class="text-lg text-ink-700 max-w-3xl mx-auto leading-relaxed">
-          A craftsperson is only as good as their tools. Over the years, I've curated a toolkit that balances 
-          power, flexibility, and elegance. Each technology here has earned its place through real-world projects 
-          and countless hours of learning.
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <h2 class="font-heading text-4xl font-semibold text-ink-800 mb-8">
+        A craftsperson is only as good as their tools
+      </h2>
+      <div class="prose text-ink-700 text-lg max-w-3xl mx-auto space-y-6">
+        <p>
+          Over the years, I've curated a toolkit that balances power, flexibility, and clarity. These technologies weren't just "learned" — they were earned through projects, team collaborations, and real-world problem solving.
+        </p>
+        <p>
+          Here's what I use to build things that matter.
         </p>
       </div>
+    </div>
+  </section>
 
-      <!-- Programming Languages -->
-      <div class="mb-20">
-        <h3 class="font-heading text-2xl font-semibold text-ink-800 mb-12 text-center">
-          Programming Languages
-        </h3>
-        
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <!-- Python -->
-          <div class="p-6 rounded-2xl bg-gradient-to-br from-white to-mint-50 shadow-soft hover:shadow-chapter transition-all duration-300 group">
-            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-mint-200 to-mint-400 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-              <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M19.14,7.5A2.86,2.86 0 0,1 22,10.36V14.14A2.86,2.86 0 0,1 19.14,17H12C12,17.39 12.32,17.96 12.71,17.96H17V19.64A2.86,2.86 0 0,1 14.14,22.5H9.86A2.86,2.86 0 0,1 7,19.64V15.89C7,14.31 8.28,13.04 9.86,13.04H15.11C16.69,13.04 17.96,11.76 17.96,10.18V7.5H19.14M14.86,19.64C14.86,20.12 14.46,20.5 14,20.5A1.5,1.5 0 0,1 12.5,19A1.5,1.5 0 0,1 14,17.5C14.46,17.5 14.86,17.88 14.86,18.36V19.64M4.86,2.5H9.14A2.86,2.86 0 0,1 12,5.36V9.14A2.86,2.86 0 0,1 9.14,12H12C12,11.61 11.68,11.04 11.29,11.04H7V9.36A2.86,2.86 0 0,1 9.86,6.5H15.11A2.86,2.86 0 0,1 17.96,9.36V13.11C17.96,14.69 16.69,15.96 15.11,15.96H9.86C8.28,15.96 7,14.69 7,13.11V9.36C7,7.78 8.28,6.5 9.86,6.5H4.86M9.14,5.36C9.14,4.88 9.54,4.5 10,4.5A1.5,1.5 0 0,1 11.5,6A1.5,1.5 0 0,1 10,7.5C9.54,7.5 9.14,7.12 9.14,6.64V5.36Z"/>
-              </svg>
-            </div>
-            <h4 class="font-heading text-lg font-semibold text-ink-800 mb-3">Python</h4>
-            <p class="text-ink-700 text-sm mb-4">
-              My go-to language for everything from web development to machine learning. Its readability and vast ecosystem make it perfect for rapid prototyping and production systems.
-            </p>
-            <div class="flex flex-wrap gap-2">
-              <span class="px-3 py-1 bg-mint-100 text-mint-700 rounded-full text-xs font-medium">Django</span>
-              <span class="px-3 py-1 bg-mint-100 text-mint-700 rounded-full text-xs font-medium">Flask</span>
-              <span class="px-3 py-1 bg-mint-100 text-mint-700 rounded-full text-xs font-medium">Pandas</span>
-            </div>
+  <!-- Programming Languages -->
+  <section class="py-20 bg-gradient-to-br from-mint-50 to-sky-50">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="font-heading text-3xl font-semibold text-ink-800 mb-12 text-center">
+        Programming Languages
+      </h2>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Java -->
+        <div class="p-8 rounded-2xl bg-gradient-to-br from-white to-blush-50 shadow-soft hover:shadow-chapter transition-all duration-300">
+          <div class="w-16 h-16 rounded-full bg-gradient-to-br from-blush-400 to-blush-600 flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M8.851,18.56S9.53,19.15 11.36,19.15C16.66,19.15 12.96,16.41 12.96,16.41S20.16,17.11 12.96,12.81C5.78,8.5 15.26,2.5 8.851,18.56M13.45,11.18C13.45,11.18 17.26,12.19 13.45,13.2C5.13,15.31 13.45,7.87 13.45,11.18Z"/>
+            </svg>
           </div>
-
-          <!-- JavaScript -->
-          <div class="p-6 rounded-2xl bg-gradient-to-br from-white to-butter-50 shadow-soft hover:shadow-chapter transition-all duration-300 group">
-            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-butter-200 to-butter-400 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-              <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M3,3H21V21H3V3M7.73,18.04C8.13,18.89 8.92,19.59 10.27,19.59C11.77,19.59 12.8,18.79 12.8,17.04V11.26H11.1V17C11.1,17.86 10.75,18.08 10.2,18.08C9.62,18.08 9.38,17.68 9.11,17.21L7.73,18.04M13.71,17.86C14.21,18.84 15.22,19.59 16.8,19.59C18.4,19.59 19.6,18.76 19.6,17.23C19.6,15.82 18.79,15.19 17.35,14.57L16.93,14.39C16.2,14.08 15.89,13.87 15.89,13.46C15.89,13.1 16.15,12.85 16.58,12.85C17,12.85 17.27,13.07 17.47,13.46L18.73,12.64C18.11,11.56 17.15,11.13 16.58,11.13C15.15,11.13 14.16,12 14.16,13.4C14.16,14.78 14.97,15.39 16.16,15.95L16.58,16.13C17.38,16.47 17.77,16.68 17.77,17.18C17.77,17.64 17.33,17.97 16.67,17.97C15.84,17.97 15.36,17.5 15.11,16.91L13.71,17.86Z"/>
-              </svg>
-            </div>
-            <h4 class="font-heading text-lg font-semibold text-ink-800 mb-3">JavaScript</h4>
-            <p class="text-ink-700 text-sm mb-4">
-              The language of the web. From interactive front-ends to server-side applications, JavaScript's versatility never ceases to amaze me.
-            </p>
-            <div class="flex flex-wrap gap-2">
-              <span class="px-3 py-1 bg-butter-100 text-butter-700 rounded-full text-xs font-medium">ES6+</span>
-              <span class="px-3 py-1 bg-butter-100 text-butter-700 rounded-full text-xs font-medium">Node.js</span>
-              <span class="px-3 py-1 bg-butter-100 text-butter-700 rounded-full text-xs font-medium">TypeScript</span>
-            </div>
-          </div>
-
-          <!-- Java -->
-          <div class="p-6 rounded-2xl bg-gradient-to-br from-white to-sky-50 shadow-soft hover:shadow-chapter transition-all duration-300 group">
-            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-sky-200 to-sky-400 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-              <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M8.851,18.56S9.53,19.15 11.36,19.15C16.66,19.15 12.96,16.41 12.96,16.41S20.16,17.11 12.96,12.81C5.78,8.5 15.26,2.5 8.851,18.56M13.45,11.18C13.45,11.18 17.26,12.19 13.45,13.2C5.13,15.31 13.45,7.87 13.45,11.18Z"/>
-              </svg>
-            </div>
-            <h4 class="font-heading text-lg font-semibold text-ink-800 mb-3">Java</h4>
-            <p class="text-ink-700 text-sm mb-4">
-              Enterprise-grade reliability and performance. Perfect for large-scale applications and when you need rock-solid object-oriented design.
-            </p>
-            <div class="flex flex-wrap gap-2">
-              <span class="px-3 py-1 bg-sky-100 text-sky-700 rounded-full text-xs font-medium">Spring Boot</span>
-              <span class="px-3 py-1 bg-sky-100 text-sky-700 rounded-full text-xs font-medium">Maven</span>
-              <span class="px-3 py-1 bg-sky-100 text-sky-700 rounded-full text-xs font-medium">JUnit</span>
-            </div>
-          </div>
-
-          <!-- SQL -->
-          <div class="p-6 rounded-2xl bg-gradient-to-br from-white to-blush-50 shadow-soft hover:shadow-chapter transition-all duration-300 group">
-            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-blush-200 to-blush-400 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-              <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M5,3H19A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19V5A2,2 0 0,1 5,3M5,5V19H19V5H5Z"/>
-              </svg>
-            </div>
-            <h4 class="font-heading text-lg font-semibold text-ink-800 mb-3">SQL</h4>
-            <p class="text-ink-700 text-sm mb-4">
-              Data is the new oil, and SQL is the refinery. Essential for any application that needs to store, query, and analyze data efficiently.
-            </p>
-            <div class="flex flex-wrap gap-2">
-              <span class="px-3 py-1 bg-blush-100 text-blush-700 rounded-full text-xs font-medium">MySQL</span>
-              <span class="px-3 py-1 bg-blush-100 text-blush-700 rounded-full text-xs font-medium">PostgreSQL</span>
-              <span class="px-3 py-1 bg-blush-100 text-blush-700 rounded-full text-xs font-medium">MongoDB</span>
-            </div>
-          </div>
-
-          <!-- C++ -->
-          <div class="p-6 rounded-2xl bg-gradient-to-br from-white to-lavender-50 shadow-soft hover:shadow-chapter transition-all duration-300 group">
-            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-lavender-200 to-lavender-400 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-              <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M10.5,15.97L10.91,18.89C10.91,18.89 16.73,20.76 17.39,17.17C18.05,13.58 9.09,15.97 10.5,15.97M6.25,6.33C6.25,6.33 8.13,7.23 9.09,8.18C8.36,8.18 7.64,8.45 7.06,8.92L6.25,6.33M5.5,13.5C5.5,10.5 7.45,8.09 10.09,7.5C10.91,7.5 11.64,7.77 12.27,8.23C12.64,7.91 13.18,7.73 13.73,7.73C15.73,7.73 17.36,9.36 17.36,11.36C17.36,13.36 15.73,15 13.73,15C12.91,15 12.18,14.73 11.55,14.27C11.18,14.59 10.64,14.77 10.09,14.77C8.09,14.77 6.45,13.14 6.45,11.14C6.45,10.32 6.73,9.59 7.18,8.95C6.86,9.32 6.68,9.86 6.68,10.41C6.68,12.41 8.32,14.05 10.32,14.05C10.91,14.05 11.45,13.86 11.86,13.55C12.27,13.86 12.82,14.05 13.41,14.05C15.41,14.05 17.05,12.41 17.05,10.41C17.05,8.41 15.41,6.77 13.41,6.77C12.82,6.77 12.27,6.95 11.86,7.27C11.45,6.95 10.91,6.77 10.32,6.77C8.32,6.77 6.68,8.41 6.68,10.41C6.68,11 6.86,11.55 7.18,11.95C6.73,11.32 6.45,10.59 6.45,9.77C6.45,7.77 8.09,6.14 10.09,6.14C10.64,6.14 11.18,6.32 11.55,6.64C12.18,6.18 12.91,5.91 13.73,5.91C15.73,5.91 17.36,7.55 17.36,9.55C17.36,11.55 15.73,13.18 13.73,13.18C13.18,13.18 12.64,13 12.27,12.68C11.64,13.14 10.91,13.41 10.09,13.41C7.45,13.41 5.5,11 5.5,8C5.5,5 7.45,2.59 10.09,2C10.91,2 11.64,2.27 12.27,2.73C12.64,2.41 13.18,2.23 13.73,2.23C15.73,2.23 17.36,3.86 17.36,5.86C17.36,7.86 15.73,9.5 13.73,9.5C12.91,9.5 12.18,9.23 11.55,8.77C11.18,9.09 10.64,9.27 10.09,9.27C8.09,9.27 6.45,7.64 6.45,5.64C6.45,5.05 6.64,4.5 6.95,4.09C6.68,4.5 6.5,5 6.5,5.5Z"/>
-              </svg>
-            </div>
-            <h4 class="font-heading text-lg font-semibold text-ink-800 mb-3">C++</h4>
-            <p class="text-ink-700 text-sm mb-4">
-              When performance matters most. From system programming to competitive programming, C++ teaches you to think about efficiency at every level.
-            </p>
-            <div class="flex flex-wrap gap-2">
-              <span class="px-3 py-1 bg-lavender-100 text-lavender-700 rounded-full text-xs font-medium">STL</span>
-              <span class="px-3 py-1 bg-lavender-100 text-lavender-700 rounded-full text-xs font-medium">Algorithms</span>
-              <span class="px-3 py-1 bg-lavender-100 text-lavender-700 rounded-full text-xs font-medium">OOP</span>
-            </div>
-          </div>
-
-          <!-- HTML/CSS -->
-          <div class="p-6 rounded-2xl bg-gradient-to-br from-white to-parchment-50 shadow-soft hover:shadow-chapter transition-all duration-300 group">
-            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-parchment-200 to-parchment-400 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-              <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12,17.56L16.07,16.43L16.62,10.33H9.38L9.2,8.3H16.8L17,6.31H7L7.56,12.32H14.45L14.22,14.9L12,15.5L9.78,14.9L9.64,13.24H7.64L7.93,16.43L12,17.56M4.07,3H19.93L18.5,19.2L12,21L5.5,19.2L4.07,3Z"/>
-              </svg>
-            </div>
-            <h4 class="font-heading text-lg font-semibold text-ink-800 mb-3">HTML/CSS</h4>
-            <p class="text-ink-700 text-sm mb-4">
-              The foundation of the web. Creating semantic, accessible markup and beautiful, responsive designs that work across all devices.
-            </p>
-            <div class="flex flex-wrap gap-2">
-              <span class="px-3 py-1 bg-parchment-100 text-parchment-700 rounded-full text-xs font-medium">Flexbox</span>
-              <span class="px-3 py-1 bg-parchment-100 text-parchment-700 rounded-full text-xs font-medium">Grid</span>
-              <span class="px-3 py-1 bg-parchment-100 text-parchment-700 rounded-full text-xs font-medium">SASS</span>
-            </div>
+          <h3 class="font-heading text-xl font-semibold text-ink-800 mb-4">Java</h3>
+          <p class="text-ink-700 mb-4">
+            My strongest backend language. I've built scalable microservices and REST APIs using Spring Boot, Hibernate, and EJB in enterprise-grade applications.
+          </p>
+          <div class="space-y-2">
+            <p class="text-sm font-medium text-blush-600">Used in: Insurance and finance platforms</p>
+            <p class="text-sm text-ink-600">Frameworks: Spring Boot, Hibernate, EJB</p>
           </div>
         </div>
-      </div>
 
-      <!-- Frameworks & Libraries -->
-      <div class="mb-20">
-        <h3 class="font-heading text-2xl font-semibold text-ink-800 mb-12 text-center">
-          Frameworks & Libraries
-        </h3>
-        
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <!-- React -->
-          <div class="p-6 rounded-2xl bg-gradient-to-br from-white to-sky-50 shadow-soft hover:shadow-chapter transition-all duration-300 group text-center">
-            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-sky-300 to-sky-500 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12,10.11C13.03,10.11 13.87,10.95 13.87,12C13.87,13 13.03,13.85 12,13.85C10.97,13.85 10.13,13 10.13,12C10.13,10.95 10.97,10.11 12,10.11M7.37,20C8,20.38 9.38,19.8 10.97,18.3C10.45,17.71 9.94,17.07 9.46,16.4C8.64,16.32 7.83,16.2 7.06,16.04C6.55,18.18 6.74,19.65 7.37,20M8.08,14.26L7.79,13.75C7.68,14.04 7.57,14.33 7.5,14.61C7.77,14.67 8.07,14.72 8.38,14.77C8.28,14.6 8.18,14.43 8.08,14.26M14.62,13.5L15.43,12L14.62,10.5C14.32,9.97 14,9.5 13.71,9.03C13.17,9 12.6,9 12,9C11.4,9 10.83,9 10.29,9.03C10,9.5 9.68,9.97 9.38,10.5L8.57,12L9.38,13.5C9.68,14.03 10,14.5 10.29,14.97C10.83,15 11.4,15 12,15C12.6,15 13.17,15 13.71,14.97C14,14.5 14.32,14.03 14.62,13.5M12,6.78C11.81,7 11.61,7.23 11.41,7.5C11.61,7.5 11.8,7.5 12,7.5C12.2,7.5 12.39,7.5 12.59,7.5C12.39,7.23 12.19,7 12,6.78M12,17.22C12.19,17 12.39,16.77 12.59,16.5C12.39,16.5 12.2,16.5 12,16.5C11.8,16.5 11.61,16.5 11.41,16.5C11.61,16.77 11.81,17 12,17.22M16.62,4C16,3.62 14.62,4.2 13.03,5.7C13.55,6.29 14.06,6.93 14.54,7.6C15.36,7.68 16.17,7.8 16.94,7.96C17.45,5.82 17.26,4.35 16.62,4M15.92,9.74L16.21,10.25C16.32,9.96 16.43,9.67 16.5,9.39C16.23,9.33 15.93,9.28 15.62,9.23C15.72,9.4 15.82,9.57 15.92,9.74M17.37,2.69C18.84,3.53 19,5.74 18.38,8.32C20.92,9.07 22.75,10.31 22.75,12C22.75,13.69 20.92,14.93 18.38,15.68C19,18.26 18.84,20.47 17.37,21.31C15.93,22.15 13.92,21.19 12,19.36C10.08,21.19 8.07,22.15 6.63,21.31C5.16,20.47 5,18.26 5.62,15.68C3.08,14.93 1.25,13.69 1.25,12C1.25,10.31 3.08,9.07 5.62,8.32C5,5.74 5.16,3.53 6.63,2.69C8.07,1.85 10.08,2.81 12,4.64C13.92,2.81 15.93,1.85 17.37,2.69M17.08,12C17.42,12.75 17.72,13.5 17.97,14.26C20.07,13.63 21.25,12.73 21.25,12C21.25,11.27 20.07,10.37 17.97,9.74C17.72,10.5 17.42,11.25 17.08,12M6.92,12C6.58,11.25 6.28,10.5 6.03,9.74C3.93,10.37 2.75,11.27 2.75,12C2.75,12.73 3.93,13.63 6.03,14.26C6.28,13.5 6.58,12.75 6.92,12M15.92,14.26C15.82,14.43 15.72,14.6 15.62,14.77C15.93,14.72 16.23,14.67 16.5,14.61C16.43,14.33 16.32,14.04 16.21,13.75L15.92,14.26M8.08,9.74C8.18,9.57 8.28,9.4 8.38,9.23C8.07,9.28 7.77,9.33 7.5,9.39C7.57,9.67 7.68,9.96 7.79,10.25L8.08,9.74Z"/>
-              </svg>
-            </div>
-            <h4 class="font-heading text-sm font-semibold text-ink-800">React</h4>
+        <!-- JavaScript/TypeScript -->
+        <div class="p-8 rounded-2xl bg-gradient-to-br from-white to-sky-50 shadow-soft hover:shadow-chapter transition-all duration-300">
+          <div class="w-16 h-16 rounded-full bg-gradient-to-br from-sky-400 to-sky-600 flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M3,3H21V5H3V3M3,7H21V9H3V7M3,11H21V13H3V11M3,15H21V17H3V15M3,19H21V21H3V19Z"/>
+            </svg>
           </div>
-
-          <!-- Vue -->
-          <div class="p-6 rounded-2xl bg-gradient-to-br from-white to-mint-50 shadow-soft hover:shadow-chapter transition-all duration-300 group text-center">
-            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-mint-300 to-mint-500 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M2,3H5.5L12,15L18.5,3H22L12,21L2,3Z"/>
-              </svg>
-            </div>
-            <h4 class="font-heading text-sm font-semibold text-ink-800">Vue.js</h4>
-          </div>
-
-          <!-- Django -->
-          <div class="p-6 rounded-2xl bg-gradient-to-br from-white to-blush-50 shadow-soft hover:shadow-chapter transition-all duration-300 group text-center">
-            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blush-300 to-blush-500 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12,2C13.1,2 14,2.9 14,4C14,5.1 13.1,6 12,6C10.9,6 10,5.1 10,4C10,2.9 10.9,2 12,2M21,9V7L15,1H5C3.9,1 3,1.9 3,3V19C3,20.1 3.9,21 5,21H19C20.1,21 21,20.1 21,19V9M19,19H5V3H13V9H19V19Z"/>
-              </svg>
-            </div>
-            <h4 class="font-heading text-sm font-semibold text-ink-800">Django</h4>
-          </div>
-
-          <!-- Express -->
-          <div class="p-6 rounded-2xl bg-gradient-to-br from-white to-butter-50 shadow-soft hover:shadow-chapter transition-all duration-300 group text-center">
-            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-butter-300 to-butter-500 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"/>
-              </svg>
-            </div>
-            <h4 class="font-heading text-sm font-semibold text-ink-800">Express.js</h4>
-          </div>
-
-          <!-- TailwindCSS -->
-          <div class="p-6 rounded-2xl bg-gradient-to-br from-white to-lavender-50 shadow-soft hover:shadow-chapter transition-all duration-300 group text-center">
-            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-lavender-300 to-lavender-500 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12,2L13.09,8.26L22,9L13.09,9.74L12,16L10.91,9.74L2,9L10.91,8.26L12,2Z"/>
-              </svg>
-            </div>
-            <h4 class="font-heading text-sm font-semibold text-ink-800">TailwindCSS</h4>
-          </div>
-
-          <!-- Bootstrap -->
-          <div class="p-6 rounded-2xl bg-gradient-to-br from-white to-sky-50 shadow-soft hover:shadow-chapter transition-all duration-300 group text-center">
-            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-sky-300 to-sky-500 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M11.78,2.25C11.91,2.09 12.09,2.09 12.22,2.25L21.45,11.48C21.61,11.61 21.61,11.78 21.45,11.91L12.22,21.14C12.09,21.3 11.91,21.3 11.78,21.14L2.55,11.91C2.39,11.78 2.39,11.61 2.55,11.48L11.78,2.25M7.69,8.61C7.55,8.75 7.33,8.75 7.19,8.61L5.81,7.23C5.67,7.09 5.67,6.87 5.81,6.73L7.19,5.35C7.33,5.21 7.55,5.21 7.69,5.35L9.07,6.73C9.21,6.87 9.21,7.09 9.07,7.23L7.69,8.61M7.69,15.27C7.55,15.41 7.33,15.41 7.19,15.27L5.81,13.89C5.67,13.75 5.67,13.53 5.81,13.39L7.19,12.01C7.33,11.87 7.55,11.87 7.69,12.01L9.07,13.39C9.21,13.53 9.21,13.75 9.07,13.89L7.69,15.27M16.31,8.61C16.45,8.75 16.67,8.75 16.81,8.61L18.19,7.23C18.33,7.09 18.33,6.87 18.19,6.73L16.81,5.35C16.67,5.21 16.45,5.21 16.31,5.35L14.93,6.73C14.79,6.87 14.79,7.09 14.93,7.23L16.31,8.61M16.31,15.27C16.45,15.41 16.67,15.41 16.81,15.27L18.19,13.89C18.33,13.75 18.33,13.53 18.19,13.39L16.81,12.01C16.67,11.87 16.45,11.87 16.31,12.01L14.93,13.39C14.79,13.53 14.79,13.75 14.93,13.89L16.31,15.27Z"/>
-              </svg>
-            </div>
-            <h4 class="font-heading text-sm font-semibold text-ink-800">Bootstrap</h4>
-          </div>
-
-          <!-- NumPy -->
-          <div class="p-6 rounded-2xl bg-gradient-to-br from-white to-mint-50 shadow-soft hover:shadow-chapter transition-all duration-300 group text-center">
-            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-mint-300 to-mint-500 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M9,11H7V9H9V11M13,11H11V9H13V11M17,11H15V9H17V11M19,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3M19,19H5V8H19V19Z"/>
-              </svg>
-            </div>
-            <h4 class="font-heading text-sm font-semibold text-ink-800">NumPy</h4>
-          </div>
-
-          <!-- TensorFlow -->
-          <div class="p-6 rounded-2xl bg-gradient-to-br from-white to-blush-50 shadow-soft hover:shadow-chapter transition-all duration-300 group text-center">
-            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blush-300 to-blush-500 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M1,11V13H8L8,11M9,7H7V10H9M10,13H12V16H10M15,7H13V14H15M16,11H14V15H16M17,7H15V9H17M18,13H16V16H18M19,7H17V12H19M20,13H18V15H20M21,7H19V9H21M22,13H20V15H22M23,7H21V14H23"/>
-              </svg>
-            </div>
-            <h4 class="font-heading text-sm font-semibold text-ink-800">TensorFlow</h4>
+          <h3 class="font-heading text-xl font-semibold text-ink-800 mb-4">JavaScript / TypeScript</h3>
+          <p class="text-ink-700 mb-4">
+            The engine behind all my frontend and full-stack projects. I use JS/TS with React, Node, and Next.js to craft interactive, modular user interfaces.
+          </p>
+          <div class="space-y-2">
+            <p class="text-sm font-medium text-sky-600">Used in: Dashboards, portals, dev tools</p>
+            <p class="text-sm text-ink-600">Tech Stack: React, Node.js, TypeScript, Express.js</p>
           </div>
         </div>
-      </div>
 
-      <!-- AI/ML Tools -->
-      <div class="mb-20">
-        <h3 class="font-heading text-2xl font-semibold text-ink-800 mb-12 text-center">
-          AI & Machine Learning
-        </h3>
-        
-        <div class="grid md:grid-cols-3 gap-8">
-          <!-- Scikit-learn -->
-          <div class="p-6 rounded-2xl bg-gradient-to-br from-white to-blush-50 shadow-soft hover:shadow-chapter transition-all duration-300">
-            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-blush-200 to-blush-400 flex items-center justify-center mb-6">
-              <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M5,3H7V5H5V10A2,2 0 0,1 3,8V5A2,2 0 0,1 5,3M19,3A2,2 0 0,1 21,5V8A2,2 0 0,1 19,10V5H17V3H19M3,13A2,2 0 0,1 5,11V16H7V18H5A2,2 0 0,1 3,16V13M21,13V16A2,2 0 0,1 19,18H17V16H19V11A2,2 0 0,1 21,13Z"/>
-              </svg>
-            </div>
-            <h4 class="font-heading text-lg font-semibold text-ink-800 mb-3">Scikit-learn</h4>
-            <p class="text-ink-700 text-sm">
-              My go-to library for traditional machine learning algorithms. From classification to clustering, 
-              it provides robust, well-tested implementations.
-            </p>
+        <!-- SQL -->
+        <div class="p-8 rounded-2xl bg-gradient-to-br from-white to-mint-50 shadow-soft hover:shadow-chapter transition-all duration-300">
+          <div class="w-16 h-16 rounded-full bg-gradient-to-br from-mint-400 to-mint-600 flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M4,6H6V18H4V6M7,6H8V18H7V6M10,6H12V18H10V6M13,6H14V18H13V6M16,6H18V18H16V6M19,6H20V18H19V6M2,4H4V2H2V4M6,4H8V2H6V4M10,4H12V2H10V4M14,4H16V2H14V4M18,4H20V2H18V4M2,20H4V22H2V20M6,20H8V22H6V20M10,20H12V22H10V20M14,20H16V22H14V20M18,20H20V22H18V20Z"/>
+            </svg>
           </div>
-
-          <!-- Pandas -->
-          <div class="p-6 rounded-2xl bg-gradient-to-br from-white to-mint-50 shadow-soft hover:shadow-chapter transition-all duration-300">
-            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-mint-200 to-mint-400 flex items-center justify-center mb-6">
-              <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M9,11H7V9H9V11M13,11H11V9H13V11M17,11H15V9H17V11M19,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3M19,19H5V8H19V19Z"/>
-              </svg>
-            </div>
-            <h4 class="font-heading text-lg font-semibold text-ink-800 mb-3">Pandas</h4>
-            <p class="text-ink-700 text-sm">
-              Data manipulation and analysis made simple. Essential for any data science project, 
-              from cleaning datasets to exploratory analysis.
-            </p>
-          </div>
-
-          <!-- Jupyter -->
-          <div class="p-6 rounded-2xl bg-gradient-to-br from-white to-lavender-50 shadow-soft hover:shadow-chapter transition-all duration-300">
-            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-lavender-200 to-lavender-400 flex items-center justify-center mb-6">
-              <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M16.2,16.2L11,13V7H12.5V12.2L17,15.4L16.2,16.2Z"/>
-              </svg>
-            </div>
-            <h4 class="font-heading text-lg font-semibold text-ink-800 mb-3">Jupyter Notebooks</h4>
-            <p class="text-ink-700 text-sm">
-              Perfect for prototyping, experimentation, and data exploration. The interactive nature makes 
-              it ideal for iterative development and sharing insights.
-            </p>
+          <h3 class="font-heading text-xl font-semibold text-ink-800 mb-4">SQL</h3>
+          <p class="text-ink-700 mb-4">
+            Every great backend needs great data handling. SQL is my go-to for writing performant, clean queries that support analytics and core business logic.
+          </p>
+          <div class="space-y-2">
+            <p class="text-sm font-medium text-mint-600">Tools: MySQL, PostgreSQL, DynamoDB</p>
           </div>
         </div>
-      </div>
 
-      <!-- Database & Cloud -->
-      <div class="mb-20">
-        <h3 class="font-heading text-2xl font-semibold text-ink-800 mb-12 text-center">
-          Database & Cloud Technologies
-        </h3>
-        
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <!-- MySQL -->
-          <div class="p-6 rounded-2xl bg-gradient-to-br from-white to-sky-50 shadow-soft hover:shadow-chapter transition-all duration-300 group text-center">
-            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-sky-300 to-sky-500 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M5,3H19A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19V5A2,2 0 0,1 5,3M5,5V19H19V5H5Z"/>
-              </svg>
-            </div>
-            <h4 class="font-heading text-sm font-semibold text-ink-800">MySQL</h4>
+        <!-- C++ -->
+        <div class="p-8 rounded-2xl bg-gradient-to-br from-white to-lavender-50 shadow-soft hover:shadow-chapter transition-all duration-300">
+          <div class="w-16 h-16 rounded-full bg-gradient-to-br from-lavender-400 to-lavender-600 flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8Z"/>
+            </svg>
           </div>
+          <h3 class="font-heading text-xl font-semibold text-ink-800 mb-4">C++</h3>
+          <p class="text-ink-700 mb-4">
+            My gateway to problem solving. I used C++ during competitive programming days to develop strong fundamentals in algorithms and systems thinking.
+          </p>
+        </div>
 
-          <!-- PostgreSQL -->
-          <div class="p-6 rounded-2xl bg-gradient-to-br from-white to-mint-50 shadow-soft hover:shadow-chapter transition-all duration-300 group text-center">
-            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-mint-300 to-mint-500 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12,3C7.58,3 4,4.79 4,7C4,9.21 7.58,11 12,11C16.42,11 20,9.21 20,7C20,4.79 16.42,3 12,3M4,9V12C4,14.21 7.58,16 12,16C16.42,16 20,14.21 20,12V9C20,11.21 16.42,13 12,13C7.58,13 4,11.21 4,9M4,14V17C4,19.21 7.58,21 12,21C16.42,21 20,19.21 20,17V14C20,16.21 16.42,18 12,18C7.58,18 4,16.21 4,14Z"/>
-              </svg>
-            </div>
-            <h4 class="font-heading text-sm font-semibold text-ink-800">PostgreSQL</h4>
+        <!-- HTML/CSS -->
+        <div class="p-8 rounded-2xl bg-gradient-to-br from-white to-butter-50 shadow-soft hover:shadow-chapter transition-all duration-300">
+          <div class="w-16 h-16 rounded-full bg-gradient-to-br from-butter-400 to-butter-600 flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12,18.178L9.5,15.5L10.91,14.09L12,15.178L13.09,14.09L14.5,15.5L12,18.178M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4Z"/>
+            </svg>
           </div>
-
-          <!-- MongoDB -->
-          <div class="p-6 rounded-2xl bg-gradient-to-br from-white to-blush-50 shadow-soft hover:shadow-chapter transition-all duration-300 group text-center">
-            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blush-300 to-blush-500 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M17,9H7V7H17M17,13H7V11H17M14,17H7V15H14M12,3A1,1 0 0,1 13,4A1,1 0 0,1 12,5A1,1 0 0,1 11,4A1,1 0 0,1 12,3M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3Z"/>
-              </svg>
-            </div>
-            <h4 class="font-heading text-sm font-semibold text-ink-800">MongoDB</h4>
-          </div>
-
-          <!-- AWS -->
-          <div class="p-6 rounded-2xl bg-gradient-to-br from-white to-butter-50 shadow-soft hover:shadow-chapter transition-all duration-300 group text-center">
-            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-butter-300 to-butter-500 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12,2L13.09,8.26L22,9L13.09,9.74L12,16L10.91,9.74L2,9L10.91,8.26L12,2Z"/>
-              </svg>
-            </div>
-            <h4 class="font-heading text-sm font-semibold text-ink-800">AWS</h4>
+          <h3 class="font-heading text-xl font-semibold text-ink-800 mb-4">HTML / CSS</h3>
+          <p class="text-ink-700 mb-4">
+            The backbone of every UI I build. Clean markup and responsive design are non-negotiables in my frontend work.
+          </p>
+          <div class="space-y-2">
+            <p class="text-sm font-medium text-butter-600">Frameworks: TailwindCSS, Sass, Bootstrap</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- Frameworks & Libraries -->
+  <section class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="font-heading text-3xl font-semibold text-ink-800 mb-12 text-center">
+        Frameworks & Libraries
+      </h2>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- React -->
+        <div class="p-6 rounded-2xl bg-gradient-to-br from-sky-50 to-mint-50 shadow-soft hover:shadow-chapter transition-all duration-300 text-center">
+          <div class="w-12 h-12 rounded-full bg-gradient-to-br from-sky-400 to-mint-400 flex items-center justify-center mb-4 mx-auto">
+            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12,2L13.09,8.26L22,9L13.09,9.74L12,16L10.91,9.74L2,9L10.91,8.26L12,2Z"/>
+            </svg>
+          </div>
+          <h3 class="font-heading text-lg font-semibold text-ink-800 mb-2">React</h3>
+          <p class="text-ink-700 text-sm">My primary UI framework, used in most modern projects</p>
+        </div>
+
+        <!-- Next.js -->
+        <div class="p-6 rounded-2xl bg-gradient-to-br from-blush-50 to-sky-50 shadow-soft hover:shadow-chapter transition-all duration-300 text-center">
+          <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blush-400 to-sky-400 flex items-center justify-center mb-4 mx-auto">
+            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12,2L13.09,8.26L22,9L13.09,9.74L12,16L10.91,9.74L2,9L10.91,8.26L12,2Z"/>
+            </svg>
+          </div>
+          <h3 class="font-heading text-lg font-semibold text-ink-800 mb-2">Next.js</h3>
+          <p class="text-ink-700 text-sm">For full-stack applications and SSR-based workflows</p>
+        </div>
+
+        <!-- Vue.js -->
+        <div class="p-6 rounded-2xl bg-gradient-to-br from-mint-50 to-lavender-50 shadow-soft hover:shadow-chapter transition-all duration-300 text-center">
+          <div class="w-12 h-12 rounded-full bg-gradient-to-br from-mint-400 to-lavender-400 flex items-center justify-center mb-4 mx-auto">
+            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12,2L13.09,8.26L22,9L13.09,9.74L12,16L10.91,9.74L2,9L10.91,8.26L12,2Z"/>
+            </svg>
+          </div>
+          <h3 class="font-heading text-lg font-semibold text-ink-800 mb-2">Vue.js</h3>
+          <p class="text-ink-700 text-sm">Light experimentation for alternative frontend thinking</p>
+        </div>
+
+        <!-- Express.js -->
+        <div class="p-6 rounded-2xl bg-gradient-to-br from-butter-50 to-blush-50 shadow-soft hover:shadow-chapter transition-all duration-300 text-center">
+          <div class="w-12 h-12 rounded-full bg-gradient-to-br from-butter-400 to-blush-400 flex items-center justify-center mb-4 mx-auto">
+            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12,2L13.09,8.26L22,9L13.09,9.74L12,16L10.91,9.74L2,9L10.91,8.26L12,2Z"/>
+            </svg>
+          </div>
+          <h3 class="font-heading text-lg font-semibold text-ink-800 mb-2">Express.js</h3>
+          <p class="text-ink-700 text-sm">Lightweight and flexible for backend APIs</p>
+        </div>
+
+        <!-- TailwindCSS/Bootstrap -->
+        <div class="p-6 rounded-2xl bg-gradient-to-br from-sky-50 to-butter-50 shadow-soft hover:shadow-chapter transition-all duration-300 text-center">
+          <div class="w-12 h-12 rounded-full bg-gradient-to-br from-sky-400 to-butter-400 flex items-center justify-center mb-4 mx-auto">
+            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12,2L13.09,8.26L22,9L13.09,9.74L12,16L10.91,9.74L2,9L10.91,8.26L12,2Z"/>
+            </svg>
+          </div>
+          <h3 class="font-heading text-lg font-semibold text-ink-800 mb-2">TailwindCSS / Bootstrap</h3>
+          <p class="text-ink-700 text-sm">For beautiful, maintainable, utility-first styling</p>
+        </div>
+
+        <!-- Shadcn/UI + Radix -->
+        <div class="p-6 rounded-2xl bg-gradient-to-br from-lavender-50 to-mint-50 shadow-soft hover:shadow-chapter transition-all duration-300 text-center">
+          <div class="w-12 h-12 rounded-full bg-gradient-to-br from-lavender-400 to-mint-400 flex items-center justify-center mb-4 mx-auto">
+            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12,2L13.09,8.26L22,9L13.09,9.74L12,16L10.91,9.74L2,9L10.91,8.26L12,2Z"/>
+            </svg>
+          </div>
+          <h3 class="font-heading text-lg font-semibold text-ink-800 mb-2">Shadcn/UI + Radix</h3>
+          <p class="text-ink-700 text-sm">For building accessible, elegant interfaces</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Database & Cloud Technologies -->
+  <section class="py-20 bg-gradient-to-br from-sky-50 to-mint-50">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="font-heading text-3xl font-semibold text-ink-800 mb-12 text-center">
+        Database & Cloud Technologies
+      </h2>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- MySQL -->
+        <div class="p-6 rounded-2xl bg-gradient-to-br from-white to-blush-50 shadow-soft hover:shadow-chapter transition-all duration-300">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blush-400 to-blush-600 flex items-center justify-center mr-4">
+              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8Z"/>
+              </svg>
+            </div>
+            <h3 class="font-heading text-lg font-semibold text-ink-800">MySQL</h3>
+          </div>
+          <p class="text-ink-700 text-sm">Used in all Java-based backend systems</p>
+        </div>
+
+        <!-- PostgreSQL -->
+        <div class="p-6 rounded-2xl bg-gradient-to-br from-white to-sky-50 shadow-soft hover:shadow-chapter transition-all duration-300">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-sky-400 to-sky-600 flex items-center justify-center mr-4">
+              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8Z"/>
+              </svg>
+            </div>
+            <h3 class="font-heading text-lg font-semibold text-ink-800">PostgreSQL</h3>
+          </div>
+          <p class="text-ink-700 text-sm">Especially valuable for relational and spatial data</p>
+        </div>
+
+        <!-- MongoDB -->
+        <div class="p-6 rounded-2xl bg-gradient-to-br from-white to-mint-50 shadow-soft hover:shadow-chapter transition-all duration-300">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-mint-400 to-mint-600 flex items-center justify-center mr-4">
+              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8Z"/>
+              </svg>
+            </div>
+            <h3 class="font-heading text-lg font-semibold text-ink-800">MongoDB</h3>
+          </div>
+          <p class="text-ink-700 text-sm">When flexibility and speed matter most</p>
+        </div>
+
+        <!-- AWS -->
+        <div class="p-6 rounded-2xl bg-gradient-to-br from-white to-lavender-50 shadow-soft hover:shadow-chapter transition-all duration-300">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-lavender-400 to-lavender-600 flex items-center justify-center mr-4">
+              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12,2L13.09,8.26L22,9L13.09,9.74L12,16L10.91,9.74L2,9L10.91,8.26L12,2Z"/>
+              </svg>
+            </div>
+            <h3 class="font-heading text-lg font-semibold text-ink-800">AWS</h3>
+          </div>
+          <p class="text-ink-700 text-sm">EC2, S3, IAM, Lambda (certification in progress)</p>
+        </div>
+
+        <!-- Docker -->
+        <div class="p-6 rounded-2xl bg-gradient-to-br from-white to-butter-50 shadow-soft hover:shadow-chapter transition-all duration-300">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-butter-400 to-butter-600 flex items-center justify-center mr-4">
+              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12,2L13.09,8.26L22,9L13.09,9.74L12,16L10.91,9.74L2,9L10.91,8.26L12,2Z"/>
+              </svg>
+            </div>
+            <h3 class="font-heading text-lg font-semibold text-ink-800">Docker</h3>
+          </div>
+          <p class="text-ink-700 text-sm">For clean, consistent deployment environments</p>
+        </div>
+
+        <!-- GitHub Actions -->
+        <div class="p-6 rounded-2xl bg-gradient-to-br from-white to-blush-50 shadow-soft hover:shadow-chapter transition-all duration-300">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blush-400 to-blush-600 flex items-center justify-center mr-4">
+              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12,2L13.09,8.26L22,9L13.09,9.74L12,16L10.91,9.74L2,9L10.91,8.26L12,2Z"/>
+              </svg>
+            </div>
+            <h3 class="font-heading text-lg font-semibold text-ink-800">GitHub Actions</h3>
+          </div>
+          <p class="text-ink-700 text-sm">My CI/CD tool of choice for automation</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Call to Action -->
-  <section class="py-20 bg-gradient-to-r from-mint-100 to-lavender-100">
+  <section class="py-20 bg-gradient-to-r from-mint-100 to-sky-100">
     <div class="max-w-4xl mx-auto px-6 text-center">
       <h2 class="font-heading text-3xl font-semibold text-ink-800 mb-6">
         Ready to See These Tools in Action?
       </h2>
       <p class="text-ink-700 mb-8 max-w-2xl mx-auto">
-        Now that you've seen my toolkit, let's explore how I've used these technologies to build real projects that solve actual problems.
+        Now that you've seen my toolkit, let's explore how I've applied it to build real-world platforms — from mission dashboards to geo-enabled urban tools.
       </p>
-      <a href="/projects" class="inline-flex items-center px-8 py-4 rounded-full bg-gradient-to-r from-mint-500 to-lavender-500 text-white font-medium hover:shadow-chapter transition-all duration-300 hover:scale-105">
+      <a href="/projects" class="inline-flex items-center px-8 py-4 rounded-full bg-gradient-to-r from-mint-500 to-sky-500 text-white font-medium hover:shadow-chapter transition-all duration-300 hover:scale-105">
         <span>Read Chapter IV: My Projects</span>
         <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
