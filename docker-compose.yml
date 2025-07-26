@@ -21,8 +21,13 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    networks:
+      - npm_default
     ports:
       - "3003:80"
     environment:
       - NODE_ENV=production
     restart: unless-stopped
+networks:
+    npm_default:
+      external: true
