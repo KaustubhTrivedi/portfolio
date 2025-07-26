@@ -5,11 +5,11 @@
 case "$1" in
     "dev")
         echo "🚀 Starting development server..."
-        docker compose up portfolio-dev
+        docker compose up portfolio-dev -d
         ;;
     "prod")
         echo "🏭 Starting production server..."
-        docker compose up portfolio
+        docker compose up portfolio -d
         ;;
     "build")
         echo "🔨 Building production image..."
