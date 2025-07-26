@@ -24,7 +24,7 @@ services:
     networks:
       - npm_default
     ports:
-      - "3003:80"
+      - "3004:80"
     environment:
       - NODE_ENV=production
     restart: unless-stopped
