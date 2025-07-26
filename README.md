@@ -98,6 +98,64 @@ ink: '#3B3B3B'          /* Text and dark elements */
 
 1. **Clone and install dependencies:**
 ```bash
+git clone <your-repo-url>
+cd portfolio
+npm install
+```
+
+2. **Start development server:**
+```bash
+npm run dev
+```
+
+3. **Build for production:**
+```bash
+npm run build
+```
+
+4. **Preview production build:**
+```bash
+npm run preview
+```
+
+## 🐳 Docker Setup
+
+### Prerequisites
+- Docker
+- Docker Compose
+
+### Quick Start with Docker
+
+1. **Development with hot reload:**
+```bash
+docker-compose up portfolio-dev
+```
+Visit: http://localhost:4321
+
+2. **Production build:**
+```bash
+docker-compose up portfolio
+```
+Visit: http://localhost:80
+
+### Manual Docker Commands
+
+1. **Build and run development container:**
+```bash
+docker build -f Dockerfile.dev -t portfolio-dev .
+docker run -p 4321:4321 -v $(pwd):/app portfolio-dev
+```
+
+2. **Build and run production container:**
+```bash
+docker build -t portfolio .
+docker run -p 80:80 portfolio
+```
+
+### Docker Compose Services
+
+- **portfolio-dev**: Development server with hot reload
+- **portfolio**: Production build served with nginx
 npm install
 ```
 
