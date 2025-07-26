@@ -1,0 +1,537 @@
+---
+import ChapterLayout from '../layouts/ChapterLayout.astro';
+---
+
+<ChapterLayout 
+  title="The Final Year Boss Fight - Chapter V" 
+  description="Every great journey has a boss level — mine was Magpie, a geospatial intelligence platform"
+  chapter="Chapter V" 
+  chapterTitle="The Final Year Boss Fight" 
+  chapterColor="butter"
+>
+  <!-- Hero Section -->
+  <section class="py-20 bg-gradient-to-br from-butter-50 to-lavender-50">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <div class="inline-block p-4 rounded-2xl bg-gradient-to-br from-butter-200 to-butter-300 mb-6">
+          <svg class="w-16 h-16 text-butter-700" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12,2A2,2 0 0,1 14,4C14,4.74 13.6,5.39 13,5.73V7H14A7,7 0 0,1 21,14H22A1,1 0 0,1 23,15V18A1,1 0 0,1 22,19H21V20A2,2 0 0,1 19,22H5A2,2 0 0,1 3,20V19H2A1,1 0 0,1 1,18V15A1,1 0 0,1 2,14H3A7,7 0 0,1 10,7H11V5.73C10.4,5.39 10,4.74 10,4A2,2 0 0,1 12,2M7.5,13A2.5,2.5 0 0,0 5,15.5A2.5,2.5 0 0,0 7.5,18A2.5,2.5 0 0,0 10,15.5A2.5,2.5 0 0,0 7.5,13M16.5,13A2.5,2.5 0 0,0 14,15.5A2.5,2.5 0 0,0 16.5,18A2.5,2.5 0 0,0 19,15.5A2.5,2.5 0 0,0 16.5,13Z"/>
+          </svg>
+        </div>
+        <h1 class="font-heading text-4xl lg:text-5xl font-bold text-ink-800 mb-6">
+          Project Magpie
+        </h1>
+        <p class="text-xl text-ink-700 max-w-3xl mx-auto leading-relaxed mb-8">
+          <em>"Every great journey has a boss level — mine was Magpie."</em>
+        </p>
+        <div class="bg-white rounded-2xl p-8 shadow-story max-w-4xl mx-auto">
+          <p class="text-lg text-ink-700 leading-relaxed">
+            During the final semester of my <strong>MSc in Computing (Advanced Software Development – Data Science)</strong>, 
+            I collaborated with a team of six to build <strong>Magpie</strong>, a geospatial intelligence platform designed to 
+            empower urban planners and non-expert users alike.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Challenge -->
+  <section class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid lg:grid-cols-2 gap-16 items-center mb-20">
+        <div>
+          <div class="flex items-center mb-6">
+            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blush-400 to-blush-600 flex items-center justify-center mr-4">
+              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M11,15H13V17H11V15M11,7H13V13H11V7M12,2C6.47,2 2,6.5 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"/>
+              </svg>
+            </div>
+            <h2 class="font-heading text-3xl font-semibold text-ink-800">The Problem</h2>
+          </div>
+          <div class="space-y-4 text-ink-700">
+            <p>
+              City planners often struggle with <strong>fragmented, outdated, or overly complex tools</strong> to analyze 
+              public infrastructure like bike stations, parking spots, and public toilets.
+            </p>
+            <p>
+              We saw a huge gap — <em>no single platform provided a real-time, visual summary of public amenities 
+              with accessibility for non-technical users.</em>
+            </p>
+            <div class="bg-gradient-to-br from-blush-50 to-sky-50 rounded-xl p-6 mt-6">
+              <h3 class="font-heading text-lg font-semibold text-ink-800 mb-3">Key Challenges</h3>
+              <ul class="space-y-2 text-sm">
+                <li class="flex items-start">
+                  <span class="w-2 h-2 rounded-full bg-blush-400 mt-2 mr-3 flex-shrink-0"></span>
+                  <span>Fragmented data sources across multiple city departments</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="w-2 h-2 rounded-full bg-sky-400 mt-2 mr-3 flex-shrink-0"></span>
+                  <span>Complex tools requiring technical expertise</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="w-2 h-2 rounded-full bg-mint-400 mt-2 mr-3 flex-shrink-0"></span>
+                  <span>Lack of real-time, up-to-date information</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="relative">
+          <div class="w-full h-80 bg-gradient-to-br from-blush-100 via-sky-100 to-mint-100 rounded-3xl flex items-center justify-center relative overflow-hidden shadow-story">
+            <!-- Problem Illustration -->
+            <div class="absolute inset-0 opacity-20">
+              <div class="absolute top-8 left-8 w-12 h-12 bg-red-400 rounded-lg transform rotate-12"></div>
+              <div class="absolute top-16 right-12 w-8 h-8 bg-red-300 rounded-lg transform -rotate-12"></div>
+              <div class="absolute bottom-12 left-16 w-10 h-10 bg-red-400 rounded-lg transform rotate-45"></div>
+              <div class="absolute bottom-8 right-8 w-6 h-6 bg-red-300 rounded-lg"></div>
+            </div>
+            <div class="text-center z-10">
+              <svg class="w-24 h-24 text-ink-400 mx-auto mb-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12,2L13.09,8.26L22,9L13.09,9.74L12,16L10.91,9.74L2,9L10.91,8.26L12,2Z"/>
+              </svg>
+              <p class="text-ink-600 font-medium">Fragmented Urban Data</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- The Solution -->
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div class="lg:order-2">
+          <div class="flex items-center mb-6">
+            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-mint-400 to-mint-600 flex items-center justify-center mr-4">
+              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M9,20.42L2.79,14.21L5.62,11.38L9,14.77L18.88,4.88L21.71,7.71L9,20.42Z"/>
+              </svg>
+            </div>
+            <h2 class="font-heading text-3xl font-semibold text-ink-800">The Solution</h2>
+          </div>
+          <div class="space-y-4 text-ink-700">
+            <p class="text-xl font-medium text-mint-700">
+              <strong>Magpie: Services at a Glance</strong>
+            </p>
+            <p>
+              We created a comprehensive web platform providing an <em>at-a-glance overview of public services in Dublin</em> 
+              through automated detection, interactive maps, and real-world data visualization — 
+              <strong>all without relying on existing centralized datasets.</strong>
+            </p>
+          </div>
+        </div>
+        
+        <div class="lg:order-1 relative">
+          <div class="w-full h-80 bg-gradient-to-br from-mint-100 via-sky-100 to-lavender-100 rounded-3xl flex items-center justify-center relative overflow-hidden shadow-story">
+            <!-- Solution Illustration -->
+            <div class="absolute inset-0 opacity-30">
+              <div class="absolute top-8 left-8 w-8 h-8 bg-mint-400 rounded-full animate-float"></div>
+              <div class="absolute top-12 right-12 w-6 h-6 bg-sky-400 rounded-full animate-float" style="animation-delay: -1s;"></div>
+              <div class="absolute bottom-16 left-12 w-10 h-10 bg-lavender-400 rounded-full animate-float" style="animation-delay: -2s;"></div>
+              <div class="absolute bottom-8 right-16 w-4 h-4 bg-mint-300 rounded-full animate-float" style="animation-delay: -0.5s;"></div>
+            </div>
+            <div class="text-center z-10">
+              <svg class="w-24 h-24 text-mint-600 mx-auto mb-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z"/>
+              </svg>
+              <p class="text-mint-700 font-medium">Unified Platform</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Features -->
+  <section class="py-20 bg-gradient-to-br from-butter-50 to-sky-50">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="font-heading text-3xl lg:text-4xl font-semibold text-ink-800 mb-6">
+          What Made Magpie Special
+        </h2>
+        <p class="text-ink-700 max-w-2xl mx-auto">
+          A powerful combination of AI, geospatial technology, and user-centered design
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- AI Detection -->
+        <div class="bg-white rounded-2xl p-8 shadow-soft hover:shadow-chapter transition-all duration-300">
+          <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-butter-200 to-butter-400 flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17M12,4.5C7,4.5 2.73,7.61 1,12C2.73,16.39 7,19.5 12,19.5C17,19.5 21.27,16.39 23,12C21.27,7.61 17,4.5 12,4.5Z"/>
+            </svg>
+          </div>
+          <h3 class="font-heading text-xl font-semibold text-ink-800 mb-4">AI-Powered Detection</h3>
+          <p class="text-ink-700 text-sm">
+            YOLOv8-based machine learning for automated detection of amenities using satellite imagery. 
+            No manual input required!
+          </p>
+        </div>
+
+        <!-- Interactive Maps -->
+        <div class="bg-white rounded-2xl p-8 shadow-soft hover:shadow-chapter transition-all duration-300">
+          <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-sky-200 to-sky-400 flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z"/>
+            </svg>
+          </div>
+          <h3 class="font-heading text-xl font-semibold text-ink-800 mb-4">Interactive Mapping</h3>
+          <p class="text-ink-700 text-sm">
+            Mapbox-based visualization with dynamic, interactive location data and smart amenity search 
+            with geocoding via Nominatim.
+          </p>
+        </div>
+
+        <!-- Secure API -->
+        <div class="bg-white rounded-2xl p-8 shadow-soft hover:shadow-chapter transition-all duration-300">
+          <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-mint-200 to-mint-400 flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M12,7C13.4,7 14.8,8.6 14.8,10V11H16V17H8V11H9.2V10C9.2,8.6 10.6,7 12,7M12,8.2C11.2,8.2 10.4,8.7 10.4,10V11H13.6V10C13.6,8.7 12.8,8.2 12,8.2Z"/>
+            </svg>
+          </div>
+          <h3 class="font-heading text-xl font-semibold text-ink-800 mb-4">Secure Infrastructure</h3>
+          <p class="text-ink-700 text-sm">
+            Public API secured with JWT-based authentication, containerized using Docker + Kubernetes 
+            with CI/CD pipelines.
+          </p>
+        </div>
+
+        <!-- Go Backend -->
+        <div class="bg-white rounded-2xl p-8 shadow-soft hover:shadow-chapter transition-all duration-300">
+          <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-lavender-200 to-lavender-400 flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M4,6H20V16H4M20,18A2,2 0 0,0 22,16V6C22,4.89 21.1,4 20,4H4A2,2 0 0,0 2,6V16A2,2 0 0,0 4,18H11V20H8V22H16V20H13V18H20Z"/>
+            </svg>
+          </div>
+          <h3 class="font-heading text-xl font-semibold text-ink-800 mb-4">Robust Backend</h3>
+          <p class="text-ink-700 text-sm">
+            Backend infrastructure built in Go with PostGIS for geospatial data processing and 
+            scalable performance.
+          </p>
+        </div>
+
+        <!-- Accessibility -->
+        <div class="bg-white rounded-2xl p-8 shadow-soft hover:shadow-chapter transition-all duration-300">
+          <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-blush-200 to-blush-400 flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"/>
+            </svg>
+          </div>
+          <h3 class="font-heading text-xl font-semibold text-ink-800 mb-4">User-Centered Design</h3>
+          <p class="text-ink-700 text-sm">
+            UX validated by domain experts in accessibility and urban planning, designed for 
+            non-technical users.
+          </p>
+        </div>
+
+        <!-- Real-time Data -->
+        <div class="bg-white rounded-2xl p-8 shadow-soft hover:shadow-chapter transition-all duration-300">
+          <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-butter-300 to-lavender-300 flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M16.2,16.2L11,13V7H12.5V12.2L17,15.4L16.2,16.2Z"/>
+            </svg>
+          </div>
+          <h3 class="font-heading text-xl font-semibold text-ink-800 mb-4">Real-time Updates</h3>
+          <p class="text-ink-700 text-sm">
+            Dynamic data visualization with automated detection eliminating the need for manual 
+            data entry and updates.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- My Role -->
+  <section class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="font-heading text-3xl lg:text-4xl font-semibold text-ink-800 mb-6">
+          My Role: Full-Stack Developer
+        </h2>
+        <p class="text-ink-700 max-w-2xl mx-auto">
+          Contributing to both frontend and backend systems with a focus on user experience and technical excellence
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-12">
+        <!-- Frontend Contributions -->
+        <div class="bg-gradient-to-br from-sky-50 to-mint-50 rounded-2xl p-8">
+          <div class="flex items-center mb-6">
+            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-sky-400 to-mint-400 flex items-center justify-center mr-4">
+              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12,10.11C13.03,10.11 13.87,10.95 13.87,12C13.87,13 13.03,13.85 12,13.85C10.97,13.85 10.13,13 10.13,12C10.13,10.95 10.97,10.11 12,10.11M7.37,20C8,20.38 9.38,19.8 10.97,18.3C10.45,17.71 9.94,17.07 9.46,16.4C8.64,16.32 7.83,16.2 7.06,16.04C6.55,18.18 6.74,19.65 7.37,20M8.08,14.26L7.79,13.75C7.68,14.04 7.57,14.33 7.5,14.61C7.77,14.67 8.07,14.72 8.38,14.77C8.28,14.6 8.18,14.43 8.08,14.26M14.62,13.5L15.43,12L14.62,10.5C14.32,9.97 14,9.5 13.71,9.03C13.17,9 12.6,9 12,9C11.4,9 10.83,9 10.29,9.03C10,9.5 9.68,9.97 9.38,10.5L8.57,12L9.38,13.5C9.68,14.03 10,14.5 10.29,14.97C10.83,15 11.4,15 12,15C12.6,15 13.17,15 13.71,14.97C14,14.5 14.32,14.03 14.62,13.5M12,6.78C11.81,7 11.61,7.23 11.41,7.5C11.61,7.5 11.8,7.5 12,7.5C12.2,7.5 12.39,7.5 12.59,7.5C12.39,7.23 12.19,7 12,6.78M12,17.22C12.19,17 12.39,16.77 12.59,16.5C12.39,16.5 12.2,16.5 12,16.5C11.8,16.5 11.61,16.5 11.41,16.5C11.61,16.77 11.81,17 12,17.22M16.62,4C16,3.62 14.62,4.2 13.03,5.7C13.55,6.29 14.06,6.93 14.54,7.6C15.36,7.68 16.17,7.8 16.94,7.96C17.45,5.82 17.26,4.35 16.62,4M15.92,9.74L16.21,10.25C16.32,9.96 16.43,9.67 16.5,9.39C16.23,9.33 15.93,9.28 15.62,9.23C15.72,9.4 15.82,9.57 15.92,9.74M17.37,2.69C18.84,3.53 19,5.74 18.38,8.32C20.92,9.07 22.75,10.31 22.75,12C22.75,13.69 20.92,14.93 18.38,15.68C19,18.26 18.84,20.47 17.37,21.31C15.93,22.15 13.92,21.19 12,19.36C10.08,21.19 8.07,22.15 6.63,21.31C5.16,20.47 5,18.26 5.62,15.68C3.08,14.93 1.25,13.69 1.25,12C1.25,10.31 3.08,9.07 5.62,8.32C5,5.74 5.16,3.53 6.63,2.69C8.07,1.85 10.08,2.81 12,4.64C13.92,2.81 15.93,1.85 17.37,2.69M17.08,12C17.42,12.75 17.72,13.5 17.97,14.26C20.07,13.63 21.25,12.73 21.25,12C21.25,11.27 20.07,10.37 17.97,9.74C17.72,10.5 17.42,11.25 17.08,12M6.92,12C6.58,11.25 6.28,10.5 6.03,9.74C3.93,10.37 2.75,11.27 2.75,12C2.75,12.73 3.93,13.63 6.03,14.26C6.28,13.5 6.58,12.75 6.92,12M15.92,14.26C15.82,14.43 15.72,14.6 15.62,14.77C15.93,14.72 16.23,14.67 16.5,14.61C16.43,14.33 16.32,14.04 16.21,13.75L15.92,14.26M8.08,9.74C8.18,9.57 8.28,9.4 8.38,9.23C8.07,9.28 7.77,9.33 7.5,9.39C7.57,9.67 7.68,9.96 7.79,10.25L8.08,9.74Z"/>
+              </svg>
+            </div>
+            <h3 class="font-heading text-xl font-semibold text-ink-800">Frontend Excellence</h3>
+          </div>
+          <ul class="space-y-4">
+            <li class="flex items-start">
+              <span class="w-2 h-2 rounded-full bg-sky-400 mt-2 mr-3 flex-shrink-0"></span>
+              <span class="text-ink-700 text-sm"><strong>React Architecture</strong> with TailwindCSS and Next.js</span>
+            </li>
+            <li class="flex items-start">
+              <span class="w-2 h-2 rounded-full bg-mint-400 mt-2 mr-3 flex-shrink-0"></span>
+              <span class="text-ink-700 text-sm"><strong>Map Interactions</strong> using Mapbox GL & Deck.gl</span>
+            </li>
+            <li class="flex items-start">
+              <span class="w-2 h-2 rounded-full bg-sky-400 mt-2 mr-3 flex-shrink-0"></span>
+              <span class="text-ink-700 text-sm"><strong>UI Prototyping</strong> with Shadcn/UI & Radix Primitives</span>
+            </li>
+            <li class="flex items-start">
+              <span class="w-2 h-2 rounded-full bg-mint-400 mt-2 mr-3 flex-shrink-0"></span>
+              <span class="text-ink-700 text-sm"><strong>Accessibility Focus</strong> for non-technical users</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Backend & DevOps -->
+        <div class="bg-gradient-to-br from-butter-50 to-lavender-50 rounded-2xl p-8">
+          <div class="flex items-center mb-6">
+            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-butter-400 to-lavender-400 flex items-center justify-center mr-4">
+              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M4,6H20V16H4M20,18A2,2 0 0,0 22,16V6C22,4.89 21.1,4 20,4H4A2,2 0 0,0 2,6V16A2,2 0 0,0 4,18H11V20H8V22H16V20H13V18H20Z"/>
+              </svg>
+            </div>
+            <h3 class="font-heading text-xl font-semibold text-ink-800">Backend & DevOps</h3>
+          </div>
+          <ul class="space-y-4">
+            <li class="flex items-start">
+              <span class="w-2 h-2 rounded-full bg-butter-400 mt-2 mr-3 flex-shrink-0"></span>
+              <span class="text-ink-700 text-sm"><strong>CI/CD Pipelines</strong> with GitHub Actions and Flux GitOps</span>
+            </li>
+            <li class="flex items-start">
+              <span class="w-2 h-2 rounded-full bg-lavender-400 mt-2 mr-3 flex-shrink-0"></span>
+              <span class="text-ink-700 text-sm"><strong>ML Integration</strong> for YOLOv8 car detection systems</span>
+            </li>
+            <li class="flex items-start">
+              <span class="w-2 h-2 rounded-full bg-butter-400 mt-2 mr-3 flex-shrink-0"></span>
+              <span class="text-ink-700 text-sm"><strong>Infrastructure</strong> using Docker and Kubernetes</span>
+            </li>
+            <li class="flex items-start">
+              <span class="w-2 h-2 rounded-full bg-lavender-400 mt-2 mr-3 flex-shrink-0"></span>
+              <span class="text-ink-700 text-sm"><strong>Team Collaboration</strong> in cross-functional development</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Machine Learning Highlights -->
+  <section class="py-20 bg-gradient-to-br from-lavender-50 to-blush-50">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="font-heading text-3xl lg:text-4xl font-semibold text-ink-800 mb-6">
+          Machine Learning Highlights
+        </h2>
+        <p class="text-ink-700 max-w-3xl mx-auto">
+          Our biggest technical challenge was detecting on-street and off-street parking from satellite images
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-12 items-center mb-16">
+        <div>
+          <div class="bg-white rounded-2xl p-8 shadow-story">
+            <h3 class="font-heading text-2xl font-semibold text-ink-800 mb-6">The ML Pipeline</h3>
+            <div class="space-y-4">
+              <div class="flex items-start">
+                <div class="w-8 h-8 rounded-full bg-gradient-to-br from-lavender-400 to-lavender-600 flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                  <span class="text-white text-sm font-bold">1</span>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-ink-800 mb-1">Model Training</h4>
+                  <p class="text-ink-700 text-sm">Trained YOLOv8 model on <strong>19,500+ images</strong> of Dublin</p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <div class="w-8 h-8 rounded-full bg-gradient-to-br from-lavender-400 to-lavender-600 flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                  <span class="text-white text-sm font-bold">2</span>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-ink-800 mb-1">Classification</h4>
+                  <p class="text-ink-700 text-sm">Classified detected cars as <em>on the road, parked, or empty spots</em></p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <div class="w-8 h-8 rounded-full bg-gradient-to-br from-lavender-400 to-lavender-600 flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                  <span class="text-white text-sm font-bold">3</span>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-ink-800 mb-1">Data Processing</h4>
+                  <p class="text-ink-700 text-sm">Converted detections into structured, geo-tagged data using novel road mask algorithm</p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <div class="w-8 h-8 rounded-full bg-gradient-to-br from-lavender-400 to-lavender-600 flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                  <span class="text-white text-sm font-bold">4</span>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-ink-800 mb-1">Clustering</h4>
+                  <p class="text-ink-700 text-sm">Used <strong>DBSCAN</strong> to distinguish public vs private vs lots</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="relative">
+          <div class="w-full h-96 bg-gradient-to-br from-lavender-100 via-blush-100 to-butter-100 rounded-3xl flex items-center justify-center relative overflow-hidden shadow-story">
+            <!-- ML Visualization -->
+            <div class="absolute inset-0 opacity-30">
+              <!-- Simulated detection boxes -->
+              <div class="absolute top-12 left-12 w-16 h-8 border-2 border-green-400 rounded"></div>
+              <div class="absolute top-20 right-20 w-12 h-6 border-2 border-blue-400 rounded"></div>
+              <div class="absolute bottom-24 left-16 w-14 h-7 border-2 border-red-400 rounded"></div>
+              <div class="absolute bottom-16 right-12 w-10 h-5 border-2 border-yellow-400 rounded"></div>
+            </div>
+            <div class="text-center z-10">
+              <svg class="w-24 h-24 text-lavender-600 mx-auto mb-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17M12,4.5C7,4.5 2.73,7.61 1,12C2.73,16.39 7,19.5 12,19.5C17,19.5 21.27,16.39 23,12C21.27,7.61 17,4.5 12,4.5Z"/>
+              </svg>
+              <p class="text-lavender-700 font-medium">YOLOv8 Detection</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Results & Impact -->
+  <section class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="font-heading text-3xl lg:text-4xl font-semibold text-ink-800 mb-6">
+          Results & Impact
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8 mb-16">
+        <!-- MVP Delivery -->
+        <div class="bg-gradient-to-br from-mint-50 to-sky-50 rounded-2xl p-8 text-center">
+          <div class="w-16 h-16 rounded-full bg-gradient-to-br from-mint-400 to-sky-400 flex items-center justify-center mx-auto mb-6">
+            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M9,20.42L2.79,14.21L5.62,11.38L9,14.77L18.88,4.88L21.71,7.71L9,20.42Z"/>
+            </svg>
+          </div>
+          <h3 class="font-heading text-xl font-semibold text-ink-800 mb-3">MVP Delivered</h3>
+          <p class="text-ink-700 text-sm">
+            Fully working MVP with CI/CD pipelines and dynamic map-based UX
+          </p>
+        </div>
+
+        <!-- User Validation -->
+        <div class="bg-gradient-to-br from-butter-50 to-lavender-50 rounded-2xl p-8 text-center">
+          <div class="w-16 h-16 rounded-full bg-gradient-to-br from-butter-400 to-lavender-400 flex items-center justify-center mx-auto mb-6">
+            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M16,13C15.71,13 15.38,13 15.03,13.05C16.19,13.89 17,15 17,16.5V19H23V16.5C23,14.17 18.33,13 16,13M8,13C5.67,13 1,14.17 1,16.5V19H15V16.5C15,14.17 10.33,13 8,13M8,11A3,3 0 0,0 11,8A3,3 0 0,0 8,5A3,3 0 0,0 5,8A3,3 0 0,0 8,11M16,11A3,3 0 0,0 19,8A3,3 0 0,0 16,5A3,3 0 0,0 13,8A3,3 0 0,0 16,11Z"/>
+            </svg>
+          </div>
+          <h3 class="font-heading text-xl font-semibold text-ink-800 mb-3">User Tested</h3>
+          <p class="text-ink-700 text-sm">
+            Evaluated with <strong>11+ real users</strong> including planners and accessibility experts
+          </p>
+        </div>
+
+        <!-- High Satisfaction -->
+        <div class="bg-gradient-to-br from-blush-50 to-sky-50 rounded-2xl p-8 text-center">
+          <div class="w-16 h-16 rounded-full bg-gradient-to-br from-blush-400 to-sky-400 flex items-center justify-center mx-auto mb-6">
+            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12,2L13.09,8.26L22,9L13.09,9.74L12,16L10.91,9.74L2,9L10.91,8.26L12,2Z"/>
+            </svg>
+          </div>
+          <h3 class="font-heading text-xl font-semibold text-ink-800 mb-3">High Impact</h3>
+          <p class="text-ink-700 text-sm">
+            Achieved high satisfaction scores and meaningful feature insights for future work
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What I Learned -->
+  <section class="py-20 bg-gradient-to-br from-butter-50 to-mint-50">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="font-heading text-3xl lg:text-4xl font-semibold text-ink-800 mb-6">
+          What I Learned
+        </h2>
+        <p class="text-ink-700 max-w-2xl mx-auto">
+          Beyond the technical achievements, this project taught me invaluable lessons about teamwork, 
+          real-world application development, and user-centered design
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="bg-white rounded-2xl p-8 shadow-soft">
+          <div class="w-16 h-16 rounded-full bg-gradient-to-br from-butter-300 to-butter-500 flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M16,13C15.71,13 15.38,13 15.03,13.05C16.19,13.89 17,15 17,16.5V19H23V16.5C23,14.17 18.33,13 16,13M8,13C5.67,13 1,14.17 1,16.5V19H15V16.5C15,14.17 10.33,13 8,13M8,11A3,3 0 0,0 11,8A3,3 0 0,0 8,5A3,3 0 0,0 5,8A3,3 0 0,0 8,11M16,11A3,3 0 0,0 19,8A3,3 0 0,0 16,5A3,3 0 0,0 13,8A3,3 0 0,0 16,11Z"/>
+            </svg>
+          </div>
+          <h3 class="font-heading text-xl font-semibold text-ink-800 mb-4">Team Collaboration</h3>
+          <p class="text-ink-700">
+            Working in a cross-functional team of six taught me the importance of clear communication, 
+            shared ownership, and leveraging diverse expertise to tackle complex challenges.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-8 shadow-soft">
+          <div class="w-16 h-16 rounded-full bg-gradient-to-br from-mint-300 to-mint-500 flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12,2A2,2 0 0,1 14,4C14,4.74 13.6,5.39 13,5.73V7H14A7,7 0 0,1 21,14H22A1,1 0 0,1 23,15V18A1,1 0 0,1 22,19H21V20A2,2 0 0,1 19,22H5A2,2 0 0,1 3,20V19H2A1,1 0 0,1 1,18V15A1,1 0 0,1 2,14H3A7,7 0 0,1 10,7H11V5.73C10.4,5.39 10,4.74 10,4A2,2 0 0,1 12,2M7.5,13A2.5,2.5 0 0,0 5,15.5A2.5,2.5 0 0,0 7.5,18A2.5,2.5 0 0,0 10,15.5A2.5,2.5 0 0,0 7.5,13M16.5,13A2.5,2.5 0 0,0 14,15.5A2.5,2.5 0 0,0 16.5,18A2.5,2.5 0 0,0 19,15.5A2.5,2.5 0 0,0 16.5,13Z"/>
+            </svg>
+          </div>
+          <h3 class="font-heading text-xl font-semibold text-ink-800 mb-4">ML in Production</h3>
+          <p class="text-ink-700">
+            Integrating machine learning models into real-world applications requires careful consideration 
+            of data pipelines, model performance, and user experience design.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-8 shadow-soft">
+          <div class="w-16 h-16 rounded-full bg-gradient-to-br from-sky-300 to-sky-500 flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"/>
+            </svg>
+          </div>
+          <h3 class="font-heading text-xl font-semibold text-ink-800 mb-4">Accessibility Focus</h3>
+          <p class="text-ink-700">
+            Designing for accessibility and non-technical audiences requires empathy, iterative testing, 
+            and a deep understanding of user needs and capabilities.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-8 shadow-soft">
+          <div class="w-16 h-16 rounded-full bg-gradient-to-br from-lavender-300 to-lavender-500 flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z"/>
+            </svg>
+          </div>
+          <h3 class="font-heading text-xl font-semibold text-ink-800 mb-4">Geospatial Development</h3>
+          <p class="text-ink-700">
+            Building scalable geospatial applications with Go and PostGIS opened my eyes to the complexities 
+            and possibilities of location-based data processing and visualization.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="py-20 bg-gradient-to-r from-butter-100 to-lavender-100">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <h2 class="font-heading text-3xl font-semibold text-ink-800 mb-6">
+        What's Next After the Boss Fight?
+      </h2>
+      <p class="text-ink-700 mb-8 max-w-2xl mx-auto">
+        Having conquered the final year project challenge, let's explore what the future holds and where my 
+        journey in technology is heading next.
+      </p>
+      <a href="/future" class="inline-flex items-center px-8 py-4 rounded-full bg-gradient-to-r from-butter-500 to-lavender-500 text-white font-medium hover:shadow-chapter transition-all duration-300 hover:scale-105">
+        <span>Read Chapter VI: What's Next</span>
+        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+        </svg>
+      </a>
+    </div>
+  </section>
+</ChapterLayout> 

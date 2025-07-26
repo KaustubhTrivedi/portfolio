@@ -1,0 +1,104 @@
+---
+export interface Props {
+  title?: string;
+  subtitle?: string;
+  href?: string;
+  variant?: 'default' | 'project' | 'skill' | 'timeline';
+  gradient?: string;
+  icon?: string;
+  className?: string;
+}
+
+const { 
+  title, 
+  subtitle, 
+  href, 
+  variant = 'default', 
+  gradient = 'from-white to-parchment-50',
+  icon,
+  className = ''
+} = Astro.props;
+
+const variantClasses = {
+  default: 'bg-gradient-to-br from-white to-parchment-50 hover:shadow-chapter hover-scale',
+  project: 'bg-gradient-to-br from-white via-sky-50 to-blush-50 hover:shadow-story group hover-scale',
+  skill: 'bg-gradient-to-br from-white via-lavender-50 to-mint-50 hover:shadow-chapter hover-scale',
+  timeline: 'bg-gradient-to-br from-white via-butter-50 to-sky-50 border-l-4 border-blush-400 hover-scale'
+};
+
+const cardClasses = `p-6 rounded-2xl shadow-soft transition-all duration-300 ${variantClasses[variant]} ${className}`;
+---
+
+{href ? (
+  <a href={href} class="block">
+    <div class={cardClasses}>
+      {icon && (
+        <div class="mb-4">
+          <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blush-200 to-sky-200 flex items-center justify-center">
+            <Fragment set:html={icon} />
+          </div>
+        </div>
+      )}
+      
+      {title && (
+        <h3 class="font-heading text-xl font-semibold text-ink-800 mb-2">
+          {title}
+        </h3>
+      )}
+      
+      {subtitle && (
+        <p class="text-ink-600 mb-4 text-sm">
+          {subtitle}
+        </p>
+      )}
+      
+      <div class="text-ink-700">
+        <slot />
+      </div>
+      
+      {variant === 'project' && (
+        <div class="mt-4 flex items-center text-blush-600 text-sm font-medium group-hover:text-blush-700 transition-colors">
+          <span>View Project</span>
+          <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+          </svg>
+        </div>
+      )}
+    </div>
+  </a>
+) : (
+  <div class={cardClasses}>
+    {icon && (
+      <div class="mb-4">
+        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blush-200 to-sky-200 flex items-center justify-center">
+          <Fragment set:html={icon} />
+        </div>
+      </div>
+    )}
+    
+    {title && (
+      <h3 class="font-heading text-xl font-semibold text-ink-800 mb-2">
+        {title}
+      </h3>
+    )}
+    
+    {subtitle && (
+      <p class="text-ink-600 mb-4 text-sm">
+        {subtitle}
+      </p>
+    )}
+    
+    <div class="text-ink-700">
+      <slot />
+    </div>
+    
+    {variant === 'project' && (
+      <div class="mt-4 flex items-center text-blush-600 text-sm font-medium group-hover:text-blush-700 transition-colors">
+        <span>View Project</span>
+        <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+        </svg>
+      </div>
+    )}
+  </div>
+)} 

@@ -1,0 +1,469 @@
+---
+import StorybookLayout from '../layouts/StorybookLayout.astro';
+import ChapterHeader from '../components/ChapterHeader.astro';
+import Card from '../components/Card.astro';
+---
+
+<StorybookLayout title="Chapter VI: What's Next" description="Exploring future aspirations in AI, cloud computing, and innovation">
+  <ChapterHeader 
+    chapter="Chapter VI" 
+    title="What's Next" 
+    subtitle="The future is unwritten, and I'm excited to fill those pages with innovation and purpose"
+    color="sky"
+  />
+
+  <!-- Vision Statement -->
+  <section class="py-20 bg-white">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <div class="relative">
+        <!-- Starfield Background -->
+        <div class="absolute inset-0 overflow-hidden opacity-20">
+          <div class="star animate-ping absolute top-10 left-10 w-2 h-2 bg-sky-400 rounded-full"></div>
+          <div class="star animate-ping absolute top-20 right-20 w-1 h-1 bg-mint-400 rounded-full" style="animation-delay: 0.5s;"></div>
+          <div class="star animate-ping absolute bottom-20 left-20 w-1.5 h-1.5 bg-lavender-400 rounded-full" style="animation-delay: 1s;"></div>
+          <div class="star animate-ping absolute bottom-10 right-10 w-2 h-2 bg-blush-400 rounded-full" style="animation-delay: 1.5s;"></div>
+          <div class="star animate-ping absolute top-1/2 left-1/3 w-1 h-1 bg-butter-400 rounded-full" style="animation-delay: 2s;"></div>
+        </div>
+
+        <div class="relative z-10">
+          <div class="w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-sky-200 to-mint-200 flex items-center justify-center mb-8 shadow-story">
+            <svg class="w-12 h-12 text-sky-600" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12,2L13.09,8.26L22,9L13.09,9.74L12,16L10.91,9.74L2,9L10.91,8.26L12,2Z"/>
+            </svg>
+          </div>
+
+          <h2 class="font-heading text-4xl lg:text-5xl font-bold text-ink-800 mb-6">
+            The Next Chapter
+          </h2>
+          
+          <blockquote class="font-story text-xl lg:text-2xl text-ink-700 italic leading-relaxed mb-8">
+            "Technology is best when it brings people together, solves real problems, 
+            and opens doors to possibilities we never imagined."
+          </blockquote>
+          
+          <p class="text-lg text-ink-600 max-w-2xl mx-auto">
+            As I look toward the future, I'm excited about the endless possibilities that lie ahead. 
+            My journey has just begun, and I'm ready to tackle new challenges, learn cutting-edge technologies, 
+            and contribute to innovations that make a meaningful impact.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Future Goals -->
+  <section class="py-20 bg-gradient-to-br from-sky-50 via-mint-50 to-lavender-50">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="font-heading text-3xl lg:text-4xl font-semibold text-ink-800 mb-4">
+          My Aspirations
+        </h2>
+        <p class="text-ink-600 max-w-2xl mx-auto">
+          Here's where I see myself growing and the areas I'm most excited to explore in the coming years.
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-3 gap-8 mb-16">
+        <!-- AI & Machine Learning -->
+        <Card variant="default" className="text-center h-full">
+          <div class="mb-6">
+            <div class="w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-sky-200 to-mint-200 flex items-center justify-center mb-4">
+              <svg class="w-8 h-8 text-sky-600" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12,2A2,2 0 0,1 14,4C14,4.74 13.6,5.39 13,5.73V7H14A7,7 0 0,1 21,14H22A1,1 0 0,1 23,15V18A1,1 0 0,1 22,19H21V20A2,2 0 0,1 19,22H5A2,2 0 0,1 3,20V19H2A1,1 0 0,1 1,18V15A1,1 0 0,1 2,14H3A7,7 0 0,1 10,7H11V5.73C10.4,5.39 10,4.74 10,4A2,2 0 0,1 12,2M7.5,13A2.5,2.5 0 0,0 5,15.5A2.5,2.5 0 0,0 7.5,18A2.5,2.5 0 0,0 10,15.5A2.5,2.5 0 0,0 7.5,13M16.5,13A2.5,2.5 0 0,0 14,15.5A2.5,2.5 0 0,0 16.5,18A2.5,2.5 0 0,0 19,15.5A2.5,2.5 0 0,0 16.5,13Z"/>
+              </svg>
+            </div>
+            <h3 class="font-heading text-xl font-semibold text-ink-800 mb-3">AI & Machine Learning Mastery</h3>
+          </div>
+          <p class="text-ink-700 mb-4">
+            Diving deeper into advanced AI concepts, exploring neural networks, computer vision, 
+            and natural language processing to build intelligent systems that can truly understand and assist humans.
+          </p>
+          <div class="text-left">
+            <h4 class="font-semibold text-ink-800 mb-2">Focus Areas:</h4>
+            <ul class="text-sm text-ink-600 space-y-1">
+              <li>• Deep Learning & Neural Networks</li>
+              <li>• Computer Vision Applications</li>
+              <li>• NLP and Conversational AI</li>
+              <li>• Ethical AI Development</li>
+              <li>• MLOps and Model Deployment</li>
+            </ul>
+          </div>
+        </Card>
+
+        <!-- Cloud & DevOps -->
+        <Card variant="default" className="text-center h-full">
+          <div class="mb-6">
+            <div class="w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-mint-200 to-lavender-200 flex items-center justify-center mb-4">
+              <svg class="w-8 h-8 text-mint-600" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M22,15.04C22,17.23 20.24,19 18.07,19H5.93C3.76,19 2,17.23 2,15.04C2,13.07 3.43,11.44 5.31,11.14C5.28,11 5.27,10.86 5.27,10.71C5.27,9.33 6.38,8.2 7.76,8.2C8.37,8.2 8.94,8.43 9.37,8.8C10.14,7.05 11.13,5.44 13.91,5.44C17.28,5.44 18.87,8.06 18.87,10.83C18.87,10.94 18.87,11.06 18.86,11.17C20.65,11.54 22,13.13 22,15.04Z"/>
+              </svg>
+            </div>
+            <h3 class="font-heading text-xl font-semibold text-ink-800 mb-3">Cloud Architecture & DevOps</h3>
+          </div>
+          <p class="text-ink-700 mb-4">
+            Mastering cloud platforms and DevOps practices to build scalable, reliable systems. 
+            Learning to design architectures that can handle millions of users while maintaining performance and security.
+          </p>
+          <div class="text-left">
+            <h4 class="font-semibold text-ink-800 mb-2">Focus Areas:</h4>
+            <ul class="text-sm text-ink-600 space-y-1">
+              <li>• AWS/Azure/GCP Certifications</li>
+              <li>• Kubernetes & Container Orchestration</li>
+              <li>• CI/CD Pipeline Optimization</li>
+              <li>• Infrastructure as Code (IaC)</li>
+              <li>• Monitoring & Observability</li>
+            </ul>
+          </div>
+        </Card>
+
+        <!-- Innovation & Leadership -->
+        <Card variant="default" className="text-center h-full">
+          <div class="mb-6">
+            <div class="w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-lavender-200 to-butter-200 flex items-center justify-center mb-4">
+              <svg class="w-8 h-8 text-lavender-600" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M9,22A1,1 0 0,1 8,21V18H4A2,2 0 0,1 2,16V4A2,2 0 0,1 4,2H20A2,2 0 0,1 22,4V16A2,2 0 0,1 20,18H13.9L10.2,21.71C10,21.9 9.75,22 9.5,22V22H9M16,13C16,14.1 15.1,15 14,15H10C8.9,15 8,14.1 8,13V7C8,5.9 8.9,5 10,5H14C15.1,5 16,5.9 16,7V13Z"/>
+              </svg>
+            </div>
+            <h3 class="font-heading text-xl font-semibold text-ink-800 mb-3">Innovation & Leadership</h3>
+          </div>
+          <p class="text-ink-700 mb-4">
+            Growing into a technical leader who can guide teams, mentor others, and drive innovation. 
+            Building products that solve real-world problems and contribute to positive change.
+          </p>
+          <div class="text-left">
+            <h4 class="font-semibold text-ink-800 mb-2">Focus Areas:</h4>
+            <ul class="text-sm text-ink-600 space-y-1">
+              <li>• Technical Leadership & Mentoring</li>
+              <li>• Product Strategy & Vision</li>
+              <li>• Open Source Contributions</li>
+              <li>• Speaking & Knowledge Sharing</li>
+              <li>• Building Diverse Teams</li>
+            </ul>
+          </div>
+        </Card>
+      </div>
+    </div>
+  </section>
+
+  <!-- Learning Goals -->
+  <section class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="font-heading text-3xl lg:text-4xl font-semibold text-ink-800 mb-4">
+          Continuous Learning Journey
+        </h2>
+        <p class="text-ink-600 max-w-2xl mx-auto">
+          Technology never stops evolving, and neither do I. Here are the specific skills and certifications I'm working toward.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-12">
+        <!-- Short-term Goals -->
+        <div>
+          <div class="flex items-center mb-6">
+            <div class="w-8 h-8 rounded-full bg-gradient-to-br from-sky-400 to-mint-400 flex items-center justify-center mr-3">
+              <span class="text-white text-sm font-bold">6M</span>
+            </div>
+            <h3 class="font-heading text-2xl font-semibold text-ink-800">Next 6 Months</h3>
+          </div>
+          
+          <div class="space-y-4">
+            <Card variant="default" className="p-4">
+              <div class="flex items-start space-x-3">
+                <div class="w-6 h-6 rounded-full bg-sky-200 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <svg class="w-3 h-3 text-sky-600" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12,2C6.48,2 2,6.48 2,12C2,17.52 6.48,22 12,22C17.52,22 22,17.52 22,12C22,6.48 17.52,2 12,2ZM10,17L5,12L6.41,10.59L10,14.17L17.59,6.58L19,8L10,17Z"/>
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="font-medium text-ink-800">AWS Solutions Architect Certification</h4>
+                  <p class="text-sm text-ink-600">Master cloud architecture and deployment strategies</p>
+                </div>
+              </div>
+            </Card>
+
+            <Card variant="default" className="p-4">
+              <div class="flex items-start space-x-3">
+                <div class="w-6 h-6 rounded-full bg-mint-200 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <svg class="w-3 h-3 text-mint-600" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12,2C6.48,2 2,6.48 2,12C2,17.52 6.48,22 12,22C17.52,22 22,17.52 22,12C22,6.48 17.52,2 12,2ZM10,17L5,12L6.41,10.59L10,14.17L17.59,6.58L19,8L10,17Z"/>
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="font-medium text-ink-800">Advanced PyTorch & Deep Learning</h4>
+                  <p class="text-sm text-ink-600">Complete Stanford's CS231n and implement neural networks</p>
+                </div>
+              </div>
+            </Card>
+
+            <Card variant="default" className="p-4">
+              <div class="flex items-start space-x-3">
+                <div class="w-6 h-6 rounded-full bg-lavender-200 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <svg class="w-3 h-3 text-lavender-600" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12,2C6.48,2 2,6.48 2,12C2,17.52 6.48,22 12,22C17.52,22 22,17.52 22,12C22,6.48 17.52,2 12,2ZM10,17L5,12L6.41,10.59L10,14.17L17.59,6.58L19,8L10,17Z"/>
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="font-medium text-ink-800">Kubernetes Administration</h4>
+                  <p class="text-sm text-ink-600">Master container orchestration and microservices</p>
+                </div>
+              </div>
+            </Card>
+
+            <Card variant="default" className="p-4">
+              <div class="flex items-start space-x-3">
+                <div class="w-6 h-6 rounded-full bg-butter-200 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <svg class="w-3 h-3 text-butter-600" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12,2C6.48,2 2,6.48 2,12C2,17.52 6.48,22 12,22C17.52,22 22,17.52 22,12C22,6.48 17.52,2 12,2ZM10,17L5,12L6.41,10.59L10,14.17L17.59,6.58L19,8L10,17Z"/>
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="font-medium text-ink-800">Open Source Contributions</h4>
+                  <p class="text-sm text-ink-600">Contribute to 5+ projects and start my own OSS initiative</p>
+                </div>
+              </div>
+            </Card>
+          </div>
+        </div>
+
+        <!-- Long-term Goals -->
+        <div>
+          <div class="flex items-center mb-6">
+            <div class="w-8 h-8 rounded-full bg-gradient-to-br from-lavender-400 to-blush-400 flex items-center justify-center mr-3">
+              <span class="text-white text-sm font-bold">2Y</span>
+            </div>
+            <h3 class="font-heading text-2xl font-semibold text-ink-800">Next 2 Years</h3>
+          </div>
+          
+          <div class="space-y-4">
+            <Card variant="default" className="p-4">
+              <div class="flex items-start space-x-3">
+                <div class="w-6 h-6 rounded-full bg-blush-200 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <svg class="w-3 h-3 text-blush-600" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12,2L13.09,8.26L22,9L13.09,9.74L12,16L10.91,9.74L2,9L10.91,8.26L12,2Z"/>
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="font-medium text-ink-800">Senior Developer Role</h4>
+                  <p class="text-sm text-ink-600">Leading development teams and architecting large-scale systems</p>
+                </div>
+              </div>
+            </Card>
+
+            <Card variant="default" className="p-4">
+              <div class="flex items-start space-x-3">
+                <div class="w-6 h-6 rounded-full bg-sky-200 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <svg class="w-3 h-3 text-sky-600" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12,2L13.09,8.26L22,9L13.09,9.74L12,16L10.91,9.74L2,9L10.91,8.26L12,2Z"/>
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="font-medium text-ink-800">AI Specialization</h4>
+                  <p class="text-sm text-ink-600">Become a recognized expert in computer vision and NLP</p>
+                </div>
+              </div>
+            </Card>
+
+            <Card variant="default" className="p-4">
+              <div class="flex items-start space-x-3">
+                <div class="w-6 h-6 rounded-full bg-mint-200 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <svg class="w-3 h-3 text-mint-600" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12,2L13.09,8.26L22,9L13.09,9.74L12,16L10.91,9.74L2,9L10.91,8.26L12,2Z"/>
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="font-medium text-ink-800">Product Innovation</h4>
+                  <p class="text-sm text-ink-600">Launch a successful SaaS product that impacts thousands of users</p>
+                </div>
+              </div>
+            </Card>
+
+            <Card variant="default" className="p-4">
+              <div class="flex items-start space-x-3">
+                <div class="w-6 h-6 rounded-full bg-lavender-200 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <svg class="w-3 h-3 text-lavender-600" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12,2L13.09,8.26L22,9L13.09,9.74L12,16L10.91,9.74L2,9L10.91,8.26L12,2Z"/>
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="font-medium text-ink-800">Tech Community Leadership</h4>
+                  <p class="text-sm text-ink-600">Speaking at conferences and mentoring the next generation</p>
+                </div>
+              </div>
+            </Card>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technologies to Explore -->
+  <section class="py-20 bg-gradient-to-br from-mint-50 to-butter-50">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="font-heading text-3xl lg:text-4xl font-semibold text-ink-800 mb-4">
+          Emerging Technologies to Explore
+        </h2>
+        <p class="text-ink-600 max-w-2xl mx-auto">
+          The tech landscape is constantly evolving. Here are the cutting-edge technologies I'm excited to dive into.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <Card variant="skill" className="text-center group cursor-pointer">
+          <div class="mb-4">
+            <div class="w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-purple-200 to-pink-200 flex items-center justify-center group-hover:scale-110 transition-transform">
+              <span class="text-2xl">🤖</span>
+            </div>
+          </div>
+          <h4 class="font-heading text-lg font-semibold text-ink-800 mb-2">GPT & LLMs</h4>
+          <p class="text-sm text-ink-600">Large Language Models, prompt engineering, and AI assistants</p>
+        </Card>
+
+        <Card variant="skill" className="text-center group cursor-pointer">
+          <div class="mb-4">
+            <div class="w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-blue-200 to-cyan-200 flex items-center justify-center group-hover:scale-110 transition-transform">
+              <span class="text-2xl">🕶️</span>
+            </div>
+          </div>
+          <h4 class="font-heading text-lg font-semibold text-ink-800 mb-2">AR/VR Development</h4>
+          <p class="text-sm text-ink-600">Immersive experiences with Unity, WebXR, and spatial computing</p>
+        </Card>
+
+        <Card variant="skill" className="text-center group cursor-pointer">
+          <div class="mb-4">
+            <div class="w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-green-200 to-emerald-200 flex items-center justify-center group-hover:scale-110 transition-transform">
+              <span class="text-2xl">⛓️</span>
+            </div>
+          </div>
+          <h4 class="font-heading text-lg font-semibold text-ink-800 mb-2">Blockchain & Web3</h4>
+          <p class="text-sm text-ink-600">Decentralized applications, smart contracts, and crypto innovation</p>
+        </Card>
+
+        <Card variant="skill" className="text-center group cursor-pointer">
+          <div class="mb-4">
+            <div class="w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-orange-200 to-red-200 flex items-center justify-center group-hover:scale-110 transition-transform">
+              <span class="text-2xl">🔬</span>
+            </div>
+          </div>
+          <h4 class="font-heading text-lg font-semibold text-ink-800 mb-2">Quantum Computing</h4>
+          <p class="text-sm text-ink-600">Exploring quantum algorithms and their practical applications</p>
+        </Card>
+
+        <Card variant="skill" className="text-center group cursor-pointer">
+          <div class="mb-4">
+            <div class="w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-indigo-200 to-purple-200 flex items-center justify-center group-hover:scale-110 transition-transform">
+              <span class="text-2xl">🧬</span>
+            </div>
+          </div>
+          <h4 class="font-heading text-lg font-semibold text-ink-800 mb-2">Biotechnology</h4>
+          <p class="text-sm text-ink-600">Intersection of AI and biology, bioinformatics, and health tech</p>
+        </Card>
+
+        <Card variant="skill" className="text-center group cursor-pointer">
+          <div class="mb-4">
+            <div class="w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-gray-200 to-slate-200 flex items-center justify-center group-hover:scale-110 transition-transform">
+              <span class="text-2xl">🤖</span>
+            </div>
+          </div>
+          <h4 class="font-heading text-lg font-semibold text-ink-800 mb-2">Robotics</h4>
+          <p class="text-sm text-ink-600">Autonomous systems, computer vision, and human-robot interaction</p>
+        </Card>
+
+        <Card variant="skill" className="text-center group cursor-pointer">
+          <div class="mb-4">
+            <div class="w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-teal-200 to-cyan-200 flex items-center justify-center group-hover:scale-110 transition-transform">
+              <span class="text-2xl">🌐</span>
+            </div>
+          </div>
+          <h4 class="font-heading text-lg font-semibold text-ink-800 mb-2">Edge Computing</h4>
+          <p class="text-sm text-ink-600">IoT, real-time processing, and distributed computing at the edge</p>
+        </Card>
+
+        <Card variant="skill" className="text-center group cursor-pointer">
+          <div class="mb-4">
+            <div class="w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-amber-200 to-orange-200 flex items-center justify-center group-hover:scale-110 transition-transform">
+              <span class="text-2xl">🛡️</span>
+            </div>
+          </div>
+          <h4 class="font-heading text-lg font-semibold text-ink-800 mb-2">Cybersecurity</h4>
+          <p class="text-sm text-ink-600">AI-powered security, ethical hacking, and threat intelligence</p>
+        </Card>
+      </div>
+    </div>
+  </section>
+
+  <!-- Personal Mission -->
+  <section class="py-20 bg-white">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <h2 class="font-heading text-3xl lg:text-4xl font-semibold text-ink-800 mb-8">
+        My Mission
+      </h2>
+      
+      <div class="bg-gradient-to-br from-sky-50 via-mint-50 to-lavender-50 rounded-2xl p-8 lg:p-12 shadow-story">
+        <blockquote class="font-story text-2xl lg:text-3xl text-ink-700 italic leading-relaxed mb-8">
+          "To build technology that empowers people, solves meaningful problems, 
+          and creates a more connected, equitable, and innovative world."
+        </blockquote>
+        
+        <div class="grid md:grid-cols-3 gap-8 mt-12">
+          <div class="text-center">
+            <div class="w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-sky-200 to-mint-200 flex items-center justify-center mb-4">
+              <svg class="w-8 h-8 text-sky-600" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z"/>
+              </svg>
+            </div>
+            <h3 class="font-heading text-lg font-semibold text-ink-800 mb-2">Human-Centered</h3>
+            <p class="text-sm text-ink-600">Technology should enhance human capabilities and improve quality of life</p>
+          </div>
+          
+          <div class="text-center">
+            <div class="w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-mint-200 to-lavender-200 flex items-center justify-center mb-4">
+              <svg class="w-8 h-8 text-mint-600" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12,2L13.09,8.26L22,9L13.09,9.74L12,16L10.91,9.74L2,9L10.91,8.26L12,2Z"/>
+              </svg>
+            </div>
+            <h3 class="font-heading text-lg font-semibold text-ink-800 mb-2">Innovation Driven</h3>
+            <p class="text-sm text-ink-600">Pushing boundaries and exploring new possibilities in technology</p>
+          </div>
+          
+          <div class="text-center">
+            <div class="w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-lavender-200 to-butter-200 flex items-center justify-center mb-4">
+              <svg class="w-8 h-8 text-lavender-600" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M16,13C15.71,13 15.38,13 15.03,13.05C16.19,13.89 17,15 17,16.5V19H23V16.5C23,14.17 18.33,13 16,13M8,13C5.67,13 1,14.17 1,16.5V19H15V16.5C15,14.17 10.33,13 8,13M8,11A3,3 0 0,0 11,8A3,3 0 0,0 8,5A3,3 0 0,0 5,8A3,3 0 0,0 8,11M16,11A3,3 0 0,0 19,8A3,3 0 0,0 16,5A3,3 0 0,0 13,8A3,3 0 0,0 16,11Z"/>
+              </svg>
+            </div>
+            <h3 class="font-heading text-lg font-semibold text-ink-800 mb-2">Collaborative</h3>
+            <p class="text-sm text-ink-600">Building inclusive teams and fostering knowledge sharing</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="py-16 bg-gradient-to-br from-sky-50 to-mint-50">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <h3 class="font-heading text-2xl font-semibold text-ink-800 mb-4">
+        Want to Join This Journey?
+      </h3>
+      <p class="text-ink-600 mb-8 max-w-2xl mx-auto">
+        The future is built by people who dare to dream and have the skills to make those dreams reality. 
+        Let's create something amazing together.
+      </p>
+      
+      <div class="bg-white rounded-2xl p-8 shadow-soft">
+        <h4 class="font-heading text-xl font-semibold text-ink-800 mb-4">Ready to write the next chapter?</h4>
+        <p class="text-ink-600 mb-6">
+          Let's connect and explore how we can collaborate, learn from each other, and build the future together.
+        </p>
+        <a href="/contact" class="inline-flex items-center px-8 py-4 rounded-full bg-gradient-to-r from-sky-500 to-mint-500 text-white font-medium hover:shadow-chapter transition-all duration-300 hover:scale-105">
+          <span>Epilogue: Let's Connect</span>
+          <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+</StorybookLayout> 
