@@ -17,6 +17,7 @@ services:
 
   # Production service
   portfolio:
+    container_name: portfolio
     build:
       context: .
       dockerfile: Dockerfile
