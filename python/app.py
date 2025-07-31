@@ -13,7 +13,32 @@ load_dotenv(override=True)
 
 # Initialize Flask app
 app = Flask(__name__)
-CORS(app)  # Enable CORS for frontend integration
+
+# Configure CORS for frontend integration
+CORS(app, resources={
+    r"/api/*": {
+        "origins": [
+            "http://localhost:4321",  # Astro dev server
+            "http://localhost:3004",  # Production frontend
+            "http://127.0.0.1:4321",
+            "http://127.0.0.1:3004",
+            "http://localhost:3000",  # Common dev port
+            "http://127.0.0.1:3000",
+            "*"  # Allow all origins in development
+        ],
+        "methods": ["GET", "POST", "OPTIONS"],
+        "allow_headers": ["Content-Type", "Authorization"],
+        "supports_credentials": True
+    }
+})
+
+# Add CORS headers to all responses
+@app.after_request
+def after_request(response):
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+    response.headers.add('Access-Control-Allow-Methods', 'GET,POST,OPTIONS')
+    return response
 
 discord_webhook_url = os.getenv("DISCORD_WEBHOOK_URL")
 
@@ -165,6 +190,15 @@ def chat_endpoint():
 @app.route('/api/health', methods=['GET'])
 def health_check():
     return jsonify({'status': 'healthy'})
+
+@app.route('/api/chat', methods=['OPTIONS'])
+def chat_options():
+    """Handle preflight requests for CORS"""
+    response = jsonify({'status': 'ok'})
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+    response.headers.add('Access-Control-Allow-Methods', 'GET,POST,OPTIONS')
+    return response
 
 @app.route('/api/clear_history', methods=['POST'])
 def clear_history():
