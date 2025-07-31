@@ -24,6 +24,7 @@ CORS(app, resources={
             "http://127.0.0.1:3004",
             "http://localhost:3000",  # Common dev port
             "http://127.0.0.1:3000",
+            "https://gradio.kaustubhsstuff.com"
             "*"  # Allow all origins in development
         ],
         "methods": ["GET", "POST", "OPTIONS"],
