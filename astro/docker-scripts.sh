@@ -9,7 +9,7 @@ case "$1" in
         ;;
     "prod")
         echo "🏭 Starting production server..."
-        docker compose up portfolio -d
+        docker compose up flask-api portfolio -d
         ;;
     "build")
         echo "🔨 Building production image..."
