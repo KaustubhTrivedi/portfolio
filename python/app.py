@@ -178,7 +178,8 @@ def clear_history():
 
 if __name__ == "__main__":
     # Run Flask app on port 5000
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    debug_mode = os.getenv('FLASK_DEBUG', 'False').lower() == 'true'
+    app.run(host='0.0.0.0', port=5000, debug=debug_mode)
     
     # Uncomment the line below if you want to run Gradio instead
     # gr.ChatInterface(me_instance.chat, type="messages").launch()

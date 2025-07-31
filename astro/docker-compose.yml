@@ -15,6 +15,22 @@ services:
       - NODE_ENV=development
     command: npm run dev -- --host 0.0.0.0
 
+  # Flask API service
+  flask-api:
+    build:
+      context: ../python
+      dockerfile: Dockerfile.dev
+    ports:
+      - "5000:5000"
+    volumes:
+      - ../python:/app
+    environment:
+      - FLASK_ENV=development
+      - FLASK_DEBUG=1
+    restart: unless-stopped
+    networks:
+      - portfolio-network
+
   # Production service
   portfolio:
     container_name: portfolio
@@ -28,6 +44,9 @@ services:
     environment:
       - NODE_ENV=production
     restart: unless-stopped
+
 networks:
-    npm_default:
-      external: true
+  portfolio-network:
+    driver: bridge
+  npm_default:
+    external: true

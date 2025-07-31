@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  # Flask API service (Production)
+  flask-api:
+    build:
+      context: ../python
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_ENV=production
+    restart: unless-stopped
+    networks:
+      - npm_default
+
+  # Production frontend service
+  portfolio:
+    container_name: portfolio
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      - npm_default
+    ports:
+      - "3004:80"
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    depends_on:
+      - flask-api
+
+networks:
+  npm_default:
+    external: true
