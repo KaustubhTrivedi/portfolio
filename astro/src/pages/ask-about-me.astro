@@ -1,0 +1,326 @@
+---
+import BasicLayout from '../layouts/BasicLayout.astro';
+---
+
+<BasicLayout title="Ask about me" description="Chat with me about my experience, skills, and journey">
+  <div class="min-h-screen bg-gradient-to-br from-parchment-50 via-sky-50 to-blush-50">
+    <!-- Header -->
+    <header class="relative z-10 bg-white/80 backdrop-blur-story border-b border-ink-200/50">
+      <div class="max-w-7xl mx-auto px-6 py-4">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center space-x-4">
+            <a href="/" class="flex items-center space-x-2 group">
+              <div class="w-8 h-8 rounded-full bg-gradient-to-br from-blush-200 to-sky-200 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <svg class="w-4 h-4 text-ink-600" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 1H5C3.9 1 3 1.9 3 3V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V9M19 19H5V3H13V9H19Z"/>
+                </svg>
+              </div>
+              <span class="font-heading text-lg font-semibold text-ink-800 group-hover:text-blush-600 transition-colors duration-300">
+                Kaustubh Trivedi
+              </span>
+            </a>
+          </div>
+          
+          <nav class="hidden md:flex items-center space-x-6">
+            <a href="/" class="text-ink-600 hover:text-blush-600 transition-colors duration-300">Home</a>
+            <a href="/about" class="text-ink-600 hover:text-blush-600 transition-colors duration-300">About</a>
+            <a href="/projects" class="text-ink-600 hover:text-blush-600 transition-colors duration-300">Projects</a>
+            <a href="/contact" class="text-ink-600 hover:text-blush-600 transition-colors duration-300">Contact</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <!-- Chat Interface -->
+    <div class="flex flex-col h-[calc(100vh-80px)]">
+      <!-- Chat Header -->
+      <div class="bg-white/90 backdrop-blur-story border-b border-ink-200/50 px-6 py-4">
+        <div class="max-w-4xl mx-auto">
+          <div class="flex items-center space-x-4">
+            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blush-200 via-sky-200 to-mint-200 flex items-center justify-center">
+              <svg class="w-6 h-6 text-ink-600" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M20 2H4C2.9 2 2 2.9 2 4V22L6 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2M20 16H6L4 18V4H20V16Z"/>
+              </svg>
+            </div>
+            <div>
+              <h1 class="font-heading text-2xl font-semibold text-ink-800">Ask about me</h1>
+              <p class="text-ink-600 text-sm">Ask me anything about my experience, skills, or journey</p>
+            </div>
+            <div class="ml-auto flex items-center space-x-2">
+              <button 
+                id="delete-chat-btn"
+                class="px-3 py-1.5 bg-red-100 text-red-700 rounded-full text-sm hover:bg-red-200 transition-colors duration-200 flex items-center space-x-1"
+                title="Clear chat history"
+              >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                </svg>
+                <span>Clear Chat</span>
+              </button>
+              <div class="w-2 h-2 bg-mint-500 rounded-full animate-pulse"></div>
+              <span class="text-sm text-ink-500">Online</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chat Messages Area -->
+      <div class="flex-1 overflow-y-auto bg-gradient-to-b from-white/50 to-parchment-50/50">
+        <div class="max-w-4xl mx-auto px-6 py-8">
+          <!-- Welcome Message -->
+          <div class="mb-8 animate-fade-in">
+            <div class="flex items-start space-x-3">
+              <div class="w-8 h-8 rounded-full bg-gradient-to-br from-blush-200 to-sky-200 flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-ink-600" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 1H5C3.9 1 3 1.9 3 3V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V9M19 19H5V3H13V9H19Z"/>
+                </svg>
+              </div>
+              <div class="bg-white rounded-2xl rounded-tl-md px-6 py-4 shadow-soft max-w-2xl">
+                <div class="text-ink-800 mb-3 prose prose-sm max-w-none">
+                  <p><strong>👋 Hi there!</strong> I'm <strong>Kaustubh Trivedi</strong>, a software engineer passionate about building meaningful experiences.</p>
+                  <p>Feel free to ask me about my background, skills, projects, or anything else you'd like to know!</p>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                  <button class="px-3 py-1.5 bg-blush-100 text-blush-700 rounded-full text-sm hover:bg-blush-200 transition-colors duration-200 animate-slide-up" style="animation-delay: 0.1s;">
+                    Tell me about yourself
+                  </button>
+                  <button class="px-3 py-1.5 bg-sky-100 text-sky-700 rounded-full text-sm hover:bg-sky-200 transition-colors duration-200 animate-slide-up" style="animation-delay: 0.2s;">
+                    What are your skills?
+                  </button>
+                  <button class="px-3 py-1.5 bg-mint-100 text-mint-700 rounded-full text-sm hover:bg-mint-200 transition-colors duration-200 animate-slide-up" style="animation-delay: 0.3s;">
+                    Show me your projects
+                  </button>
+                  <button class="px-3 py-1.5 bg-lavender-100 text-lavender-700 rounded-full text-sm hover:bg-lavender-200 transition-colors duration-200 animate-slide-up" style="animation-delay: 0.4s;">
+                    What's your experience?
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Messages Container -->
+          <div id="messages-container" class="space-y-6">
+            <!-- Messages will be dynamically added here -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Chat Input Area -->
+      <div class="bg-white/90 backdrop-blur-story border-t border-ink-200/50 px-6 py-4">
+        <div class="max-w-4xl mx-auto">
+          <form id="chat-form" class="flex items-end space-x-4">
+            <div class="flex-1 relative">
+              <textarea 
+                id="message-input"
+                placeholder="Type your message here..."
+                class="w-full px-4 py-3 pr-12 rounded-2xl border border-ink-200 bg-white/80 backdrop-blur-sm resize-none focus:outline-none focus:ring-2 focus:ring-blush-500 focus:border-transparent transition-all duration-300 min-h-[48px] max-h-32"
+                rows="1"
+              ></textarea>
+              <button 
+                type="submit"
+                class="absolute right-2 bottom-2 w-8 h-8 rounded-full bg-gradient-to-r from-blush-500 to-sky-500 text-white flex items-center justify-center hover:scale-110 transition-transform duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                disabled
+              >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                </svg>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Chat functionality
+    const messageInput = document.getElementById('message-input') as HTMLTextAreaElement;
+    const chatForm = document.getElementById('chat-form') as HTMLFormElement;
+    const messagesContainer = document.getElementById('messages-container') as HTMLDivElement;
+    const sendButton = chatForm.querySelector('button[type="submit"]') as HTMLButtonElement;
+    const deleteChatBtn = document.getElementById('delete-chat-btn') as HTMLButtonElement;
+
+    // API configuration
+    const API_BASE_URL = 'http://localhost:5000';
+    let chatHistory: Array<{role: string, content: string}> = [];
+
+    // Simple markdown parser
+    function parseMarkdown(text: string): string {
+      return text
+        // Headers
+        .replace(/^### (.*$)/gim, '<h3 class="text-lg font-semibold text-ink-800 mb-2">$1</h3>')
+        .replace(/^## (.*$)/gim, '<h2 class="text-xl font-semibold text-ink-800 mb-3">$1</h2>')
+        .replace(/^# (.*$)/gim, '<h1 class="text-2xl font-bold text-ink-800 mb-4">$1</h1>')
+        
+        // Bold and italic
+        .replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold">$1</strong>')
+        .replace(/\*(.*?)\*/g, '<em class="italic">$1</em>')
+        
+        // Code blocks
+        .replace(/```(\w+)?\n([\s\S]*?)```/g, '<pre class="bg-ink-100 rounded-lg p-3 my-2 overflow-x-auto"><code class="text-sm">$2</code></pre>')
+        .replace(/`([^`]+)`/g, '<code class="bg-ink-100 px-1 py-0.5 rounded text-sm font-mono">$1</code>')
+        
+        // Links
+        .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-blush-600 hover:text-blush-700 underline" target="_blank" rel="noopener noreferrer">$1</a>')
+        
+        // Lists
+        .replace(/^\* (.*$)/gim, '<li class="ml-4">$1</li>')
+        .replace(/^- (.*$)/gim, '<li class="ml-4">$1</li>')
+        .replace(/^\d+\. (.*$)/gim, '<li class="ml-4">$1</li>')
+        
+        // Line breaks
+        .replace(/\n/g, '<br>')
+        
+        // Clean up list items
+        .replace(/(<li.*?<\/li>)/gs, '<ul class="list-disc my-2">$1</ul>')
+        .replace(/<\/ul>\s*<ul/g, '')
+        .replace(/<ul class="list-disc my-2">\s*<\/ul>/g, '');
+    }
+
+    // Auto-resize textarea
+    messageInput.addEventListener('input', function() {
+      this.style.height = 'auto';
+      this.style.height = Math.min(this.scrollHeight, 128) + 'px';
+      
+      // Enable/disable send button
+      sendButton.disabled = this.value.trim().length === 0;
+    });
+
+    // Handle form submission
+    chatForm.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const message = messageInput.value.trim();
+      if (!message) return;
+
+      // Add user message
+      addMessage(message, 'user');
+      messageInput.value = '';
+      messageInput.style.height = 'auto';
+      sendButton.disabled = true;
+
+      // Show typing indicator
+      const typingIndicator = addTypingIndicator();
+
+      try {
+        // Call the Flask API
+        const response = await fetch(`${API_BASE_URL}/api/chat`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            message: message,
+            history: chatHistory
+          })
+        });
+
+        // Remove typing indicator
+        typingIndicator.remove();
+
+        if (response.ok) {
+          const data = await response.json();
+          addMessage(data.response, 'assistant');
+          
+          // Update chat history
+          chatHistory.push({role: 'user', content: message});
+          chatHistory.push({role: 'assistant', content: data.response});
+        } else {
+          const errorData = await response.json();
+          addMessage(`Sorry, I encountered an error: ${errorData.error || 'Unknown error'}`, 'assistant');
+        }
+      } catch (error) {
+        // Remove typing indicator
+        typingIndicator.remove();
+        
+        console.error('Error calling API:', error);
+        addMessage('Sorry, I\'m having trouble connecting to the server. Please try again later.', 'assistant');
+      }
+    });
+
+    // Handle delete chat button
+    deleteChatBtn.addEventListener('click', function() {
+      if (confirm('Are you sure you want to clear the chat history?')) {
+        // Clear local chat history
+        chatHistory = [];
+        
+        // Clear all messages except the welcome message
+        const welcomeMessage = messagesContainer.querySelector('.animate-fade-in');
+        messagesContainer.innerHTML = '';
+        
+        // Re-add the welcome message if it exists
+        if (welcomeMessage) {
+          messagesContainer.appendChild(welcomeMessage);
+        }
+        
+        // Add confirmation message
+        addMessage('Chat history cleared. Feel free to ask me anything!', 'assistant');
+      }
+    });
+
+    function addTypingIndicator() {
+      const typingDiv = document.createElement('div');
+      typingDiv.className = 'animate-slide-up';
+      typingDiv.innerHTML = `
+        <div class="flex items-start space-x-3">
+          <div class="w-8 h-8 rounded-full bg-gradient-to-br from-blush-200 to-sky-200 flex items-center justify-center flex-shrink-0">
+            <svg class="w-4 h-4 text-ink-600" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M20 2H4C2.9 2 2 2.9 2 4V22L6 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2M20 16H6L4 18V4H20V16Z"/>
+            </svg>
+          </div>
+          <div class="bg-white rounded-2xl rounded-tl-md px-6 py-4 shadow-soft max-w-2xl">
+            <div class="flex space-x-1">
+              <div class="w-2 h-2 bg-ink-400 rounded-full animate-bounce"></div>
+              <div class="w-2 h-2 bg-ink-400 rounded-full animate-bounce" style="animation-delay: 0.1s"></div>
+              <div class="w-2 h-2 bg-ink-400 rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
+            </div>
+          </div>
+        </div>
+      `;
+      messagesContainer.appendChild(typingDiv);
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      return typingDiv;
+    }
+
+    function addMessage(content: string, sender: 'user' | 'assistant') {
+      const messageDiv = document.createElement('div');
+      messageDiv.className = `animate-slide-up ${sender === 'user' ? 'flex justify-end' : ''}`;
+      
+      // Parse markdown for assistant messages
+      const processedContent = sender === 'assistant' ? parseMarkdown(content) : content;
+      
+      const messageContent = `
+        <div class="flex items-start space-x-3 ${sender === 'user' ? 'flex-row-reverse space-x-reverse' : ''}">
+          <div class="w-8 h-8 rounded-full ${sender === 'user' ? 'bg-gradient-to-br from-sky-200 to-mint-200' : 'bg-gradient-to-br from-blush-200 to-sky-200'} flex items-center justify-center flex-shrink-0">
+            ${sender === 'user' ? 
+              '<svg class="w-4 h-4 text-ink-600" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 1H5C3.9 1 3 1.9 3 3V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V9M19 19H5V3H13V9H19Z"/></svg>' :
+              '<svg class="w-4 h-4 text-ink-600" fill="currentColor" viewBox="0 0 24 24"><path d="M20 2H4C2.9 2 2 2.9 2 4V22L6 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2M20 16H6L4 18V4H20V16Z"/></svg>'
+            }
+          </div>
+          <div class="bg-white rounded-2xl ${sender === 'user' ? 'rounded-tr-md bg-gradient-to-r from-sky-100 to-mint-100' : 'rounded-tl-md'} px-6 py-4 shadow-soft max-w-2xl">
+            ${sender === 'user' ? 
+              `<p class="text-ink-800">${processedContent}</p>` :
+              `<div class="text-ink-800 prose prose-sm max-w-none">${processedContent}</div>`
+            }
+          </div>
+        </div>
+      `;
+      
+      messageDiv.innerHTML = messageContent;
+      messagesContainer.appendChild(messageDiv);
+      
+      // Scroll to bottom
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+
+    // Add click handlers to suggestion buttons
+    document.querySelectorAll('button').forEach(button => {
+      if (button.textContent?.includes('Tell me') || button.textContent?.includes('What are') || button.textContent?.includes('Show me') || button.textContent?.includes('What\'s your')) {
+        button.addEventListener('click', function() {
+          messageInput.value = this.textContent || '';
+          messageInput.dispatchEvent(new Event('input'));
+          chatForm.dispatchEvent(new Event('submit'));
+        });
+      }
+    });
+  </script>
+</BasicLayout> 
