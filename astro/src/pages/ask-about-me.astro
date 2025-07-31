@@ -141,8 +141,10 @@ import BasicLayout from '../layouts/BasicLayout.astro';
     const sendButton = chatForm.querySelector('button[type="submit"]') as HTMLButtonElement;
     const deleteChatBtn = document.getElementById('delete-chat-btn') as HTMLButtonElement;
 
-    // API configuration
-    const API_BASE_URL = 'https://gradio.kaustubhsstuff.com';
+    // API configuration - environment-aware
+    const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+      ? 'http://localhost:5000' 
+      : 'https://gradio.kaustubhsstuff.com';
     let chatHistory: Array<{role: string, content: string}> = [];
 
     // Simple markdown parser
