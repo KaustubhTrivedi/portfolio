@@ -16,6 +16,7 @@ const { title, description = "A storybook-themed portfolio", chapter } = Astro.p
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
     <title>{title}</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     
@@ -27,18 +28,61 @@ const { title, description = "A storybook-themed portfolio", chapter } = Astro.p
       rel="stylesheet"
     />
     
-    <!-- Theme initialization script to prevent flash -->
+    <!-- Critical CSS to prevent flash -->
+    <style>
+      /* Hide body until theme is determined */
+      body { visibility: hidden; }
+      
+      /* Show body once theme is applied */
+      body.theme-loaded { visibility: visible; }
+      
+      /* Prevent any flash during theme detection */
+      html { background-color: transparent; }
+    </style>
+    
+    <!-- Enhanced theme initialization script to prevent flash -->
     <script>
-      // Immediately set theme to prevent flash
       (function() {
+        // Immediately execute to prevent any flash
         const savedTheme = localStorage.getItem('theme');
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         
-        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+        // Determine the theme
+        const shouldUseDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
+        
+        // Apply theme immediately
+        if (shouldUseDark) {
           document.documentElement.classList.add('dark');
         } else {
           document.documentElement.classList.remove('dark');
         }
+        
+        // Show the body once theme is applied
+        document.body.classList.add('theme-loaded');
+        
+        // Additional safety check for any remaining flash
+        const observer = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+              // Ensure theme is maintained
+              const currentTheme = localStorage.getItem('theme');
+              const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+              const shouldUseDark = currentTheme === 'dark' || (!currentTheme && prefersDark);
+              
+              if (shouldUseDark && !document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.add('dark');
+              } else if (!shouldUseDark && document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+              }
+            }
+          });
+        });
+        
+        // Start observing
+        observer.observe(document.documentElement, {
+          attributes: true,
+          attributeFilter: ['class']
+        });
       })();
     </script>
     

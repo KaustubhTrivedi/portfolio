@@ -28,42 +28,139 @@
   </button>
 </div>
 
+<!-- Theme transition overlay -->
+<div id="themeTransitionOverlay" class="fixed inset-0 z-[9999] pointer-events-none opacity-0 transition-opacity duration-500">
+  <div class="absolute inset-0 bg-gradient-to-br from-ink-900 via-ink-800 to-ink-900 transform scale-0 origin-top-left transition-all duration-1000 ease-out"></div>
+</div>
+
+<style>
+  /* Theme transition animation */
+  #themeTransitionOverlay {
+    transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  #themeTransitionOverlay.active {
+    opacity: 1;
+  }
+  
+  #themeTransitionOverlay .bg-gradient-to-br {
+    transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform-origin: top left;
+  }
+  
+  #themeTransitionOverlay.active .bg-gradient-to-br {
+    transform: scale(4) translate(25%, 25%);
+  }
+  
+  /* Ensure smooth transitions for all elements */
+  * {
+    transition-property: background-color, border-color, color, fill, stroke, opacity;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 0.3s;
+  }
+  
+  /* Prevent transition during the overlay animation */
+  body.theme-transitioning * {
+    transition: none !important;
+  }
+</style>
+
 <script>
-  // Dark mode toggle functionality
+  // Enhanced dark mode toggle functionality with transition animation
   document.addEventListener('DOMContentLoaded', () => {
     const toggle = document.getElementById('darkModeToggle');
     const html = document.documentElement;
-    let isDark = html.classList.contains('dark');
+    const body = document.body;
+    const overlay = document.getElementById('themeTransitionOverlay');
+    const overlayBg = overlay?.querySelector('.bg-gradient-to-br');
     
-    // Check for saved theme preference or default to light mode
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      enableDarkMode();
-    } else {
-      disableDarkMode();
+    // Get current theme state
+    function getCurrentTheme() {
+      return html.classList.contains('dark') ? 'dark' : 'light';
+    }
+    
+    // Check for saved theme preference or default to system preference
+    function initializeTheme() {
+      const savedTheme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      
+      if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+        enableDarkMode();
+      } else {
+        disableDarkMode();
+      }
     }
     
     function enableDarkMode() {
       html.classList.add('dark');
       localStorage.setItem('theme', 'dark');
-      isDark = true;
     }
     
     function disableDarkMode() {
       html.classList.remove('dark');
       localStorage.setItem('theme', 'light');
-      isDark = false;
+    }
+    
+    async function toggleThemeWithAnimation() {
+      if (!overlay || !overlayBg) return;
+      
+      const currentTheme = getCurrentTheme();
+      const isTransitioningToDark = currentTheme === 'light';
+      
+      // Add transitioning class to prevent other transitions
+      body.classList.add('theme-transitioning');
+      
+      // Show overlay
+      overlay.classList.add('active');
+      
+      // Wait for overlay to be visible
+      await new Promise(resolve => setTimeout(resolve, 100));
+      
+      // Trigger the diagonal sweep animation
+      if (overlayBg instanceof HTMLElement) {
+        overlayBg.style.transform = 'scale(4) translate(25%, 25%)';
+      }
+      
+      // Wait for animation to complete
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Toggle the theme
+      if (isTransitioningToDark) {
+        enableDarkMode();
+      } else {
+        disableDarkMode();
+      }
+      
+      // Reset overlay
+      if (overlayBg instanceof HTMLElement) {
+        overlayBg.style.transform = 'scale(0)';
+      }
+      overlay.classList.remove('active');
+      
+      // Remove transitioning class
+      body.classList.remove('theme-transitioning');
     }
     
     function toggleTheme() {
-      if (isDark) {
-        disableDarkMode();
-      } else {
-        enableDarkMode();
-      }
+      toggleThemeWithAnimation();
     }
     
-    // Add event listener
+    // Initialize theme on page load
+    initializeTheme();
+    
+    // Add event listener for toggle button
     toggle?.addEventListener('click', toggleTheme);
+    
+    // Listen for system theme changes
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+      // Only update if user hasn't set a preference
+      if (!localStorage.getItem('theme')) {
+        if (e.matches) {
+          enableDarkMode();
+        } else {
+          disableDarkMode();
+        }
+      }
+    });
   });
 </script> 

@@ -18,6 +18,7 @@ const { title, description = "Portfolio Chapter", chapter, chapterTitle, chapter
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
     <title>{title}</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     
@@ -29,18 +30,61 @@ const { title, description = "Portfolio Chapter", chapter, chapterTitle, chapter
       rel="stylesheet"
     />
     
-    <!-- Theme initialization script to prevent flash -->
+    <!-- Critical CSS to prevent flash -->
+    <style>
+      /* Hide body until theme is determined */
+      body { visibility: hidden; }
+      
+      /* Show body once theme is applied */
+      body.theme-loaded { visibility: visible; }
+      
+      /* Prevent any flash during theme detection */
+      html { background-color: transparent; }
+    </style>
+    
+    <!-- Enhanced theme initialization script to prevent flash -->
     <script>
-      // Immediately set theme to prevent flash
       (function() {
+        // Immediately execute to prevent any flash
         const savedTheme = localStorage.getItem('theme');
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         
-        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+        // Determine the theme
+        const shouldUseDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
+        
+        // Apply theme immediately
+        if (shouldUseDark) {
           document.documentElement.classList.add('dark');
         } else {
           document.documentElement.classList.remove('dark');
         }
+        
+        // Show the body once theme is applied
+        document.body.classList.add('theme-loaded');
+        
+        // Additional safety check for any remaining flash
+        const observer = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+              // Ensure theme is maintained
+              const currentTheme = localStorage.getItem('theme');
+              const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+              const shouldUseDark = currentTheme === 'dark' || (!currentTheme && prefersDark);
+              
+              if (shouldUseDark && !document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.add('dark');
+              } else if (!shouldUseDark && document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+              }
+            }
+          });
+        });
+        
+        // Start observing
+        observer.observe(document.documentElement, {
+          attributes: true,
+          attributeFilter: ['class']
+        });
       })();
     </script>
   </head>
@@ -58,32 +102,32 @@ const { title, description = "Portfolio Chapter", chapter, chapterTitle, chapter
         
         <a href="/about" class="group flex items-center space-x-3 p-2 rounded-lg hover:bg-parchment-200 dark:hover:bg-ink-700 transition-all duration-300">
           <div class="w-3 h-3 rounded-full bg-blush-400 group-hover:scale-110 transition-transform"></div>
-          <span class="text-sm font-medium text-ink-700 dark:text-ink-300 group-hover:text-ink-900 dark:group-hover:text-ink-100">Chapter I</span>
+          <span class="text-sm font-medium text-ink-700 dark:text-ink-300 group-hover:text-ink-900 dark:group-hover:text-ink-100">About Me</span>
         </a>
         
         <a href="/journey" class="group flex items-center space-x-3 p-2 rounded-lg hover:bg-parchment-200 dark:hover:bg-ink-700 transition-all duration-300">
           <div class="w-3 h-3 rounded-full bg-sky-400 group-hover:scale-110 transition-transform"></div>
-          <span class="text-sm font-medium text-ink-700 dark:text-ink-300 group-hover:text-ink-900 dark:group-hover:text-ink-100">Chapter II</span>
+          <span class="text-sm font-medium text-ink-700 dark:text-ink-300 group-hover:text-ink-900 dark:group-hover:text-ink-100">My Tech Journey</span>
         </a>
         
         <a href="/toolkit" class="group flex items-center space-x-3 p-2 rounded-lg hover:bg-parchment-200 dark:hover:bg-ink-700 transition-all duration-300">
           <div class="w-3 h-3 rounded-full bg-mint-400 group-hover:scale-110 transition-transform"></div>
-          <span class="text-sm font-medium text-ink-700 dark:text-ink-300 group-hover:text-ink-900 dark:group-hover:text-ink-100">Chapter III</span>
+          <span class="text-sm font-medium text-ink-700 dark:text-ink-300 group-hover:text-ink-900 dark:group-hover:text-ink-100">My Toolkit</span>
         </a>
         
         <a href="/projects" class="group flex items-center space-x-3 p-2 rounded-lg hover:bg-parchment-200 dark:hover:bg-ink-700 transition-all duration-300">
           <div class="w-3 h-3 rounded-full bg-lavender-400 group-hover:scale-110 transition-transform"></div>
-          <span class="text-sm font-medium text-ink-700 dark:text-ink-300 group-hover:text-ink-900 dark:group-hover:text-ink-100">Chapter IV</span>
+          <span class="text-sm font-medium text-ink-700 dark:text-ink-300 group-hover:text-ink-900 dark:group-hover:text-ink-100">My Projects</span>
         </a>
         
         <a href="/final-project" class="group flex items-center space-x-3 p-2 rounded-lg hover:bg-parchment-200 dark:hover:bg-ink-700 transition-all duration-300">
           <div class="w-3 h-3 rounded-full bg-butter-400 group-hover:scale-110 transition-transform"></div>
-          <span class="text-sm font-medium text-ink-700 dark:text-ink-300 group-hover:text-ink-900 dark:group-hover:text-ink-100">Chapter V</span>
+          <span class="text-sm font-medium text-ink-700 dark:text-ink-300 group-hover:text-ink-900 dark:group-hover:text-ink-100">My Final Project</span>
         </a>
         
         <a href="/future" class="group flex items-center space-x-3 p-2 rounded-lg hover:bg-parchment-200 dark:hover:bg-ink-700 transition-all duration-300">
           <div class="w-3 h-3 rounded-full bg-lavender-400 group-hover:scale-110 transition-transform"></div>
-          <span class="text-sm font-medium text-ink-700 dark:text-ink-300 group-hover:text-ink-900 dark:group-hover:text-ink-100">Chapter VI</span>
+          <span class="text-sm font-medium text-ink-700 dark:text-ink-300 group-hover:text-ink-900 dark:group-hover:text-ink-100">My Future</span>
         </a>
       </div>
     </nav>
