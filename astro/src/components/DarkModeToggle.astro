@@ -5,12 +5,12 @@
 <div class="fixed top-4 right-4 z-50">
   <button
     id="darkModeToggle"
-    class="relative w-12 h-12 rounded-full bg-white dark:bg-ink-800 shadow-soft hover:shadow-chapter transition-all duration-300 flex items-center justify-center group"
+    class="relative w-12 h-12 rounded-full bg-white dark:bg-ink-800 shadow-soft hover:shadow-chapter transition-all duration-[800ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)] flex items-center justify-center group"
     aria-label="Toggle dark mode"
   >
     <!-- Sun icon for light mode -->
     <svg
-      class="w-6 h-6 text-butter-500 dark:hidden transition-all duration-300 group-hover:scale-110"
+      class="w-6 h-6 text-butter-500 dark:hidden transition-all duration-[800ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:scale-110"
       fill="currentColor"
       viewBox="0 0 24 24"
     >
@@ -19,7 +19,7 @@
     
     <!-- Moon icon for dark mode -->
     <svg
-      class="w-6 h-6 text-lavender-400 hidden dark:block transition-all duration-300 group-hover:scale-110"
+      class="w-6 h-6 text-lavender-400 hidden dark:block transition-all duration-[800ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:scale-110"
       fill="currentColor"
       viewBox="0 0 24 24"
     >
@@ -28,51 +28,41 @@
   </button>
 </div>
 
-<!-- Theme transition overlay -->
-<div id="themeTransitionOverlay" class="fixed inset-0 z-[9999] pointer-events-none opacity-0 transition-opacity duration-500">
-  <div class="absolute inset-0 bg-gradient-to-br from-ink-900 via-ink-800 to-ink-900 transform scale-0 origin-top-left transition-all duration-1000 ease-out"></div>
-</div>
-
 <style>
-  /* Theme transition animation */
-  #themeTransitionOverlay {
-    transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  
-  #themeTransitionOverlay.active {
-    opacity: 1;
-  }
-  
-  #themeTransitionOverlay .bg-gradient-to-br {
-    transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    transform-origin: top left;
-  }
-  
-  #themeTransitionOverlay.active .bg-gradient-to-br {
-    transform: scale(4) translate(25%, 25%);
-  }
-  
   /* Ensure smooth transitions for all elements */
   * {
-    transition-property: background-color, border-color, color, fill, stroke, opacity;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 0.3s;
+    transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow;
+    transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition-duration: 0.8s;
   }
   
-  /* Prevent transition during the overlay animation */
-  body.theme-transitioning * {
-    transition: none !important;
+  /* Specific smooth transitions for common elements */
+  html {
+    transition: background-color 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  body {
+    transition: background-color 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                color 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  /* Smooth transitions for buttons and interactive elements */
+  button, a, input, textarea {
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  /* Ensure images and icons transition smoothly */
+  img, svg {
+    transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                filter 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 </style>
 
 <script>
-  // Enhanced dark mode toggle functionality with transition animation
+  // Simple and smooth dark mode toggle functionality
   document.addEventListener('DOMContentLoaded', () => {
     const toggle = document.getElementById('darkModeToggle');
     const html = document.documentElement;
-    const body = document.body;
-    const overlay = document.getElementById('themeTransitionOverlay');
-    const overlayBg = overlay?.querySelector('.bg-gradient-to-br');
     
     // Get current theme state
     function getCurrentTheme() {
@@ -101,48 +91,14 @@
       localStorage.setItem('theme', 'light');
     }
     
-    async function toggleThemeWithAnimation() {
-      if (!overlay || !overlayBg) return;
-      
+    function toggleTheme() {
       const currentTheme = getCurrentTheme();
-      const isTransitioningToDark = currentTheme === 'light';
       
-      // Add transitioning class to prevent other transitions
-      body.classList.add('theme-transitioning');
-      
-      // Show overlay
-      overlay.classList.add('active');
-      
-      // Wait for overlay to be visible
-      await new Promise(resolve => setTimeout(resolve, 100));
-      
-      // Trigger the diagonal sweep animation
-      if (overlayBg instanceof HTMLElement) {
-        overlayBg.style.transform = 'scale(4) translate(25%, 25%)';
-      }
-      
-      // Wait for animation to complete
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      // Toggle the theme
-      if (isTransitioningToDark) {
+      if (currentTheme === 'light') {
         enableDarkMode();
       } else {
         disableDarkMode();
       }
-      
-      // Reset overlay
-      if (overlayBg instanceof HTMLElement) {
-        overlayBg.style.transform = 'scale(0)';
-      }
-      overlay.classList.remove('active');
-      
-      // Remove transitioning class
-      body.classList.remove('theme-transitioning');
-    }
-    
-    function toggleTheme() {
-      toggleThemeWithAnimation();
     }
     
     // Initialize theme on page load
