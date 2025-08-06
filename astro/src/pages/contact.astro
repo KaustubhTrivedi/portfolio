@@ -10,15 +10,15 @@ import ChapterLayout from '../layouts/ChapterLayout.astro';
   chapterColor="blush"
 >
   <!-- Introduction -->
-  <section class="py-20 bg-white">
+  <section class="py-20 bg-white dark:bg-ink-900">
     <div class="max-w-4xl mx-auto px-6 text-center">
-      <h2 class="font-heading text-4xl font-semibold text-ink-800 mb-8">
+      <h2 class="font-heading text-4xl font-semibold text-ink-800 dark:text-ink-100 mb-8">
         The End is Just a New Beginning
       </h2>
-      <blockquote class="text-2xl font-heading text-ink-700 italic border-l-4 border-blush-400 pl-6 my-8">
+      <blockquote class="text-2xl font-heading text-ink-700 dark:text-ink-300 italic border-l-4 border-blush-400 dark:border-blush-500 pl-6 my-8">
         "Every great story needs a satisfying ending... but the best ones always leave room for a sequel."
       </blockquote>
-      <div class="prose text-ink-700 text-lg max-w-3xl mx-auto space-y-6">
+      <div class="prose text-ink-700 dark:text-ink-300 text-lg max-w-3xl mx-auto space-y-6">
         <p>
           As you close the final chapter of this digital book, I want to thank you for taking the time to learn about my journey — from writing my first Hello, World! to building scalable systems and pushing the boundaries of what code can do.
         </p>
@@ -30,27 +30,27 @@ import ChapterLayout from '../layouts/ChapterLayout.astro';
   </section>
 
   <!-- Let's Stay in Touch -->
-  <section class="py-20 bg-gradient-to-br from-blush-50 to-sky-50">
+  <section class="py-20 bg-gradient-to-br from-blush-50 to-sky-50 dark:from-ink-800 dark:to-ink-700">
     <div class="max-w-6xl mx-auto px-6">
-      <h2 class="font-heading text-3xl font-semibold text-ink-800 mb-16 text-center">
+      <h2 class="font-heading text-3xl font-semibold text-ink-800 dark:text-ink-100 mb-16 text-center">
         Let's Stay in Touch
       </h2>
-      <p class="text-ink-700 text-center mb-12 max-w-3xl mx-auto text-lg">
+      <p class="text-ink-700 dark:text-ink-300 text-center mb-12 max-w-3xl mx-auto text-lg">
         Whether you're a fellow developer, a potential collaborator, or just someone who enjoys well-crafted software — I'd love to hear from you.
       </p>
       
       <div class="grid lg:grid-cols-3 gap-8">
         <!-- Hiring -->
-        <div class="p-8 rounded-2xl bg-gradient-to-br from-white to-blush-50 shadow-soft hover:shadow-chapter transition-all duration-300">
+        <div class="p-8 rounded-2xl bg-gradient-to-br from-white to-blush-50 dark:from-ink-800 dark:to-ink-700 shadow-soft hover:shadow-chapter transition-all duration-300">
           <div class="flex items-center mb-6">
             <div class="w-16 h-16 rounded-full bg-gradient-to-br from-blush-400 to-blush-600 flex items-center justify-center mr-4">
               <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12,2L13.09,8.26L22,9L13.09,9.74L12,16L10.91,9.74L2,9L10.91,8.26L12,2Z"/>
               </svg>
             </div>
-            <h3 class="font-heading text-xl font-semibold text-ink-800">Hiring?</h3>
+            <h3 class="font-heading text-xl font-semibold text-ink-800 dark:text-ink-100">Hiring?</h3>
           </div>
-          <p class="text-ink-700 mb-6">
+          <p class="text-ink-700 dark:text-ink-300 mb-6">
             Let's chat about how I can bring technical excellence and creativity to your team.
           </p>
           <a href="mailto:kaustubhtrivedi99@gmail.com?subject=Hiring%20Opportunity" class="inline-flex items-center px-4 py-2 rounded-lg bg-gradient-to-r from-blush-500 to-blush-600 text-white font-medium hover:shadow-chapter transition-all duration-300">
@@ -62,16 +62,16 @@ import ChapterLayout from '../layouts/ChapterLayout.astro';
         </div>
 
         <!-- Collaborating -->
-        <div class="p-8 rounded-2xl bg-gradient-to-br from-white to-sky-50 shadow-soft hover:shadow-chapter transition-all duration-300">
+        <div class="p-8 rounded-2xl bg-gradient-to-br from-white to-sky-50 dark:from-ink-800 dark:to-ink-700 shadow-soft hover:shadow-chapter transition-all duration-300">
           <div class="flex items-center mb-6">
             <div class="w-16 h-16 rounded-full bg-gradient-to-br from-sky-400 to-sky-600 flex items-center justify-center mr-4">
               <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12,2L13.09,8.26L22,9L13.09,9.74L12,16L10.91,9.74L2,9L10.91,8.26L12,2Z"/>
               </svg>
             </div>
-            <h3 class="font-heading text-xl font-semibold text-ink-800">Collaborating?</h3>
+            <h3 class="font-heading text-xl font-semibold text-ink-800 dark:text-ink-100">Collaborating?</h3>
           </div>
-          <p class="text-ink-700 mb-6">
+          <p class="text-ink-700 dark:text-ink-300 mb-6">
             I'm always open to new ideas, open source projects, or side quests.
           </p>
           <a href="mailto:kaustubhtrivedi99@gmail.com?subject=Collaboration%20Opportunity" class="inline-flex items-center px-4 py-2 rounded-lg bg-gradient-to-r from-sky-500 to-sky-600 text-white font-medium hover:shadow-chapter transition-all duration-300">
@@ -83,16 +83,16 @@ import ChapterLayout from '../layouts/ChapterLayout.astro';
         </div>
 
         <!-- Networking -->
-        <div class="p-8 rounded-2xl bg-gradient-to-br from-white to-mint-50 shadow-soft hover:shadow-chapter transition-all duration-300">
+        <div class="p-8 rounded-2xl bg-gradient-to-br from-white to-mint-50 dark:from-ink-800 dark:to-ink-700 shadow-soft hover:shadow-chapter transition-all duration-300">
           <div class="flex items-center mb-6">
             <div class="w-16 h-16 rounded-full bg-gradient-to-br from-mint-400 to-mint-600 flex items-center justify-center mr-4">
               <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12,2L13.09,8.26L22,9L13.09,9.74L12,16L10.91,9.74L2,9L10.91,8.26L12,2Z"/>
               </svg>
             </div>
-            <h3 class="font-heading text-xl font-semibold text-ink-800">Networking?</h3>
+            <h3 class="font-heading text-xl font-semibold text-ink-800 dark:text-ink-100">Networking?</h3>
           </div>
-          <p class="text-ink-700 mb-6">
+          <p class="text-ink-700 dark:text-ink-300 mb-6">
             Let's geek out about clean code, DevOps, or the perfect coffee brew.
           </p>
           <a href="mailto:kaustubhtrivedi99@gmail.com?subject=Let's%20Connect" class="inline-flex items-center px-4 py-2 rounded-lg bg-gradient-to-r from-mint-500 to-mint-600 text-white font-medium hover:shadow-chapter transition-all duration-300">
@@ -107,48 +107,48 @@ import ChapterLayout from '../layouts/ChapterLayout.astro';
   </section>
 
   <!-- Contact Details -->
-  <section class="py-20 bg-white">
+  <section class="py-20 bg-white dark:bg-ink-900">
     <div class="max-w-6xl mx-auto px-6">
-      <h2 class="font-heading text-3xl font-semibold text-ink-800 mb-16 text-center">
+      <h2 class="font-heading text-3xl font-semibold text-ink-800 dark:text-ink-100 mb-16 text-center">
         Contact Details
       </h2>
       
       <div class="grid md:grid-cols-3 gap-8">
         <!-- Email -->
-        <div class="p-8 rounded-2xl bg-gradient-to-br from-blush-50 to-sky-50 shadow-soft hover:shadow-chapter transition-all duration-300 text-center">
+        <div class="p-8 rounded-2xl bg-gradient-to-br from-blush-50 to-sky-50 dark:from-ink-800 dark:to-ink-700 shadow-soft hover:shadow-chapter transition-all duration-300 text-center">
           <div class="w-16 h-16 rounded-full bg-gradient-to-br from-blush-400 to-sky-400 flex items-center justify-center mx-auto mb-6">
             <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
               <path d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z"/>
             </svg>
           </div>
-          <h3 class="font-heading text-xl font-semibold text-ink-800 mb-4">Email</h3>
-          <a href="mailto:kaustubhtrivedi99@gmail.com" class="text-blush-600 hover:text-blush-700 font-medium transition-colors">
+          <h3 class="font-heading text-xl font-semibold text-ink-800 dark:text-ink-100 mb-4">Email</h3>
+          <a href="mailto:kaustubhtrivedi99@gmail.com" class="text-blush-600 dark:text-blush-400 hover:text-blush-700 dark:hover:text-blush-300 font-medium transition-colors">
             kaustubhtrivedi99@gmail.com
           </a>
         </div>
 
         <!-- LinkedIn -->
-        <div class="p-8 rounded-2xl bg-gradient-to-br from-sky-50 to-mint-50 shadow-soft hover:shadow-chapter transition-all duration-300 text-center">
+        <div class="p-8 rounded-2xl bg-gradient-to-br from-sky-50 to-mint-50 dark:from-ink-800 dark:to-ink-700 shadow-soft hover:shadow-chapter transition-all duration-300 text-center">
           <div class="w-16 h-16 rounded-full bg-gradient-to-br from-sky-400 to-mint-400 flex items-center justify-center mx-auto mb-6">
             <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
               <path d="M19,3A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19V5A2,2 0 0,1 5,3H19M18.5,18.5V13.2A3.26,3.26 0 0,0 15.24,13.2C14.39,13.2 13.4,13.83 13.4,15.27V18.5H10.32V9.5H13.12V10.78C13.12,10.78 14.05,9.5 15.92,9.5C17.79,9.5 18.5,10.81 18.5,12.64V18.5M6.88,8.56A1.68,1.68 0 0,0 8.56,6.88C8.56,5.95 7.81,5.19 6.88,5.19A1.69,1.69 0 0,0 5.19,6.88C5.19,7.81 5.95,8.56 6.88,8.56M8.27,18.5V9.5H5.5V18.5H8.27Z"/>
             </svg>
           </div>
-          <h3 class="font-heading text-xl font-semibold text-ink-800 mb-4">LinkedIn</h3>
-          <a href="https://linkedin.com/in/kaustubhtrivedi07" target="_blank" rel="noopener noreferrer" class="text-sky-600 hover:text-sky-700 font-medium transition-colors">
+          <h3 class="font-heading text-xl font-semibold text-ink-800 dark:text-ink-100 mb-4">LinkedIn</h3>
+          <a href="https://linkedin.com/in/kaustubhtrivedi07" target="_blank" rel="noopener noreferrer" class="text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 font-medium transition-colors">
             linkedin.com/in/kaustubhtrivedi07
           </a>
         </div>
 
         <!-- GitHub -->
-        <div class="p-8 rounded-2xl bg-gradient-to-br from-mint-50 to-butter-50 shadow-soft hover:shadow-chapter transition-all duration-300 text-center">
+        <div class="p-8 rounded-2xl bg-gradient-to-br from-mint-50 to-butter-50 dark:from-ink-800 dark:to-ink-700 shadow-soft hover:shadow-chapter transition-all duration-300 text-center">
           <div class="w-16 h-16 rounded-full bg-gradient-to-br from-mint-400 to-butter-400 flex items-center justify-center mx-auto mb-6">
             <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
               <path d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z"/>
             </svg>
           </div>
-          <h3 class="font-heading text-xl font-semibold text-ink-800 mb-4">GitHub</h3>
-          <a href="https://github.com/KaustubhTrivedi" target="_blank" rel="noopener noreferrer" class="text-mint-600 hover:text-mint-700 font-medium transition-colors">
+          <h3 class="font-heading text-xl font-semibold text-ink-800 dark:text-ink-100 mb-4">GitHub</h3>
+          <a href="https://github.com/KaustubhTrivedi" target="_blank" rel="noopener noreferrer" class="text-mint-600 dark:text-mint-400 hover:text-mint-700 dark:hover:text-mint-300 font-medium transition-colors">
             github.com/KaustubhTrivedi
           </a>
         </div>
@@ -157,45 +157,45 @@ import ChapterLayout from '../layouts/ChapterLayout.astro';
   </section>
 
   <!-- Contact Form -->
-  <section class="py-20 bg-gradient-to-br from-sky-50 to-mint-50">
+  <section class="py-20 bg-gradient-to-br from-sky-50 to-mint-50 dark:from-ink-800 dark:to-ink-700">
     <div class="max-w-4xl mx-auto px-6">
       <div class="text-center mb-12">
-        <h2 class="font-heading text-3xl font-semibold text-ink-800 mb-4">
+        <h2 class="font-heading text-3xl font-semibold text-ink-800 dark:text-ink-100 mb-4">
           Send Me a Message
         </h2>
-        <p class="text-ink-700">
+        <p class="text-ink-700 dark:text-ink-300">
           Or use the enchanted scroll (aka contact form) below to send me a message directly.
         </p>
       </div>
       
-      <div class="bg-white rounded-2xl shadow-soft p-8">
+      <div class="bg-white dark:bg-ink-800 rounded-2xl shadow-soft p-8">
         <form class="space-y-6">
-          <div class="grid md:grid-cols-2 gap-6">
-            <div>
-              <label for="name" class="block text-sm font-medium text-ink-700 mb-2">Name</label>
-              <input type="text" id="name" name="name" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blush-500 focus:border-transparent transition-all duration-300">
+                      <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <label for="name" class="block text-sm font-medium text-ink-700 dark:text-ink-300 mb-2">Name</label>
+                <input type="text" id="name" name="name" required class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-ink-600 bg-white dark:bg-ink-700 text-ink-800 dark:text-ink-100 focus:ring-2 focus:ring-blush-500 focus:border-transparent transition-all duration-300">
+              </div>
+              <div>
+                <label for="email" class="block text-sm font-medium text-ink-700 dark:text-ink-300 mb-2">Email</label>
+                <input type="email" id="email" name="email" required class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-ink-600 bg-white dark:bg-ink-700 text-ink-800 dark:text-ink-100 focus:ring-2 focus:ring-blush-500 focus:border-transparent transition-all duration-300">
+              </div>
             </div>
+            
             <div>
-              <label for="email" class="block text-sm font-medium text-ink-700 mb-2">Email</label>
-              <input type="email" id="email" name="email" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blush-500 focus:border-transparent transition-all duration-300">
+              <label for="subject" class="block text-sm font-medium text-ink-700 dark:text-ink-300 mb-2">Subject</label>
+              <select id="subject" name="subject" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-ink-600 bg-white dark:bg-ink-700 text-ink-800 dark:text-ink-100 focus:ring-2 focus:ring-blush-500 focus:border-transparent transition-all duration-300">
+                <option value="">Select a topic...</option>
+                <option value="hiring">Hiring Opportunity</option>
+                <option value="collaboration">Collaboration</option>
+                <option value="networking">Networking</option>
+                <option value="other">Other</option>
+              </select>
             </div>
-          </div>
-          
-          <div>
-            <label for="subject" class="block text-sm font-medium text-ink-700 mb-2">Subject</label>
-            <select id="subject" name="subject" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blush-500 focus:border-transparent transition-all duration-300">
-              <option value="">Select a topic...</option>
-              <option value="hiring">Hiring Opportunity</option>
-              <option value="collaboration">Collaboration</option>
-              <option value="networking">Networking</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-          
-          <div>
-            <label for="message" class="block text-sm font-medium text-ink-700 mb-2">Message</label>
-            <textarea id="message" name="message" rows="6" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blush-500 focus:border-transparent transition-all duration-300 resize-none"></textarea>
-          </div>
+            
+            <div>
+              <label for="message" class="block text-sm font-medium text-ink-700 dark:text-ink-300 mb-2">Message</label>
+              <textarea id="message" name="message" rows="6" required class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-ink-600 bg-white dark:bg-ink-700 text-ink-800 dark:text-ink-100 focus:ring-2 focus:ring-blush-500 focus:border-transparent transition-all duration-300 resize-none"></textarea>
+            </div>
           
           <div class="text-center">
             <button type="submit" class="inline-flex items-center px-8 py-4 rounded-full bg-gradient-to-r from-blush-500 to-sky-500 text-white font-medium hover:shadow-chapter transition-all duration-300 hover:scale-105">
@@ -211,13 +211,13 @@ import ChapterLayout from '../layouts/ChapterLayout.astro';
   </section>
 
   <!-- Final Message -->
-  <section class="py-20 bg-gradient-to-r from-blush-100 to-lavender-100">
+  <section class="py-20 bg-gradient-to-r from-blush-100 to-lavender-100 dark:from-ink-800 dark:to-ink-700">
     <div class="max-w-4xl mx-auto px-6 text-center">
-      <div class="bg-white rounded-2xl shadow-soft p-12">
-        <h2 class="font-heading text-3xl font-semibold text-ink-800 mb-6">
+      <div class="bg-white dark:bg-ink-800 rounded-2xl shadow-soft p-12">
+        <h2 class="font-heading text-3xl font-semibold text-ink-800 dark:text-ink-100 mb-6">
           Until Next Time…
         </h2>
-        <blockquote class="text-2xl font-heading text-ink-700 italic border-l-4 border-blush-400 pl-6 my-8">
+        <blockquote class="text-2xl font-heading text-ink-700 dark:text-ink-300 italic border-l-4 border-blush-400 dark:border-blush-500 pl-6 my-8">
           "Thank you for reading my story. Let's write the next chapter together."
         </blockquote>
         <div class="mt-8">

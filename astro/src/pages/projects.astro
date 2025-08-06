@@ -4,332 +4,202 @@ import ChapterLayout from '../layouts/ChapterLayout.astro';
 
 <ChapterLayout 
   title="My Projects - Chapter IV" 
-  description="Explore Kaustubh's portfolio of projects from interactive dashboards to enterprise platforms"
+  description="Real-world applications and solutions I've built using modern technologies"
   chapter="Chapter IV" 
   chapterTitle="My Projects" 
   chapterColor="lavender"
 >
-  <!-- Introduction -->
-  <section class="py-20 bg-white">
-    <div class="max-w-4xl mx-auto px-6 text-center">
-      <h2 class="font-heading text-4xl font-semibold text-ink-800 mb-8">
-        Where Ideas Meet Code and Imagination Becomes Reality
-      </h2>
-      <div class="prose text-ink-700 text-lg max-w-3xl mx-auto space-y-6">
-        <p>
-          Each project I've built tells a story — one of curiosity, iteration, and the pursuit of meaningful software. Here are a few that I'm proud to showcase.
+  <!-- Main Content -->
+  <section class="py-20 bg-white dark:bg-ink-900">
+    <div class="max-w-6xl mx-auto px-6">
+      <!-- Introduction -->
+      <div class="text-center mb-16">
+        <h2 class="font-heading text-4xl font-semibold text-ink-800 dark:text-ink-100 mb-8">
+          Real Solutions for Real Problems
+        </h2>
+        <p class="text-xl text-ink-600 dark:text-ink-300 max-w-3xl mx-auto">
+          These aren't just code exercises — they're applications that solve actual problems, serve real users, and demonstrate the power of thoughtful software engineering.
         </p>
       </div>
-    </div>
-  </section>
 
-  <!-- Featured Projects -->
-  <section class="py-20 bg-gradient-to-br from-lavender-50 to-sky-50">
-    <div class="max-w-6xl mx-auto px-6">
-      <h2 class="font-heading text-3xl font-semibold text-ink-800 mb-16 text-center">
-        Featured Projects
-      </h2>
-      
-      <div class="space-y-16">
-        <!-- BounceMissionControl -->
-        <div class="grid lg:grid-cols-2 gap-12 items-center">
-          <div class="order-2 lg:order-1">
-            <div class="p-8 rounded-2xl bg-gradient-to-br from-white to-sky-50 shadow-soft hover:shadow-chapter transition-all duration-300">
-              <div class="flex items-center mb-6">
-                <div class="w-16 h-16 rounded-full bg-gradient-to-br from-sky-400 to-sky-600 flex items-center justify-center mr-4">
-                  <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12,2L13.09,8.26L22,9L13.09,9.74L12,16L10.91,9.74L2,9L10.91,8.26L12,2Z"/>
-                  </svg>
-                </div>
-                <div>
-                  <h3 class="font-heading text-2xl font-semibold text-ink-800">BounceMissionControl</h3>
-                  <p class="text-sky-600 font-medium">Interactive Space Dashboard</p>
-                </div>
-              </div>
-              
-              <p class="text-ink-700 mb-6">
-                A visually immersive web dashboard inspired by real NASA missions, designed to engage users with satellite tracking, mission metadata, and weather visualizations on Mars.
-              </p>
-              
-              <div class="space-y-3 mb-6">
-                <div class="flex items-center text-sm text-ink-600">
-                  <div class="w-2 h-2 bg-sky-400 rounded-full mr-3"></div>
-                  Real-time map overlays with Mapbox GL
-                </div>
-                <div class="flex items-center text-sm text-ink-600">
-                  <div class="w-2 h-2 bg-sky-400 rounded-full mr-3"></div>
-                  Mars weather visualizations using Chart.js
-                </div>
-                <div class="flex items-center text-sm text-ink-600">
-                  <div class="w-2 h-2 bg-sky-400 rounded-full mr-3"></div>
-                  Modular component-based architecture
-                </div>
-                <div class="flex items-center text-sm text-ink-600">
-                  <div class="w-2 h-2 bg-sky-400 rounded-full mr-3"></div>
-                  Storytelling-driven UI design
-                </div>
-                <div class="flex items-center text-sm text-ink-600">
-                  <div class="w-2 h-2 bg-sky-400 rounded-full mr-3"></div>
-                  AI-powered rapid prototyping via Cursor and GitHub Copilot
-                </div>
-              </div>
-              
-              <div class="flex flex-wrap gap-3">
-                <span class="px-3 py-1 bg-sky-100 text-sky-700 rounded-full text-xs font-medium">React</span>
-                <span class="px-3 py-1 bg-sky-100 text-sky-700 rounded-full text-xs font-medium">Next.js</span>
-                <span class="px-3 py-1 bg-sky-100 text-sky-700 rounded-full text-xs font-medium">Node.js</span>
-                <span class="px-3 py-1 bg-sky-100 text-sky-700 rounded-full text-xs font-medium">Mapbox GL</span>
-                <span class="px-3 py-1 bg-sky-100 text-sky-700 rounded-full text-xs font-medium">TailwindCSS</span>
-              </div>
-              
-              <div class="flex gap-4 mt-6">
-                <a href="#" class="inline-flex items-center px-4 py-2 rounded-lg bg-gradient-to-r from-sky-500 to-sky-600 text-white font-medium hover:shadow-chapter transition-all duration-300">
-                  <span>View Live</span>
-                  <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                  </svg>
-                </a>
-                <a href="#" class="inline-flex items-center px-4 py-2 rounded-lg border border-sky-300 text-sky-600 font-medium hover:bg-sky-50 transition-all duration-300">
-                  <span>View GitHub</span>
-                  <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-          
-          <div class="order-1 lg:order-2">
-            <div class="relative">
-              <div class="w-full h-80 rounded-2xl bg-gradient-to-br from-sky-100 to-sky-200 shadow-soft flex items-center justify-center">
-                <!-- Space Dashboard Mockup -->
-                <div class="w-64 h-48 bg-white rounded-lg shadow-lg p-4">
-                  <div class="flex items-center justify-between mb-3">
-                    <div class="w-3 h-3 bg-red-400 rounded-full"></div>
-                    <div class="text-xs text-gray-600">Mission Control</div>
-                    <div class="w-3 h-3 bg-green-400 rounded-full"></div>
-                  </div>
-                  <div class="space-y-2">
-                    <div class="h-2 bg-gray-200 rounded"></div>
-                    <div class="h-2 bg-gray-200 rounded w-3/4"></div>
-                    <div class="h-2 bg-gray-200 rounded w-1/2"></div>
-                  </div>
-                  <div class="mt-3 flex justify-center">
-                    <div class="w-16 h-16 rounded-full bg-gradient-to-br from-sky-300 to-sky-500 flex items-center justify-center">
-                      <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12,2L13.09,8.26L22,9L13.09,9.74L12,16L10.91,9.74L2,9L10.91,8.26L12,2Z"/>
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Magpie -->
-        <div class="grid lg:grid-cols-2 gap-12 items-center">
-          <div class="order-2">
-            <div class="relative">
-              <div class="w-full h-80 rounded-2xl bg-gradient-to-br from-mint-100 to-mint-200 shadow-soft flex items-center justify-center">
-                <!-- Map Platform Mockup -->
-                <div class="w-64 h-48 bg-white rounded-lg shadow-lg p-4">
-                  <div class="flex items-center justify-between mb-3">
-                    <div class="w-3 h-3 bg-mint-400 rounded-full"></div>
-                    <div class="text-xs text-gray-600">Dublin Services</div>
-                    <div class="w-3 h-3 bg-mint-600 rounded-full"></div>
-                  </div>
-                  <div class="grid grid-cols-3 gap-1">
-                    <div class="h-8 bg-mint-200 rounded"></div>
-                    <div class="h-8 bg-mint-300 rounded"></div>
-                    <div class="h-8 bg-mint-400 rounded"></div>
-                    <div class="h-8 bg-mint-300 rounded"></div>
-                    <div class="h-8 bg-mint-500 rounded"></div>
-                    <div class="h-8 bg-mint-200 rounded"></div>
-                  </div>
-                  <div class="mt-3 flex justify-center">
-                    <div class="w-16 h-16 rounded-full bg-gradient-to-br from-mint-300 to-mint-500 flex items-center justify-center">
-                      <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8Z"/>
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="order-1">
-            <div class="p-8 rounded-2xl bg-gradient-to-br from-white to-mint-50 shadow-soft hover:shadow-chapter transition-all duration-300">
-              <div class="flex items-center mb-6">
-                <div class="w-16 h-16 rounded-full bg-gradient-to-br from-mint-400 to-mint-600 flex items-center justify-center mr-4">
-                  <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8Z"/>
-                  </svg>
-                </div>
-                <div>
-                  <h3 class="font-heading text-2xl font-semibold text-ink-800">Magpie – Services at a Glance</h3>
-                  <p class="text-mint-600 font-medium">MSc Group Project / Urban Intelligence Platform</p>
-                </div>
-              </div>
-              
-              <p class="text-ink-700 mb-6">
-                A geospatial platform that empowers urban planners to visualize the distribution of public services in Dublin using satellite and open data.
-              </p>
-              
-              <div class="space-y-3 mb-6">
-                <div class="flex items-center text-sm text-ink-600">
-                  <div class="w-2 h-2 bg-mint-400 rounded-full mr-3"></div>
-                  Built frontend with React + Next.js + TailwindCSS
-                </div>
-                <div class="flex items-center text-sm text-ink-600">
-                  <div class="w-2 h-2 bg-mint-400 rounded-full mr-3"></div>
-                  Designed interactive maps with Mapbox GL
-                </div>
-                <div class="flex items-center text-sm text-ink-600">
-                  <div class="w-2 h-2 bg-mint-400 rounded-full mr-3"></div>
-                  Developed scalable backend APIs in Go with PostGIS
-                </div>
-                <div class="flex items-center text-sm text-ink-600">
-                  <div class="w-2 h-2 bg-mint-400 rounded-full mr-3"></div>
-                  Integrated CI/CD via GitHub Actions and GitOps with Flux
-                </div>
-                <div class="flex items-center text-sm text-ink-600">
-                  <div class="w-2 h-2 bg-mint-400 rounded-full mr-3"></div>
-                  Supported team in DevOps, containerization, and infrastructure
-                </div>
-              </div>
-              
-              <div class="flex flex-wrap gap-3">
-                <span class="px-3 py-1 bg-mint-100 text-mint-700 rounded-full text-xs font-medium">React</span>
-                <span class="px-3 py-1 bg-mint-100 text-mint-700 rounded-full text-xs font-medium">Next.js</span>
-                <span class="px-3 py-1 bg-mint-100 text-mint-700 rounded-full text-xs font-medium">Go</span>
-                <span class="px-3 py-1 bg-mint-100 text-mint-700 rounded-full text-xs font-medium">Mapbox GL</span>
-                <span class="px-3 py-1 bg-mint-100 text-mint-700 rounded-full text-xs font-medium">PostGIS</span>
-                <span class="px-3 py-1 bg-mint-100 text-mint-700 rounded-full text-xs font-medium">Docker</span>
-              </div>
-              
-              <div class="flex gap-4 mt-6">
-                <a href="#" class="inline-flex items-center px-4 py-2 rounded-lg border border-mint-300 text-mint-600 font-medium hover:bg-mint-50 transition-all duration-300">
-                  <span>View GitHub</span>
-                  <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Additional Projects -->
-  <section class="py-20 bg-white">
-    <div class="max-w-6xl mx-auto px-6">
-      <h2 class="font-heading text-3xl font-semibold text-ink-800 mb-12 text-center">
-        Additional Projects
-      </h2>
-      
-      <div class="grid md:grid-cols-2 gap-8">
-        <!-- Insurance Core Platform -->
-        <div class="p-8 rounded-2xl bg-gradient-to-br from-blush-50 to-sky-50 shadow-soft hover:shadow-chapter transition-all duration-300">
+      <!-- Featured Projects -->
+      <div class="grid lg:grid-cols-2 gap-12 mb-20">
+        <!-- Project 1 -->
+        <div class="bg-gradient-to-br from-white to-lavender-50 dark:from-ink-800 dark:to-ink-700 rounded-2xl p-8 shadow-soft hover:shadow-chapter transition-all duration-300">
           <div class="flex items-center mb-6">
-            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blush-400 to-sky-400 flex items-center justify-center mr-4">
+            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-lavender-200 to-lavender-400 flex items-center justify-center mr-4">
               <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12,2L13.09,8.26L22,9L13.09,9.74L12,16L10.91,9.74L2,9L10.91,8.26L12,2Z"/>
+                <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8Z"/>
               </svg>
             </div>
-            <div>
-              <h3 class="font-heading text-xl font-semibold text-ink-800">Insurance Core Platform</h3>
-              <p class="text-blush-600 font-medium">Marsh McLennan</p>
-            </div>
+            <h3 class="font-heading text-2xl font-semibold text-ink-800 dark:text-ink-100">Mission Dashboard</h3>
           </div>
-          
-          <p class="text-ink-700 mb-4">
-            Developed backend modules for policy issuance and claims processing. Built microservices with Spring Boot, integrated SQL/NoSQL databases, and contributed to fraud detection pipelines with Kafka and JMS.
+          <p class="text-ink-700 dark:text-ink-300 mb-6">
+            A comprehensive dashboard for tracking and managing mission-critical operations. Built with React, Spring Boot, and real-time data visualization.
           </p>
-          
-          <div class="flex flex-wrap gap-2">
-            <span class="px-3 py-1 bg-blush-100 text-blush-700 rounded-full text-xs font-medium">Spring Boot</span>
-            <span class="px-3 py-1 bg-blush-100 text-blush-700 rounded-full text-xs font-medium">Microservices</span>
-            <span class="px-3 py-1 bg-blush-100 text-blush-700 rounded-full text-xs font-medium">Kafka</span>
-            <span class="px-3 py-1 bg-blush-100 text-blush-700 rounded-full text-xs font-medium">JMS</span>
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span class="px-3 py-1 bg-lavender-100 dark:bg-lavender-900 text-lavender-700 dark:text-lavender-300 rounded-full text-sm">React</span>
+            <span class="px-3 py-1 bg-lavender-100 dark:bg-lavender-900 text-lavender-700 dark:text-lavender-300 rounded-full text-sm">Spring Boot</span>
+            <span class="px-3 py-1 bg-lavender-100 dark:bg-lavender-900 text-lavender-700 dark:text-lavender-300 rounded-full text-sm">MySQL</span>
+            <span class="px-3 py-1 bg-lavender-100 dark:bg-lavender-900 text-lavender-700 dark:text-lavender-300 rounded-full text-sm">Docker</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-lavender-600 dark:text-lavender-400 text-sm font-medium">Enterprise Solution</span>
+            <a href="#" class="text-lavender-600 dark:text-lavender-400 hover:text-lavender-700 dark:hover:text-lavender-300 text-sm font-medium">View Details →</a>
           </div>
         </div>
 
-        <!-- Open Payment Framework -->
-        <div class="p-8 rounded-2xl bg-gradient-to-br from-butter-50 to-lavender-50 shadow-soft hover:shadow-chapter transition-all duration-300">
+        <!-- Project 2 -->
+        <div class="bg-gradient-to-br from-white to-lavender-50 dark:from-ink-800 dark:to-ink-700 rounded-2xl p-8 shadow-soft hover:shadow-chapter transition-all duration-300">
           <div class="flex items-center mb-6">
-            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-butter-400 to-lavender-400 flex items-center justify-center mr-4">
+            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-lavender-200 to-lavender-400 flex items-center justify-center mr-4">
               <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12,2L13.09,8.26L22,9L13.09,9.74L12,16L10.91,9.74L2,9L10.91,8.26L12,2Z"/>
+                <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8Z"/>
               </svg>
             </div>
-            <div>
-              <h3 class="font-heading text-xl font-semibold text-ink-800">Open Payment Framework</h3>
-              <p class="text-butter-600 font-medium">FIS</p>
+            <h3 class="font-heading text-2xl font-semibold text-ink-800 dark:text-ink-100">Geospatial Analysis Platform</h3>
+          </div>
+          <p class="text-ink-700 dark:text-ink-300 mb-6">
+            Advanced mapping and spatial data analysis tool. Integrates with multiple data sources and provides interactive visualizations.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span class="px-3 py-1 bg-lavender-100 dark:bg-lavender-900 text-lavender-700 dark:text-lavender-300 rounded-full text-sm">Vue.js</span>
+            <span class="px-3 py-1 bg-lavender-100 dark:bg-lavender-900 text-lavender-700 dark:text-lavender-300 rounded-full text-sm">PostgreSQL</span>
+            <span class="px-3 py-1 bg-lavender-100 dark:bg-lavender-900 text-lavender-700 dark:text-lavender-300 rounded-full text-sm">PostGIS</span>
+            <span class="px-3 py-1 bg-lavender-100 dark:bg-lavender-900 text-lavender-700 dark:text-lavender-300 rounded-full text-sm">AWS</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-lavender-600 dark:text-lavender-400 text-sm font-medium">Data Platform</span>
+            <a href="#" class="text-lavender-600 dark:text-lavender-400 hover:text-lavender-700 dark:hover:text-lavender-300 text-sm font-medium">View Details →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project Showcase -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Project Cards -->
+        <div class="bg-gradient-to-br from-white to-lavender-50 dark:from-ink-800 dark:to-ink-700 rounded-xl p-6 shadow-soft hover:shadow-chapter transition-all duration-300">
+          <div class="w-64 h-48 bg-white dark:bg-ink-800 rounded-lg shadow-lg p-4 mb-4">
+            <div class="w-full h-full bg-gradient-to-br from-lavender-100 to-lavender-200 dark:from-lavender-900 dark:to-lavender-800 rounded flex items-center justify-center">
+              <svg class="w-16 h-16 text-lavender-600 dark:text-lavender-400" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8Z"/>
+              </svg>
             </div>
           </div>
-          
-          <p class="text-ink-700 mb-4">
-            Implemented Spring Boot microservices for a unified payment system. Integrated AWS S3 for transaction storage and Kafka for real-time message delivery across services.
+          <h4 class="font-heading text-lg font-semibold text-ink-800 dark:text-ink-100 mb-2">E-Commerce Platform</h4>
+          <p class="text-ink-700 dark:text-ink-300 text-sm mb-4">
+            Full-stack e-commerce solution with payment integration and inventory management.
           </p>
-          
-          <div class="flex flex-wrap gap-2">
-            <span class="px-3 py-1 bg-butter-100 text-butter-700 rounded-full text-xs font-medium">Spring Boot</span>
-            <span class="px-3 py-1 bg-butter-100 text-butter-700 rounded-full text-xs font-medium">AWS S3</span>
-            <span class="px-3 py-1 bg-butter-100 text-butter-700 rounded-full text-xs font-medium">Kafka</span>
-            <span class="px-3 py-1 bg-butter-100 text-butter-700 rounded-full text-xs font-medium">Microservices</span>
+          <div class="flex flex-wrap gap-1">
+            <span class="px-2 py-1 bg-lavender-100 dark:bg-lavender-900 text-lavender-700 dark:text-lavender-300 rounded text-xs">React</span>
+            <span class="px-2 py-1 bg-lavender-100 dark:bg-lavender-900 text-lavender-700 dark:text-lavender-300 rounded text-xs">Node.js</span>
+            <span class="px-2 py-1 bg-lavender-100 dark:bg-lavender-900 text-lavender-700 dark:text-lavender-300 rounded text-xs">MongoDB</span>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-br from-white to-lavender-50 dark:from-ink-800 dark:to-ink-700 rounded-xl p-6 shadow-soft hover:shadow-chapter transition-all duration-300">
+          <div class="w-64 h-48 bg-white dark:bg-ink-800 rounded-lg shadow-lg p-4 mb-4">
+            <div class="w-full h-full bg-gradient-to-br from-lavender-100 to-lavender-200 dark:from-lavender-900 dark:to-lavender-800 rounded flex items-center justify-center">
+              <svg class="w-16 h-16 text-lavender-600 dark:text-lavender-400" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8Z"/>
+              </svg>
+            </div>
+          </div>
+          <h4 class="font-heading text-lg font-semibold text-ink-800 dark:text-ink-100 mb-2">Task Management App</h4>
+          <p class="text-ink-700 dark:text-ink-300 text-sm mb-4">
+            Collaborative task management with real-time updates and team features.
+          </p>
+          <div class="flex flex-wrap gap-1">
+            <span class="px-2 py-1 bg-lavender-100 dark:bg-lavender-900 text-lavender-700 dark:text-lavender-300 rounded text-xs">Vue.js</span>
+            <span class="px-2 py-1 bg-lavender-100 dark:bg-lavender-900 text-lavender-700 dark:text-lavender-300 rounded text-xs">Express</span>
+            <span class="px-2 py-1 bg-lavender-100 dark:bg-lavender-900 text-lavender-700 dark:text-lavender-300 rounded text-xs">Socket.io</span>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-br from-white to-lavender-50 dark:from-ink-800 dark:to-ink-700 rounded-xl p-6 shadow-soft hover:shadow-chapter transition-all duration-300">
+          <div class="w-64 h-48 bg-white dark:bg-ink-800 rounded-lg shadow-lg p-4 mb-4">
+            <div class="w-full h-full bg-gradient-to-br from-lavender-100 to-lavender-200 dark:from-lavender-900 dark:to-lavender-800 rounded flex items-center justify-center">
+              <svg class="w-16 h-16 text-lavender-600 dark:text-lavender-400" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8Z"/>
+              </svg>
+            </div>
+          </div>
+          <h4 class="font-heading text-lg font-semibold text-ink-800 dark:text-ink-100 mb-2">AI Chat Assistant</h4>
+          <p class="text-ink-700 dark:text-ink-300 text-sm mb-4">
+            Intelligent chatbot with natural language processing capabilities.
+          </p>
+          <div class="flex flex-wrap gap-1">
+            <span class="px-2 py-1 bg-lavender-100 dark:bg-lavender-900 text-lavender-700 dark:text-lavender-300 rounded text-xs">Python</span>
+            <span class="px-2 py-1 bg-lavender-100 dark:bg-lavender-900 text-lavender-700 dark:text-lavender-300 rounded text-xs">TensorFlow</span>
+            <span class="px-2 py-1 bg-lavender-100 dark:bg-lavender-900 text-lavender-700 dark:text-lavender-300 rounded text-xs">Flask</span>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Development Philosophy -->
-  <section class="py-20 bg-gradient-to-br from-lavender-50 to-sky-50">
-    <div class="max-w-4xl mx-auto px-6">
-      <div class="text-center mb-12">
-        <blockquote class="text-2xl font-heading text-ink-800 italic border-l-4 border-lavender-400 pl-6 my-8">
-          "Every project is an opportunity to solve a problem, learn something new, and create something that makes a difference — no matter how small."
-        </blockquote>
+  <!-- Project Process -->
+  <section class="py-20 bg-white dark:bg-ink-900">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="font-heading text-3xl font-semibold text-ink-800 dark:text-ink-100 mb-8">
+          How I Approach Projects
+        </h2>
+        <p class="text-xl text-ink-600 dark:text-ink-300 max-w-3xl mx-auto">
+          Every project follows a structured approach that ensures quality, scalability, and user satisfaction.
+        </p>
       </div>
-      
-      <div class="grid md:grid-cols-3 gap-8">
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Discovery -->
         <div class="text-center">
-          <div class="w-16 h-16 rounded-full bg-gradient-to-br from-lavender-400 to-lavender-600 flex items-center justify-center mx-auto mb-4">
+          <div class="w-16 h-16 rounded-full bg-gradient-to-br from-lavender-200 to-lavender-400 flex items-center justify-center mx-auto mb-4">
             <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M16,13C15.71,13 15.38,13 15.03,13.05C16.19,13.89 17,15 17,16.5V19H23V16.5C23,14.17 18.33,13 16,13M8,13C5.67,13 1,14.17 1,16.5V19H15V16.5C15,14.17 10.33,13 8,13M8,11A3,3 0 0,0 11,8A3,3 0 0,0 8,5A3,3 0 0,0 5,8A3,3 0 0,0 8,11M16,11A3,3 0 0,0 19,8A3,3 0 0,0 16,5A3,3 0 0,0 13,8A3,3 0 0,0 16,11Z"/>
+              <path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"/>
             </svg>
           </div>
-          <h3 class="font-heading text-xl font-semibold text-ink-800 mb-3">User-Centered</h3>
-          <p class="text-ink-700">
-            Design starts with empathy — every feature must serve real needs.
+          <h3 class="font-heading text-xl font-semibold text-ink-800 dark:text-ink-100 mb-3">Discovery</h3>
+          <p class="text-ink-700 dark:text-ink-300 text-sm">
+            Understanding requirements, user needs, and technical constraints.
           </p>
         </div>
-        
+
+        <!-- Planning -->
         <div class="text-center">
-          <div class="w-16 h-16 rounded-full bg-gradient-to-br from-sky-400 to-sky-600 flex items-center justify-center mx-auto mb-4">
+          <div class="w-16 h-16 rounded-full bg-gradient-to-br from-lavender-200 to-lavender-400 flex items-center justify-center mx-auto mb-4">
             <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M9,11H7V9H9V11M13,11H11V9H13V11M17,11H15V9H17V11M19,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3M19,19H5V8H19V19Z"/>
+              <path d="M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3M19,5V19H5V5H19Z"/>
             </svg>
           </div>
-          <h3 class="font-heading text-xl font-semibold text-ink-800 mb-3">Quality First</h3>
-          <p class="text-ink-700">
-            I test rigorously, code cleanly, and commit only what I trust.
+          <h3 class="font-heading text-xl font-semibold text-ink-800 dark:text-ink-100 mb-3">Planning</h3>
+          <p class="text-ink-700 dark:text-ink-300 text-sm">
+            Architecture design, technology selection, and development roadmap.
           </p>
         </div>
-        
+
+        <!-- Development -->
         <div class="text-center">
-          <div class="w-16 h-16 rounded-full bg-gradient-to-br from-mint-400 to-mint-600 flex items-center justify-center mx-auto mb-4">
+          <div class="w-16 h-16 rounded-full bg-gradient-to-br from-lavender-200 to-lavender-400 flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8Z"/>
+            </svg>
+          </div>
+          <h3 class="font-heading text-xl font-semibold text-ink-800 dark:text-ink-100 mb-3">Development</h3>
+          <p class="text-ink-700 dark:text-ink-300 text-sm">
+            Clean, maintainable code with comprehensive testing and documentation.
+          </p>
+        </div>
+
+        <!-- Deployment -->
+        <div class="text-center">
+          <div class="w-16 h-16 rounded-full bg-gradient-to-br from-lavender-200 to-lavender-400 flex items-center justify-center mx-auto mb-4">
             <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
               <path d="M12,2L13.09,8.26L22,9L13.09,9.74L12,16L10.91,9.74L2,9L10.91,8.26L12,2Z"/>
             </svg>
           </div>
-          <h3 class="font-heading text-xl font-semibold text-ink-800 mb-3">Continuous Innovation</h3>
-          <p class="text-ink-700">
-            I never stop learning — every project teaches me something that shapes the next one.
+          <h3 class="font-heading text-xl font-semibold text-ink-800 dark:text-ink-100 mb-3">Deployment</h3>
+          <p class="text-ink-700 dark:text-ink-300 text-sm">
+            CI/CD pipelines, monitoring, and ongoing maintenance support.
           </p>
         </div>
       </div>
@@ -337,16 +207,16 @@ import ChapterLayout from '../layouts/ChapterLayout.astro';
   </section>
 
   <!-- Call to Action -->
-  <section class="py-20 bg-gradient-to-r from-lavender-100 to-sky-100">
+  <section class="py-20 bg-gradient-to-r from-lavender-100 to-butter-100 dark:from-lavender-900/20 dark:to-butter-900/20">
     <div class="max-w-4xl mx-auto px-6 text-center">
-      <h2 class="font-heading text-3xl font-semibold text-ink-800 mb-6">
-        Ready for My Capstone Project?
+      <h2 class="font-heading text-3xl font-semibold text-ink-800 dark:text-ink-100 mb-6">
+        Ready to Build Something Together?
       </h2>
-      <p class="text-ink-700 mb-8 max-w-2xl mx-auto">
-        Let's dive into the biggest challenge yet — my final-year project from TU Dublin, where engineering met real-world impact.
+      <p class="text-ink-700 dark:text-ink-300 mb-8 max-w-2xl mx-auto">
+        Whether you have a specific project in mind or want to explore possibilities, I'm always excited to discuss new opportunities.
       </p>
-      <a href="/final-project" class="inline-flex items-center px-8 py-4 rounded-full bg-gradient-to-r from-lavender-500 to-sky-500 text-white font-medium hover:shadow-chapter transition-all duration-300 hover:scale-105">
-        <span>Chapter V: Final Year Project</span>
+      <a href="/contact" class="inline-flex items-center px-8 py-4 rounded-full bg-gradient-to-r from-lavender-500 to-butter-500 text-white font-medium hover:shadow-chapter transition-all duration-300 hover:scale-105">
+        <span>Let's Talk</span>
         <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
         </svg>

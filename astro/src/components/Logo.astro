@@ -1,0 +1,26 @@
+---
+// Logo component that switches between light and dark versions
+---
+
+<div class="logo-container flex items-center justify-center">
+  <!-- Light mode logo -->
+  <img
+    src="/assets/kt-logo-bg-transparent.svg"
+    alt="Kaustubh Trivedi Logo"
+    class="w-[45%] h-[45%] object-contain dark:hidden transition-opacity duration-300"
+  />
+  
+  <!-- Dark mode logo with white filter -->
+  <img
+    src="/assets/kt-logo-bg-transparent.svg"
+    alt="Kaustubh Trivedi Logo"
+    class="w-[45%] h-[45%] object-contain hidden dark:block transition-opacity duration-300 brightness-0 invert"
+  />
+</div>
+
+<style>
+  .logo-container {
+    display: flex;
+    align-items: center;
+  }
+</style> 
