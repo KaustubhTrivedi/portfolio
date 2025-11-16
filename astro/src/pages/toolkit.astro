@@ -89,6 +89,46 @@ import ChapterLayout from '../layouts/ChapterLayout.astro';
             </div>
           </div>
 
+          <!-- Python -->
+          <div class="bg-gradient-to-br from-white to-mint-50 dark:from-ink-800 dark:to-ink-700 rounded-2xl p-8 shadow-soft hover:shadow-chapter transition-all duration-300">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 rounded-full bg-gradient-to-br from-mint-200 to-mint-400 flex items-center justify-center mr-4">
+                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M9 2a1 1 0 0 0-1 1v2H7a3 3 0 0 0-3 3v3a3 3 0 0 0 3 3h6v2H9v-1H5v2a3 3 0 0 0 3 3h2v2a1 1 0 0 0 1 1h4a3 3 0 0 0 3-3v-3a3 3 0 0 0-3-3H11V9h3v1h4V8a3 3 0 0 0-3-3h-2V3a1 1 0 0 0-1-1H9Z"/>
+                </svg>
+              </div>
+              <h3 class="font-heading text-xl font-semibold text-ink-800 dark:text-ink-100">Python</h3>
+            </div>
+            <p class="text-ink-700 dark:text-ink-300 mb-4">
+              My go-to for automation scripts, data wrangling, and AI prototyping—clean syntax plus rich libraries keep experiments fast.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-mint-100 dark:bg-mint-900 text-mint-700 dark:text-mint-300 rounded-full text-sm">FastAPI</span>
+              <span class="px-3 py-1 bg-mint-100 dark:bg-mint-900 text-mint-700 dark:text-mint-300 rounded-full text-sm">Data Pipelines</span>
+              <span class="px-3 py-1 bg-mint-100 dark:bg-mint-900 text-mint-700 dark:text-mint-300 rounded-full text-sm">Automation</span>
+            </div>
+          </div>
+
+          <!-- Go -->
+          <div class="bg-gradient-to-br from-white to-mint-50 dark:from-ink-800 dark:to-ink-700 rounded-2xl p-8 shadow-soft hover:shadow-chapter transition-all duration-300">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 rounded-full bg-gradient-to-br from-mint-200 to-mint-400 flex items-center justify-center mr-4">
+                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M2 12l1.5-1.5L7 13l3.5-4L14 13l3-3 1 1-4 5-3.5-4L8 15l-4-3zM16 7a3 3 0 1 1 5.999.001A3 3 0 0 1 16 7z"/>
+                </svg>
+              </div>
+              <h3 class="font-heading text-xl font-semibold text-ink-800 dark:text-ink-100">Go</h3>
+            </div>
+            <p class="text-ink-700 dark:text-ink-300 mb-4">
+              Ideal for highly concurrent services and background workers—Magpie's geospatial ingest pipeline is powered by Go routines.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-mint-100 dark:bg-mint-900 text-mint-700 dark:text-mint-300 rounded-full text-sm">Microservices</span>
+              <span class="px-3 py-1 bg-mint-100 dark:bg-mint-900 text-mint-700 dark:text-mint-300 rounded-full text-sm">gRPC/REST</span>
+              <span class="px-3 py-1 bg-mint-100 dark:bg-mint-900 text-mint-700 dark:text-mint-300 rounded-full text-sm">Concurrency</span>
+            </div>
+          </div>
+
           <!-- C++ -->
           <div class="bg-gradient-to-br from-white to-mint-50 dark:from-ink-800 dark:to-ink-700 rounded-2xl p-8 shadow-soft hover:shadow-chapter transition-all duration-300">
             <div class="flex items-center mb-4">
@@ -147,6 +187,11 @@ import ChapterLayout from '../layouts/ChapterLayout.astro';
             <h3 class="font-heading text-lg font-semibold text-ink-800 dark:text-ink-100 mb-2">Next.js</h3>
             <p class="text-ink-700 dark:text-ink-300 text-sm">Full-stack React framework with SSR and optimized performance.</p>
           </div>
+
+          <div class="bg-gradient-to-br from-white to-mint-50 dark:from-ink-800 dark:to-ink-700 rounded-xl p-6 shadow-soft">
+            <h3 class="font-heading text-lg font-semibold text-ink-800 dark:text-ink-100 mb-2">Node.js Runtime</h3>
+            <p class="text-ink-700 dark:text-ink-300 text-sm">Event-driven APIs, background jobs, and developer tooling written in Node.js + TypeScript.</p>
+          </div>
           
           <div class="bg-gradient-to-br from-white to-mint-50 dark:from-ink-800 dark:to-ink-700 rounded-xl p-6 shadow-soft">
             <h3 class="font-heading text-lg font-semibold text-ink-800 dark:text-ink-100 mb-2">Vue.js</h3>
@@ -161,6 +206,11 @@ import ChapterLayout from '../layouts/ChapterLayout.astro';
           <div class="bg-gradient-to-br from-white to-mint-50 dark:from-ink-800 dark:to-ink-700 rounded-xl p-6 shadow-soft">
             <h3 class="font-heading text-lg font-semibold text-ink-800 dark:text-ink-100 mb-2">TailwindCSS / Bootstrap</h3>
             <p class="text-ink-700 dark:text-ink-300 text-sm">Utility-first CSS frameworks for rapid UI development.</p>
+          </div>
+
+          <div class="bg-gradient-to-br from-white to-mint-50 dark:from-ink-800 dark:to-ink-700 rounded-xl p-6 shadow-soft">
+            <h3 class="font-heading text-lg font-semibold text-ink-800 dark:text-ink-100 mb-2">Strapi CMS</h3>
+            <p class="text-ink-700 dark:text-ink-300 text-sm">Headless CMS used to empower marketing teams with schema-driven content and editorial workflows.</p>
           </div>
           
           <div class="bg-gradient-to-br from-white to-mint-50 dark:from-ink-800 dark:to-ink-700 rounded-xl p-6 shadow-soft">
@@ -191,10 +241,20 @@ import ChapterLayout from '../layouts/ChapterLayout.astro';
             <h3 class="font-heading text-lg font-semibold text-ink-800 dark:text-ink-100 mb-2">MongoDB</h3>
             <p class="text-ink-700 dark:text-ink-300 text-sm">NoSQL database for flexible document storage.</p>
           </div>
+
+          <div class="bg-gradient-to-br from-white to-mint-50 dark:from-ink-800 dark:to-ink-700 rounded-xl p-6 shadow-soft">
+            <h3 class="font-heading text-lg font-semibold text-ink-800 dark:text-ink-100 mb-2">Oracle</h3>
+            <p class="text-ink-700 dark:text-ink-300 text-sm">Enterprise-grade relational database experience for clients with legacy stacks.</p>
+          </div>
           
           <div class="bg-gradient-to-br from-white to-mint-50 dark:from-ink-800 dark:to-ink-700 rounded-xl p-6 shadow-soft">
             <h3 class="font-heading text-lg font-semibold text-ink-800 dark:text-ink-100 mb-2">AWS</h3>
             <p class="text-ink-700 dark:text-ink-300 text-sm">Cloud computing platform for scalable infrastructure.</p>
+          </div>
+
+          <div class="bg-gradient-to-br from-white to-mint-50 dark:from-ink-800 dark:to-ink-700 rounded-xl p-6 shadow-soft">
+            <h3 class="font-heading text-lg font-semibold text-ink-800 dark:text-ink-100 mb-2">Kubernetes</h3>
+            <p class="text-ink-700 dark:text-ink-300 text-sm">Container orchestration for rolling updates, autoscaling, and self-healing services.</p>
           </div>
           
           <div class="bg-gradient-to-br from-white to-mint-50 dark:from-ink-800 dark:to-ink-700 rounded-xl p-6 shadow-soft">
@@ -205,6 +265,11 @@ import ChapterLayout from '../layouts/ChapterLayout.astro';
           <div class="bg-gradient-to-br from-white to-mint-50 dark:from-ink-800 dark:to-ink-700 rounded-xl p-6 shadow-soft">
             <h3 class="font-heading text-lg font-semibold text-ink-800 dark:text-ink-100 mb-2">GitHub Actions</h3>
             <p class="text-ink-700 dark:text-ink-300 text-sm">CI/CD automation for streamlined development workflows.</p>
+          </div>
+
+          <div class="bg-gradient-to-br from-white to-mint-50 dark:from-ink-800 dark:to-ink-700 rounded-xl p-6 shadow-soft">
+            <h3 class="font-heading text-lg font-semibold text-ink-800 dark:text-ink-100 mb-2">Jenkins</h3>
+            <p class="text-ink-700 dark:text-ink-300 text-sm">Battle-tested automation server powering blue/green deploys and quality gates.</p>
           </div>
         </div>
       </div>
@@ -221,7 +286,7 @@ import ChapterLayout from '../layouts/ChapterLayout.astro';
         Now that you know what I work with, let's explore the projects I've built using these technologies.
       </p>
       <a href="/projects" class="inline-flex items-center px-8 py-4 rounded-full bg-gradient-to-r from-mint-500 to-lavender-500 text-white font-medium hover:shadow-chapter transition-all duration-300 hover:scale-105">
-        <span>View My Projects</span>
+        <span>View Professional & Academic Projects</span>
         <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
         </svg>
