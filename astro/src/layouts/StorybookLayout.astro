@@ -1,5 +1,6 @@
 ---
 import DarkModeToggle from '../components/DarkModeToggle.astro';
+import { Link } from 'astro:components';
 
 export interface Props {
   title: string;
@@ -96,52 +97,52 @@ const { title, description = "A storybook-themed portfolio", chapter } = Astro.p
     <!-- Floating Chapter Navigation -->
     <nav class="fixed top-6 left-6 z-50 bg-white/80 dark:bg-ink-800/80 backdrop-blur-story rounded-2xl shadow-story p-4 hidden lg:block">
       <div class="flex flex-col space-y-3">
-        <a href="/" class="group flex items-center space-x-3 p-2 rounded-lg hover:bg-parchment-200 dark:hover:bg-ink-700 transition-all duration-300">
+        <Link href="/" class="group flex items-center space-x-3 p-2 rounded-lg hover:bg-parchment-200 dark:hover:bg-ink-700 transition-all duration-300">
           <div class="w-3 h-3 rounded-full bg-blush-400 group-hover:scale-110 transition-transform"></div>
           <span class="text-sm font-medium text-ink-700 dark:text-ink-300 group-hover:text-ink-900 dark:group-hover:text-ink-100">Prologue</span>
-        </a>
+        </Link>
         
-        <a href="/about" class="group flex items-center space-x-3 p-2 rounded-lg hover:bg-parchment-200 dark:hover:bg-ink-700 transition-all duration-300">
+        <Link href="/about" class="group flex items-center space-x-3 p-2 rounded-lg hover:bg-parchment-200 dark:hover:bg-ink-700 transition-all duration-300">
           <div class="w-3 h-3 rounded-full bg-sky-400 group-hover:scale-110 transition-transform"></div>
           <span class="text-sm font-medium text-ink-700 dark:text-ink-300 group-hover:text-ink-900 dark:group-hover:text-ink-100">Chapter I</span>
-        </a>
+        </Link>
         
-        <a href="/journey" class="group flex items-center space-x-3 p-2 rounded-lg hover:bg-parchment-200 dark:hover:bg-ink-700 transition-all duration-300">
+        <Link href="/journey" class="group flex items-center space-x-3 p-2 rounded-lg hover:bg-parchment-200 dark:hover:bg-ink-700 transition-all duration-300">
           <div class="w-3 h-3 rounded-full bg-mint-400 group-hover:scale-110 transition-transform"></div>
           <span class="text-sm font-medium text-ink-700 dark:text-ink-300 group-hover:text-ink-900 dark:group-hover:text-ink-100">Chapter II</span>
-        </a>
+        </Link>
         
-        <a href="/toolkit" class="group flex items-center space-x-3 p-2 rounded-lg hover:bg-parchment-200 dark:hover:bg-ink-700 transition-all duration-300">
+        <Link href="/toolkit" class="group flex items-center space-x-3 p-2 rounded-lg hover:bg-parchment-200 dark:hover:bg-ink-700 transition-all duration-300">
           <div class="w-3 h-3 rounded-full bg-lavender-400 group-hover:scale-110 transition-transform"></div>
           <span class="text-sm font-medium text-ink-700 dark:text-ink-300 group-hover:text-ink-900 dark:group-hover:text-ink-100">Chapter III</span>
-        </a>
+        </Link>
         
-        <a href="/projects" class="group flex items-center space-x-3 p-2 rounded-lg hover:bg-parchment-200 dark:hover:bg-ink-700 transition-all duration-300">
+        <Link href="/projects" class="group flex items-center space-x-3 p-2 rounded-lg hover:bg-parchment-200 dark:hover:bg-ink-700 transition-all duration-300">
           <div class="w-3 h-3 rounded-full bg-butter-400 group-hover:scale-110 transition-transform"></div>
           <span class="text-sm font-medium text-ink-700 dark:text-ink-300 group-hover:text-ink-900 dark:group-hover:text-ink-100">Chapter IV</span>
-        </a>
+        </Link>
         
-        <a href="/final-project" class="group flex items-center space-x-3 p-2 rounded-lg hover:bg-parchment-200 dark:hover:bg-ink-700 transition-all duration-300">
+        <Link href="/final-project" class="group flex items-center space-x-3 p-2 rounded-lg hover:bg-parchment-200 dark:hover:bg-ink-700 transition-all duration-300">
           <div class="w-3 h-3 rounded-full bg-blush-500 group-hover:scale-110 transition-transform"></div>
           <span class="text-sm font-medium text-ink-700 dark:text-ink-300 group-hover:text-ink-900 dark:group-hover:text-ink-100">Chapter V</span>
-        </a>
+        </Link>
         
-        <a href="/future" class="group flex items-center space-x-3 p-2 rounded-lg hover:bg-parchment-200 dark:hover:bg-ink-700 transition-all duration-300">
+        <Link href="/future" class="group flex items-center space-x-3 p-2 rounded-lg hover:bg-parchment-200 dark:hover:bg-ink-700 transition-all duration-300">
           <div class="w-3 h-3 rounded-full bg-sky-500 group-hover:scale-110 transition-transform"></div>
           <span class="text-sm font-medium text-ink-700 dark:text-ink-300 group-hover:text-ink-900 dark:group-hover:text-ink-100">Chapter VI</span>
-        </a>
+        </Link>
         
-        <a href="/contact" class="group flex items-center space-x-3 p-2 rounded-lg hover:bg-parchment-200 dark:hover:bg-ink-700 transition-all duration-300">
+        <Link href="/contact" class="group flex items-center space-x-3 p-2 rounded-lg hover:bg-parchment-200 dark:hover:bg-ink-700 transition-all duration-300">
           <div class="w-3 h-3 rounded-full bg-mint-500 group-hover:scale-110 transition-transform"></div>
           <span class="text-sm font-medium text-ink-700 dark:text-ink-300 group-hover:text-ink-900 dark:group-hover:text-ink-100">Epilogue</span>
-        </a>
+        </Link>
       </div>
     </nav>
 
     <!-- Mobile Navigation -->
     <nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 dark:bg-ink-800/90 backdrop-blur-story border-b border-parchment-300 dark:border-ink-700 lg:hidden">
       <div class="flex items-center justify-between p-4">
-        <a href="/" class="font-heading text-xl font-semibold text-ink-800 dark:text-ink-100">Portfolio</a>
+        <Link href="/" class="font-heading text-xl font-semibold text-ink-800 dark:text-ink-100">Portfolio</Link>
         <button id="mobile-menu-btn" class="p-2 rounded-lg hover:bg-parchment-200 dark:hover:bg-ink-700 transition-colors">
           <svg class="w-6 h-6 text-ink-700 dark:text-ink-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
@@ -151,14 +152,14 @@ const { title, description = "A storybook-themed portfolio", chapter } = Astro.p
       
       <div id="mobile-menu" class="hidden bg-white dark:bg-ink-800 border-t border-parchment-300 dark:border-ink-700">
         <div class="flex flex-col p-4 space-y-2">
-          <a href="/" class="p-3 rounded-lg hover:bg-parchment-100 dark:hover:bg-ink-700 transition-colors text-ink-700 dark:text-ink-300">Prologue</a>
-          <a href="/about" class="p-3 rounded-lg hover:bg-parchment-100 dark:hover:bg-ink-700 transition-colors text-ink-700 dark:text-ink-300">Chapter I: About Me</a>
-          <a href="/journey" class="p-3 rounded-lg hover:bg-parchment-100 dark:hover:bg-ink-700 transition-colors text-ink-700 dark:text-ink-300">Chapter II: My Journey</a>
-          <a href="/toolkit" class="p-3 rounded-lg hover:bg-parchment-100 dark:hover:bg-ink-700 transition-colors text-ink-700 dark:text-ink-300">Chapter III: My Toolkit</a>
-          <a href="/projects" class="p-3 rounded-lg hover:bg-parchment-100 dark:hover:bg-ink-700 transition-colors text-ink-700 dark:text-ink-300">Chapter IV: Professional & Academic Projects</a>
-          <a href="/final-project" class="p-3 rounded-lg hover:bg-parchment-100 dark:hover:bg-ink-700 transition-colors text-ink-700 dark:text-ink-300">Chapter V: Final Project</a>
-          <a href="/future" class="p-3 rounded-lg hover:bg-parchment-100 dark:hover:bg-ink-700 transition-colors text-ink-700 dark:text-ink-300">Chapter VI: What's Next</a>
-          <a href="/contact" class="p-3 rounded-lg hover:bg-parchment-100 dark:hover:bg-ink-700 transition-colors text-ink-700 dark:text-ink-300">Epilogue: Contact</a>
+          <Link href="/" class="p-3 rounded-lg hover:bg-parchment-100 dark:hover:bg-ink-700 transition-colors text-ink-700 dark:text-ink-300">Prologue</Link>
+          <Link href="/about" class="p-3 rounded-lg hover:bg-parchment-100 dark:hover:bg-ink-700 transition-colors text-ink-700 dark:text-ink-300">Chapter I: About Me</Link>
+          <Link href="/journey" class="p-3 rounded-lg hover:bg-parchment-100 dark:hover:bg-ink-700 transition-colors text-ink-700 dark:text-ink-300">Chapter II: My Journey</Link>
+          <Link href="/toolkit" class="p-3 rounded-lg hover:bg-parchment-100 dark:hover:bg-ink-700 transition-colors text-ink-700 dark:text-ink-300">Chapter III: My Toolkit</Link>
+          <Link href="/projects" class="p-3 rounded-lg hover:bg-parchment-100 dark:hover:bg-ink-700 transition-colors text-ink-700 dark:text-ink-300">Chapter IV: Professional & Academic Projects</Link>
+          <Link href="/final-project" class="p-3 rounded-lg hover:bg-parchment-100 dark:hover:bg-ink-700 transition-colors text-ink-700 dark:text-ink-300">Chapter V: Final Project</Link>
+          <Link href="/future" class="p-3 rounded-lg hover:bg-parchment-100 dark:hover:bg-ink-700 transition-colors text-ink-700 dark:text-ink-300">Chapter VI: What's Next</Link>
+          <Link href="/contact" class="p-3 rounded-lg hover:bg-parchment-100 dark:hover:bg-ink-700 transition-colors text-ink-700 dark:text-ink-300">Epilogue: Contact</Link>
         </div>
       </div>
     </nav>

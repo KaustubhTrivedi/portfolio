@@ -1,6 +1,7 @@
 ---
 import BasicLayout from '../layouts/BasicLayout.astro';
 import Logo from '../components/Logo.astro';
+import { Link } from 'astro:components';
 ---
 
 <BasicLayout title="Once Upon a Hello World" description="Welcome to my storybook portfolio - a tale of code, creativity, and dreams">
@@ -62,12 +63,12 @@ import Logo from '../components/Logo.astro';
           </svg>
         </a>
         
-        <a href="/ask-about-me" class="inline-flex items-center px-8 py-4 rounded-full border-2 border-ink-300 dark:border-ink-600 text-ink-700 dark:text-ink-300 font-medium hover:bg-ink-800 hover:text-white dark:hover:bg-ink-200 dark:hover:text-ink-800 transition-all duration-300 hover:scale-105">
+        <Link href="/ask-about-me" class="inline-flex items-center px-8 py-4 rounded-full border-2 border-ink-300 dark:border-ink-600 text-ink-700 dark:text-ink-300 font-medium hover:bg-ink-800 hover:text-white dark:hover:bg-ink-200 dark:hover:text-ink-800 transition-all duration-300 hover:scale-105">
           <span>Ask about me</span>
           <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 2H4C2.9 2 2 2.9 2 4V22L6 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2M20 16H6L4 18V4H20V16Z"></path>
           </svg>
-        </a>
+        </Link>
       </div>
     </div>
   </section>
@@ -99,12 +100,12 @@ import Logo from '../components/Logo.astro';
           <p class="text-ink-700 dark:text-ink-300 text-sm mb-4">
             Get to know the person behind the screen — my background, passions, and the curiosity that drives my creativity in tech.
           </p>
-          <a href="/about" class="inline-flex items-center text-blush-600 text-sm font-medium group-hover:text-blush-700 transition-colors">
+          <Link href="/about" class="inline-flex items-center text-blush-600 text-sm font-medium group-hover:text-blush-700 transition-colors">
             <span>Read Chapter</span>
             <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
             </svg>
-          </a>
+          </Link>
         </div>
 
         <!-- Chapter II: Tech Journey -->
@@ -121,12 +122,12 @@ import Logo from '../components/Logo.astro';
           <p class="text-ink-700 dark:text-ink-300 text-sm mb-4">
             A timeline of growth: from learning Java and data structures to building full-stack applications and embracing DevOps and AI tools.
           </p>
-          <a href="/journey" class="inline-flex items-center text-sky-600 text-sm font-medium group-hover:text-sky-700 transition-colors">
+          <Link href="/journey" class="inline-flex items-center text-sky-600 text-sm font-medium group-hover:text-sky-700 transition-colors">
             <span>Read Chapter</span>
             <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
             </svg>
-          </a>
+          </Link>
         </div>
 
         <!-- Chapter III: My Toolkit -->
@@ -143,12 +144,12 @@ import Logo from '../components/Logo.astro';
           <p class="text-ink-700 dark:text-ink-300 text-sm mb-4">
             A curated collection of tools and technologies I work with — spanning Java, Spring Boot, React, Docker, and a touch of AI.
           </p>
-          <a href="/toolkit" class="inline-flex items-center text-mint-600 text-sm font-medium group-hover:text-mint-700 transition-colors">
+          <Link href="/toolkit" class="inline-flex items-center text-mint-600 text-sm font-medium group-hover:text-mint-700 transition-colors">
             <span>Read Chapter</span>
             <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
             </svg>
-          </a>
+          </Link>
         </div>
 
         <!-- Chapter IV: Projects -->
@@ -165,12 +166,12 @@ import Logo from '../components/Logo.astro';
           <p class="text-ink-700 dark:text-ink-300 text-sm mb-4">
             Real estate platforms, payment-processing frameworks, and Magpie—the geospatial research app that put my SSR/SSG/ISR chops to the test.
           </p>
-          <a href="/projects" class="inline-flex items-center text-lavender-600 text-sm font-medium group-hover:text-lavender-700 transition-colors">
+          <Link href="/projects" class="inline-flex items-center text-lavender-600 text-sm font-medium group-hover:text-lavender-700 transition-colors">
             <span>Read Chapter</span>
             <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
             </svg>
-          </a>
+          </Link>
         </div>
 
         <!-- Chapter V: Final Project -->
@@ -187,12 +188,12 @@ import Logo from '../components/Logo.astro';
           <p class="text-ink-700 dark:text-ink-300 text-sm mb-4">
             The Final Year Boss Fight: Project Magpie.
           </p>
-          <a href="/final-project" class="inline-flex items-center text-butter-600 text-sm font-medium group-hover:text-butter-700 transition-colors">
+          <Link href="/final-project" class="inline-flex items-center text-butter-600 text-sm font-medium group-hover:text-butter-700 transition-colors">
             <span>Read Chapter</span>
             <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
             </svg>
-          </a>
+          </Link>
         </div>
 
         <!-- Chapter VI: What's Next -->
@@ -209,12 +210,12 @@ import Logo from '../components/Logo.astro';
           <p class="text-ink-700 dark:text-ink-300 text-sm mb-4">
             A glimpse into my future — exploring the frontiers of generative AI, cloud-native apps, and solving meaningful challenges with code.
           </p>
-          <a href="/future" class="inline-flex items-center text-blush-600 text-sm font-medium group-hover:text-blush-700 transition-colors">
+          <Link href="/future" class="inline-flex items-center text-blush-600 text-sm font-medium group-hover:text-blush-700 transition-colors">
             <span>Read Chapter</span>
             <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
             </svg>
-          </a>
+          </Link>
         </div>
       </div>
     </div>

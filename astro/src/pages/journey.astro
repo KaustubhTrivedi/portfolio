@@ -1,5 +1,6 @@
 ---
 import ChapterLayout from '../layouts/ChapterLayout.astro';
+import { Link } from 'astro:components';
 ---
 
 <ChapterLayout 
@@ -175,12 +176,12 @@ import ChapterLayout from '../layouts/ChapterLayout.astro';
       <p class="text-ink-700 dark:text-ink-300 mb-8 max-w-2xl mx-auto">
         Now that you know my journey, let's explore the tools and technologies I use to bring ideas to life.
       </p>
-      <a href="/toolkit" class="inline-flex items-center px-8 py-4 rounded-full bg-gradient-to-r from-sky-500 to-mint-500 text-white font-medium hover:shadow-chapter transition-all duration-300 hover:scale-105">
+      <Link href="/toolkit" class="inline-flex items-center px-8 py-4 rounded-full bg-gradient-to-r from-sky-500 to-mint-500 text-white font-medium hover:shadow-chapter transition-all duration-300 hover:scale-105">
         <span>Explore My Toolkit</span>
         <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
         </svg>
-      </a>
+      </Link>
     </div>
   </section>
 </ChapterLayout> 
