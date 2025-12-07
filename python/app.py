@@ -122,7 +122,7 @@ class Me:
         # Extract hostname from URL
         hostname = chromadb_host.replace("https://", "").replace("http://", "").split("/")[0]
         # Default ports: 8000 for HTTP, 443 for HTTPS
-        port = 443 # if "https" in chromadb_host else 8000
+        port = 443 if "https" in chromadb_host else 8000
         
         self.chroma_client = chromadb.HttpClient(
             host=hostname,
