@@ -9,6 +9,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import chromadb
 from chromadb.config import Settings
+from chromadb.errors import NotFoundError, ChromaError
 from typing import List
 
 
@@ -136,7 +137,12 @@ class Me:
         # Get or create collection
         collection_name = "kaustubh_linkedin_profile"
         try:
-            self.collection = self.chroma_client.get_collection(name=collection_name)
+            # Use get_or_create_collection - handles existence check gracefully
+            # This avoids the "try get, catch all, create" anti-pattern
+            self.collection = self.chroma_client.get_or_create_collection(
+                name=collection_name,
+                metadata={"description": "Kaustubh LinkedIn profile embeddings"}
+            )
             # Check if collection is empty
             count = self.collection.count()
             if count == 0:
@@ -144,15 +150,66 @@ class Me:
                 self._process_and_store_pdf()
             else:
                 print(f"Loaded existing ChromaDB collection: {collection_name} with {count} chunks")
+        except (KeyError, ChromaError) as e:
+            # Handle version mismatch or other Chroma-specific errors
+            # KeyError('_type') indicates version mismatch - collection exists but can't parse response
+            error_str = str(e)
+            error_type = type(e).__name__
+            
+            if "_type" in error_str or error_type == "KeyError":
+                # Version mismatch: collection exists but client can't parse it
+                print(f"ERROR: Version mismatch between Chroma client and server detected!")
+                print(f"  Client version: chromadb==0.5.20")
+                print(f"  Error: {e}")
+                print(f"  The collection exists on the server but the client cannot parse the response.")
+                print(f"  Please ensure Chroma server version matches client version (0.5.20).")
+                print(f"\n  Attempting to work around by checking if collection exists...")
+                
+                # Check if collection exists without parsing full response
+                try:
+                    collections = self.chroma_client.list_collections()
+                    collection_exists = any(c.name == collection_name for c in collections)
+                    
+                    if collection_exists:
+                        print(f"  Collection '{collection_name}' exists on server.")
+                        print(f"  WARNING: Cannot access collection due to version mismatch.")
+                        print(f"  Please update Chroma server to version 0.5.20 or update client to match server version.")
+                        raise RuntimeError(
+                            f"Version mismatch: Collection exists but cannot be accessed. "
+                            f"Please align Chroma server and client versions."
+                        ) from e
+                    else:
+                        # Collection doesn't exist - this shouldn't happen if we got KeyError
+                        print(f"  Collection does not exist. This is unexpected given the error type.")
+                        raise
+                except Exception as check_e:
+                    print(f"  Failed to check collection existence: {check_e}")
+                    raise RuntimeError(
+                        f"Version mismatch error. Please align Chroma server and client versions."
+                    ) from e
+            elif "already exists" in error_str or "409" in error_str:
+                # Collection exists - try to get it directly
+                print(f"Collection already exists. Accessing directly...")
+                try:
+                    self.collection = self.chroma_client.get_collection(name=collection_name)
+                    count = self.collection.count()
+                    if count == 0:
+                        print(f"Collection exists but is empty. Processing PDF...")
+                        self._process_and_store_pdf()
+                    else:
+                        print(f"Loaded existing ChromaDB collection: {collection_name} with {count} chunks")
+                except Exception as get_e:
+                    print(f"Failed to access existing collection: {get_e}")
+                    raise
+            else:
+                # Other ChromaError
+                print(f"Chroma server error: {e}")
+                raise
         except Exception as e:
-            print(f"Collection not found or error: {e}. Creating new collection...")
-            self.collection = self.chroma_client.create_collection(
-                name=collection_name,
-                metadata={"hnsw:space": "cosine"}
-            )
-            print(f"Created new ChromaDB collection: {collection_name}")
-            # Process and store PDF in ChromaDB
-            self._process_and_store_pdf()
+            # Catch-all for unexpected errors
+            print(f"Unexpected error while initializing collection: {e}")
+            print(f"Error type: {type(e).__name__}")
+            raise
         
         # Read summary (still static)
         with open("me/summary.txt", "r", encoding="utf-8") as f:

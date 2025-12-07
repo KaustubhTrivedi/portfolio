@@ -28,6 +28,7 @@ services:
       - FLASK_ENV=development
       - FLASK_DEBUG=1
       - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
+      - CHROMA_TELEMETRY_ENABLED=false
     restart: unless-stopped
     networks:
       - portfolio-network

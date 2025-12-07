@@ -15,6 +15,7 @@ services:
       - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
       - DISCORD_WEBHOOK_URL=${DISCORD_WEBHOOK_URL}
       - CHROMADB_HOST=${CHROMADB_HOST}
+      - CHROMA_TELEMETRY_ENABLED=false
     restart: unless-stopped
     networks:
       - npm_default
