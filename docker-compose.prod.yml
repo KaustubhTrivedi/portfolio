@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  # Flask API service (Production)
+  flask-api:
+    container_name: gradio-api
+    build:
+      context: ./python
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_ENV=production
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - DISCORD_WEBHOOK_URL=${DISCORD_WEBHOOK_URL}
+      - CHROMADB_HOST=${CHROMADB_HOST}
+    restart: unless-stopped
+    networks:
+      - npm_default
+
+  # Production frontend service
+  portfolio:
+    container_name: portfolio
+    build:
+      context: ./astro
+      dockerfile: Dockerfile
+    networks:
+      - npm_default
+    ports:
+      - "3004:3000"
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    depends_on:
+      - flask-api
+
+networks:
+  npm_default:
+    external: true
+

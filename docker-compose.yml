@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  # Astro Development service
+  portfolio-dev:
+    build:
+      context: ./astro
+      dockerfile: Dockerfile.dev
+    ports:
+      - "4321:4321"
+    volumes:
+      - ./astro:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    command: npm run dev -- --host 0.0.0.0
+    networks:
+      - portfolio-network
+    restart: unless-stopped
+
+  # Flask API service (Development)
+  flask-api:
+    build:
+      context: ./python
+      dockerfile: Dockerfile.dev
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./python:/app
+    environment:
+      - FLASK_ENV=development
+      - FLASK_DEBUG=1
+      - CHROMADB_HOST=${CHROMADB_HOST}
+    restart: unless-stopped
+    networks:
+      - portfolio-network
+
+networks:
+  portfolio-network:
+    driver: bridge
+
