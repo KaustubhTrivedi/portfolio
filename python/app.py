@@ -114,7 +114,10 @@ tools = [{"type": "function", "function": record_user_details_json},
 class Me:
 
     def __init__(self):
-        self.openai = OpenAI()
+        self.openai = OpenAI(
+            base_url="https://openrouter.ai/api/v1",
+            api_key=os.getenv("OPENROUTER_API_KEY"),
+        )
         self.name = "Kaustubh Trivedi"
         
         # Connect to ChromaDB
@@ -186,15 +189,19 @@ class Me:
             documents.append(chunk)
             ids.append(f"chunk_{i}")
         
-        # Use OpenAI embeddings (batch process for efficiency)
-        # OpenAI supports up to 2048 inputs per batch
+        # Use OpenRouter embeddings (batch process for efficiency)
         batch_size = 100
         all_embeddings = []
         for i in range(0, len(chunks), batch_size):
             batch = chunks[i:i + batch_size]
             response = self.openai.embeddings.create(
-                model="text-embedding-3-small",
-                input=batch
+                extra_headers={
+                    "HTTP-Referer": "https://portfolio.kaustubhsstuff.com",
+                    "X-Title": "Kaustubh Trivedi Portfolio",
+                },
+                model="thenlper/gte-base",
+                input=batch,
+                encoding_format="float"
             )
             batch_embeddings = [item.embedding for item in response.data]
             all_embeddings.extend(batch_embeddings)
@@ -223,8 +230,13 @@ class Me:
         """Query ChromaDB for relevant context based on user query"""
         # Create embedding for the query
         response = self.openai.embeddings.create(
-            model="text-embedding-3-small",
-            input=query
+            extra_headers={
+                "HTTP-Referer": "https://portfolio.kaustubhsstuff.com",
+                "X-Title": "Kaustubh Trivedi Portfolio",
+            },
+            model="thenlper/gte-base",
+            input=query,
+            encoding_format="float"
         )
         query_embedding = response.data[0].embedding
         

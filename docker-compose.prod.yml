@@ -12,6 +12,7 @@ services:
     environment:
       - FLASK_ENV=production
       - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
       - DISCORD_WEBHOOK_URL=${DISCORD_WEBHOOK_URL}
       - CHROMADB_HOST=${CHROMADB_HOST}
     restart: unless-stopped
