@@ -129,7 +129,8 @@ class Me:
         
         self.chroma_client = chromadb.HttpClient(
             host=hostname,
-            port=port
+            port=port,
+            ssl=True
         )
         
         # Get or create collection
