@@ -7,6 +7,9 @@ from pypdf import PdfReader
 import gradio as gr
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+import chromadb
+from chromadb.config import Settings
+from typing import List
 
 
 load_dotenv(override=True)
@@ -113,14 +116,96 @@ class Me:
     def __init__(self):
         self.openai = OpenAI()
         self.name = "Kaustubh Trivedi"
+        
+        # Connect to ChromaDB
+        chromadb_host = os.getenv("CHROMADB_HOST", "https://chromadb.kaustubhsstuff.com")
+        # Extract hostname from URL
+        hostname = chromadb_host.replace("https://", "").replace("http://", "").split("/")[0]
+        # Default ports: 8000 for HTTP, 443 for HTTPS
+        port = 443 # if "https" in chromadb_host else 8000
+        
+        self.chroma_client = chromadb.HttpClient(
+            host=hostname,
+            port=port
+        )
+        
+        # Get or create collection
+        collection_name = "kaustubh_linkedin_profile"
+        try:
+            self.collection = self.chroma_client.get_collection(name=collection_name)
+            # Check if collection is empty
+            count = self.collection.count()
+            if count == 0:
+                print(f"Collection exists but is empty. Processing PDF...")
+                self._process_and_store_pdf()
+            else:
+                print(f"Loaded existing ChromaDB collection: {collection_name} with {count} chunks")
+        except Exception as e:
+            print(f"Collection not found or error: {e}. Creating new collection...")
+            self.collection = self.chroma_client.create_collection(
+                name=collection_name,
+                metadata={"hnsw:space": "cosine"}
+            )
+            print(f"Created new ChromaDB collection: {collection_name}")
+            # Process and store PDF in ChromaDB
+            self._process_and_store_pdf()
+        
+        # Read summary (still static)
+        with open("me/summary.txt", "r", encoding="utf-8") as f:
+            self.summary = f.read()
+    
+    def _chunk_text(self, text: str, chunk_size: int = 1000, chunk_overlap: int = 200) -> List[str]:
+        """Split text into overlapping chunks"""
+        chunks = []
+        start = 0
+        while start < len(text):
+            end = start + chunk_size
+            chunk = text[start:end]
+            chunks.append(chunk)
+            start = end - chunk_overlap
+        return chunks
+    
+    def _process_and_store_pdf(self):
+        """Extract PDF text, chunk it, create embeddings, and store in ChromaDB"""
+        print("Processing PDF and creating embeddings...")
         reader = PdfReader("me/kaustubh_main_august.pdf")
-        self.linkedin = ""
+        full_text = ""
         for page in reader.pages:
             text = page.extract_text()
             if text:
-                self.linkedin += text
-        with open("me/summary.txt", "r", encoding="utf-8") as f:
-            self.summary = f.read()
+                full_text += text + "\n"
+        
+        # Chunk the text
+        chunks = self._chunk_text(full_text)
+        print(f"Created {len(chunks)} chunks from PDF")
+        
+        # Create embeddings and store in ChromaDB
+        documents = []
+        ids = []
+        for i, chunk in enumerate(chunks):
+            documents.append(chunk)
+            ids.append(f"chunk_{i}")
+        
+        # Use OpenAI embeddings (batch process for efficiency)
+        # OpenAI supports up to 2048 inputs per batch
+        batch_size = 100
+        all_embeddings = []
+        for i in range(0, len(chunks), batch_size):
+            batch = chunks[i:i + batch_size]
+            response = self.openai.embeddings.create(
+                model="text-embedding-3-small",
+                input=batch
+            )
+            batch_embeddings = [item.embedding for item in response.data]
+            all_embeddings.extend(batch_embeddings)
+        
+        # Store in ChromaDB
+        self.collection.add(
+            ids=ids,
+            embeddings=all_embeddings,
+            documents=documents
+        )
+        print(f"Stored {len(chunks)} chunks in ChromaDB")
 
 
     def handle_tool_call(self, tool_calls):
@@ -134,21 +219,51 @@ class Me:
             results.append({"role": "tool","content": json.dumps(result),"tool_call_id": tool_call.id})
         return results
 
-    def system_prompt(self):
+    def _get_relevant_context(self, query: str, n_results: int = 5) -> str:
+        """Query ChromaDB for relevant context based on user query"""
+        # Create embedding for the query
+        response = self.openai.embeddings.create(
+            model="text-embedding-3-small",
+            input=query
+        )
+        query_embedding = response.data[0].embedding
+        
+        # Query ChromaDB
+        results = self.collection.query(
+            query_embeddings=[query_embedding],
+            n_results=n_results
+        )
+        
+        # Combine relevant chunks
+        if results['documents'] and len(results['documents'][0]) > 0:
+            relevant_chunks = "\n\n".join(results['documents'][0])
+            return relevant_chunks
+        return ""
+    
+    def system_prompt(self, user_query: str = ""):
         system_prompt = f"You are acting as {self.name}. You are answering questions on {self.name}'s website, \
 particularly questions related to {self.name}'s career, background, skills and experience. \
 Your responsibility is to represent {self.name} for interactions on the website as faithfully as possible. \
-You are given a summary of {self.name}'s background and LinkedIn profile which you can use to answer questions. \
+You are given a summary of {self.name}'s background and relevant information from LinkedIn profile which you can use to answer questions. \
 Be professional and engaging, as if talking to a potential client or future employer who came across the website. \
 If you don't know the answer to any question, use your record_unknown_question tool to record the question that you couldn't answer, even if it's about something trivial or unrelated to career. \
 If the user is engaging in discussion, try to steer them towards getting in touch via email; ask for their email and record it using your record_user_details tool. "
 
-        system_prompt += f"\n\n## Summary:\n{self.summary}\n\n## LinkedIn Profile:\n{self.linkedin}\n\n"
+        system_prompt += f"\n\n## Summary:\n{self.summary}\n\n"
+        
+        # Get relevant context from ChromaDB if query is provided
+        if user_query:
+            relevant_context = self._get_relevant_context(user_query)
+            if relevant_context:
+                system_prompt += f"## Relevant Information from LinkedIn Profile:\n{relevant_context}\n\n"
+        
         system_prompt += f"With this context, please chat with the user, always staying in character as {self.name}."
         return system_prompt
 
     def chat(self, message, history):
-        messages = [{"role": "system", "content": self.system_prompt()}] + history + [{"role": "user", "content": message}]
+        # Get relevant context based on user message
+        system_content = self.system_prompt(user_query=message)
+        messages = [{"role": "system", "content": system_content}] + history + [{"role": "user", "content": message}]
         done = False
         while not done:
             response = self.openai.chat.completions.create(model="gpt-4o-mini", messages=messages, tools=tools)

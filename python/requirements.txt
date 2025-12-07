@@ -241,6 +241,7 @@ langchain==0.3.25
 langchain-anthropic==0.3.15
     # via agents (pyproject.toml)
 langchain-community==0.3.24
+
     # via
     #   agents (pyproject.toml)
     #   langchain-experimental
@@ -692,3 +693,4 @@ zstandard==0.23.0
 # Additional dependencies for Flask API
 Flask==3.0.0
 flask-cors==4.0.0
+chromadb==0.5.20
