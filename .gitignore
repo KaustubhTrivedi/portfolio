@@ -1,1 +1,4 @@
 *.env
+nextjs-portfolio/node_modules/
+nextjs-portfolio/.next/
+nextjs-portfolio/out/

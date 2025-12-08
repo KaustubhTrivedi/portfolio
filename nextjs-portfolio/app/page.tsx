@@ -1,0 +1,242 @@
+import Link from 'next/link';
+import Logo from '@/components/Logo';
+
+export const metadata = {
+  title: "Once Upon a Hello World",
+  description: "Welcome to my storybook portfolio - a tale of code, creativity, and dreams",
+};
+
+export default function Home() {
+  return (
+    <>
+      {/* Hero Section */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-parchment-50 via-sky-50 to-blush-50 dark:from-ink-900 dark:via-ink-800 dark:to-ink-900">
+        {/* Floating Decorative Elements */}
+        <div className="absolute top-1/4 left-1/4 w-32 h-32 opacity-20 animate-float">
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 20 Q50 5 80 20 Q95 50 80 80 Q50 95 20 80 Q5 50 20 20" fill="currentColor" className="text-lavender-300"/>
+          </svg>
+        </div>
+        
+        <div className="absolute top-1/3 right-1/4 w-24 h-24 opacity-15 animate-float" style={{ animationDelay: '-1s' }}>
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="40" stroke="currentColor" strokeWidth="8" fill="none" className="text-mint-300"/>
+          </svg>
+        </div>
+        
+        <div className="absolute bottom-1/4 left-1/3 w-20 h-20 opacity-25 animate-float" style={{ animationDelay: '-2s' }}>
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="50,10 90,90 10,90" fill="currentColor" className="text-butter-300"/>
+          </svg>
+        </div>
+
+        <div className="relative max-w-2xl mx-auto px-6 text-center">
+          {/* Avatar/Illustration */}
+          <div className="mb-8 relative">
+            <Logo className="w-24 h-24 mx-auto" />
+            
+            {/* Floating Code Elements */}
+            <div className="absolute -top-4 -right-4 bg-white dark:bg-ink-800 rounded-lg shadow-soft p-2 animate-float">
+              <code className="text-blush-600 dark:text-blush-400 text-sm font-mono">&lt;/&gt;</code>
+            </div>
+            
+            <div className="absolute -bottom-2 -left-6 bg-white dark:bg-ink-800 rounded-lg shadow-soft p-2 animate-float" style={{ animationDelay: '-0.5s' }}>
+              <code className="text-sky-600 dark:text-sky-400 text-sm font-mono">{'{}'}</code>
+            </div>
+          </div>
+
+          {/* Title */}
+          <h1 className="font-heading text-5xl lg:text-7xl font-bold text-ink-800 dark:text-ink-100 mb-6 leading-tight">
+            <span className="block animate-fade-in">Once Upon a</span>
+            <span className="block bg-gradient-to-r from-blush-600 via-sky-600 to-mint-600 bg-clip-text text-transparent animate-slide-up">
+              Hello World
+            </span>
+          </h1>
+
+          {/* Tagline */}
+          <p className="text-xl lg:text-2xl text-ink-600 dark:text-ink-300 mb-8 max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: '0.3s' }}>
+            I&apos;m Kaustubh Trivedi — a software engineer who believes every line of code tells a story. From backend logic to frontend finesse, this is the journey of how I went from my first console.log() to building immersive, AI-powered experiences.
+          </p>
+
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up" style={{ animationDelay: '0.6s' }}>
+            <Link href="#chapters" className="inline-flex items-center px-8 py-4 rounded-full bg-gradient-to-r from-blush-500 to-sky-500 text-white font-medium hover:shadow-chapter transition-all duration-300 hover:scale-105">
+              <span>Begin the Story</span>
+              <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+              </svg>
+            </Link>
+            
+            <Link href="/ask-about-me" className="inline-flex items-center px-8 py-4 rounded-full border-2 border-ink-300 dark:border-ink-600 text-ink-700 dark:text-ink-300 font-medium hover:bg-ink-800 hover:text-white dark:hover:bg-ink-200 dark:hover:text-ink-800 transition-all duration-300 hover:scale-105">
+              <span>Ask about me</span>
+              <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20 2H4C2.9 2 2 2.9 2 4V22L6 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2M20 16H6L4 18V4H20V16Z"></path>
+              </svg>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Chapter Navigation Section */}
+      <section id="chapters" className="py-20 bg-white dark:bg-ink-900">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="font-heading text-3xl lg:text-4xl font-semibold text-ink-800 dark:text-ink-100 mb-4">
+              What You&apos;ll Find in This Story
+            </h2>
+            <p className="text-ink-600 dark:text-ink-300 max-w-2xl mx-auto">
+              Each chapter reveals a different part of my journey as a developer — from the spark that started it all, to the ambitions that fuel what&apos;s next.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Chapter I: About Me */}
+            <div className="group p-6 rounded-2xl bg-gradient-to-br from-white to-blush-50 dark:from-ink-800 dark:to-ink-700 shadow-soft hover:shadow-chapter transition-all duration-300">
+              <div className="mb-4">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blush-200 to-blush-400 flex items-center justify-center">
+                  <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                  </svg>
+                </div>
+              </div>
+              <h3 className="font-heading text-xl font-semibold text-ink-800 dark:text-ink-100 mb-2">About Me</h3>
+              <p className="text-blush-600 mb-4 text-sm font-medium">Chapter I</p>
+              <p className="text-ink-700 dark:text-ink-300 text-sm mb-4">
+                Get to know the person behind the screen — my background, passions, and the curiosity that drives my creativity in tech.
+              </p>
+              <Link href="/about" className="inline-flex items-center text-blush-600 text-sm font-medium group-hover:text-blush-700 transition-colors">
+                <span>Read Chapter</span>
+                <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                </svg>
+              </Link>
+            </div>
+
+            {/* Chapter II: Tech Journey */}
+            <div className="group p-6 rounded-2xl bg-gradient-to-br from-white to-sky-50 dark:from-ink-800 dark:to-ink-700 shadow-soft hover:shadow-chapter transition-all duration-300">
+              <div className="mb-4">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-sky-200 to-sky-400 flex items-center justify-center">
+                  <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M13,20H11V8L5.5,13.5L4.08,12.08L12,4.16L19.92,12.08L18.5,13.5L13,8V20Z" />
+                  </svg>
+                </div>
+              </div>
+              <h3 className="font-heading text-xl font-semibold text-ink-800 dark:text-ink-100 mb-2">My Tech Journey</h3>
+              <p className="text-sky-600 mb-4 text-sm font-medium">Chapter II</p>
+              <p className="text-ink-700 dark:text-ink-300 text-sm mb-4">
+                A timeline of growth: from learning Java and data structures to building full-stack applications and embracing DevOps and AI tools.
+              </p>
+              <Link href="/journey" className="inline-flex items-center text-sky-600 text-sm font-medium group-hover:text-sky-700 transition-colors">
+                <span>Read Chapter</span>
+                <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                </svg>
+              </Link>
+            </div>
+
+            {/* Chapter III: My Toolkit */}
+            <div className="group p-6 rounded-2xl bg-gradient-to-br from-white to-mint-50 dark:from-ink-800 dark:to-ink-700 shadow-soft hover:shadow-chapter transition-all duration-300">
+              <div className="mb-4">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-mint-200 to-mint-400 flex items-center justify-center">
+                  <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M22.7,19L13.6,9.9C14.5,7.6 14,4.9 12.1,3C10.1,1 7.1,0.6 4.7,1.7L9,6L6,9L1.6,4.7C0.4,7.1 0.9,10.1 2.9,12.1C4.8,14 7.5,14.5 9.8,13.6L18.9,22.7C19.3,23.1 19.9,23.1 20.3,22.7L22.6,20.4C23.1,20 23.1,19.3 22.7,19Z" />
+                  </svg>
+                </div>
+              </div>
+              <h3 className="font-heading text-xl font-semibold text-ink-800 dark:text-ink-100 mb-2">My Toolkit</h3>
+              <p className="text-mint-600 mb-4 text-sm font-medium">Chapter III</p>
+              <p className="text-ink-700 dark:text-ink-300 text-sm mb-4">
+                A curated collection of tools and technologies I work with — spanning Java, Spring Boot, React, Docker, and a touch of AI.
+              </p>
+              <Link href="/toolkit" className="inline-flex items-center text-mint-600 text-sm font-medium group-hover:text-mint-700 transition-colors">
+                <span>Read Chapter</span>
+                <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                </svg>
+              </Link>
+            </div>
+
+            {/* Chapter IV: Projects */}
+            <div className="group p-6 rounded-2xl bg-gradient-to-br from-white to-lavender-50 dark:from-ink-800 dark:to-ink-700 shadow-soft hover:shadow-chapter transition-all duration-300">
+              <div className="mb-4">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-lavender-200 to-lavender-400 flex items-center justify-center">
+                  <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" />
+                  </svg>
+                </div>
+              </div>
+              <h3 className="font-heading text-xl font-semibold text-ink-800 dark:text-ink-100 mb-2">Professional & Academic Projects</h3>
+              <p className="text-lavender-600 mb-4 text-sm font-medium">Chapter IV</p>
+              <p className="text-ink-700 dark:text-ink-300 text-sm mb-4">
+                Real estate platforms, payment-processing frameworks, and Magpie—the geospatial research app that put my SSR/SSG/ISR chops to the test.
+              </p>
+              <Link href="/projects" className="inline-flex items-center text-lavender-600 text-sm font-medium group-hover:text-lavender-700 transition-colors">
+                <span>Read Chapter</span>
+                <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                </svg>
+              </Link>
+            </div>
+
+            {/* Chapter V: Final Project */}
+            <div className="group p-6 rounded-2xl bg-gradient-to-br from-white to-butter-50 dark:from-ink-800 dark:to-ink-700 shadow-soft hover:shadow-chapter transition-all duration-300">
+              <div className="mb-4">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-butter-200 to-butter-400 flex items-center justify-center">
+                  <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M5,3H7V5H5V10A2,2 0 0,1 3,8V5A2,2 0 0,1 5,3M19,3A2,2 0 0,1 21,5V8A2,2 0 0,1 19,10V5H17V3H19M3,13A2,2 0 0,1 5,11V16H7V18H5A2,2 0 0,1 3,16V13M21,13V16A2,2 0 0,1 19,18H17V16H19V11A2,2 0 0,1 21,13Z" />
+                  </svg>
+                </div>
+              </div>
+              <h3 className="font-heading text-xl font-semibold text-ink-800 dark:text-ink-100 mb-2">Final Year Project</h3>
+              <p className="text-butter-600 mb-4 text-sm font-medium">Chapter V</p>
+              <p className="text-ink-700 dark:text-ink-300 text-sm mb-4">
+                The Final Year Boss Fight: Project Magpie.
+              </p>
+              <Link href="/final-project" className="inline-flex items-center text-butter-600 text-sm font-medium group-hover:text-butter-700 transition-colors">
+                <span>Read Chapter</span>
+                <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                </svg>
+              </Link>
+            </div>
+
+            {/* Chapter VI: What's Next */}
+            <div className="group p-6 rounded-2xl bg-gradient-to-br from-white to-blush-50 dark:from-ink-800 dark:to-ink-700 shadow-soft hover:shadow-chapter transition-all duration-300">
+              <div className="mb-4">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blush-200 to-sky-200 flex items-center justify-center">
+                  <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M16.2,16.2L11,13V7H12.5V12.2L17,15.4L16.2,16.2Z" />
+                  </svg>
+                </div>
+              </div>
+              <h3 className="font-heading text-xl font-semibold text-ink-800 dark:text-ink-100 mb-2">What&apos;s Next</h3>
+              <p className="text-blush-600 mb-4 text-sm font-medium">Chapter VI</p>
+              <p className="text-ink-700 dark:text-ink-300 text-sm mb-4">
+                A glimpse into my future — exploring the frontiers of generative AI, cloud-native apps, and solving meaningful challenges with code.
+              </p>
+              <Link href="/future" className="inline-flex items-center text-blush-600 text-sm font-medium group-hover:text-blush-700 transition-colors">
+                <span>Read Chapter</span>
+                <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                </svg>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Quote Section */}
+      <section className="py-20 bg-gradient-to-r from-blush-50 to-sky-50 dark:from-ink-800 dark:to-ink-900 transition-colors duration-300">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <blockquote className="font-story text-2xl lg:text-3xl text-ink-700 dark:text-ink-200 italic leading-relaxed transition-colors duration-300">
+            &quot;The best stories are not just about where you&apos;ve been,<br />
+            but about where you&apos;re going.&quot;
+          </blockquote>
+          <div className="mt-8">
+            <div className="w-16 h-1 bg-gradient-to-r from-blush-400 to-sky-400 dark:from-blush-600 dark:to-sky-600 mx-auto rounded-full transition-colors duration-300"></div>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}

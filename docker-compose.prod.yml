@@ -24,7 +24,7 @@ services:
   portfolio:
     container_name: portfolio
     build:
-      context: ./astro
+      context: ./nextjs-portfolio
       dockerfile: Dockerfile
     networks:
       - npm_default
@@ -39,4 +39,3 @@ services:
 networks:
   npm_default:
     external: true
-
