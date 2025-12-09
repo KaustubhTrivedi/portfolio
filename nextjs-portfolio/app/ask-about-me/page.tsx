@@ -46,7 +46,8 @@ export default function AskAboutMePage() {
     try {
       const history = messages.map(({ role, content }) => ({ role, content }));
 
-      const res = await fetch('http://127.0.0.1:5000/api/chat', {
+      const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'https://gradio.kaustubhsstuff.com';
+      const res = await fetch(`${baseUrl}/api/chat`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -1,19 +1,21 @@
 version: '3.8'
 
 services:
-  # Astro Development service
+  # Next.js Development service
   portfolio-dev:
     build:
-      context: ./astro
+      context: ./nextjs-portfolio
       dockerfile: Dockerfile.dev
     ports:
-      - "4321:4321"
+      - "3000:3000"
     volumes:
-      - ./astro:/app
+      - ./nextjs-portfolio:/app
       - /app/node_modules
+      - /app/.next
     environment:
       - NODE_ENV=development
-    command: npm run dev -- --host 0.0.0.0
+      - NEXT_PUBLIC_API_URL=http://127.0.0.1:5000
+    command: npm run dev
     networks:
       - portfolio-network
     restart: unless-stopped
@@ -39,4 +41,3 @@ services:
 networks:
   portfolio-network:
     driver: bridge
-
