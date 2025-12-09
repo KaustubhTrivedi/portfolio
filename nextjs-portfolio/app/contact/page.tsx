@@ -14,6 +14,7 @@ export default function ContactPage() {
         color="blush"
       />
 
+      {/* Introduction */}
       <section className="py-20 bg-white dark:bg-ink-900">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="font-heading text-4xl font-semibold text-ink-800 dark:text-ink-100 mb-8">
@@ -22,7 +23,217 @@ export default function ContactPage() {
           <blockquote className="text-2xl font-heading text-ink-700 dark:text-ink-300 italic border-l-4 border-blush-400 dark:border-blush-500 pl-6 my-8">
             &quot;Every great story needs a satisfying ending... but the best ones always leave room for a sequel.&quot;
           </blockquote>
-          {/* Contact content would go here */}
+          <div className="prose text-ink-700 dark:text-ink-300 text-lg max-w-3xl mx-auto space-y-6">
+            <p>
+              As you close the final chapter of this digital book, I want to thank you for taking the time to learn about my journey — from writing my first Hello, World! to building scalable systems and pushing the boundaries of what code can do.
+            </p>
+            <p>
+              But this isn&apos;t the end. It&apos;s a new page — and maybe, you&apos;ll be part of the next chapter.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Let's Stay in Touch */}
+      <section className="py-20 bg-gradient-to-br from-blush-50 to-sky-50 dark:from-ink-800 dark:to-ink-700">
+        <div className="max-w-6xl mx-auto px-6">
+          <h2 className="font-heading text-3xl font-semibold text-ink-800 dark:text-ink-100 mb-16 text-center">
+            Let&apos;s Stay in Touch
+          </h2>
+          <p className="text-ink-700 dark:text-ink-300 text-center mb-12 max-w-3xl mx-auto text-lg">
+            Whether you&apos;re a fellow developer, a potential collaborator, or just someone who enjoys well-crafted software — I&apos;d love to hear from you.
+          </p>
+
+          <div className="grid lg:grid-cols-3 gap-8">
+            {/* Hiring */}
+            <div className="p-8 rounded-2xl bg-gradient-to-br from-white to-blush-50 dark:from-ink-800 dark:to-ink-700 shadow-soft hover:shadow-chapter transition-all duration-300">
+              <div className="flex items-center mb-6">
+                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blush-400 to-blush-600 flex items-center justify-center mr-4">
+                  <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12,2L13.09,8.26L22,9L13.09,9.74L12,16L10.91,9.74L2,9L10.91,8.26L12,2Z" />
+                  </svg>
+                </div>
+                <h3 className="font-heading text-xl font-semibold text-ink-800 dark:text-ink-100">Hiring?</h3>
+              </div>
+              <p className="text-ink-700 dark:text-ink-300 mb-6">
+                Let&apos;s chat about how I can bring technical excellence and creativity to your team.
+              </p>
+              <a href="mailto:kaustubhtrivedi99@gmail.com?subject=Hiring%20Opportunity" className="inline-flex items-center px-4 py-2 rounded-lg bg-gradient-to-r from-blush-500 to-blush-600 text-white font-medium hover:shadow-chapter transition-all duration-300">
+                <span>Let&apos;s Talk</span>
+                <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                </svg>
+              </a>
+            </div>
+
+            {/* Collaborating */}
+            <div className="p-8 rounded-2xl bg-gradient-to-br from-white to-sky-50 dark:from-ink-800 dark:to-ink-700 shadow-soft hover:shadow-chapter transition-all duration-300">
+              <div className="flex items-center mb-6">
+                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-sky-400 to-sky-600 flex items-center justify-center mr-4">
+                  <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12,2L13.09,8.26L22,9L13.09,9.74L12,16L10.91,9.74L2,9L10.91,8.26L12,2Z" />
+                  </svg>
+                </div>
+                <h3 className="font-heading text-xl font-semibold text-ink-800 dark:text-ink-100">Collaborating?</h3>
+              </div>
+              <p className="text-ink-700 dark:text-ink-300 mb-6">
+                I&apos;m always open to new ideas, open source projects, or side quests.
+              </p>
+              <a href="mailto:kaustubhtrivedi99@gmail.com?subject=Collaboration%20Opportunity" className="inline-flex items-center px-4 py-2 rounded-lg bg-gradient-to-r from-sky-500 to-sky-600 text-white font-medium hover:shadow-chapter transition-all duration-300">
+                <span>Let&apos;s Build</span>
+                <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                </svg>
+              </a>
+            </div>
+
+            {/* Networking */}
+            <div className="p-8 rounded-2xl bg-gradient-to-br from-white to-mint-50 dark:from-ink-800 dark:to-ink-700 shadow-soft hover:shadow-chapter transition-all duration-300">
+              <div className="flex items-center mb-6">
+                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-mint-400 to-mint-600 flex items-center justify-center mr-4">
+                  <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12,2L13.09,8.26L22,9L13.09,9.74L12,16L10.91,9.74L2,9L10.91,8.26L12,2Z" />
+                  </svg>
+                </div>
+                <h3 className="font-heading text-xl font-semibold text-ink-800 dark:text-ink-100">Networking?</h3>
+              </div>
+              <p className="text-ink-700 dark:text-ink-300 mb-6">
+                Let&apos;s geek out about clean code, DevOps, or the perfect coffee brew.
+              </p>
+              <a href="mailto:kaustubhtrivedi99@gmail.com?subject=Let's%20Connect" className="inline-flex items-center px-4 py-2 rounded-lg bg-gradient-to-r from-mint-500 to-mint-600 text-white font-medium hover:shadow-chapter transition-all duration-300">
+                <span>Let&apos;s Chat</span>
+                <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Details */}
+      <section className="py-20 bg-white dark:bg-ink-900">
+        <div className="max-w-6xl mx-auto px-6">
+          <h2 className="font-heading text-3xl font-semibold text-ink-800 dark:text-ink-100 mb-16 text-center">
+            Contact Details
+          </h2>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Email */}
+            <div className="p-8 rounded-2xl bg-gradient-to-br from-blush-50 to-sky-50 dark:from-ink-800 dark:to-ink-700 shadow-soft hover:shadow-chapter transition-all duration-300 text-center">
+              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blush-400 to-sky-400 flex items-center justify-center mx-auto mb-6">
+                <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z" />
+                </svg>
+              </div>
+              <h3 className="font-heading text-xl font-semibold text-ink-800 dark:text-ink-100 mb-4">Email</h3>
+              <a href="mailto:kaustubhtrivedi99@gmail.com" className="text-blush-600 dark:text-blush-400 hover:text-blush-700 dark:hover:text-blush-300 font-medium transition-colors">
+                kaustubhtrivedi99@gmail.com
+              </a>
+            </div>
+
+            {/* LinkedIn */}
+            <div className="p-8 rounded-2xl bg-gradient-to-br from-sky-50 to-mint-50 dark:from-ink-800 dark:to-ink-700 shadow-soft hover:shadow-chapter transition-all duration-300 text-center">
+              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-sky-400 to-mint-400 flex items-center justify-center mx-auto mb-6">
+                <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M19,3A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19V5A2,2 0 0,1 5,3H19M18.5,18.5V13.2A3.26,3.26 0 0,0 15.24,13.2C14.39,13.2 13.4,13.83 13.4,15.27V18.5H10.32V9.5H13.12V10.78C13.12,10.78 14.05,9.5 15.92,9.5C17.79,9.5 18.5,10.81 18.5,12.64V18.5M6.88,8.56A1.68,1.68 0 0,0 8.56,6.88C8.56,5.95 7.81,5.19 6.88,5.19A1.69,1.69 0 0,0 5.19,6.88C5.19,7.81 5.95,8.56 6.88,8.56M8.27,18.5V9.5H5.5V18.5H8.27Z" />
+                </svg>
+              </div>
+              <h3 className="font-heading text-xl font-semibold text-ink-800 dark:text-ink-100 mb-4">LinkedIn</h3>
+              <a href="https://linkedin.com/in/kaustubhtrivedi07" target="_blank" rel="noopener noreferrer" className="text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 font-medium transition-colors">
+                linkedin.com/in/kaustubhtrivedi07
+              </a>
+            </div>
+
+            {/* GitHub */}
+            <div className="p-8 rounded-2xl bg-gradient-to-br from-mint-50 to-butter-50 dark:from-ink-800 dark:to-ink-700 shadow-soft hover:shadow-chapter transition-all duration-300 text-center">
+              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-mint-400 to-butter-400 flex items-center justify-center mx-auto mb-6">
+                <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z" />
+                </svg>
+              </div>
+              <h3 className="font-heading text-xl font-semibold text-ink-800 dark:text-ink-100 mb-4">GitHub</h3>
+              <a href="https://github.com/KaustubhTrivedi" target="_blank" rel="noopener noreferrer" className="text-mint-600 dark:text-mint-400 hover:text-mint-700 dark:hover:text-mint-300 font-medium transition-colors">
+                github.com/KaustubhTrivedi
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Form */}
+      <section className="py-20 bg-gradient-to-br from-sky-50 to-mint-50 dark:from-ink-800 dark:to-ink-700">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <h2 className="font-heading text-3xl font-semibold text-ink-800 dark:text-ink-100 mb-4">
+              Send Me a Message
+            </h2>
+            <p className="text-ink-700 dark:text-ink-300">
+              Or use the enchanted scroll (aka contact form) below to send me a message directly.
+            </p>
+          </div>
+
+          <div className="bg-white dark:bg-ink-800 rounded-2xl shadow-soft p-8">
+            <form className="space-y-6">
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium text-ink-700 dark:text-ink-300 mb-2">Name</label>
+                  <input type="text" id="name" name="name" required className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-ink-600 bg-white dark:bg-ink-700 text-ink-800 dark:text-ink-100 focus:ring-2 focus:ring-blush-500 focus:border-transparent transition-all duration-300" />
+                </div>
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-ink-700 dark:text-ink-300 mb-2">Email</label>
+                  <input type="email" id="email" name="email" required className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-ink-600 bg-white dark:bg-ink-700 text-ink-800 dark:text-ink-100 focus:ring-2 focus:ring-blush-500 focus:border-transparent transition-all duration-300" />
+                </div>
+              </div>
+
+              <div>
+                <label htmlFor="subject" className="block text-sm font-medium text-ink-700 dark:text-ink-300 mb-2">Subject</label>
+                <select id="subject" name="subject" className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-ink-600 bg-white dark:bg-ink-700 text-ink-800 dark:text-ink-100 focus:ring-2 focus:ring-blush-500 focus:border-transparent transition-all duration-300">
+                  <option value="">Select a topic...</option>
+                  <option value="hiring">Hiring Opportunity</option>
+                  <option value="collaboration">Collaboration</option>
+                  <option value="networking">Networking</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+
+              <div>
+                <label htmlFor="message" className="block text-sm font-medium text-ink-700 dark:text-ink-300 mb-2">Message</label>
+                <textarea id="message" name="message" rows={6} required className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-ink-600 bg-white dark:bg-ink-700 text-ink-800 dark:text-ink-100 focus:ring-2 focus:ring-blush-500 focus:border-transparent transition-all duration-300 resize-none"></textarea>
+              </div>
+
+              <div className="text-center">
+                <button type="submit" className="inline-flex items-center px-8 py-4 rounded-full bg-gradient-to-r from-blush-500 to-sky-500 text-white font-medium hover:shadow-chapter transition-all duration-300 hover:scale-105">
+                  <span>Send Message</span>
+                  <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                  </svg>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      {/* Final Message */}
+      <section className="py-20 bg-gradient-to-r from-blush-100 to-lavender-100 dark:from-ink-800 dark:to-ink-700">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <div className="bg-white dark:bg-ink-800 rounded-2xl shadow-soft p-12">
+            <h2 className="font-heading text-3xl font-semibold text-ink-800 dark:text-ink-100 mb-6">
+              Until Next Time…
+            </h2>
+            <blockquote className="text-2xl font-heading text-ink-700 dark:text-ink-300 italic border-l-4 border-blush-400 dark:border-blush-500 pl-6 my-8">
+              &quot;Thank you for reading my story. Let&apos;s write the next chapter together.&quot;
+            </blockquote>
+            <div className="mt-8">
+              <a href="/" className="inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-blush-500 to-lavender-500 text-white font-medium hover:shadow-chapter transition-all duration-300">
+                <span>Back to the Beginning</span>
+                <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
         </div>
       </section>
     </>

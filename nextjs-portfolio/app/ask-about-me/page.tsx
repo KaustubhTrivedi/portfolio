@@ -43,16 +43,44 @@ export default function AskAboutMePage() {
     setInputValue('');
     setIsTyping(true);
 
-    // Simulate AI response delay
-    setTimeout(() => {
+    try {
+      const history = messages.map(({ role, content }) => ({ role, content }));
+
+      const res = await fetch('http://127.0.0.1:5000/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          message: userMessage.content,
+          history: history,
+        }),
+      });
+
+      if (!res.ok) {
+        throw new Error('Failed to fetch response');
+      }
+
+      const data = await res.json();
+
       const responseMessage: Message = {
         id: (Date.now() + 1).toString(),
         role: 'assistant',
-        content: "That's a great question! As a simulated AI representation of Kaustubh, I can tell you that he loves solving complex problems with clean, scalable code. (This is a demo response!)"
+        content: data.response
       };
       setMessages(prev => [...prev, responseMessage]);
+
+    } catch (error) {
+      console.error('Error:', error);
+      const errorMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        role: 'assistant',
+        content: "Sorry, I'm currently unable to connect to the server. Please try again later."
+      };
+      setMessages(prev => [...prev, errorMessage]);
+    } finally {
       setIsTyping(false);
-    }, 1500);
+    }
   };
 
   return (
@@ -108,8 +136,8 @@ export default function AskAboutMePage() {
                     )}
                   </div>
                   <div className={`rounded-2xl px-6 py-4 shadow-soft max-w-2xl ${msg.role === 'assistant'
-                      ? 'bg-white dark:bg-ink-800 rounded-tl-md text-ink-800 dark:text-ink-100'
-                      : 'bg-blush-500 text-white rounded-tr-md'
+                    ? 'bg-white dark:bg-ink-800 rounded-tl-md text-ink-800 dark:text-ink-100'
+                    : 'bg-blush-500 text-white rounded-tr-md'
                     }`}>
                     <div className="prose dark:prose-invert max-w-none text-sm leading-relaxed" dangerouslySetInnerHTML={{ __html: msg.content.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
                   </div>

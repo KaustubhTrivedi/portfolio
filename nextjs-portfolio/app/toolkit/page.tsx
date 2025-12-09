@@ -26,7 +26,257 @@ export default function ToolkitPage() {
             </p>
           </div>
 
-          {/* Toolkit content would go here */}
+          {/* Programming Languages */}
+          <div className="mb-20">
+            <h2 className="font-heading text-3xl font-semibold text-ink-800 dark:text-ink-100 mb-12 text-center">
+              Programming Languages
+            </h2>
+
+            <div className="grid md:grid-cols-2 gap-8">
+              {/* Java */}
+              <div className="bg-gradient-to-br from-white to-mint-50 dark:from-ink-800 dark:to-ink-700 rounded-2xl p-8 shadow-soft hover:shadow-chapter transition-all duration-300">
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-mint-200 to-mint-400 flex items-center justify-center mr-4">
+                    <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8Z" />
+                    </svg>
+                  </div>
+                  <h3 className="font-heading text-xl font-semibold text-ink-800 dark:text-ink-100">Java</h3>
+                </div>
+                <p className="text-ink-700 dark:text-ink-300 mb-4">
+                  My primary language for backend development. I love its strong typing, object-oriented design, and the mature ecosystem around it.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <span className="px-3 py-1 bg-mint-100 dark:bg-mint-900 text-mint-700 dark:text-mint-300 rounded-full text-sm">Spring Boot</span>
+                  <span className="px-3 py-1 bg-mint-100 dark:bg-mint-900 text-mint-700 dark:text-mint-300 rounded-full text-sm">JPA</span>
+                  <span className="px-3 py-1 bg-mint-100 dark:bg-mint-900 text-mint-700 dark:text-mint-300 rounded-full text-sm">Maven</span>
+                </div>
+              </div>
+
+              {/* JavaScript / TypeScript */}
+              <div className="bg-gradient-to-br from-white to-mint-50 dark:from-ink-800 dark:to-ink-700 rounded-2xl p-8 shadow-soft hover:shadow-chapter transition-all duration-300">
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-mint-200 to-mint-400 flex items-center justify-center mr-4">
+                    <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8Z" />
+                    </svg>
+                  </div>
+                  <h3 className="font-heading text-xl font-semibold text-ink-800 dark:text-ink-100">JavaScript / TypeScript</h3>
+                </div>
+                <p className="text-ink-700 dark:text-ink-300 mb-4">
+                  For frontend development and modern web applications. TypeScript&apos;s type safety has made me a better developer.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <span className="px-3 py-1 bg-mint-100 dark:bg-mint-900 text-mint-700 dark:text-mint-300 rounded-full text-sm">React</span>
+                  <span className="px-3 py-1 bg-mint-100 dark:bg-mint-900 text-mint-700 dark:text-mint-300 rounded-full text-sm">Node.js</span>
+                  <span className="px-3 py-1 bg-mint-100 dark:bg-mint-900 text-mint-700 dark:text-mint-300 rounded-full text-sm">ES6+</span>
+                </div>
+              </div>
+
+              {/* SQL */}
+              <div className="bg-gradient-to-br from-white to-mint-50 dark:from-ink-800 dark:to-ink-700 rounded-2xl p-8 shadow-soft hover:shadow-chapter transition-all duration-300">
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-mint-200 to-mint-400 flex items-center justify-center mr-4">
+                    <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8Z" />
+                    </svg>
+                  </div>
+                  <h3 className="font-heading text-xl font-semibold text-ink-800 dark:text-ink-100">SQL</h3>
+                </div>
+                <p className="text-ink-700 dark:text-ink-300 mb-4">
+                  Database design and query optimization. Understanding data relationships and efficient storage is crucial for scalable applications.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <span className="px-3 py-1 bg-mint-100 dark:bg-mint-900 text-mint-700 dark:text-mint-300 rounded-full text-sm">MySQL</span>
+                  <span className="px-3 py-1 bg-mint-100 dark:bg-mint-900 text-mint-700 dark:text-mint-300 rounded-full text-sm">PostgreSQL</span>
+                  <span className="px-3 py-1 bg-mint-100 dark:bg-mint-900 text-mint-700 dark:text-mint-300 rounded-full text-sm">MongoDB</span>
+                </div>
+              </div>
+
+              {/* Python */}
+              <div className="bg-gradient-to-br from-white to-mint-50 dark:from-ink-800 dark:to-ink-700 rounded-2xl p-8 shadow-soft hover:shadow-chapter transition-all duration-300">
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-mint-200 to-mint-400 flex items-center justify-center mr-4">
+                    <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M9 2a1 1 0 0 0-1 1v2H7a3 3 0 0 0-3 3v3a3 3 0 0 0 3 3h6v2H9v-1H5v2a3 3 0 0 0 3 3h2v2a1 1 0 0 0 1 1h4a3 3 0 0 0 3-3v-3a3 3 0 0 0-3-3H11V9h3v1h4V8a3 3 0 0 0-3-3h-2V3a1 1 0 0 0-1-1H9Z" />
+                    </svg>
+                  </div>
+                  <h3 className="font-heading text-xl font-semibold text-ink-800 dark:text-ink-100">Python</h3>
+                </div>
+                <p className="text-ink-700 dark:text-ink-300 mb-4">
+                  My go-to for automation scripts, data wrangling, and AI prototyping—clean syntax plus rich libraries keep experiments fast.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <span className="px-3 py-1 bg-mint-100 dark:bg-mint-900 text-mint-700 dark:text-mint-300 rounded-full text-sm">FastAPI</span>
+                  <span className="px-3 py-1 bg-mint-100 dark:bg-mint-900 text-mint-700 dark:text-mint-300 rounded-full text-sm">Data Pipelines</span>
+                  <span className="px-3 py-1 bg-mint-100 dark:bg-mint-900 text-mint-700 dark:text-mint-300 rounded-full text-sm">Automation</span>
+                </div>
+              </div>
+
+              {/* Go */}
+              <div className="bg-gradient-to-br from-white to-mint-50 dark:from-ink-800 dark:to-ink-700 rounded-2xl p-8 shadow-soft hover:shadow-chapter transition-all duration-300">
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-mint-200 to-mint-400 flex items-center justify-center mr-4">
+                    <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M2 12l1.5-1.5L7 13l3.5-4L14 13l3-3 1 1-4 5-3.5-4L8 15l-4-3zM16 7a3 3 0 1 1 5.999.001A3 3 0 0 1 16 7z" />
+                    </svg>
+                  </div>
+                  <h3 className="font-heading text-xl font-semibold text-ink-800 dark:text-ink-100">Go</h3>
+                </div>
+                <p className="text-ink-700 dark:text-ink-300 mb-4">
+                  Ideal for highly concurrent services and background workers—Magpie&apos;s geospatial ingest pipeline is powered by Go routines.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <span className="px-3 py-1 bg-mint-100 dark:bg-mint-900 text-mint-700 dark:text-mint-300 rounded-full text-sm">Microservices</span>
+                  <span className="px-3 py-1 bg-mint-100 dark:bg-mint-900 text-mint-700 dark:text-mint-300 rounded-full text-sm">gRPC/REST</span>
+                  <span className="px-3 py-1 bg-mint-100 dark:bg-mint-900 text-mint-700 dark:text-mint-300 rounded-full text-sm">Concurrency</span>
+                </div>
+              </div>
+
+              {/* C++ */}
+              <div className="bg-gradient-to-br from-white to-mint-50 dark:from-ink-800 dark:to-ink-700 rounded-2xl p-8 shadow-soft hover:shadow-chapter transition-all duration-300">
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-mint-200 to-mint-400 flex items-center justify-center mr-4">
+                    <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8Z" />
+                    </svg>
+                  </div>
+                  <h3 className="font-heading text-xl font-semibold text-ink-800 dark:text-ink-100">C++</h3>
+                </div>
+                <p className="text-ink-700 dark:text-ink-300 mb-4">
+                  For system programming and performance-critical applications. Understanding memory management and low-level concepts.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <span className="px-3 py-1 bg-mint-100 dark:bg-mint-900 text-mint-700 dark:text-mint-300 rounded-full text-sm">STL</span>
+                  <span className="px-3 py-1 bg-mint-100 dark:bg-mint-900 text-mint-700 dark:text-mint-300 rounded-full text-sm">Algorithms</span>
+                  <span className="px-3 py-1 bg-mint-100 dark:bg-mint-900 text-mint-700 dark:text-mint-300 rounded-full text-sm">Data Structures</span>
+                </div>
+              </div>
+
+              {/* HTML / CSS */}
+              <div className="bg-gradient-to-br from-white to-mint-50 dark:from-ink-800 dark:to-ink-700 rounded-2xl p-8 shadow-soft hover:shadow-chapter transition-all duration-300">
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-mint-200 to-mint-400 flex items-center justify-center mr-4">
+                    <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8Z" />
+                    </svg>
+                  </div>
+                  <h3 className="font-heading text-xl font-semibold text-ink-800 dark:text-ink-100">HTML / CSS</h3>
+                </div>
+                <p className="text-ink-700 dark:text-ink-300 mb-4">
+                  The foundation of web development. Semantic HTML and modern CSS techniques for responsive, accessible interfaces.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <span className="px-3 py-1 bg-mint-100 dark:bg-mint-900 text-mint-700 dark:text-mint-300 rounded-full text-sm">TailwindCSS</span>
+                  <span className="px-3 py-1 bg-mint-100 dark:bg-mint-900 text-mint-700 dark:text-mint-300 rounded-full text-sm">Bootstrap</span>
+                  <span className="px-3 py-1 bg-mint-100 dark:bg-mint-900 text-mint-700 dark:text-mint-300 rounded-full text-sm">Sass</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Frameworks & Libraries */}
+          <div className="mb-20">
+            <h2 className="font-heading text-3xl font-semibold text-ink-800 dark:text-ink-100 mb-12 text-center">
+              Frameworks & Libraries
+            </h2>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="bg-gradient-to-br from-white to-mint-50 dark:from-ink-800 dark:to-ink-700 rounded-xl p-6 shadow-soft">
+                <h3 className="font-heading text-lg font-semibold text-ink-800 dark:text-ink-100 mb-2">React</h3>
+                <p className="text-ink-700 dark:text-ink-300 text-sm">Component-based UI development with hooks and modern patterns.</p>
+              </div>
+
+              <div className="bg-gradient-to-br from-white to-mint-50 dark:from-ink-800 dark:to-ink-700 rounded-xl p-6 shadow-soft">
+                <h3 className="font-heading text-lg font-semibold text-ink-800 dark:text-ink-100 mb-2">Next.js</h3>
+                <p className="text-ink-700 dark:text-ink-300 text-sm">Full-stack React framework with SSR and optimized performance.</p>
+              </div>
+
+              <div className="bg-gradient-to-br from-white to-mint-50 dark:from-ink-800 dark:to-ink-700 rounded-xl p-6 shadow-soft">
+                <h3 className="font-heading text-lg font-semibold text-ink-800 dark:text-ink-100 mb-2">Node.js Runtime</h3>
+                <p className="text-ink-700 dark:text-ink-300 text-sm">Event-driven APIs, background jobs, and developer tooling written in Node.js + TypeScript.</p>
+              </div>
+
+              <div className="bg-gradient-to-br from-white to-mint-50 dark:from-ink-800 dark:to-ink-700 rounded-xl p-6 shadow-soft">
+                <h3 className="font-heading text-lg font-semibold text-ink-800 dark:text-ink-100 mb-2">Vue.js</h3>
+                <p className="text-ink-700 dark:text-ink-300 text-sm">Progressive JavaScript framework for building user interfaces.</p>
+              </div>
+
+              <div className="bg-gradient-to-br from-white to-mint-50 dark:from-ink-800 dark:to-ink-700 rounded-xl p-6 shadow-soft">
+                <h3 className="font-heading text-lg font-semibold text-ink-800 dark:text-ink-100 mb-2">Express.js</h3>
+                <p className="text-ink-700 dark:text-ink-300 text-sm">Minimal and flexible Node.js web application framework.</p>
+              </div>
+
+              <div className="bg-gradient-to-br from-white to-mint-50 dark:from-ink-800 dark:to-ink-700 rounded-xl p-6 shadow-soft">
+                <h3 className="font-heading text-lg font-semibold text-ink-800 dark:text-ink-100 mb-2">TailwindCSS / Bootstrap</h3>
+                <p className="text-ink-700 dark:text-ink-300 text-sm">Utility-first CSS frameworks for rapid UI development.</p>
+              </div>
+
+              <div className="bg-gradient-to-br from-white to-mint-50 dark:from-ink-800 dark:to-ink-700 rounded-xl p-6 shadow-soft">
+                <h3 className="font-heading text-lg font-semibold text-ink-800 dark:text-ink-100 mb-2">Strapi CMS</h3>
+                <p className="text-ink-700 dark:text-ink-300 text-sm">Headless CMS used to empower marketing teams with schema-driven content and editorial workflows.</p>
+              </div>
+
+              <div className="bg-gradient-to-br from-white to-mint-50 dark:from-ink-800 dark:to-ink-700 rounded-xl p-6 shadow-soft">
+                <h3 className="font-heading text-lg font-semibold text-ink-800 dark:text-ink-100 mb-2">Shadcn/UI + Radix</h3>
+                <p className="text-ink-700 dark:text-ink-300 text-sm">Modern component library with accessible design patterns.</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Databases & Cloud */}
+          <div className="mb-20">
+            <h2 className="font-heading text-3xl font-semibold text-ink-800 dark:text-ink-100 mb-12 text-center">
+              Databases & Cloud Infrastructure
+            </h2>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="bg-gradient-to-br from-white to-mint-50 dark:from-ink-800 dark:to-ink-700 rounded-xl p-6 shadow-soft">
+                <h3 className="font-heading text-lg font-semibold text-ink-800 dark:text-ink-100 mb-2">MySQL</h3>
+                <p className="text-ink-700 dark:text-ink-300 text-sm">Reliable relational database for structured data storage.</p>
+              </div>
+
+              <div className="bg-gradient-to-br from-white to-mint-50 dark:from-ink-800 dark:to-ink-700 rounded-xl p-6 shadow-soft">
+                <h3 className="font-heading text-lg font-semibold text-ink-800 dark:text-ink-100 mb-2">PostgreSQL</h3>
+                <p className="text-ink-700 dark:text-ink-300 text-sm">Advanced open-source database with rich feature set.</p>
+              </div>
+
+              <div className="bg-gradient-to-br from-white to-mint-50 dark:from-ink-800 dark:to-ink-700 rounded-xl p-6 shadow-soft">
+                <h3 className="font-heading text-lg font-semibold text-ink-800 dark:text-ink-100 mb-2">MongoDB</h3>
+                <p className="text-ink-700 dark:text-ink-300 text-sm">NoSQL database for flexible document storage.</p>
+              </div>
+
+              <div className="bg-gradient-to-br from-white to-mint-50 dark:from-ink-800 dark:to-ink-700 rounded-xl p-6 shadow-soft">
+                <h3 className="font-heading text-lg font-semibold text-ink-800 dark:text-ink-100 mb-2">Oracle</h3>
+                <p className="text-ink-700 dark:text-ink-300 text-sm">Enterprise-grade relational database experience for clients with legacy stacks.</p>
+              </div>
+
+              <div className="bg-gradient-to-br from-white to-mint-50 dark:from-ink-800 dark:to-ink-700 rounded-xl p-6 shadow-soft">
+                <h3 className="font-heading text-lg font-semibold text-ink-800 dark:text-ink-100 mb-2">AWS</h3>
+                <p className="text-ink-700 dark:text-ink-300 text-sm">Cloud computing platform for scalable infrastructure.</p>
+              </div>
+
+              <div className="bg-gradient-to-br from-white to-mint-50 dark:from-ink-800 dark:to-ink-700 rounded-xl p-6 shadow-soft">
+                <h3 className="font-heading text-lg font-semibold text-ink-800 dark:text-ink-100 mb-2">Kubernetes</h3>
+                <p className="text-ink-700 dark:text-ink-300 text-sm">Container orchestration for rolling updates, autoscaling, and self-healing services.</p>
+              </div>
+
+              <div className="bg-gradient-to-br from-white to-mint-50 dark:from-ink-800 dark:to-ink-700 rounded-xl p-6 shadow-soft">
+                <h3 className="font-heading text-lg font-semibold text-ink-800 dark:text-ink-100 mb-2">Docker</h3>
+                <p className="text-ink-700 dark:text-ink-300 text-sm">Containerization platform for consistent deployments.</p>
+              </div>
+
+              <div className="bg-gradient-to-br from-white to-mint-50 dark:from-ink-800 dark:to-ink-700 rounded-xl p-6 shadow-soft">
+                <h3 className="font-heading text-lg font-semibold text-ink-800 dark:text-ink-100 mb-2">GitHub Actions</h3>
+                <p className="text-ink-700 dark:text-ink-300 text-sm">CI/CD automation for streamlined development workflows.</p>
+              </div>
+
+              <div className="bg-gradient-to-br from-white to-mint-50 dark:from-ink-800 dark:to-ink-700 rounded-xl p-6 shadow-soft">
+                <h3 className="font-heading text-lg font-semibold text-ink-800 dark:text-ink-100 mb-2">Jenkins</h3>
+                <p className="text-ink-700 dark:text-ink-300 text-sm">Battle-tested automation server powering blue/green deploys and quality gates.</p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

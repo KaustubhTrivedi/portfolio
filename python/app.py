@@ -10,35 +10,25 @@ from flask_cors import CORS
 import chromadb
 from chromadb.config import Settings
 from chromadb.errors import NotFoundError, ChromaError
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+import hashlib
 from typing import List
-
 
 load_dotenv(override=True)
 
 # Initialize Flask app
 app = Flask(__name__)
 
-# Configure CORS for frontend integration
+# Configure CORS
 CORS(app, resources={
     r"/api/*": {
-        "origins": [
-            "http://localhost:4321",  # Astro dev server
-            "http://localhost:3004",  # Production frontend
-            "http://127.0.0.1:4321",
-            "http://127.0.0.1:3004",
-            "http://localhost:3000",  # Common dev port
-            "http://127.0.0.1:3000",
-            "https://gradio.kaustubhsstuff.com",
-            "https://portfolio.kaustubhsstuff.com",
-            "*"  # Allow all origins in development
-        ],
+        "origins": ["*"],  # Allow all origins for dev
         "methods": ["GET", "POST", "OPTIONS"],
         "allow_headers": ["Content-Type", "Authorization"],
         "supports_credentials": True
     }
 })
 
-# Add CORS headers to all responses
 @app.after_request
 def after_request(response):
     response.headers.add('Access-Control-Allow-Origin', '*')
@@ -55,9 +45,9 @@ else:
 
 def push(message):
     print(f"Discord: {message}")
-    payload = {"content": message}
-    requests.post(discord_webhook_url, data=payload)
-
+    if discord_webhook_url:
+        payload = {"content": message}
+        requests.post(discord_webhook_url, data=payload)
 
 def record_user_details(email, name="Name not provided", notes="not provided"):
     push(f"Recording {name} with email {email} and notes {notes}")
@@ -73,19 +63,9 @@ record_user_details_json = {
     "parameters": {
         "type": "object",
         "properties": {
-            "email": {
-                "type": "string",
-                "description": "The email address of this user"
-            },
-            "name": {
-                "type": "string",
-                "description": "The user's name, if they provided it"
-            }
-            ,
-            "notes": {
-                "type": "string",
-                "description": "Any additional information about the conversation that's worth recording to give context"
-            }
+            "email": {"type": "string", "description": "The email address of this user"},
+            "name": {"type": "string", "description": "The user's name, if they provided it"},
+            "notes": {"type": "string", "description": "Any additional information"}
         },
         "required": ["email"],
         "additionalProperties": False
@@ -94,14 +74,11 @@ record_user_details_json = {
 
 record_unknown_question_json = {
     "name": "record_unknown_question",
-    "description": "Always use this tool to record any question that couldn't be answered as you didn't know the answer",
+    "description": "Always use this tool to record any question that couldn't be answered",
     "parameters": {
         "type": "object",
         "properties": {
-            "question": {
-                "type": "string",
-                "description": "The question that couldn't be answered"
-            },
+            "question": {"type": "string", "description": "The question that couldn't be answered"},
         },
         "required": ["question"],
         "additionalProperties": False
@@ -109,7 +86,7 @@ record_unknown_question_json = {
 }
 
 tools = [{"type": "function", "function": record_user_details_json},
-        {"type": "function", "function": record_unknown_question_json}]
+         {"type": "function", "function": record_unknown_question_json}]
 
 
 class Me:
@@ -120,158 +97,173 @@ class Me:
             api_key=os.getenv("OPENROUTER_API_KEY"),
         )
         self.name = "Kaustubh Trivedi"
+        self.knowledge_path = "me/knowledge"
         
         # Connect to ChromaDB
         chromadb_host = os.getenv("CHROMADB_HOST", "https://chromadb.kaustubhsstuff.com")
-        # Extract hostname from URL
         hostname = chromadb_host.replace("https://", "").replace("http://", "").split("/")[0]
-        # Default ports: 8000 for HTTP, 443 for HTTPS
         port = 443 if "https" in chromadb_host else 8000
         
-        self.chroma_client = chromadb.HttpClient(
-            host=hostname,
-            port=port,
-            ssl=True
-        )
-        
-        # Get or create collection
+        self.chroma_client = chromadb.HttpClient(host=hostname, port=port, ssl=True)
         collection_name = "kaustubh_linkedin_profile"
-        try:
-            # Use get_or_create_collection - handles existence check gracefully
-            # This avoids the "try get, catch all, create" anti-pattern
-            self.collection = self.chroma_client.get_or_create_collection(
-                name=collection_name,
-                metadata={"description": "Kaustubh LinkedIn profile embeddings"}
-            )
-            # Check if collection is empty
-            count = self.collection.count()
-            if count == 0:
-                print(f"Collection exists but is empty. Processing PDF...")
-                self._process_and_store_pdf()
-            else:
-                print(f"Loaded existing ChromaDB collection: {collection_name} with {count} chunks")
-        except (KeyError, ChromaError) as e:
-            # Handle version mismatch or other Chroma-specific errors
-            # KeyError('_type') indicates version mismatch - collection exists but can't parse response
-            error_str = str(e)
-            error_type = type(e).__name__
-            
-            if "_type" in error_str or error_type == "KeyError":
-                # Version mismatch: collection exists but client can't parse it
-                print(f"ERROR: Version mismatch between Chroma client and server detected!")
-                print(f"  Client version: chromadb==0.5.20")
-                print(f"  Error: {e}")
-                print(f"  The collection exists on the server but the client cannot parse the response.")
-                print(f"  Please ensure Chroma server version matches client version (0.5.20).")
-                print(f"\n  Attempting to work around by checking if collection exists...")
-                
-                # Check if collection exists without parsing full response
-                try:
-                    collections = self.chroma_client.list_collections()
-                    collection_exists = any(c.name == collection_name for c in collections)
-                    
-                    if collection_exists:
-                        print(f"  Collection '{collection_name}' exists on server.")
-                        print(f"  WARNING: Cannot access collection due to version mismatch.")
-                        print(f"  Please update Chroma server to version 0.5.20 or update client to match server version.")
-                        raise RuntimeError(
-                            f"Version mismatch: Collection exists but cannot be accessed. "
-                            f"Please align Chroma server and client versions."
-                        ) from e
-                    else:
-                        # Collection doesn't exist - this shouldn't happen if we got KeyError
-                        print(f"  Collection does not exist. This is unexpected given the error type.")
-                        raise
-                except Exception as check_e:
-                    print(f"  Failed to check collection existence: {check_e}")
-                    raise RuntimeError(
-                        f"Version mismatch error. Please align Chroma server and client versions."
-                    ) from e
-            elif "already exists" in error_str or "409" in error_str:
-                # Collection exists - try to get it directly
-                print(f"Collection already exists. Accessing directly...")
-                try:
-                    self.collection = self.chroma_client.get_collection(name=collection_name)
-                    count = self.collection.count()
-                    if count == 0:
-                        print(f"Collection exists but is empty. Processing PDF...")
-                        self._process_and_store_pdf()
-                    else:
-                        print(f"Loaded existing ChromaDB collection: {collection_name} with {count} chunks")
-                except Exception as get_e:
-                    print(f"Failed to access existing collection: {get_e}")
-                    raise
-            else:
-                # Other ChromaError
-                print(f"Chroma server error: {e}")
-                raise
-        except Exception as e:
-            # Catch-all for unexpected errors
-            print(f"Unexpected error while initializing collection: {e}")
-            print(f"Error type: {type(e).__name__}")
-            raise
+
+        # --- SMART DB INITIALIZATION ---
         
-        # Read summary (still static)
+        # 1. Calculate Folder Hash
+        current_hash = self._get_folder_hash(self.knowledge_path)
+        print(f"Current Knowledge Hash: {current_hash}")
+
+        try:
+            # 2. Try to get the existing collection
+            self.collection = self.chroma_client.get_collection(name=collection_name)
+            
+            # 3. Safely Check Metadata (Handle case where metadata is None)
+            existing_metadata = self.collection.metadata
+            if existing_metadata is None:
+                existing_metadata = {}
+                
+            stored_hash = existing_metadata.get("pdf_hash", "")
+            
+            # 4. Compare Hashes
+            if stored_hash != current_hash:
+                print(f"⚠ Hash Mismatch (Stored: {stored_hash} vs Current: {current_hash})")
+                print("Rebuilding database with new content...")
+                
+                # Delete the old one
+                self.chroma_client.delete_collection(collection_name)
+                
+                # Create the new one
+                self.collection = self.chroma_client.create_collection(
+                    name=collection_name,
+                    metadata={"description": "Kaustubh Profile", "pdf_hash": current_hash}
+                )
+                self._process_and_store_knowledge(current_hash)
+            else:
+                print(f"✅ Collection loaded successfully. Knowledge hash matches.")
+
+        except Exception as e:
+            # If get_collection failed (likely because it didn't exist), we create it here
+            print(f"Collection not found or error accessing it ({type(e).__name__}). Creating new...")
+            try:
+                # Ensure it's really gone before creating
+                try: self.chroma_client.delete_collection(collection_name)
+                except: pass
+                
+                self.collection = self.chroma_client.create_collection(
+                    name=collection_name,
+                    metadata={"description": "Kaustubh Profile", "pdf_hash": current_hash}
+                )
+                self._process_and_store_knowledge(current_hash)
+            except Exception as create_error:
+                print(f"Final Error creating collection: {create_error}")
+
+        # Read summary
         with open("me/summary.txt", "r", encoding="utf-8") as f:
             self.summary = f.read()
+    def _get_folder_hash(self, folder_path: str) -> str:
+        """Calculate a single hash for all files in a folder"""
+        if not os.path.exists(folder_path):
+            return "no_folder"
+        
+        hasher = hashlib.md5()
+        # Sort files to ensure the hash is always the same for the same content
+        for filename in sorted(os.listdir(folder_path)):
+            filepath = os.path.join(folder_path, filename)
+            if os.path.isfile(filepath):
+                # Hash the filename (so renaming a file triggers a change)
+                hasher.update(filename.encode())
+                # Hash the content
+                with open(filepath, "rb") as f:
+                    hasher.update(f.read())
+                    
+        return hasher.hexdigest()
     
     def _chunk_text(self, text: str, chunk_size: int = 1000, chunk_overlap: int = 200) -> List[str]:
-        """Split text into overlapping chunks"""
-        chunks = []
-        start = 0
-        while start < len(text):
-            end = start + chunk_size
-            chunk = text[start:end]
-            chunks.append(chunk)
-            start = end - chunk_overlap
-        return chunks
-    
-    def _process_and_store_pdf(self):
-        """Extract PDF text, chunk it, create embeddings, and store in ChromaDB"""
-        print("Processing PDF and creating embeddings...")
-        reader = PdfReader("me/kaustubh_main_august.pdf")
-        full_text = ""
-        for page in reader.pages:
-            text = page.extract_text()
-            if text:
-                full_text += text + "\n"
-        
-        # Chunk the text
-        chunks = self._chunk_text(full_text)
-        print(f"Created {len(chunks)} chunks from PDF")
-        
-        # Create embeddings and store in ChromaDB
-        documents = []
-        ids = []
-        for i, chunk in enumerate(chunks):
-            documents.append(chunk)
-            ids.append(f"chunk_{i}")
-        
-        # Use OpenRouter embeddings (batch process for efficiency)
-        batch_size = 100
-        all_embeddings = []
-        for i in range(0, len(chunks), batch_size):
-            batch = chunks[i:i + batch_size]
-            response = self.openai.embeddings.create(
-                extra_headers={
-                    "HTTP-Referer": "https://portfolio.kaustubhsstuff.com",
-                    "X-Title": "Kaustubh Trivedi Portfolio",
-                },
-                model="thenlper/gte-base",
-                input=batch,
-                encoding_format="float"
-            )
-            batch_embeddings = [item.embedding for item in response.data]
-            all_embeddings.extend(batch_embeddings)
-        
-        # Store in ChromaDB
-        self.collection.add(
-            ids=ids,
-            embeddings=all_embeddings,
-            documents=documents
+        """Recursive splitting to respect sentence boundaries"""
+        text_splitter = RecursiveCharacterTextSplitter(
+            chunk_size=chunk_size,
+            chunk_overlap=chunk_overlap,
+            separators=["\n\n", "\n", ". ", " ", ""] 
         )
-        print(f"Stored {len(chunks)} chunks in ChromaDB")
+        return text_splitter.split_text(text)
+    
+    def _process_and_store_knowledge(self, current_hash):
+        """Ingest ALL files from the knowledge folder"""
+        folder_path = "me/knowledge"
+        all_chunks = []
+        all_ids = []
+        all_metadatas = [] # We'll store which file the chunk came from!
 
+        print(f"Processing knowledge from {folder_path}...")
+
+        if not os.path.exists(folder_path):
+            print(f"Folder {folder_path} does not exist.")
+            return
+
+        # Loop through every file in the folder
+        for filename in os.listdir(folder_path):
+            filepath = os.path.join(folder_path, filename)
+            file_text = ""
+            
+            try:
+                # Handle PDF
+                if filename.endswith(".pdf"):
+                    reader = PdfReader(filepath)
+                    for page in reader.pages:
+                        text = page.extract_text()
+                        if text: file_text += text + "\n"
+                
+                # Handle Text/Markdown
+                elif filename.endswith(".txt") or filename.endswith(".md"):
+                    with open(filepath, "r", encoding="utf-8") as f:
+                        file_text = f.read()
+                
+                else:
+                    continue # Skip unsupported files
+
+                # Chunk this specific file
+                if file_text:
+                    file_chunks = self._chunk_text(file_text)
+                    print(f"  - {filename}: {len(file_chunks)} chunks")
+                    
+                    for i, chunk in enumerate(file_chunks):
+                        all_chunks.append(chunk)
+                        # Create a unique ID: "filename_chunkIndex"
+                        safe_name = filename.replace(".", "_").replace(" ", "_")
+                        all_ids.append(f"{safe_name}_{i}")
+                        # Store metadata so you know where this info came from later
+                        all_metadatas.append({"source": filename})
+
+            except Exception as e:
+                print(f"Error processing file {filename}: {e}")
+
+        # Batch Embed & Store (Same logic as before, just with the accumulated lists)
+        if all_chunks:
+            batch_size = 100
+            all_embeddings = []
+            
+            print(f"Generating embeddings for {len(all_chunks)} total chunks...")
+            for i in range(0, len(all_chunks), batch_size):
+                batch = all_chunks[i:i + batch_size]
+                response = self.openai.embeddings.create(
+                    extra_headers={
+                        "HTTP-Referer": "https://portfolio.kaustubhsstuff.com",
+                        "X-Title": "Kaustubh Trivedi Portfolio",
+                    },
+                    model="thenlper/gte-base",
+                    input=batch,
+                    encoding_format="float"
+                )
+                batch_embeddings = [item.embedding for item in response.data]
+                all_embeddings.extend(batch_embeddings)
+            
+            self.collection.add(
+                ids=all_ids,
+                embeddings=all_embeddings,
+                documents=all_chunks,
+                metadatas=all_metadatas 
+            )
+            print("Knowledge base updated successfully!")
 
     def handle_tool_call(self, tool_calls):
         results = []
@@ -285,43 +277,44 @@ class Me:
         return results
 
     def _get_relevant_context(self, query: str, n_results: int = 5) -> str:
-        """Query ChromaDB for relevant context based on user query"""
-        # Create embedding for the query
-        response = self.openai.embeddings.create(
-            extra_headers={
-                "HTTP-Referer": "https://portfolio.kaustubhsstuff.com",
-                "X-Title": "Kaustubh Trivedi Portfolio",
-            },
-            model="thenlper/gte-base",
-            input=query,
-            encoding_format="float"
-        )
-        query_embedding = response.data[0].embedding
-        
-        # Query ChromaDB
-        results = self.collection.query(
-            query_embeddings=[query_embedding],
-            n_results=n_results
-        )
-        
-        # Combine relevant chunks
-        if results['documents'] and len(results['documents'][0]) > 0:
-            relevant_chunks = "\n\n".join(results['documents'][0])
-            return relevant_chunks
+        """Query ChromaDB for relevant context"""
+        try:
+            response = self.openai.embeddings.create(
+                extra_headers={
+                    "HTTP-Referer": "https://portfolio.kaustubhsstuff.com",
+                    "X-Title": "Kaustubh Trivedi Portfolio",
+                },
+                model="thenlper/gte-base",
+                input=query,
+                encoding_format="float"
+            )
+            query_embedding = response.data[0].embedding
+            
+            results = self.collection.query(
+                query_embeddings=[query_embedding],
+                n_results=n_results
+            )
+            
+            if results['documents'] and len(results['documents'][0]) > 0:
+                return "\n\n".join(results['documents'][0])
+        except Exception as e:
+            print(f"Error during context retrieval: {e}")
+            
         return ""
     
     def system_prompt(self, user_query: str = ""):
+        system_prompt = f"You are acting as {self.name}. You are answering questions on {self.name}'s website... (rest of prompt)"
+        # Shortened for brevity in code, but keeps original logic
         system_prompt = f"You are acting as {self.name}. You are answering questions on {self.name}'s website, \
 particularly questions related to {self.name}'s career, background, skills and experience. \
 Your responsibility is to represent {self.name} for interactions on the website as faithfully as possible. \
 You are given a summary of {self.name}'s background and relevant information from LinkedIn profile which you can use to answer questions. \
 Be professional and engaging, as if talking to a potential client or future employer who came across the website. \
-If you don't know the answer to any question, use your record_unknown_question tool to record the question that you couldn't answer, even if it's about something trivial or unrelated to career. \
+If you don't know the answer to any question, use your record_unknown_question tool to record the question that you couldn't answer. \
 If the user is engaging in discussion, try to steer them towards getting in touch via email; ask for their email and record it using your record_user_details tool. "
 
         system_prompt += f"\n\n## Summary:\n{self.summary}\n\n"
         
-        # Get relevant context from ChromaDB if query is provided
         if user_query:
             relevant_context = self._get_relevant_context(user_query)
             if relevant_context:
@@ -331,7 +324,6 @@ If the user is engaging in discussion, try to steer them towards getting in touc
         return system_prompt
 
     def chat(self, message, history):
-        # Get relevant context based on user message
         system_content = self.system_prompt(user_query=message)
         messages = [{"role": "system", "content": system_content}] + history + [{"role": "user", "content": message}]
         done = False
@@ -348,28 +340,24 @@ If the user is engaging in discussion, try to steer them towards getting in touc
         return response.choices[0].message.content
 
     def chat_api(self, message, history=None):
-        """API version of chat function that accepts history as a parameter"""
         if history is None:
             history = []
         return self.chat(message, history)
 
-# Initialize the Me instance
+# Initialize
 me_instance = Me()
 
-# Flask API endpoint
+# Flask Routes
 @app.route('/api/chat', methods=['POST'])
 def chat_endpoint():
     try:
         data = request.get_json()
         message = data.get('message')
         history = data.get('history', [])
-        
         if not message:
             return jsonify({'error': 'Message is required'}), 400
-        
         response = me_instance.chat_api(message, history)
         return jsonify({'response': response})
-    
     except Exception as e:
         print(f"Error in chat endpoint: {e}")
         return jsonify({'error': 'Internal server error'}), 500
@@ -378,29 +366,10 @@ def chat_endpoint():
 def health_check():
     return jsonify({'status': 'healthy'})
 
-@app.route('/api/chat', methods=['OPTIONS'])
-def chat_options():
-    """Handle preflight requests for CORS"""
-    response = jsonify({'status': 'ok'})
-    response.headers.add('Access-Control-Allow-Origin', '*')
-    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
-    response.headers.add('Access-Control-Allow-Methods', 'GET,POST,OPTIONS')
-    return response
-
 @app.route('/api/clear_history', methods=['POST'])
 def clear_history():
-    try:
-        # This endpoint can be used to clear server-side chat history if needed
-        # For now, we'll just return success since the frontend handles clearing
-        return jsonify({'status': 'success', 'message': 'Chat history cleared'})
-    except Exception as e:
-        print(f"Error in clear history endpoint: {e}")
-        return jsonify({'error': 'Internal server error'}), 500
+    return jsonify({'status': 'success', 'message': 'Chat history cleared'})
 
 if __name__ == "__main__":
-    # Run Flask app on port 5000
     debug_mode = os.getenv('FLASK_DEBUG', 'False').lower() == 'true'
     app.run(host='0.0.0.0', port=5000, debug=debug_mode)
-    
-    # Uncomment the line below if you want to run Gradio instead
-    # gr.ChatInterface(me_instance.chat, type="messages").launch()

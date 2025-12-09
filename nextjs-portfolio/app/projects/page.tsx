@@ -16,6 +16,7 @@ export default function ProjectsPage() {
 
       <section className="py-20 bg-white dark:bg-ink-900">
         <div className="max-w-6xl mx-auto px-6">
+          {/* Introduction */}
           <div className="text-center mb-16">
             <h2 className="font-heading text-4xl font-semibold text-ink-800 dark:text-ink-100 mb-8">
               Professional & Academic Projects
@@ -24,7 +25,213 @@ export default function ProjectsPage() {
               Each build reflects real stakeholders, deadlines, and the lessons captured on my résumé—from multi-tenant platforms in production to research-driven capstones that pushed my technical range.
             </p>
           </div>
-          {/* Projects content would go here */}
+
+          {/* Featured Projects */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+            {/* Real Estate Platform */}
+            <div className="bg-gradient-to-br from-white to-lavender-50 dark:from-ink-800 dark:to-ink-700 rounded-2xl p-8 shadow-soft hover:shadow-chapter transition-all duration-300">
+              <div className="flex items-start gap-4 mb-6">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-lavender-200 to-lavender-400 flex items-center justify-center">
+                  <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2L2 7l10 5 10-5-10-5m0 22L2 19V9l10 5 10-5v10l-10 5z" />
+                  </svg>
+                </div>
+                <div>
+                  <p className="text-xs uppercase tracking-widest text-lavender-500">Openspace Services · Nov 2022 – Jun 2023</p>
+                  <h3 className="font-heading text-2xl font-semibold text-ink-800 dark:text-ink-100">Real Estate Management Platform</h3>
+                </div>
+              </div>
+              <p className="text-ink-700 dark:text-ink-300 mb-4">
+                Built a multi-tenant, content-driven platform in Next.js and Strapi CMS so real-estate marketers could publish premium listings, track field visits, and automate contract reminders in minutes instead of hours.
+              </p>
+              <ul className="space-y-2 text-sm text-ink-700 dark:text-ink-300 mb-6">
+                <li>• Incremental static regeneration, edge caching, and responsive media pipelines improved page load times by <strong>35%</strong>.</li>
+                <li>• Custom Strapi workflows reduced manual listing updates from half a day to under ten minutes.</li>
+              </ul>
+              <div className="flex flex-wrap gap-2 mb-4">
+                <span className="px-3 py-1 bg-lavender-100 dark:bg-lavender-900 text-lavender-700 dark:text-lavender-300 rounded-full text-sm">Next.js</span>
+                <span className="px-3 py-1 bg-lavender-100 dark:bg-lavender-900 text-lavender-700 dark:text-lavender-300 rounded-full text-sm">TypeScript</span>
+                <span className="px-3 py-1 bg-lavender-100 dark:bg-lavender-900 text-lavender-700 dark:text-lavender-300 rounded-full text-sm">Strapi CMS</span>
+                <span className="px-3 py-1 bg-lavender-100 dark:bg-lavender-900 text-lavender-700 dark:text-lavender-300 rounded-full text-sm">TailwindCSS</span>
+                <span className="px-3 py-1 bg-lavender-100 dark:bg-lavender-900 text-lavender-700 dark:text-lavender-300 rounded-full text-sm">PostgreSQL</span>
+              </div>
+              <div className="text-sm font-medium text-lavender-600 dark:text-lavender-400">Multi-tenant SaaS · Performance-first storytelling</div>
+            </div>
+
+            {/* Payment Processing Framework */}
+            <div className="bg-gradient-to-br from-white to-lavender-50 dark:from-ink-800 dark:to-ink-700 rounded-2xl p-8 shadow-soft hover:shadow-chapter transition-all duration-300">
+              <div className="flex items-start gap-4 mb-6">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-lavender-200 to-lavender-400 flex items-center justify-center">
+                  <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M4 6h16v12H4V6m-2 0a2 2 0 0 1 2-2h16c1.11 0 2 .9 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6m4 10h12v-4H6v4z" />
+                  </svg>
+                </div>
+                <div>
+                  <p className="text-xs uppercase tracking-widest text-lavender-500">PPLWork · Mar 2022 – Sep 2022</p>
+                  <h3 className="font-heading text-2xl font-semibold text-ink-800 dark:text-ink-100">Payment Processing Framework</h3>
+                </div>
+              </div>
+              <p className="text-ink-700 dark:text-ink-300 mb-4">
+                Engineered a Spring Boot + PostgreSQL framework that orchestrated payment routing, ledgering, and compliance-ready audits for fintech clients handling thousands of transactions daily.
+              </p>
+              <ul className="space-y-2 text-sm text-ink-700 dark:text-ink-300 mb-6">
+                <li>• Modular microservices with retryable Kafka consumers ensured idempotent settlement flows.</li>
+                <li>• Dockerized workloads plus Jenkins + GitHub Actions CI/CD reduced manual deployment effort by <strong>40%</strong>.</li>
+              </ul>
+              <div className="flex flex-wrap gap-2 mb-4">
+                <span className="px-3 py-1 bg-lavender-100 dark:bg-lavender-900 text-lavender-700 dark:text-lavender-300 rounded-full text-sm">Java</span>
+                <span className="px-3 py-1 bg-lavender-100 dark:bg-lavender-900 text-lavender-700 dark:text-lavender-300 rounded-full text-sm">Spring Boot</span>
+                <span className="px-3 py-1 bg-lavender-100 dark:bg-lavender-900 text-lavender-700 dark:text-lavender-300 rounded-full text-sm">PostgreSQL</span>
+                <span className="px-3 py-1 bg-lavender-100 dark:bg-lavender-900 text-lavender-700 dark:text-lavender-300 rounded-full text-sm">Docker</span>
+                <span className="px-3 py-1 bg-lavender-100 dark:bg-lavender-900 text-lavender-700 dark:text-lavender-300 rounded-full text-sm">Jenkins</span>
+                <span className="px-3 py-1 bg-lavender-100 dark:bg-lavender-900 text-lavender-700 dark:text-lavender-300 rounded-full text-sm">GitHub Actions</span>
+              </div>
+              <div className="text-sm font-medium text-lavender-600 dark:text-lavender-400">Fintech Reliability · Automated releases</div>
+            </div>
+
+            {/* Magpie Geospatial Web-App */}
+            <div className="bg-gradient-to-br from-white to-lavender-50 dark:from-ink-800 dark:to-ink-700 rounded-2xl p-8 shadow-soft hover:shadow-chapter transition-all duration-300">
+              <div className="flex items-start gap-4 mb-6">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-lavender-200 to-lavender-400 flex items-center justify-center">
+                  <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2a10 10 0 0 0-7.07 17.07L12 22l7.07-2.93A10 10 0 0 0 12 2m0 3a7 7 0 0 1 4.95 11.95L12 19l-4.95-2.05A7 7 0 0 1 12 5z" />
+                  </svg>
+                </div>
+                <div>
+                  <p className="text-xs uppercase tracking-widest text-lavender-500">Academic Capstone · Jun 2022</p>
+                  <h3 className="font-heading text-2xl font-semibold text-ink-800 dark:text-ink-100">Magpie Geospatial Web-App</h3>
+                </div>
+              </div>
+              <p className="text-ink-700 dark:text-ink-300 mb-4">
+                Delivered Magpie, a geospatial intelligence tool that lets researchers map urban wildlife hazards with Next.js, Go microservices, TailwindCSS, and PostGIS-backed heat maps.
+              </p>
+              <ul className="space-y-2 text-sm text-ink-700 dark:text-ink-300 mb-6">
+                <li>• Mixed SSR, SSG, and ISR rendering strategies balanced real-time alerts with offline-friendly field notebooks.</li>
+                <li>• Usability tests with 30+ researchers informed iterated UI copy, increasing weekly retention by <strong>12%</strong>.</li>
+              </ul>
+              <div className="flex flex-wrap gap-2 mb-4">
+                <span className="px-3 py-1 bg-lavender-100 dark:bg-lavender-900 text-lavender-700 dark:text-lavender-300 rounded-full text-sm">Next.js</span>
+                <span className="px-3 py-1 bg-lavender-100 dark:bg-lavender-900 text-lavender-700 dark:text-lavender-300 rounded-full text-sm">Go</span>
+                <span className="px-3 py-1 bg-lavender-100 dark:bg-lavender-900 text-lavender-700 dark:text-lavender-300 rounded-full text-sm">TailwindCSS</span>
+                <span className="px-3 py-1 bg-lavender-100 dark:bg-lavender-900 text-lavender-700 dark:text-lavender-300 rounded-full text-sm">PostGIS</span>
+                <span className="px-3 py-1 bg-lavender-100 dark:bg-lavender-900 text-lavender-700 dark:text-lavender-300 rounded-full text-sm">Mapbox GL</span>
+              </div>
+              <div className="text-sm font-medium text-lavender-600 dark:text-lavender-400">SSR · SSG · ISR · Research-backed UX</div>
+            </div>
+          </div>
+
+          {/* Impact Snapshots */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="bg-gradient-to-br from-white to-lavender-50 dark:from-ink-800 dark:to-ink-700 rounded-xl p-6 shadow-soft text-center">
+              <p className="font-heading text-5xl font-bold text-lavender-600 dark:text-lavender-300 mb-2">35%</p>
+              <h4 className="font-heading text-lg font-semibold text-ink-800 dark:text-ink-100 mb-2">Faster property tour loads</h4>
+              <p className="text-sm text-ink-700 dark:text-ink-300">
+                Edge caching + incremental static regeneration on the Openspace real-estate platform kept media-heavy stories breezy on 3G.
+              </p>
+            </div>
+
+            <div className="bg-gradient-to-br from-white to-lavender-50 dark:from-ink-800 dark:to-ink-700 rounded-xl p-6 shadow-soft text-center">
+              <p className="font-heading text-5xl font-bold text-lavender-600 dark:text-lavender-300 mb-2">40%</p>
+              <h4 className="font-heading text-lg font-semibold text-ink-800 dark:text-ink-100 mb-2">Less manual deployment</h4>
+              <p className="text-sm text-ink-700 dark:text-ink-300">
+                Containerized Spring Boot services, Jenkins pipelines, and GitHub Actions gates ensured predictable releases for the payment framework.
+              </p>
+            </div>
+
+            <div className="bg-gradient-to-br from-white to-lavender-50 dark:from-ink-800 dark:to-ink-700 rounded-xl p-6 shadow-soft text-center">
+              <p className="font-heading text-5xl font-bold text-lavender-600 dark:text-lavender-300 mb-2">12%</p>
+              <h4 className="font-heading text-lg font-semibold text-ink-800 dark:text-ink-100 mb-2">Higher user retention</h4>
+              <p className="text-sm text-ink-700 dark:text-ink-300">
+                Magpie&apos;s SSR/SSG/ISR blend plus iterative user-testing cycles clarified map legends and boosted weekly researcher return visits.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Project Process */}
+      <section className="py-20 bg-white dark:bg-ink-900">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="font-heading text-3xl font-semibold text-ink-800 dark:text-ink-100 mb-8">
+              How I Approach Projects
+            </h2>
+            <p className="text-xl text-ink-600 dark:text-ink-300 max-w-3xl mx-auto">
+              Every project follows a structured approach that ensures quality, scalability, and user satisfaction.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {/* Discovery */}
+            <div className="text-center">
+              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-lavender-200 to-lavender-400 flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" />
+                </svg>
+              </div>
+              <h3 className="font-heading text-xl font-semibold text-ink-800 dark:text-ink-100 mb-3">Discovery</h3>
+              <p className="text-ink-700 dark:text-ink-300 text-sm">
+                Understanding requirements, user needs, and technical constraints.
+              </p>
+            </div>
+
+            {/* Planning */}
+            <div className="text-center">
+              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-lavender-200 to-lavender-400 flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3M19,5V19H5V5H19Z" />
+                </svg>
+              </div>
+              <h3 className="font-heading text-xl font-semibold text-ink-800 dark:text-ink-100 mb-3">Planning</h3>
+              <p className="text-ink-700 dark:text-ink-300 text-sm">
+                Architecture design, technology selection, and development roadmap.
+              </p>
+            </div>
+
+            {/* Development */}
+            <div className="text-center">
+              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-lavender-200 to-lavender-400 flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8Z" />
+                </svg>
+              </div>
+              <h3 className="font-heading text-xl font-semibold text-ink-800 dark:text-ink-100 mb-3">Development</h3>
+              <p className="text-ink-700 dark:text-ink-300 text-sm">
+                Clean, maintainable code with comprehensive testing and documentation.
+              </p>
+            </div>
+
+            {/* Deployment */}
+            <div className="text-center">
+              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-lavender-200 to-lavender-400 flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12,2L13.09,8.26L22,9L13.09,9.74L12,16L10.91,9.74L2,9L10.91,8.26L12,2Z" />
+                </svg>
+              </div>
+              <h3 className="font-heading text-xl font-semibold text-ink-800 dark:text-ink-100 mb-3">Deployment</h3>
+              <p className="text-ink-700 dark:text-ink-300 text-sm">
+                CI/CD pipelines, monitoring, and ongoing maintenance support.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Call to Action */}
+      <section className="py-20 bg-gradient-to-r from-lavender-100 to-butter-100 dark:from-lavender-900/20 dark:to-butter-900/20">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <h2 className="font-heading text-3xl font-semibold text-ink-800 dark:text-ink-100 mb-6">
+            Ready to Build Something Together?
+          </h2>
+          <p className="text-ink-700 dark:text-ink-300 mb-8 max-w-2xl mx-auto">
+            Whether you have a specific project in mind or want to explore possibilities, I&apos;m always excited to discuss new opportunities.
+          </p>
+          <a href="/contact" className="inline-flex items-center px-8 py-4 rounded-full bg-gradient-to-r from-lavender-500 to-butter-500 text-white font-medium hover:shadow-chapter transition-all duration-300 hover:scale-105">
+            <span>Let&apos;s Talk</span>
+            <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+            </svg>
+          </a>
         </div>
       </section>
     </>

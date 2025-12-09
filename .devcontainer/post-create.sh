@@ -19,6 +19,7 @@ if [ -d "python" ]; then
     cd python
     # UV will automatically detect pyproject.toml and install dependencies
     uv sync
+    uv pip install -r requirements.txt
     cd ..
 fi
 
