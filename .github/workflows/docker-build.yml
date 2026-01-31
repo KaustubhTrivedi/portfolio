@@ -1,0 +1,62 @@
+name: Docker Build
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'nextjs-portfolio/Dockerfile'
+      - 'nextjs-portfolio/Dockerfile.dev'
+      - 'python/Dockerfile'
+      - 'python/Dockerfile.dev'
+      - 'docker-compose*.yml'
+      - '.github/workflows/docker-build.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'nextjs-portfolio/Dockerfile'
+      - 'nextjs-portfolio/Dockerfile.dev'
+      - 'python/Dockerfile'
+      - 'python/Dockerfile.dev'
+      - 'docker-compose*.yml'
+      - '.github/workflows/docker-build.yml'
+
+jobs:
+  build-nextjs:
+    name: Build Next.js Image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Next.js Docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./nextjs-portfolio
+          file: ./nextjs-portfolio/Dockerfile
+          push: false
+          tags: portfolio-nextjs:test
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  build-python:
+    name: Build Python Image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Python Docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./python
+          file: ./python/Dockerfile
+          push: false
+          tags: portfolio-python:test
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
