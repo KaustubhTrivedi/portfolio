@@ -19,7 +19,7 @@ defaults:
 jobs:
   lint:
     name: Lint
-    runs-on: ubuntu-latest
+    runs-on: homelab
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -43,7 +43,7 @@ jobs:
 
   dependencies:
     name: Dependency Check
-    runs-on: ubuntu-latest
+    runs-on: homelab
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
