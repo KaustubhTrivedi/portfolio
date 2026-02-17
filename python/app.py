@@ -410,15 +410,18 @@ def chat_stream_endpoint():
                 print(f"Error during streaming: {e}")
                 yield f"data: {json.dumps({'error': str(e)})}\n\n"
 
-        return Response(
+        response = Response(
             generate(),
             mimetype='text/event-stream',
             headers={
                 'Cache-Control': 'no-cache',
                 'X-Accel-Buffering': 'no',
                 'Connection': 'keep-alive',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
             }
         )
+        return response
     except Exception as e:
         print(f"Error in stream endpoint: {e}")
         return jsonify({'error': 'Internal server error'}), 500
