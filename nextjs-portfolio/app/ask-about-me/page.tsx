@@ -19,6 +19,7 @@ export default function AskAboutMePage() {
   ]);
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
+  const [isStreaming, setIsStreaming] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -39,6 +40,8 @@ export default function AskAboutMePage() {
       content: inputValue
     };
 
+    const assistantMessageId = (Date.now() + 1).toString();
+
     setMessages(prev => [...prev, userMessage]);
     setInputValue('');
     setIsTyping(true);
@@ -46,8 +49,8 @@ export default function AskAboutMePage() {
     try {
       const history = messages.map(({ role, content }) => ({ role, content }));
 
-      const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'https://gradio.kaustubhsstuff.com';
-      const res = await fetch(`${baseUrl}/api/chat`, {
+      const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+      const res = await fetch(`${baseUrl}/api/chat/stream`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -62,25 +65,62 @@ export default function AskAboutMePage() {
         throw new Error('Failed to fetch response');
       }
 
-      const data = await res.json();
+      // Add an empty assistant message that we'll stream into
+      setMessages(prev => [...prev, { id: assistantMessageId, role: 'assistant', content: '' }]);
+      setIsTyping(false);
+      setIsStreaming(true);
 
-      const responseMessage: Message = {
-        id: (Date.now() + 1).toString(),
-        role: 'assistant',
-        content: data.response
-      };
-      setMessages(prev => [...prev, responseMessage]);
+      const reader = res.body?.getReader();
+      const decoder = new TextDecoder();
+
+      if (!reader) throw new Error('No reader available');
+
+      let buffer = '';
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+
+        buffer += decoder.decode(value, { stream: true });
+
+        // Process complete SSE lines from the buffer
+        const lines = buffer.split('\n');
+        buffer = lines.pop() || ''; // Keep the last incomplete line in the buffer
+
+        for (const line of lines) {
+          if (line.startsWith('data: ')) {
+            const data = line.slice(6);
+            if (data === '[DONE]') break;
+
+            try {
+              const parsed = JSON.parse(data);
+              if (parsed.content) {
+                setMessages(prev =>
+                  prev.map(msg =>
+                    msg.id === assistantMessageId
+                      ? { ...msg, content: msg.content + parsed.content }
+                      : msg
+                  )
+                );
+              }
+            } catch {
+              // skip malformed JSON chunks
+            }
+          }
+        }
+      }
 
     } catch (error) {
       console.error('Error:', error);
       const errorMessage: Message = {
-        id: (Date.now() + 1).toString(),
+        id: (Date.now() + 2).toString(),
         role: 'assistant',
         content: "Sorry, I'm currently unable to connect to the server. Please try again later."
       };
       setMessages(prev => [...prev, errorMessage]);
     } finally {
       setIsTyping(false);
+      setIsStreaming(false);
     }
   };
 
@@ -175,11 +215,11 @@ export default function AskAboutMePage() {
                 onChange={(e) => setInputValue(e.target.value)}
                 placeholder="Ask me anything..."
                 className="w-full pl-6 pr-14 py-4 rounded-full bg-white dark:bg-ink-900 border-2 border-ink-200 dark:border-ink-700 focus:border-blush-400 dark:focus:border-blush-500 focus:ring-0 active:outline-none focus:outline-none transition-all duration-300 shadow-inner text-ink-800 dark:text-ink-100 placeholder-ink-400"
-                disabled={isTyping}
+                disabled={isTyping || isStreaming}
               />
               <button
                 type="submit"
-                disabled={!inputValue.trim() || isTyping}
+                disabled={!inputValue.trim() || isTyping || isStreaming}
                 className="absolute right-2 top-2 p-2 rounded-full bg-gradient-to-r from-blush-500 to-sky-500 text-white disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-chapter transition-all duration-300"
               >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

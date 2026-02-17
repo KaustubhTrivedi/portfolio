@@ -5,12 +5,12 @@ import os
 import requests
 from pypdf import PdfReader
 import gradio as gr
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, Response
 from flask_cors import CORS
 import chromadb
 from chromadb.config import Settings
 from chromadb.errors import NotFoundError, ChromaError
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 import hashlib
 from typing import List
 
@@ -25,16 +25,8 @@ CORS(app, resources={
         "origins": ["*"],  # Allow all origins for dev
         "methods": ["GET", "POST", "OPTIONS"],
         "allow_headers": ["Content-Type", "Authorization"],
-        "supports_credentials": True
     }
 })
-
-@app.after_request
-def after_request(response):
-    response.headers.add('Access-Control-Allow-Origin', '*')
-    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
-    response.headers.add('Access-Control-Allow-Methods', 'GET,POST,OPTIONS')
-    return response
 
 discord_webhook_url = os.getenv("DISCORD_WEBHOOK_URL")
 
@@ -100,11 +92,17 @@ class Me:
         self.knowledge_path = "me/knowledge"
         
         # Connect to ChromaDB
-        chromadb_host = os.getenv("CHROMADB_HOST", "https://chromadb.kaustubhsstuff.com")
-        hostname = chromadb_host.replace("https://", "").replace("http://", "").split("/")[0]
-        port = 443 if "https" in chromadb_host else 8000
+        chromadb_host = os.getenv("CHROMADB_HOST", "http://homelab:8000")
+        use_ssl = chromadb_host.startswith("https://")
+        host_part = chromadb_host.replace("https://", "").replace("http://", "").split("/")[0]
+        if ":" in host_part:
+            hostname, port_str = host_part.rsplit(":", 1)
+            port = int(port_str)
+        else:
+            hostname = host_part
+            port = 443 if use_ssl else 8000
         
-        self.chroma_client = chromadb.HttpClient(host=hostname, port=port, ssl=True)
+        self.chroma_client = chromadb.HttpClient(host=hostname, port=port, ssl=use_ssl)
         collection_name = "kaustubh_linkedin_profile"
 
         # --- SMART DB INITIALIZATION ---
@@ -328,7 +326,7 @@ If the user is engaging in discussion, try to steer them towards getting in touc
         messages = [{"role": "system", "content": system_content}] + history + [{"role": "user", "content": message}]
         done = False
         while not done:
-            response = self.openai.chat.completions.create(model="gpt-4o-mini", messages=messages, tools=tools)
+            response = self.openai.chat.completions.create(model="stepfun/step-3.5-flash:free", messages=messages, tools=tools)
             if response.choices[0].finish_reason=="tool_calls":
                 message = response.choices[0].message
                 tool_calls = message.tool_calls
@@ -343,6 +341,37 @@ If the user is engaging in discussion, try to steer them towards getting in touc
         if history is None:
             history = []
         return self.chat(message, history)
+
+    def chat_stream(self, message, history):
+        """Generator that yields content chunks for SSE streaming."""
+        system_content = self.system_prompt(user_query=message)
+        messages = [{"role": "system", "content": system_content}] + history + [{"role": "user", "content": message}]
+
+        # Handle tool calls in a blocking loop first
+        while True:
+            response = self.openai.chat.completions.create(
+                model="stepfun/step-3.5-flash:free",
+                messages=messages,
+                tools=tools,
+            )
+            if response.choices[0].finish_reason == "tool_calls":
+                assistant_message = response.choices[0].message
+                tool_calls = assistant_message.tool_calls
+                results = self.handle_tool_call(tool_calls)
+                messages.append(assistant_message)
+                messages.extend(results)
+            else:
+                break
+
+        # Now stream the final response
+        stream = self.openai.chat.completions.create(
+            model="stepfun/step-3.5-flash:free",
+            messages=messages,
+            stream=True,
+        )
+        for chunk in stream:
+            if chunk.choices and chunk.choices[0].delta.content:
+                yield chunk.choices[0].delta.content
 
 # Initialize
 me_instance = Me()
@@ -362,6 +391,38 @@ def chat_endpoint():
         print(f"Error in chat endpoint: {e}")
         return jsonify({'error': 'Internal server error'}), 500
 
+
+@app.route('/api/chat/stream', methods=['POST'])
+def chat_stream_endpoint():
+    try:
+        data = request.get_json()
+        message = data.get('message')
+        history = data.get('history', [])
+        if not message:
+            return jsonify({'error': 'Message is required'}), 400
+
+        def generate():
+            try:
+                for content_chunk in me_instance.chat_stream(message, history):
+                    yield f"data: {json.dumps({'content': content_chunk})}\n\n"
+                yield "data: [DONE]\n\n"
+            except Exception as e:
+                print(f"Error during streaming: {e}")
+                yield f"data: {json.dumps({'error': str(e)})}\n\n"
+
+        return Response(
+            generate(),
+            mimetype='text/event-stream',
+            headers={
+                'Cache-Control': 'no-cache',
+                'X-Accel-Buffering': 'no',
+                'Connection': 'keep-alive',
+            }
+        )
+    except Exception as e:
+        print(f"Error in stream endpoint: {e}")
+        return jsonify({'error': 'Internal server error'}), 500
+
 @app.route('/api/health', methods=['GET'])
 def health_check():
     return jsonify({'status': 'healthy'})
@@ -372,4 +433,4 @@ def clear_history():
 
 if __name__ == "__main__":
     debug_mode = os.getenv('FLASK_DEBUG', 'False').lower() == 'true'
-    app.run(host='0.0.0.0', port=5000, debug=debug_mode)
+    app.run(host='0.0.0.0', port=5001, debug=debug_mode)
