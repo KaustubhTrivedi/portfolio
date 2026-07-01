@@ -2,3 +2,12 @@
 nextjs-portfolio/node_modules/
 nextjs-portfolio/.next/
 nextjs-portfolio/out/
+.env
+
+# Archived portfolios (build artifacts)
+archive/**/node_modules/
+archive/**/.next/
+archive/**/out/
+
+# Python caches
+python/__pycache__/
