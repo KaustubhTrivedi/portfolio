@@ -13,8 +13,18 @@ from chromadb.errors import NotFoundError, ChromaError
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 import hashlib
 from typing import List
+import atexit
+from posthog import Posthog
 
 load_dotenv(override=True)
+
+# Initialize PostHog
+posthog_client = Posthog(
+    project_api_key=os.getenv("POSTHOG_PROJECT_TOKEN"),
+    host=os.getenv("POSTHOG_HOST", "https://eu.i.posthog.com"),
+    enable_exception_autocapture=True,
+)
+atexit.register(posthog_client.shutdown)
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -24,7 +34,7 @@ CORS(app, resources={
     r"/api/*": {
         "origins": ["*"],  # Allow all origins for dev
         "methods": ["GET", "POST", "OPTIONS"],
-        "allow_headers": ["Content-Type", "Authorization"],
+        "allow_headers": ["Content-Type", "Authorization", "X-POSTHOG-DISTINCT-ID", "X-POSTHOG-SESSION-ID"],
     }
 })
 
@@ -35,18 +45,59 @@ if discord_webhook_url:
 else:
     print("Discord webhook URL not found")
 
+# --- RAG retrieval configuration (env-tunable, sensible defaults) ---
+# Candidate pool pulled from the vector store before filtering/reranking.
+RAG_TOP_K = int(os.getenv("RAG_TOP_K", "20"))
+# Final number of chunks handed to the LLM after reranking.
+RAG_RERANK_TOP_N = int(os.getenv("RAG_RERANK_TOP_N", "5"))
+# Max vector distance to keep a candidate. Chroma default space is L2, where
+# smaller = more similar. Candidates above this are dropped as noise.
+# Empty/unset disables the threshold (keeps all candidates).
+_raw_threshold = os.getenv("RAG_DISTANCE_THRESHOLD", "").strip()
+RAG_DISTANCE_THRESHOLD = float(_raw_threshold) if _raw_threshold else None
+# Cheap/fast model used only to rerank retrieved chunks.
+RAG_RERANK_MODEL = os.getenv("RAG_RERANK_MODEL", "stepfun/step-3.5-flash:free")
+# Per-doc-type chunking. "other" is the default until docs are categorized.
+DOC_TYPE_CHUNKING = {
+    "resume": (500, 100),
+    "report": (1200, 200),
+    "other": (1000, 200),
+}
+
 def push(message):
     print(f"Discord: {message}")
     if discord_webhook_url:
         payload = {"content": message}
         requests.post(discord_webhook_url, data=payload)
 
+def _current_distinct_id():
+    """Return the PostHog distinct ID from the request header, or a fallback anonymous ID."""
+    try:
+        return request.headers.get("X-POSTHOG-DISTINCT-ID") or "anonymous"
+    except RuntimeError:
+        return "anonymous"
+
 def record_user_details(email, name="Name not provided", notes="not provided"):
     push(f"Recording {name} with email {email} and notes {notes}")
+    posthog_client.capture(
+        distinct_id=_current_distinct_id(),
+        event="user_contact_recorded",
+        properties={
+            "has_name": name != "Name not provided",
+            "has_notes": notes != "not provided",
+        },
+    )
     return {"recorded": "ok"}
 
 def record_unknown_question(question):
     push(f"Recording {question}")
+    posthog_client.capture(
+        distinct_id=_current_distinct_id(),
+        event="unknown_question_recorded",
+        properties={
+            "question_length": len(question),
+        },
+    )
     return {"recorded": "ok"}
 
 record_user_details_json = {
@@ -176,6 +227,18 @@ class Me:
                     
         return hasher.hexdigest()
     
+    def _doc_type_for(self, filename: str) -> str:
+        """Classify a knowledge file into a doc_type for metadata + chunk sizing.
+
+        Defaults to "other". Extend this mapping as documents are categorized —
+        either by filename convention or an explicit per-file map."""
+        name = filename.lower()
+        if "resume" in name or "cv" in name:
+            return "resume"
+        if "report" in name:
+            return "report"
+        return "other"
+
     def _chunk_text(self, text: str, chunk_size: int = 1000, chunk_overlap: int = 200) -> List[str]:
         """Recursive splitting to respect sentence boundaries"""
         text_splitter = RecursiveCharacterTextSplitter(
@@ -219,18 +282,22 @@ class Me:
                 else:
                     continue # Skip unsupported files
 
-                # Chunk this specific file
+                # Chunk this specific file, sized per doc_type
                 if file_text:
-                    file_chunks = self._chunk_text(file_text)
-                    print(f"  - {filename}: {len(file_chunks)} chunks")
-                    
+                    doc_type = self._doc_type_for(filename)
+                    chunk_size, chunk_overlap = DOC_TYPE_CHUNKING.get(
+                        doc_type, DOC_TYPE_CHUNKING["other"]
+                    )
+                    file_chunks = self._chunk_text(file_text, chunk_size, chunk_overlap)
+                    print(f"  - {filename} [{doc_type}]: {len(file_chunks)} chunks")
+
                     for i, chunk in enumerate(file_chunks):
                         all_chunks.append(chunk)
                         # Create a unique ID: "filename_chunkIndex"
                         safe_name = filename.replace(".", "_").replace(" ", "_")
                         all_ids.append(f"{safe_name}_{i}")
                         # Store metadata so you know where this info came from later
-                        all_metadatas.append({"source": filename})
+                        all_metadatas.append({"source": filename, "doc_type": doc_type})
 
             except Exception as e:
                 print(f"Error processing file {filename}: {e}")
@@ -274,8 +341,11 @@ class Me:
             results.append({"role": "tool","content": json.dumps(result),"tool_call_id": tool_call.id})
         return results
 
-    def _get_relevant_context(self, query: str, n_results: int = 5) -> str:
-        """Query ChromaDB for relevant context"""
+    def _get_relevant_context(self, query: str) -> str:
+        """Retrieve context via vector search, distance filtering, then LLM rerank.
+
+        Pipeline: embed query -> fetch RAG_TOP_K candidates -> drop candidates
+        past RAG_DISTANCE_THRESHOLD -> LLM rerank down to RAG_RERANK_TOP_N."""
         try:
             response = self.openai.embeddings.create(
                 extra_headers={
@@ -287,19 +357,74 @@ class Me:
                 encoding_format="float"
             )
             query_embedding = response.data[0].embedding
-            
+
             results = self.collection.query(
                 query_embeddings=[query_embedding],
-                n_results=n_results
+                n_results=RAG_TOP_K,
+                include=["documents", "distances"],
             )
-            
-            if results['documents'] and len(results['documents'][0]) > 0:
-                return "\n\n".join(results['documents'][0])
+
+            docs = (results.get("documents") or [[]])[0]
+            distances = (results.get("distances") or [[]])[0]
+            if not docs:
+                return ""
+
+            # Distance threshold: keep only candidates at/under the cutoff.
+            if RAG_DISTANCE_THRESHOLD is not None and distances:
+                filtered = [
+                    doc for doc, dist in zip(docs, distances)
+                    if dist <= RAG_DISTANCE_THRESHOLD
+                ]
+                docs = filtered
+
+            if not docs:
+                # Everything was filtered out as too dissimilar — no context.
+                return ""
+
+            # LLM rerank down to the final N most relevant chunks.
+            top_docs = self._rerank(query, docs)
+            return "\n\n".join(top_docs)
         except Exception as e:
             print(f"Error during context retrieval: {e}")
-            
+
         return ""
-    
+
+    def _rerank(self, query: str, docs: List[str]) -> List[str]:
+        """Use a cheap LLM to pick the most relevant chunks for the query.
+
+        Returns up to RAG_RERANK_TOP_N docs in relevance order. On any failure,
+        falls back to the original vector-similarity order (truncated)."""
+        if len(docs) <= RAG_RERANK_TOP_N:
+            return docs
+        try:
+            numbered = "\n\n".join(f"[{i}] {doc}" for i, doc in enumerate(docs))
+            rerank_prompt = (
+                f"You are ranking retrieved text passages by relevance to a user query.\n"
+                f"Query: {query}\n\n"
+                f"Passages:\n{numbered}\n\n"
+                f"Return ONLY a JSON array of the passage numbers of the "
+                f"{RAG_RERANK_TOP_N} most relevant passages, most relevant first. "
+                f'Example: [3, 0, 7, 1, 5]. If fewer are relevant, return fewer.'
+            )
+            resp = self.openai.chat.completions.create(
+                model=RAG_RERANK_MODEL,
+                messages=[{"role": "user", "content": rerank_prompt}],
+                response_format={"type": "json_object"},
+            )
+            content = resp.choices[0].message.content or ""
+            # Model may return a bare array or an object wrapping one.
+            parsed = json.loads(content)
+            if isinstance(parsed, dict):
+                # Take the first list value found in the object.
+                parsed = next((v for v in parsed.values() if isinstance(v, list)), [])
+            order = [int(i) for i in parsed if isinstance(i, (int, float)) or str(i).isdigit()]
+            ranked = [docs[i] for i in order if 0 <= i < len(docs)]
+            if ranked:
+                return ranked[:RAG_RERANK_TOP_N]
+        except Exception as e:
+            print(f"Rerank failed, falling back to vector order: {e}")
+        return docs[:RAG_RERANK_TOP_N]
+
     def system_prompt(self, user_query: str = ""):
         system_prompt = f"You are acting as {self.name}. You are answering questions on {self.name}'s website... (rest of prompt)"
         # Shortened for brevity in code, but keeps original logic
@@ -385,10 +510,20 @@ def chat_endpoint():
         history = data.get('history', [])
         if not message:
             return jsonify({'error': 'Message is required'}), 400
+        distinct_id = _current_distinct_id()
+        posthog_client.capture(
+            distinct_id=distinct_id,
+            event="chat_message_sent",
+            properties={
+                "message_length": len(message),
+                "history_length": len(history),
+            },
+        )
         response = me_instance.chat_api(message, history)
         return jsonify({'response': response})
     except Exception as e:
         print(f"Error in chat endpoint: {e}")
+        posthog_client.capture_exception(e, distinct_id=_current_distinct_id())
         return jsonify({'error': 'Internal server error'}), 500
 
 
@@ -400,6 +535,15 @@ def chat_stream_endpoint():
         history = data.get('history', [])
         if not message:
             return jsonify({'error': 'Message is required'}), 400
+        distinct_id = _current_distinct_id()
+        posthog_client.capture(
+            distinct_id=distinct_id,
+            event="chat_stream_started",
+            properties={
+                "message_length": len(message),
+                "history_length": len(history),
+            },
+        )
 
         def generate():
             try:
@@ -408,6 +552,7 @@ def chat_stream_endpoint():
                 yield "data: [DONE]\n\n"
             except Exception as e:
                 print(f"Error during streaming: {e}")
+                posthog_client.capture_exception(e, distinct_id=distinct_id)
                 yield f"data: {json.dumps({'error': str(e)})}\n\n"
 
         response = Response(
@@ -424,6 +569,7 @@ def chat_stream_endpoint():
         return response
     except Exception as e:
         print(f"Error in stream endpoint: {e}")
+        posthog_client.capture_exception(e, distinct_id=_current_distinct_id())
         return jsonify({'error': 'Internal server error'}), 500
 
 @app.route('/api/health', methods=['GET'])
