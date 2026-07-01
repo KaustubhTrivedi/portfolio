@@ -20,22 +20,17 @@ services:
     networks:
       - npm_default
 
-  # Production frontend service
+  # Production frontend service (single-file static portfolio)
   portfolio:
     container_name: portfolio
     build:
-      context: ./nextjs-portfolio
+      context: ./static-portfolio
       dockerfile: Dockerfile
     networks:
       - npm_default
     ports:
-      - "3004:3000"
-    environment:
-      - NODE_ENV=production
-      - NEXT_PUBLIC_API_URL=https://gradio.kaustubhsstuff.com
+      - "3004:80"
     restart: unless-stopped
-    depends_on:
-      - flask-api
 
 networks:
   npm_default:

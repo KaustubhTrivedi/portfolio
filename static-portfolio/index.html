@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Kaustubh Trivedi - Applied AI / Agentic Engineer and full-stack generalist. Dublin, Ireland.">
+<title>Kaustubh Trivedi - Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;450;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; }
+  ::selection { background: #cfe4dc; color: #2A2521; }
+
+  /* Reveal-on-scroll: hidden by default, .is-visible reveals.
+     .no-js fallback keeps everything visible without JS. */
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity .7s cubic-bezier(.22,.61,.36,1), transform .7s cubic-bezier(.22,.61,.36,1);
+    will-change: opacity, transform;
+  }
+  [data-reveal].is-visible { opacity: 1; transform: none; }
+  .no-js [data-reveal] { opacity: 1; transform: none; }
+
+  /* Hover states compiled from the design's style-hover attributes */
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 26px -8px rgba(46,106,94,.6); background: #27574D; }
+  .btn-outline:hover { transform: translateY(-2px); border-color: #2E6A5E; background: #F2ECE2; }
+  .chip-link:hover { transform: translateY(-1px); border-color: #C9BCA8; }
+  .cta-primary:hover { transform: translateY(-2px); background: #27574D; }
+  .cta-outline:hover { transform: translateY(-2px); border-color: #2E6A5E; }
+  .foot-primary:hover { transform: translateY(-2px); background: #27574D; }
+  .foot-chip:hover { transform: translateY(-2px); border-color: #C9BCA8; }
+
+  /* ---- Chat button (floating) ---- */
+  .chat-fab {
+    position: fixed; right: clamp(18px,4vw,34px); bottom: clamp(18px,4vw,34px); z-index: 40;
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 22px 14px 18px; border: none; cursor: pointer;
+    background: #2E6A5E; color: #FBF7F1; border-radius: 999px;
+    font-family: 'Inter',system-ui,sans-serif; font-size: 15.5px; font-weight: 600;
+    box-shadow: 0 12px 30px -8px rgba(46,106,94,.6);
+    transition: transform .25s ease, box-shadow .25s ease, background .2s ease;
+  }
+  .chat-fab:hover { transform: translateY(-2px); background: #27574D; box-shadow: 0 18px 38px -10px rgba(46,106,94,.7); }
+  .chat-fab svg { display: block; }
+
+  /* ---- Splish-splash page transition ---- */
+  .splash-overlay { position: fixed; inset: 0; z-index: 60; pointer-events: none; display: none; }
+  .splash-overlay.active { display: block; pointer-events: all; }
+  .splash-blob {
+    position: absolute; border-radius: 50%; background: #2E6A5E;
+    width: 40px; height: 40px; transform: translate(-50%, -50%) scale(0);
+    will-change: transform;
+  }
+  .splash-overlay.active .splash-blob { animation: splash-grow .9s cubic-bezier(.65,0,.35,1) forwards; }
+  .splash-overlay.active .splash-ring {
+    background: transparent; border: 3px solid rgba(127,184,164,.55);
+    animation: splash-ripple .9s cubic-bezier(.22,.61,.36,1) forwards;
+  }
+  .splash-overlay.active .splash-ring.r2 { animation-delay: .09s; border-color: rgba(217,235,226,.5); }
+  @keyframes splash-grow {
+    0%   { transform: translate(-50%,-50%) scale(0); }
+    55%  { transform: translate(-50%,-50%) scale(58); }
+    100% { transform: translate(-50%,-50%) scale(64); }
+  }
+  @keyframes splash-ripple {
+    0%   { transform: translate(-50%,-50%) scale(0); opacity: .9; }
+    70%  { opacity: .35; }
+    100% { transform: translate(-50%,-50%) scale(70); opacity: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .splash-overlay.active .splash-blob { animation-duration: .01s; }
+    .splash-overlay.active .splash-ring { display: none; }
+  }
+</style>
+</head>
+<body class="no-js">
+<script>document.body.classList.remove('no-js');</script>
+
+<div style="background:#FBF7F1; color:#2A2521; font-family:'Inter',system-ui,sans-serif; -webkit-font-smoothing:antialiased; overflow-x:hidden;">
+
+  <!-- ============ HERO ============ -->
+  <section aria-label="Intro" style="padding:clamp(40px,7vw,84px) clamp(20px,5vw,40px) clamp(56px,9vw,104px);">
+    <div style="max-width:1140px; margin:0 auto;">
+
+      <div data-reveal style="display:flex; align-items:center; flex-wrap:wrap; gap:14px 18px; margin-bottom:clamp(28px,5vw,44px);">
+        <span style="position:relative; font-family:'Fraunces',serif; font-style:italic; font-weight:500; font-size:clamp(18px,2.4vw,22px); color:#2E6A5E; line-height:1; padding-bottom:6px;">
+          Available now
+          <svg width="100%" height="9" viewBox="0 0 220 9" preserveAspectRatio="none" fill="none" aria-hidden="true" style="position:absolute; left:0; bottom:-2px; width:100%; height:9px; overflow:visible;"><path d="M2 5.5C40 2.5 92 2 130 4c30 1.6 56 3.4 88 1.2" stroke="#7FB8A4" stroke-width="2.4" stroke-linecap="round"></path></svg>
+        </span>
+        <span style="width:22px; height:1px; background:#D8CDBC;"></span>
+        <span style="font-size:13px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:#9A9082;">Dublin, Ireland</span>
+      </div>
+
+      <div style="display:flex; flex-wrap:wrap; align-items:center; gap:clamp(36px,6vw,72px);">
+
+        <div style="flex:1 1 460px; min-width:280px;">
+          <p data-reveal style="margin:0 0 14px; font-family:'Fraunces',serif; font-size:clamp(28px,4.4vw,46px); font-weight:600; letter-spacing:-.01em; line-height:1.05;">Kaustubh Trivedi</p>
+
+          <h1 data-reveal style="margin:0 0 22px; font-family:'Fraunces',serif; font-weight:600; font-size:clamp(34px,6vw,62px); line-height:1.04; letter-spacing:-.02em; text-wrap:balance;">Applied AI / Agentic Engineer, and a full-stack generalist who ships.</h1>
+
+          <p data-reveal style="margin:0 0 34px; max-width:560px; font-size:clamp(17px,2.1vw,19px); line-height:1.62; color:#5C5349; font-weight:450; text-wrap:pretty;">I build autonomous multi-agent systems and the full-stack products around them. Currently in Dublin, looking for my next backend / AI / platform role.</p>
+
+          <div data-reveal style="display:flex; flex-wrap:wrap; align-items:center; gap:14px; margin-bottom:30px;">
+            <a class="btn-primary" href="#" style="display:inline-flex; align-items:center; gap:9px; padding:14px 26px; background:#2E6A5E; color:#FBF7F1; border-radius:999px; font-size:16px; font-weight:600; text-decoration:none; box-shadow:0 8px 20px -8px rgba(46,106,94,.55); transition:transform .25s ease, box-shadow .25s ease, background .2s ease;">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"></path><path d="m7 11 5 5 5-5"></path><path d="M5 20h14"></path></svg>
+              Download CV
+            </a>
+            <a class="btn-outline" href="#" style="display:inline-flex; align-items:center; gap:9px; padding:14px 26px; background:transparent; color:#2A2521; border:1.5px solid #D8CDBC; border-radius:999px; font-size:16px; font-weight:600; text-decoration:none; transition:transform .25s ease, border-color .2s ease, background .2s ease;">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"></rect><path d="m4 7 8 6 8-6"></path></svg>
+              Email me
+            </a>
+          </div>
+
+          <div data-reveal style="display:flex; flex-wrap:wrap; align-items:center; gap:10px;">
+            <a class="chip-link" href="#" aria-label="GitHub" style="display:inline-flex; align-items:center; gap:9px; padding:9px 16px 9px 13px; background:#FFFDF8; border:1px solid #ECE3D5; border-radius:999px; color:#3A332C; font-size:14px; font-weight:550; text-decoration:none; transition:transform .2s ease, border-color .2s ease;">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.21.09 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.31-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.87.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.49 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12 12 0 0 0 12 .5Z"></path></svg>
+              GitHub
+            </a>
+            <a class="chip-link" href="#" aria-label="LinkedIn" style="display:inline-flex; align-items:center; gap:9px; padding:9px 16px 9px 13px; background:#FFFDF8; border:1px solid #ECE3D5; border-radius:999px; color:#3A332C; font-size:14px; font-weight:550; text-decoration:none; transition:transform .2s ease, border-color .2s ease;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"></path></svg>
+              LinkedIn
+            </a>
+          </div>
+        </div>
+
+        <div data-reveal style="flex:1 1 300px; min-width:240px; max-width:420px;">
+          <div style="position:relative; aspect-ratio:4/5; border-radius:28px; overflow:hidden; background:#EAE0D2; background-image:repeating-linear-gradient(135deg, rgba(46,106,94,.07) 0 14px, rgba(46,106,94,0) 14px 28px); border:1px solid #E5DACB; box-shadow:0 24px 50px -24px rgba(74,60,40,.3); display:flex; align-items:center; justify-content:center;">
+            <div style="position:absolute; top:-26px; right:-26px; width:150px; height:150px; border-radius:999px; background:#D9EBE2;"></div>
+            <div style="position:absolute; bottom:-34px; left:-30px; width:120px; height:120px; border-radius:999px; background:#F5E4D4;"></div>
+            <img src="headshot.webp" alt="Kaustubh Trivedi" style="position:relative; width:100%; height:100%; object-fit:cover; object-position:center top;">
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SELECTED WORK ============ -->
+  <section aria-label="Selected work" style="padding-bottom:clamp(64px,10vw,120px);">
+    <div style="max-width:1140px; margin:0 auto; padding:0 clamp(20px,5vw,40px) clamp(28px,4vw,40px);">
+      <p data-reveal style="margin:0 0 12px; font-size:13px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:#2E6A5E;">Selected work</p>
+      <h2 data-reveal style="margin:0; max-width:680px; font-family:'Fraunces',serif; font-weight:600; font-size:clamp(30px,4.8vw,48px); line-height:1.06; letter-spacing:-.02em; text-wrap:balance;">Two things I built end-to-end, and the hard part of each.</h2>
+    </div>
+
+    <div style="background:#E7F0E8; padding:clamp(40px,6vw,72px) clamp(20px,5vw,40px);">
+      <div style="max-width:1140px; margin:0 auto; display:flex; flex-wrap:wrap; gap:clamp(24px,3vw,32px); align-items:stretch;">
+
+        <!-- Card 1 -->
+        <article data-reveal style="flex:1 1 460px; min-width:280px; display:flex; flex-direction:column; background:#FFFDF8; border:1px solid #EFE7D9; border-radius:26px; padding:clamp(28px,3.4vw,40px); box-shadow:0 30px 60px -34px rgba(40,60,52,.4);">
+          <div style="display:flex; align-items:baseline; justify-content:space-between; gap:16px; margin-bottom:8px;">
+            <h3 style="margin:0; font-family:'Fraunces',serif; font-weight:600; font-size:clamp(26px,3.4vw,34px); letter-spacing:-.01em;">Rendure</h3>
+            <span style="font-family:'JetBrains Mono',ui-monospace,monospace; font-size:12px; color:#8A7F6F;">01</span>
+          </div>
+          <p style="margin:0 0 24px; font-size:17px; line-height:1.55; color:#4A4239; font-weight:500;">An open-source, multi-agent resume tailoring platform that adapts a resume to a job description without inventing anything.</p>
+
+          <p style="margin:0 0 7px; font-size:11.5px; font-weight:700; letter-spacing:.13em; text-transform:uppercase; color:#2E6A5E;">The hard part</p>
+          <p style="margin:0 0 22px; font-size:15.5px; line-height:1.62; color:#5C5349; text-wrap:pretty;">The core risk in any LLM resume tool is fabrication. Instead of one generation pass, I built a generation-then-QA loop: one stage tailors, a separate stage audits the output against the source for invented claims and keyword fit. A structured RenderCV YAML acts as the single source of truth, so output stays deterministic and ATS-parseable.</p>
+
+          <p style="margin:0 0 7px; font-size:11.5px; font-weight:700; letter-spacing:.13em; text-transform:uppercase; color:#2E6A5E;">Outcome</p>
+          <p style="margin:0 0 24px; font-size:15.5px; line-height:1.62; color:#5C5349; text-wrap:pretty;">Open-source, deployed publicly, launched across developer communities including r/selfhosted and r/LocalLLaMA. <span style="font-family:'JetBrains Mono',ui-monospace,monospace; font-size:12.5px; background:#F6EECF; color:#7A6A3A; padding:2px 8px; border-radius:6px; white-space:nowrap;">[PLACEHOLDER &mdash; stars / users]</span></p>
+
+          <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:26px;">
+            <span style="font-size:13px; font-weight:500; color:#41463F; background:#EEF3E9; border:1px solid #DDE6D4; padding:6px 13px; border-radius:999px;">Next.js</span>
+            <span style="font-size:13px; font-weight:500; color:#41463F; background:#EEF3E9; border:1px solid #DDE6D4; padding:6px 13px; border-radius:999px;">FastAPI</span>
+            <span style="font-size:13px; font-weight:500; color:#41463F; background:#EEF3E9; border:1px solid #DDE6D4; padding:6px 13px; border-radius:999px;">Celery</span>
+            <span style="font-size:13px; font-weight:500; color:#41463F; background:#EEF3E9; border:1px solid #DDE6D4; padding:6px 13px; border-radius:999px;">LangChain</span>
+            <span style="font-size:13px; font-weight:500; color:#41463F; background:#EEF3E9; border:1px solid #DDE6D4; padding:6px 13px; border-radius:999px;">OpenRouter</span>
+            <span style="font-size:13px; font-weight:500; color:#41463F; background:#EEF3E9; border:1px solid #DDE6D4; padding:6px 13px; border-radius:999px;">RenderCV</span>
+          </div>
+
+          <div style="margin-top:auto; display:flex; flex-wrap:wrap; gap:12px;">
+            <a class="cta-primary" href="#" style="display:inline-flex; align-items:center; gap:7px; padding:10px 18px; background:#2E6A5E; color:#FBF7F1; border-radius:999px; font-size:14px; font-weight:600; text-decoration:none; transition:transform .2s ease, background .2s ease;">Repo <span aria-hidden="true">&#8599;</span></a>
+            <a class="cta-outline" href="#" style="display:inline-flex; align-items:center; gap:7px; padding:10px 18px; background:transparent; color:#2A2521; border:1.5px solid #D8CDBC; border-radius:999px; font-size:14px; font-weight:600; text-decoration:none; transition:transform .2s ease, border-color .2s ease;">Live <span aria-hidden="true">&#8599;</span></a>
+          </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article data-reveal style="flex:1 1 460px; min-width:280px; display:flex; flex-direction:column; background:#FFFDF8; border:1px solid #EFE7D9; border-radius:26px; padding:clamp(28px,3.4vw,40px); box-shadow:0 30px 60px -34px rgba(40,60,52,.4);">
+          <div style="display:flex; align-items:baseline; justify-content:space-between; gap:16px; margin-bottom:8px;">
+            <h3 style="margin:0; font-family:'Fraunces',serif; font-weight:600; font-size:clamp(26px,3.4vw,34px); letter-spacing:-.01em;">Magpie</h3>
+            <span style="font-family:'JetBrains Mono',ui-monospace,monospace; font-size:12px; color:#8A7F6F;">02</span>
+          </div>
+          <p style="margin:0 0 24px; font-size:17px; line-height:1.55; color:#4A4239; font-weight:500;">A geospatial web application that renders and queries 58,000+ spatial data points interactively, built as my MSc final project.</p>
+
+          <p style="margin:0 0 7px; font-size:11.5px; font-weight:700; letter-spacing:.13em; text-transform:uppercase; color:#2E6A5E;">The hard part</p>
+          <p style="margin:0 0 22px; font-size:15.5px; line-height:1.62; color:#5C5349; text-wrap:pretty;">The challenge with this much spatial data is keeping the map usable. Shipping every point to the browser falls over fast. So the work was in the data layer: a Go backend serving viewport-bounded spatial queries so only the points currently in view get fetched, plus aggregation at lower zoom levels so the client never has to draw tens of thousands of markers at once.</p>
+
+          <p style="margin:0 0 7px; font-size:11.5px; font-weight:700; letter-spacing:.13em; text-transform:uppercase; color:#2E6A5E;">Outcome</p>
+          <p style="margin:0 0 24px; font-size:15.5px; line-height:1.62; color:#5C5349; text-wrap:pretty;">Delivered as my MSc Computer Science final project at TU Dublin, handling the full 58,000+ point dataset interactively. <span style="font-family:'JetBrains Mono',ui-monospace,monospace; font-size:12.5px; background:#F6EECF; color:#7A6A3A; padding:2px 8px; border-radius:6px; white-space:nowrap;">[PLACEHOLDER &mdash; grade / metric]</span></p>
+
+          <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px;">
+            <span style="font-size:13px; font-weight:500; color:#41463F; background:#EEF3E9; border:1px solid #DDE6D4; padding:6px 13px; border-radius:999px;">Next.js</span>
+            <span style="font-size:13px; font-weight:500; color:#41463F; background:#EEF3E9; border:1px solid #DDE6D4; padding:6px 13px; border-radius:999px;">Go</span>
+            <span style="font-size:13px; font-weight:500; color:#41463F; background:#EEF3E9; border:1px solid #DDE6D4; padding:6px 13px; border-radius:999px;">PostgreSQL</span>
+            <span style="font-size:13px; font-weight:500; color:#41463F; background:#EEF3E9; border:1px solid #DDE6D4; padding:6px 13px; border-radius:999px;">spatial indexing</span>
+          </div>
+          <p style="margin:0 0 26px; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:12px; line-height:1.5; color:#9A7B3A; background:#FBF1D8; border:1px dashed #E6D199; padding:8px 12px; border-radius:10px;">[confirm: PostGIS? + map library &mdash; Mapbox / Leaflet / deck.gl]</p>
+
+          <div style="margin-top:auto; display:flex; flex-wrap:wrap; gap:12px;">
+            <a class="cta-primary" href="#" style="display:inline-flex; align-items:center; gap:7px; padding:10px 18px; background:#2E6A5E; color:#FBF7F1; border-radius:999px; font-size:14px; font-weight:600; text-decoration:none; transition:transform .2s ease, background .2s ease;">Repo <span aria-hidden="true">&#8599;</span></a>
+            <a class="cta-outline" href="#" style="display:inline-flex; align-items:center; gap:7px; padding:10px 18px; background:transparent; color:#2A2521; border:1.5px solid #D8CDBC; border-radius:999px; font-size:14px; font-weight:600; text-decoration:none; transition:transform .2s ease, border-color .2s ease;">Demo <span aria-hidden="true">&#8599;</span></a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ STACK ============ -->
+  <section aria-label="Tools I reach for" style="padding:clamp(20px,3vw,40px) clamp(20px,5vw,40px) clamp(64px,10vw,120px);">
+    <div style="max-width:1000px; margin:0 auto;">
+      <p data-reveal style="margin:0 0 12px; font-size:13px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:#2E6A5E;">Stack</p>
+      <h2 data-reveal style="margin:0 0 clamp(36px,5vw,52px); font-family:'Fraunces',serif; font-weight:600; font-size:clamp(30px,4.8vw,48px); line-height:1.06; letter-spacing:-.02em;">Tools I reach for</h2>
+
+      <div data-reveal style="display:flex; flex-direction:column;">
+
+        <div style="display:flex; flex-wrap:wrap; gap:16px 24px; align-items:baseline; padding:20px 0; border-top:1px solid #EBE2D3;">
+          <p style="flex:0 0 150px; margin:0; font-size:15px; font-weight:600; color:#2A2521;">Languages</p>
+          <div style="flex:1 1 320px; display:flex; flex-wrap:wrap; gap:9px;">
+            <span style="font-size:14px; font-weight:450; color:#4A4239; background:#FFFDF8; border:1px solid #E9E0D1; padding:8px 15px; border-radius:999px; box-shadow:0 1px 2px rgba(74,60,40,.03);">TypeScript</span>
+            <span style="font-size:14px; font-weight:450; color:#4A4239; background:#FFFDF8; border:1px solid #E9E0D1; padding:8px 15px; border-radius:999px; box-shadow:0 1px 2px rgba(74,60,40,.03);">Python</span>
+            <span style="font-size:14px; font-weight:450; color:#4A4239; background:#FFFDF8; border:1px solid #E9E0D1; padding:8px 15px; border-radius:999px; box-shadow:0 1px 2px rgba(74,60,40,.03);">Java</span>
+          </div>
+        </div>
+
+        <div style="display:flex; flex-wrap:wrap; gap:16px 24px; align-items:baseline; padding:20px 0; border-top:1px solid #EBE2D3;">
+          <p style="flex:0 0 150px; margin:0; font-size:15px; font-weight:600; color:#2A2521;">Frontend</p>
+          <div style="flex:1 1 320px; display:flex; flex-wrap:wrap; gap:9px;">
+            <span style="font-size:14px; font-weight:450; color:#4A4239; background:#FFFDF8; border:1px solid #E9E0D1; padding:8px 15px; border-radius:999px; box-shadow:0 1px 2px rgba(74,60,40,.03);">React</span>
+            <span style="font-size:14px; font-weight:450; color:#4A4239; background:#FFFDF8; border:1px solid #E9E0D1; padding:8px 15px; border-radius:999px; box-shadow:0 1px 2px rgba(74,60,40,.03);">Next.js</span>
+            <span style="font-size:14px; font-weight:450; color:#4A4239; background:#FFFDF8; border:1px solid #E9E0D1; padding:8px 15px; border-radius:999px; box-shadow:0 1px 2px rgba(74,60,40,.03);">Tailwind</span>
+          </div>
+        </div>
+
+        <div style="display:flex; flex-wrap:wrap; gap:16px 24px; align-items:baseline; padding:20px 0; border-top:1px solid #EBE2D3;">
+          <p style="flex:0 0 150px; margin:0; font-size:15px; font-weight:600; color:#2A2521;">Backend</p>
+          <div style="flex:1 1 320px; display:flex; flex-wrap:wrap; gap:9px;">
+            <span style="font-size:14px; font-weight:450; color:#4A4239; background:#FFFDF8; border:1px solid #E9E0D1; padding:8px 15px; border-radius:999px; box-shadow:0 1px 2px rgba(74,60,40,.03);">FastAPI</span>
+            <span style="font-size:14px; font-weight:450; color:#4A4239; background:#FFFDF8; border:1px solid #E9E0D1; padding:8px 15px; border-radius:999px; box-shadow:0 1px 2px rgba(74,60,40,.03);">Spring Boot</span>
+            <span style="font-size:14px; font-weight:450; color:#4A4239; background:#FFFDF8; border:1px solid #E9E0D1; padding:8px 15px; border-radius:999px; box-shadow:0 1px 2px rgba(74,60,40,.03);">Node</span>
+          </div>
+        </div>
+
+        <div style="display:flex; flex-wrap:wrap; gap:16px 24px; align-items:baseline; padding:20px 0; border-top:1px solid #EBE2D3;">
+          <p style="flex:0 0 150px; margin:0; font-size:15px; font-weight:600; color:#2A2521;">Data</p>
+          <div style="flex:1 1 320px; display:flex; flex-wrap:wrap; gap:9px;">
+            <span style="font-size:14px; font-weight:450; color:#4A4239; background:#FFFDF8; border:1px solid #E9E0D1; padding:8px 15px; border-radius:999px; box-shadow:0 1px 2px rgba(74,60,40,.03);">PostgreSQL</span>
+            <span style="font-size:14px; font-weight:450; color:#4A4239; background:#FFFDF8; border:1px solid #E9E0D1; padding:8px 15px; border-radius:999px; box-shadow:0 1px 2px rgba(74,60,40,.03);">pgvector</span>
+          </div>
+        </div>
+
+        <div style="display:flex; flex-wrap:wrap; gap:16px 24px; align-items:baseline; padding:20px 0; border-top:1px solid #EBE2D3;">
+          <p style="flex:0 0 150px; margin:0; font-size:15px; font-weight:600; color:#2A2521;">AI / Agents</p>
+          <div style="flex:1 1 320px; display:flex; flex-wrap:wrap; gap:9px;">
+            <span style="font-size:14px; font-weight:450; color:#4A4239; background:#FFFDF8; border:1px solid #E9E0D1; padding:8px 15px; border-radius:999px; box-shadow:0 1px 2px rgba(74,60,40,.03);">LangChain</span>
+            <span style="font-size:14px; font-weight:450; color:#4A4239; background:#FFFDF8; border:1px solid #E9E0D1; padding:8px 15px; border-radius:999px; box-shadow:0 1px 2px rgba(74,60,40,.03);">OpenRouter</span>
+            <span style="font-size:14px; font-weight:450; color:#4A4239; background:#FFFDF8; border:1px solid #E9E0D1; padding:8px 15px; border-radius:999px; box-shadow:0 1px 2px rgba(74,60,40,.03);">multi-agent orchestration</span>
+            <span style="font-size:14px; font-weight:450; color:#4A4239; background:#FFFDF8; border:1px solid #E9E0D1; padding:8px 15px; border-radius:999px; box-shadow:0 1px 2px rgba(74,60,40,.03);">local LLM inference</span>
+          </div>
+        </div>
+
+        <div style="display:flex; flex-wrap:wrap; gap:16px 24px; align-items:baseline; padding:20px 0; border-top:1px solid #EBE2D3;">
+          <p style="flex:0 0 150px; margin:0; font-size:15px; font-weight:600; color:#2A2521;">Infra</p>
+          <div style="flex:1 1 320px; display:flex; flex-wrap:wrap; gap:9px;">
+            <span style="font-size:14px; font-weight:450; color:#4A4239; background:#FFFDF8; border:1px solid #E9E0D1; padding:8px 15px; border-radius:999px; box-shadow:0 1px 2px rgba(74,60,40,.03);">Docker</span>
+            <span style="font-size:14px; font-weight:450; color:#4A4239; background:#FFFDF8; border:1px solid #E9E0D1; padding:8px 15px; border-radius:999px; box-shadow:0 1px 2px rgba(74,60,40,.03);">AWS</span>
+            <span style="font-size:14px; font-weight:450; color:#4A4239; background:#FFFDF8; border:1px solid #E9E0D1; padding:8px 15px; border-radius:999px; box-shadow:0 1px 2px rgba(74,60,40,.03);">self-hosted homelab (Traefik, Tailscale)</span>
+          </div>
+        </div>
+
+        <div style="border-top:1px solid #EBE2D3;"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EXPERIENCE ============ -->
+  <section aria-label="Where I've worked" style="background:#F8E8DC; padding:clamp(56px,9vw,104px) clamp(20px,5vw,40px);">
+    <div style="max-width:1000px; margin:0 auto;">
+      <p data-reveal style="margin:0 0 12px; font-size:13px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:#B5683E;">Experience</p>
+      <h2 data-reveal style="margin:0 0 clamp(32px,5vw,48px); font-family:'Fraunces',serif; font-weight:600; font-size:clamp(30px,4.8vw,48px); line-height:1.06; letter-spacing:-.02em;">Where I've worked</h2>
+
+      <div style="display:flex; flex-direction:column;">
+
+        <div data-reveal style="display:flex; flex-wrap:wrap; gap:6px 28px; padding:24px 0; border-top:1px solid #EAD3C0;">
+          <div style="flex:1 1 300px; min-width:240px;">
+            <p style="margin:0 0 4px; font-size:18px; font-weight:600;"><span style="font-family:'JetBrains Mono',ui-monospace,monospace; font-size:13px; background:#FBEEDF; color:#9A7B3A; padding:2px 8px; border-radius:6px;">[Title]</span> <span style="color:#5C5349;">&middot;</span> Openspace Services</p>
+            <p style="margin:0; color:#6B5F52; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:12.5px;">[PLACEHOLDER &mdash; one line]</p>
+          </div>
+          <p style="margin:0; flex:0 0 auto; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:13px; color:#9A7B3A; align-self:flex-start; background:#FBEEDF; padding:4px 10px; border-radius:8px;">[dates]</p>
+        </div>
+
+        <div data-reveal style="display:flex; flex-wrap:wrap; gap:6px 28px; padding:24px 0; border-top:1px solid #EAD3C0;">
+          <div style="flex:1 1 300px; min-width:240px;">
+            <p style="margin:0 0 4px; font-size:18px; font-weight:600;"><span style="font-family:'JetBrains Mono',ui-monospace,monospace; font-size:13px; background:#FBEEDF; color:#9A7B3A; padding:2px 8px; border-radius:6px;">[Title]</span> <span style="color:#5C5349;">&middot;</span> PPLWork</p>
+            <p style="margin:0; color:#6B5F52; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:12.5px;">[PLACEHOLDER &mdash; one line]</p>
+          </div>
+          <p style="margin:0; flex:0 0 auto; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:13px; color:#9A7B3A; align-self:flex-start; background:#FBEEDF; padding:4px 10px; border-radius:8px;">[dates]</p>
+        </div>
+
+        <div data-reveal style="display:flex; flex-wrap:wrap; gap:6px 28px; padding:24px 0; border-top:1px solid #EAD3C0; border-bottom:1px solid #EAD3C0;">
+          <div style="flex:1 1 300px; min-width:240px;">
+            <p style="margin:0 0 4px; font-size:18px; font-weight:600;">MSc Computer Science <span style="color:#5C5349;">&middot;</span> Technological University Dublin</p>
+            <p style="margin:0; font-size:15px; line-height:1.55; color:#6B5F52;">Final project Magpie, a geospatial web app handling 58,000+ spatial data points (Next.js, Go).</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer style="padding:clamp(72px,11vw,128px) clamp(20px,5vw,40px) clamp(48px,7vw,72px);">
+    <div style="max-width:1000px; margin:0 auto;">
+      <p data-reveal style="margin:0 auto clamp(44px,6vw,64px); max-width:780px; text-align:center; font-family:'Fraunces',serif; font-weight:500; font-style:italic; font-size:clamp(26px,4.4vw,42px); line-height:1.18; letter-spacing:-.01em; text-wrap:balance;">&ldquo;I build tools to solve my own problems, then make them good enough to share.&rdquo;</p>
+
+      <div data-reveal style="display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:12px; margin-bottom:36px;">
+        <a class="foot-primary" href="#" style="display:inline-flex; align-items:center; gap:8px; padding:11px 20px; background:#2E6A5E; color:#FBF7F1; border-radius:999px; font-size:15px; font-weight:600; text-decoration:none; transition:transform .2s ease, background .2s ease;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"></rect><path d="m4 7 8 6 8-6"></path></svg>
+          Email
+        </a>
+        <a class="foot-chip" href="#" style="display:inline-flex; align-items:center; gap:8px; padding:11px 20px; background:#FFFDF8; border:1px solid #ECE3D5; color:#3A332C; border-radius:999px; font-size:15px; font-weight:550; text-decoration:none; transition:transform .2s ease, border-color .2s ease;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.21.09 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.31-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.87.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.49 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12 12 0 0 0 12 .5Z"></path></svg>
+          GitHub
+        </a>
+        <a class="foot-chip" href="#" style="display:inline-flex; align-items:center; gap:8px; padding:11px 20px; background:#FFFDF8; border:1px solid #ECE3D5; color:#3A332C; border-radius:999px; font-size:15px; font-weight:550; text-decoration:none; transition:transform .2s ease, border-color .2s ease;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"></path></svg>
+          LinkedIn
+        </a>
+      </div>
+
+      <p style="margin:0; text-align:center; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:12.5px; color:#9A9082;">Last updated <span style="color:#6B6052;">[PLACEHOLDER &mdash; month / year]</span></p>
+    </div>
+  </footer>
+
+</div>
+
+<!-- ============ CHAT BUTTON + SPLISH-SPLASH TRANSITION ============ -->
+<button class="chat-fab" id="chatFab" aria-label="Open chat with Kaustubh's AI">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.7A8.38 8.38 0 0 1 4 11.5 8.5 8.5 0 0 1 12.5 3 8.38 8.38 0 0 1 21 11.5Z"></path></svg>
+  Chat with me
+</button>
+
+<div class="splash-overlay" id="splashOverlay" aria-hidden="true">
+  <span class="splash-ring splash-blob"></span>
+  <span class="splash-ring splash-blob r2"></span>
+  <span class="splash-blob main"></span>
+</div>
+
+<script>
+  (function () {
+    var fab = document.getElementById('chatFab');
+    var overlay = document.getElementById('splashOverlay');
+    if (!fab || !overlay) return;
+    var blobs = overlay.querySelectorAll('.splash-blob');
+    fab.addEventListener('click', function () {
+      var r = fab.getBoundingClientRect();
+      var x = r.left + r.width / 2;
+      var y = r.top + r.height / 2;
+      blobs.forEach(function (b) { b.style.left = x + 'px'; b.style.top = y + 'px'; });
+      overlay.classList.add('active');
+      overlay.setAttribute('aria-hidden', 'false');
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.setTimeout(function () { window.location.href = 'chat.html'; }, reduce ? 60 : 640);
+    });
+  })();
+
+  (function () {
+    var els = Array.prototype.slice.call(document.querySelectorAll('[data-reveal]'));
+    if (!els.length) return;
+    if (!('IntersectionObserver' in window)) {
+      els.forEach(function (el) { el.classList.add('is-visible'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    els.forEach(function (el) { io.observe(el); });
+  })();
+</script>
+</body>
+</html>
