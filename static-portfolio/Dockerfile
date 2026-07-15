@@ -1,4 +1,4 @@
 FROM nginx:alpine
 
-# Serve the static portfolio (index.html, chat.html, assets)
-COPY index.html chat.html headshot.webp /usr/share/nginx/html/
+# Serve the static portfolio (pages, headshot, and downloadable CV)
+COPY index.html chat.html headshot.webp Kaustubh_Trivedi_CV.pdf /usr/share/nginx/html/
