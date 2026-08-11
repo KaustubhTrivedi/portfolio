@@ -20,11 +20,11 @@ services:
     networks:
       - npm_default
 
-  # Production frontend service (single-file static portfolio)
+  # Production frontend service (static portfolio + RAG chat page)
   portfolio:
     container_name: portfolio
     build:
-      context: ./static-portfolio
+      context: ./portfolio
       dockerfile: Dockerfile
     networks:
       - npm_default
