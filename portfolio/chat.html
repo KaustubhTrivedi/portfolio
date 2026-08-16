@@ -3,160 +3,247 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Chat with Kaustubh Trivedi's AI — ask about my background, projects and experience.">
-<title>Chat · Kaustubh Trivedi</title>
+<title>Ask — Kaustubh Trivedi</title>
+<meta name="description" content="Retrieval over my notes, projects and experience. Ask it something.">
+<link rel="canonical" href="https://kaustubhsstuff.com/chat">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#F7F6F2">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231747E5'/%3E%3Ctext x='16' y='23' font-family='monospace' font-size='20' font-weight='700' fill='%23F7F6F2' text-anchor='middle'%3EK%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700&family=Inter:wght@400;450;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  * { box-sizing: border-box; }
-  html, body { margin: 0; height: 100%; }
+  /* Cross-document view transitions. Chrome/Edge 126+ animate the navigation
+     between index.html and this page; everywhere else it is a plain navigation. */
+  @view-transition { navigation: auto; }
+
+  html, body { margin: 0; padding: 0; background: #F7F6F2; height: 100%; }
   body {
-    background: #FBF7F1; color: #2A2521;
-    font-family: 'Inter',system-ui,sans-serif; -webkit-font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
+    color: #16181A;
+    font-family: Inter,'Helvetica Neue',Helvetica,sans-serif;
+    font-size: 17px; line-height: 1.6; letter-spacing: -0.002em;
     overflow: hidden;
   }
-  ::selection { background: #cfe4dc; color: #2A2521; }
-  a { color: inherit; }
+  a { color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; transition: color .15s ease; }
+  a:hover { color: #1747E5; }
+  ::selection { background: #1747E5; color: #F7F6F2; }
+  :focus-visible { outline: 2px solid #1747E5; outline-offset: 3px; }
 
-  .wrap { display: flex; flex-direction: column; height: 100dvh; max-width: 820px; margin: 0 auto; padding: 0 clamp(16px,4vw,28px); }
+  .mono { font-family: 'JetBrains Mono',ui-monospace,monospace; }
 
-  /* Header */
-  header {
-    display: flex; align-items: center; gap: 14px;
-    padding: clamp(16px,4vw,24px) 0 14px; border-bottom: 1px solid #ECE3D5;
+  .shell {
+    display: flex; flex-direction: column; height: 100dvh;
+    max-width: 1120px; margin: 0 auto;
+    padding: 0 clamp(20px,6vw,96px);
   }
-  .back {
-    display: inline-flex; align-items: center; gap: 8px; text-decoration: none;
-    padding: 9px 15px 9px 12px; background: #FFFDF8; border: 1px solid #ECE3D5;
-    border-radius: 999px; font-size: 14px; font-weight: 550; color: #3A332C;
-    transition: transform .2s ease, border-color .2s ease;
-  }
-  .back:hover { transform: translateY(-1px); border-color: #C9BCA8; }
-  .head-title { font-family: 'Fraunces',serif; font-weight: 600; font-size: clamp(18px,2.6vw,22px); letter-spacing: -.01em; }
-  .head-sub { font-size: 12.5px; color: #9A9082; font-weight: 500; }
-  .avatar { width: 40px; height: 40px; border-radius: 999px; object-fit: cover; object-position: center top; border: 1px solid #E5DACB; background: #EAE0D2; }
 
-  /* Message list */
-  .messages { flex: 1 1 auto; overflow-y: auto; padding: 22px 2px 12px; display: flex; flex-direction: column; gap: 16px; }
-  .msg { max-width: 84%; padding: 13px 17px; border-radius: 18px; font-size: 15.5px; line-height: 1.55; text-wrap: pretty; white-space: pre-wrap; }
-  .msg.user { align-self: flex-end; background: #2E6A5E; color: #FBF7F1; border-bottom-right-radius: 6px; }
-  .msg.bot  { align-self: flex-start; background: #FFFDF8; border: 1px solid #ECE3D5; color: #2A2521; border-bottom-left-radius: 6px; }
-  .msg.bot .cursor { display: inline-block; width: 8px; height: 1.05em; vertical-align: -2px; background: #7FB8A4; border-radius: 2px; animation: blink 1s steps(2) infinite; }
-  @keyframes blink { 0%,50% { opacity: 1; } 50.01%,100% { opacity: 0; } }
+  /* ---- Masthead: mirrors the index header rule ---- */
+  .masthead {
+    display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
+    border-bottom: 1px solid #DEDBD4; padding: clamp(20px,4vw,34px) 0 14px;
+    font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: #6B7075;
+    flex: 0 0 auto;
+  }
+  .masthead .wordmark { view-transition-name: vt-wordmark; }
+  .masthead .meta { view-transition-name: vt-meta; }
 
-  /* Composer */
-  .composer { padding: 12px 0 clamp(16px,4vw,24px); }
-  .composer form { display: flex; gap: 10px; align-items: flex-end; background: #FFFDF8; border: 1px solid #E5DACB; border-radius: 22px; padding: 8px 8px 8px 18px; box-shadow: 0 10px 30px -20px rgba(74,60,40,.5); transition: border-color .2s ease; }
-  .composer form:focus-within { border-color: #2E6A5E; }
-  textarea {
-    flex: 1 1 auto; border: none; outline: none; resize: none; background: transparent;
-    font-family: inherit; font-size: 15.5px; line-height: 1.5; color: #2A2521;
-    max-height: 140px; padding: 8px 0;
+  .titlebar { flex: 0 0 auto; padding: clamp(22px,4vw,38px) 0 clamp(18px,3vw,28px); }
+  .titlebar h1 {
+    margin: 0; font-size: clamp(30px,5.5vw,52px); line-height: 1.02;
+    font-weight: 800; letter-spacing: -0.035em;
+    view-transition-name: vt-title;
   }
-  textarea::placeholder { color: #A79C8C; }
-  .send {
-    flex: 0 0 auto; width: 42px; height: 42px; border: none; cursor: pointer;
-    background: #2E6A5E; color: #FBF7F1; border-radius: 999px;
-    display: inline-flex; align-items: center; justify-content: center;
-    transition: transform .2s ease, background .2s ease;
+  .titlebar p { margin: 12px 0 0; max-width: 60ch; color: #3E4348; text-wrap: pretty; }
+
+  /* ---- Transcript ---- */
+  .transcript {
+    flex: 1 1 auto; overflow-y: auto; overscroll-behavior: contain;
+    border-top: 1px solid #DEDBD4;
+    padding: clamp(22px,3.5vw,34px) 0;
+    display: flex; flex-direction: column; gap: clamp(20px,3vw,30px);
+    scrollbar-width: thin; scrollbar-color: #C6C2B9 transparent;
   }
-  .send:hover:not(:disabled) { transform: translateY(-1px); background: #27574D; }
-  .send:disabled { opacity: .45; cursor: not-allowed; }
-  .hint { text-align: center; font-family: 'JetBrains Mono',ui-monospace,monospace; font-size: 11.5px; color: #B0A594; margin: 9px 0 0; }
-  .suggestions { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+  .turn { display: grid; grid-template-columns: 74px minmax(0,1fr); gap: 0 18px; max-width: 78ch; }
+  .turn .who {
+    font-family: 'JetBrains Mono',ui-monospace,monospace;
+    font-size: 11px; letter-spacing: .16em; text-transform: uppercase;
+    line-height: 2.1; color: #6B7075;
+  }
+  .turn.user .who { color: #1747E5; }
+  .turn .body { min-width: 0; text-wrap: pretty; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .turn.user .body { font-weight: 600; letter-spacing: -0.015em; color: #16181A; }
+  .turn.bot .body { color: #3E4348; }
+  .turn.error .body { color: #A6483C; }
+
+  @media (max-width: 640px) {
+    .turn { grid-template-columns: minmax(0,1fr); gap: 6px 0; }
+    .turn .who { line-height: 1.4; }
+  }
+
+  .cursor {
+    display: inline-block; width: 7px; height: 1.05em; vertical-align: -2px;
+    background: #1747E5; animation: blink 1.05s steps(2) infinite;
+  }
+  @keyframes blink { 0%,50% { opacity: 1 } 50.01%,100% { opacity: 0 } }
+
+  /* ---- Composer ---- */
+  .composer { flex: 0 0 auto; border-top: 1px solid #DEDBD4; padding: clamp(16px,2.5vw,22px) 0 clamp(20px,4vw,32px); }
+
+  .suggestions { display: flex; flex-wrap: wrap; gap: 8px 10px; margin: 0 0 14px; }
   .suggestion {
-    cursor: pointer; padding: 8px 14px; background: #FFFDF8; border: 1px solid #ECE3D5;
-    border-radius: 999px; font-size: 13.5px; font-weight: 500; color: #4A4239;
-    transition: transform .2s ease, border-color .2s ease;
+    cursor: pointer; background: transparent; color: #3E4348;
+    border: 1px solid #DEDBD4; padding: 8px 14px;
+    font-family: 'JetBrains Mono',ui-monospace,monospace;
+    font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase;
+    transition: border-color .15s ease, color .15s ease;
   }
-  .suggestion:hover { transform: translateY(-1px); border-color: #C9BCA8; }
+  .suggestion:hover { border-color: #1747E5; color: #1747E5; }
 
-  /* Splish-splash reveal (continues the transition from the home page) */
-  .reveal {
-    position: fixed; z-index: 90; border-radius: 50%; background: #2E6A5E;
-    right: -60px; bottom: -60px; width: 120px; height: 120px;
-    transform: scale(64); transform-origin: center;
-    animation: reveal-out .8s cubic-bezier(.65,0,.35,1) forwards;
-    pointer-events: none;
+  form { display: flex; align-items: flex-end; gap: 14px; border: 1px solid #DEDBD4; background: #FFFFFF; padding: 12px 12px 12px 16px; transition: border-color .15s ease; }
+  form:focus-within { border-color: #1747E5; }
+  textarea {
+    flex: 1 1 auto; border: 0; outline: 0; resize: none; background: transparent;
+    font-family: inherit; font-size: 17px; line-height: 1.5; color: #16181A;
+    max-height: 168px; padding: 6px 0;
   }
-  @keyframes reveal-out {
-    0%   { transform: scale(64); }
-    100% { transform: scale(0); }
+  textarea::placeholder { color: #9AA0A6; }
+  .send {
+    flex: 0 0 auto; border: 0; cursor: pointer; background: #1747E5; color: #F7F6F2;
+    font-family: 'JetBrains Mono',ui-monospace,monospace;
+    font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase;
+    padding: 12px 20px; transition: background .15s ease, opacity .15s ease;
   }
-  @media (prefers-reduced-motion: reduce) { .reveal { animation-duration: .01s; } }
+  .send:hover:not(:disabled) { background: #133BBC; }
+  .send:disabled { opacity: .4; cursor: not-allowed; }
+  .hint { margin: 10px 0 0; font-family: 'JetBrains Mono',ui-monospace,monospace; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: #9AA0A6; }
+
+  /* ---- View transition choreography ---- */
+  ::view-transition-group(*) { animation-duration: .45s; animation-timing-function: cubic-bezier(.2,0,0,1); }
+  ::view-transition-old(root) { animation: vt-fade-out .3s cubic-bezier(.4,0,1,1) forwards; }
+  ::view-transition-new(root) { animation: vt-rise-in .45s cubic-bezier(0,0,.2,1) forwards; }
+  @keyframes vt-fade-out { to { opacity: 0 } }
+  @keyframes vt-rise-in { from { opacity: 0; transform: translateY(14px) } to { opacity: 1; transform: none } }
+
+  /* Newly streamed turns animate in via document.startViewTransition(). */
+  ::view-transition-new(.turn-enter) { animation: vt-rise-in .34s cubic-bezier(0,0,.2,1) forwards; }
+
+  @media (prefers-reduced-motion: reduce) {
+    ::view-transition-group(*),
+    ::view-transition-old(*),
+    ::view-transition-new(*) { animation: none !important; }
+    .cursor { animation: none }
+  }
 </style>
 </head>
 <body>
 
-<div class="reveal" id="reveal" aria-hidden="true"></div>
+<div class="shell">
 
-<div class="wrap">
-  <header>
-    <a class="back" href="index.html" aria-label="Back to portfolio">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"></path><path d="m12 19-7-7 7-7"></path></svg>
-      Back
-    </a>
-    <img class="avatar" src="headshot.webp" alt="Kaustubh Trivedi">
-    <div>
-      <div class="head-title">Chat with Kaustubh</div>
-      <div class="head-sub">Ask about my background, projects &amp; experience</div>
+  <div class="masthead mono">
+    <span class="wordmark"><a href="/" style="text-decoration:none">Kaustubh Trivedi</a></span>
+    <span class="meta">Personal RAG — Ask</span>
+  </div>
+
+  <div class="titlebar">
+    <h1>Ask it something</h1>
+    <p>Retrieval over my notes, projects and working history. It answers from what it can actually find — if it doesn't know, it says so.</p>
+  </div>
+
+  <div class="transcript" id="transcript" role="log" aria-live="polite" aria-label="Conversation">
+    <div class="turn bot">
+      <div class="who">System</div>
+      <div class="body">Ask about my experience, the projects on this site, or what I'm looking for next.</div>
     </div>
-  </header>
-
-  <div class="messages" id="messages" aria-live="polite">
-    <div class="msg bot">Hi — I'm Kaustubh's AI. Ask me anything about his experience, projects, or what he's looking for next.</div>
   </div>
 
   <div class="composer">
     <div class="suggestions" id="suggestions">
-      <span class="suggestion">What are you working on?</span>
-      <span class="suggestion">Tell me about your AI experience</span>
-      <span class="suggestion">What roles are you looking for?</span>
+      <button class="suggestion" type="button">What are you working on?</button>
+      <button class="suggestion" type="button">Tell me about your agent work</button>
+      <button class="suggestion" type="button">What roles are you after?</button>
     </div>
     <form id="chatForm">
-      <textarea id="input" rows="1" placeholder="Type your message…" autocomplete="off"></textarea>
-      <button class="send" id="send" type="submit" aria-label="Send message">
-        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2 11 13"></path><path d="M22 2 15 22l-4-9-9-4 20-7Z"></path></svg>
-      </button>
+      <textarea id="input" rows="1" placeholder="Type a question…" autocomplete="off" aria-label="Your question"></textarea>
+      <button class="send" id="send" type="submit">Send</button>
     </form>
     <p class="hint">Enter to send · Shift+Enter for a new line</p>
   </div>
+
 </div>
 
 <script>
   (function () {
-    // Remove the reveal element after the transition finishes.
-    var reveal = document.getElementById('reveal');
-    if (reveal) reveal.addEventListener('animationend', function () { reveal.remove(); });
-
     var API_BASE = /^(localhost|127\.0\.0\.1)$/.test(location.hostname)
       ? 'http://localhost:5000'
-      : 'https://gradio.kaustubhsstuff.com';
+      : 'https://api.kaustubhsstuff.com';
 
-    var messagesEl = document.getElementById('messages');
-    var form = document.getElementById('chatForm');
-    var input = document.getElementById('input');
-    var sendBtn = document.getElementById('send');
+    var transcript  = document.getElementById('transcript');
+    var form        = document.getElementById('chatForm');
+    var input       = document.getElementById('input');
+    var sendBtn     = document.getElementById('send');
     var suggestions = document.getElementById('suggestions');
-    var history = []; // [{role, content}]
-    var busy = false;
 
-    function scrollDown() { messagesEl.scrollTop = messagesEl.scrollHeight; }
+    var history = [];   // [{ role, content }]
+    var busy    = false;
+    var turnSeq = 0;
 
-    function addMessage(role, text) {
-      var el = document.createElement('div');
-      el.className = 'msg ' + (role === 'user' ? 'user' : 'bot');
-      el.textContent = text || '';
-      messagesEl.appendChild(el);
-      scrollDown();
-      return el;
+    var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var canTransition = typeof document.startViewTransition === 'function' && !reduced;
+
+    // Run a DOM mutation inside a view transition when the browser supports it.
+    // Starting a transition aborts any still-running one, which rejects that
+    // transition's promises — expected, so they are swallowed rather than
+    // surfacing as unhandled rejections.
+    function withTransition(mutate) {
+      if (!canTransition) { mutate(); return; }
+      var swallow = function () {};
+      var t = document.startViewTransition(mutate);
+      t.updateCallbackDone.catch(swallow);
+      t.ready.catch(swallow);
+      t.finished.catch(swallow);
     }
 
-    // Auto-grow textarea
+    function scrollDown() { transcript.scrollTop = transcript.scrollHeight; }
+
+    function buildTurn(role, text) {
+      var wrap = document.createElement('div');
+      wrap.className = 'turn ' + role;
+
+      var who = document.createElement('div');
+      who.className = 'who';
+      who.textContent = role === 'user' ? 'You' : 'Reply';
+
+      var body = document.createElement('div');
+      body.className = 'body';
+      body.textContent = text || '';
+
+      wrap.appendChild(who);
+      wrap.appendChild(body);
+      return { wrap: wrap, body: body };
+    }
+
+    // Builds a turn and marks it for animation without inserting it, so callers
+    // hold a reference synchronously while the insertion happens inside the
+    // (asynchronous) view transition callback.
+    function prepareTurn(role, text) {
+      var turn = buildTurn(role, text);
+      // A unique name per turn keeps the transition scoped to the new element.
+      turn.wrap.style.viewTransitionName = 'turn-' + (++turnSeq);
+      turn.wrap.classList.add('turn-enter');
+
+      // Release the name so later transitions do not collide with this turn.
+      window.setTimeout(function () {
+        turn.wrap.style.viewTransitionName = '';
+        turn.wrap.classList.remove('turn-enter');
+      }, 600);
+
+      return turn;
+    }
+
     input.addEventListener('input', function () {
       input.style.height = 'auto';
-      input.style.height = Math.min(input.scrollHeight, 140) + 'px';
+      input.style.height = Math.min(input.scrollHeight, 168) + 'px';
     });
 
     input.addEventListener('keydown', function (e) {
@@ -173,41 +260,54 @@
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       if (busy) return;
+
       var text = input.value.trim();
       if (!text) return;
 
-      addMessage('user', text);
       history.push({ role: 'user', content: text });
       input.value = '';
       input.style.height = 'auto';
-      suggestions.style.display = 'none';
 
       busy = true;
       sendBtn.disabled = true;
 
-      var botEl = addMessage('bot', '');
       var cursor = document.createElement('span');
       cursor.className = 'cursor';
-      botEl.appendChild(cursor);
+
+      var userTurn = prepareTurn('user', text);
+      var botTurn  = prepareTurn('bot', '');
+      var bodyEl   = botTurn.body;
+      bodyEl.appendChild(cursor);
+
+      // One transition covers the whole submit: the question lands, the
+      // suggestions clear, and the empty reply opens together.
+      withTransition(function () {
+        transcript.appendChild(userTurn.wrap);
+        if (suggestions.parentNode) suggestions.remove();
+        transcript.appendChild(botTurn.wrap);
+        scrollDown();
+      });
+
       var full = '';
 
       streamChat(text, history.slice(0, -1), function (chunk) {
         full += chunk;
-        botEl.textContent = full;
-        botEl.appendChild(cursor);
+        bodyEl.textContent = full;
+        bodyEl.appendChild(cursor);
         scrollDown();
       }, function (err) {
         cursor.remove();
-        if (err) {
-          botEl.textContent = full || 'Sorry — I couldn’t reach the server. Please try again in a moment.';
-          botEl.style.color = full ? '' : '#a6483c';
+        if (err && !full) {
+          bodyEl.textContent = 'Could not reach the server. Try again in a moment.';
+          bodyEl.parentNode.classList.add('error');
         } else {
-          botEl.textContent = full;
+          bodyEl.textContent = full;
           history.push({ role: 'assistant', content: full });
         }
         busy = false;
         sendBtn.disabled = false;
         input.focus();
+        scrollDown();
       });
     });
 
@@ -218,26 +318,31 @@
         body: JSON.stringify({ message: message, history: hist })
       }).then(function (res) {
         if (!res.ok || !res.body) throw new Error('Bad response ' + res.status);
-        var reader = res.body.getReader();
+
+        var reader  = res.body.getReader();
         var decoder = new TextDecoder();
-        var buffer = '';
+        var buffer  = '';
 
         function pump() {
           return reader.read().then(function (result) {
             if (result.done) { onDone(null); return; }
+
             buffer += decoder.decode(result.value, { stream: true });
             var lines = buffer.split('\n');
-            buffer = lines.pop(); // keep incomplete line
+            buffer = lines.pop();  // keep the incomplete trailing line
+
             for (var i = 0; i < lines.length; i++) {
               var line = lines[i].trim();
               if (line.indexOf('data:') !== 0) continue;
+
               var payload = line.slice(5).trim();
               if (payload === '[DONE]') { onDone(null); return; }
+
               try {
                 var obj = JSON.parse(payload);
                 if (obj.error) { onDone(new Error(obj.error)); return; }
                 if (obj.content) onChunk(obj.content);
-              } catch (_) { /* ignore keep-alive / partial */ }
+              } catch (_) { /* keep-alive or partial frame */ }
             }
             return pump();
           });

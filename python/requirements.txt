@@ -695,3 +695,4 @@ zstandard==0.23.0
 Flask==3.0.0
 flask-cors==4.0.0
 chromadb==0.5.20
+posthog

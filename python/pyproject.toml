@@ -15,4 +15,8 @@ dependencies = [
     "openai>=2.21.0",
     "pypdf>=6.7.0",
     "python-dotenv>=1.1.1",
+    "posthog>=3.0.0",
+    # Imported directly by app.py (OpenRouter /rerank); was previously only
+    # present as a transitive dependency.
+    "requests>=2.32.0",
 ]
