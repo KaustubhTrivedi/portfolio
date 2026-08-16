@@ -20,3 +20,14 @@ dependencies = [
     # present as a transitive dependency.
     "requests>=2.32.0",
 ]
+
+[tool.ruff.lint]
+# Selected explicitly so the gate cannot drift with ruff's defaults, which
+# broadened in 0.16 and would have turned this job red with no code change.
+#
+# BLE (blind-except) is deliberately left out: the broad `except Exception`
+# blocks in app.py are intentional degradation paths — rerank falls back to
+# vector order, retrieval falls back to no context, streaming reports the error
+# to the client. Narrowing those would change behaviour in exactly the paths
+# written to fail soft.
+select = ["E4", "E7", "E9", "F", "I", "UP", "PIE"]

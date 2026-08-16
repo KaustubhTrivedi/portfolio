@@ -16,6 +16,11 @@ defaults:
   run:
     working-directory: python
 
+env:
+  # Pinned so a ruff release cannot change the rule set under CI. Bump
+  # deliberately, alongside any fixes the new version requires.
+  RUFF_VERSION: '0.16.3'
+
 jobs:
   lint:
     name: Lint
@@ -24,22 +29,20 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-
       - name: Install uv
         uses: astral-sh/setup-uv@v4
 
-      - name: Install ruff
-        run: uv tool install ruff
+      # actions/setup-python has no prebuilt CPython for this self-hosted
+      # runner's distro (Linux Mint), so it fails before any step can run.
+      # uv installs a standalone build instead, independent of the distro.
+      - name: Install Python
+        run: uv python install 3.12
 
       - name: Run ruff linter
-        run: ruff check .
+        run: uvx ruff@${{ env.RUFF_VERSION }} check .
 
       - name: Run ruff formatter check
-        run: ruff format --check .
+        run: uvx ruff@${{ env.RUFF_VERSION }} format --check .
 
   dependencies:
     name: Dependency Check
@@ -48,13 +51,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-
       - name: Install uv
         uses: astral-sh/setup-uv@v4
+
+      - name: Install Python
+        run: uv python install 3.12
 
       - name: Verify lockfile
         run: uv sync --frozen
