@@ -12,23 +12,93 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>
+  /* Applied before first paint so the page never flashes the wrong theme. */
+  (function () {
+    try {
+      var saved = localStorage.getItem('theme');
+      if (saved === 'dark' || saved === 'light') {
+        document.documentElement.setAttribute('data-theme', saved);
+      }
+    } catch (e) {}
+  })();
+</script>
 <style>
+  /* ---- Palette (mirrors index.html) ---- */
+  :root {
+    --bg: #F7F6F2;
+    --surface: #FFFFFF;
+    --ink: #16181A;
+    --ink-2: #3E4348;
+    --muted: #6B7075;
+    --faint: #9AA0A6;
+    --rule: #DEDBD4;
+    --rule-soft: #E8E5DE;
+    --rule-strong: #C6C2B9;
+    --accent: #1747E5;
+    --accent-strong: #133BBC;
+    --on-accent: #F7F6F2;
+    --error: #A6483C;
+    color-scheme: light;
+  }
+  :root[data-theme="dark"] {
+    --bg: #101113;
+    --surface: #17191C;
+    --ink: #ECEAE4;
+    --ink-2: #B2B7BC;
+    --muted: #8A9097;
+    --faint: #6E747B;
+    --rule: #2A2D32;
+    --rule-soft: #212429;
+    --rule-strong: #474C53;
+    --accent: #6E93FF;
+    --accent-strong: #8FACFF;
+    --on-accent: #0D0F12;
+    --error: #E08A7E;
+    color-scheme: dark;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #101113;
+      --surface: #17191C;
+      --ink: #ECEAE4;
+      --ink-2: #B2B7BC;
+      --muted: #8A9097;
+      --faint: #6E747B;
+      --rule: #2A2D32;
+      --rule-soft: #212429;
+      --rule-strong: #474C53;
+      --accent: #6E93FF;
+      --accent-strong: #8FACFF;
+      --on-accent: #0D0F12;
+      --error: #E08A7E;
+      color-scheme: dark;
+    }
+  }
+
+  .theme-toggle {
+    appearance: none; background: transparent; border: 0; cursor: pointer;
+    padding: 0; color: inherit; font: inherit; letter-spacing: inherit;
+    text-transform: inherit; transition: color .15s ease;
+  }
+  .theme-toggle:hover { color: var(--accent); }
+
   /* Cross-document view transitions. Chrome/Edge 126+ animate the navigation
      between index.html and this page; everywhere else it is a plain navigation. */
   @view-transition { navigation: auto; }
 
-  html, body { margin: 0; padding: 0; background: #F7F6F2; height: 100%; }
+  html, body { margin: 0; padding: 0; background: var(--bg); height: 100%; }
   body {
     -webkit-font-smoothing: antialiased;
-    color: #16181A;
+    color: var(--ink);
     font-family: Inter,'Helvetica Neue',Helvetica,sans-serif;
     font-size: 17px; line-height: 1.6; letter-spacing: -0.002em;
     overflow: hidden;
   }
   a { color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; transition: color .15s ease; }
-  a:hover { color: #1747E5; }
-  ::selection { background: #1747E5; color: #F7F6F2; }
-  :focus-visible { outline: 2px solid #1747E5; outline-offset: 3px; }
+  a:hover { color: var(--accent); }
+  ::selection { background: var(--accent); color: var(--on-accent); }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
   .mono { font-family: 'JetBrains Mono',ui-monospace,monospace; }
 
@@ -41,8 +111,8 @@
   /* ---- Masthead: mirrors the index header rule ---- */
   .masthead {
     display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
-    border-bottom: 1px solid #DEDBD4; padding: clamp(20px,4vw,34px) 0 14px;
-    font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: #6B7075;
+    border-bottom: 1px solid var(--rule); padding: clamp(20px,4vw,34px) 0 14px;
+    font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted);
     flex: 0 0 auto;
   }
   .masthead .wordmark { view-transition-name: vt-wordmark; }
@@ -54,27 +124,27 @@
     font-weight: 800; letter-spacing: -0.035em;
     view-transition-name: vt-title;
   }
-  .titlebar p { margin: 12px 0 0; max-width: 60ch; color: #3E4348; text-wrap: pretty; }
+  .titlebar p { margin: 12px 0 0; max-width: 60ch; color: var(--ink-2); text-wrap: pretty; }
 
   /* ---- Transcript ---- */
   .transcript {
     flex: 1 1 auto; overflow-y: auto; overscroll-behavior: contain;
-    border-top: 1px solid #DEDBD4;
+    border-top: 1px solid var(--rule);
     padding: clamp(22px,3.5vw,34px) 0;
     display: flex; flex-direction: column; gap: clamp(20px,3vw,30px);
-    scrollbar-width: thin; scrollbar-color: #C6C2B9 transparent;
+    scrollbar-width: thin; scrollbar-color: var(--rule-strong) transparent;
   }
   .turn { display: grid; grid-template-columns: 74px minmax(0,1fr); gap: 0 18px; max-width: 78ch; }
   .turn .who {
     font-family: 'JetBrains Mono',ui-monospace,monospace;
     font-size: 11px; letter-spacing: .16em; text-transform: uppercase;
-    line-height: 2.1; color: #6B7075;
+    line-height: 2.1; color: var(--muted);
   }
-  .turn.user .who { color: #1747E5; }
+  .turn.user .who { color: var(--accent); }
   .turn .body { min-width: 0; text-wrap: pretty; white-space: pre-wrap; overflow-wrap: anywhere; }
-  .turn.user .body { font-weight: 600; letter-spacing: -0.015em; color: #16181A; }
-  .turn.bot .body { color: #3E4348; }
-  .turn.error .body { color: #A6483C; }
+  .turn.user .body { font-weight: 600; letter-spacing: -0.015em; color: var(--ink); }
+  .turn.bot .body { color: var(--ink-2); }
+  .turn.error .body { color: var(--error); }
 
   @media (max-width: 640px) {
     .turn { grid-template-columns: minmax(0,1fr); gap: 6px 0; }
@@ -83,40 +153,40 @@
 
   .cursor {
     display: inline-block; width: 7px; height: 1.05em; vertical-align: -2px;
-    background: #1747E5; animation: blink 1.05s steps(2) infinite;
+    background: var(--accent); animation: blink 1.05s steps(2) infinite;
   }
   @keyframes blink { 0%,50% { opacity: 1 } 50.01%,100% { opacity: 0 } }
 
   /* ---- Composer ---- */
-  .composer { flex: 0 0 auto; border-top: 1px solid #DEDBD4; padding: clamp(16px,2.5vw,22px) 0 clamp(20px,4vw,32px); }
+  .composer { flex: 0 0 auto; border-top: 1px solid var(--rule); padding: clamp(16px,2.5vw,22px) 0 clamp(20px,4vw,32px); }
 
   .suggestions { display: flex; flex-wrap: wrap; gap: 8px 10px; margin: 0 0 14px; }
   .suggestion {
-    cursor: pointer; background: transparent; color: #3E4348;
-    border: 1px solid #DEDBD4; padding: 8px 14px;
+    cursor: pointer; background: transparent; color: var(--ink-2);
+    border: 1px solid var(--rule); padding: 8px 14px;
     font-family: 'JetBrains Mono',ui-monospace,monospace;
     font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase;
     transition: border-color .15s ease, color .15s ease;
   }
-  .suggestion:hover { border-color: #1747E5; color: #1747E5; }
+  .suggestion:hover { border-color: var(--accent); color: var(--accent); }
 
-  form { display: flex; align-items: flex-end; gap: 14px; border: 1px solid #DEDBD4; background: #FFFFFF; padding: 12px 12px 12px 16px; transition: border-color .15s ease; }
-  form:focus-within { border-color: #1747E5; }
+  form { display: flex; align-items: flex-end; gap: 14px; border: 1px solid var(--rule); background: var(--surface); padding: 12px 12px 12px 16px; transition: border-color .15s ease; }
+  form:focus-within { border-color: var(--accent); }
   textarea {
     flex: 1 1 auto; border: 0; outline: 0; resize: none; background: transparent;
-    font-family: inherit; font-size: 17px; line-height: 1.5; color: #16181A;
+    font-family: inherit; font-size: 17px; line-height: 1.5; color: var(--ink);
     max-height: 168px; padding: 6px 0;
   }
-  textarea::placeholder { color: #9AA0A6; }
+  textarea::placeholder { color: var(--faint); }
   .send {
-    flex: 0 0 auto; border: 0; cursor: pointer; background: #1747E5; color: #F7F6F2;
+    flex: 0 0 auto; border: 0; cursor: pointer; background: var(--accent); color: var(--on-accent);
     font-family: 'JetBrains Mono',ui-monospace,monospace;
     font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase;
     padding: 12px 20px; transition: background .15s ease, opacity .15s ease;
   }
-  .send:hover:not(:disabled) { background: #133BBC; }
+  .send:hover:not(:disabled) { background: var(--accent-strong); }
   .send:disabled { opacity: .4; cursor: not-allowed; }
-  .hint { margin: 10px 0 0; font-family: 'JetBrains Mono',ui-monospace,monospace; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: #9AA0A6; }
+  .hint { margin: 10px 0 0; font-family: 'JetBrains Mono',ui-monospace,monospace; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--faint); }
 
   /* ---- View transition choreography ---- */
   ::view-transition-group(*) { animation-duration: .45s; animation-timing-function: cubic-bezier(.2,0,0,1); }
@@ -142,7 +212,10 @@
 
   <div class="masthead mono">
     <span class="wordmark"><a href="/" style="text-decoration:none">Kaustubh Trivedi</a></span>
-    <span class="meta">Personal RAG — Ask</span>
+    <span style="display:flex;align-items:baseline;gap:22px">
+      <span class="meta">Personal RAG — Ask</span>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false">Dark</button>
+    </span>
   </div>
 
   <div class="titlebar">
@@ -171,6 +244,47 @@
   </div>
 
 </div>
+
+<script>
+  /* Theme toggle. The stored choice wins; with nothing stored the page
+     follows the OS preference and the label tracks it live. */
+  (function () {
+    var root   = document.documentElement;
+    var btn    = document.querySelector('[data-theme-toggle]');
+    var meta   = document.querySelector('meta[name="theme-color"]');
+    var system = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+
+    function current() {
+      var set = root.getAttribute('data-theme');
+      if (set) return set;
+      return system && system.matches ? 'dark' : 'light';
+    }
+
+    function sync() {
+      var dark = current() === 'dark';
+      if (meta) meta.setAttribute('content', dark ? '#101113' : '#F7F6F2');
+      if (!btn) return;
+      btn.textContent = dark ? 'Light' : 'Dark';
+      btn.setAttribute('aria-pressed', String(dark));
+      btn.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
+    }
+
+    if (btn) {
+      btn.addEventListener('click', function () {
+        var next = current() === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        try { localStorage.setItem('theme', next); } catch (e) {}
+        sync();
+      });
+    }
+    if (system && system.addEventListener) {
+      system.addEventListener('change', function () {
+        if (!root.getAttribute('data-theme')) sync();
+      });
+    }
+    sync();
+  })();
+</script>
 
 <script>
   (function () {

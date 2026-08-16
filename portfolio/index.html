@@ -16,7 +16,87 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>
+  /* Applied before first paint so the page never flashes the wrong theme. */
+  (function () {
+    try {
+      var saved = localStorage.getItem('theme');
+      if (saved === 'dark' || saved === 'light') {
+        document.documentElement.setAttribute('data-theme', saved);
+      }
+    } catch (e) {}
+  })();
+</script>
 <style>
+  /* ---- Palette ----
+     Light is the original paper-and-ink scheme. Dark keeps the same
+     relationships — near-black paper, warm off-white ink, one blue accent —
+     with the accent lifted for contrast against the dark ground. */
+  :root {
+    --bg: #F7F6F2;
+    --surface: #FFFFFF;
+    --ink: #16181A;
+    --ink-2: #3E4348;
+    --muted: #6B7075;
+    --faint: #9AA0A6;
+    --rule: #DEDBD4;
+    --rule-soft: #E8E5DE;
+    --rule-strong: #C6C2B9;
+    --accent: #1747E5;
+    --accent-strong: #133BBC;
+    --on-accent: #F7F6F2;
+    --on-accent-rule: rgba(247,246,242,.4);
+    --error: #A6483C;
+    --portrait-filter: grayscale(1) contrast(1.04);
+    color-scheme: light;
+  }
+  :root[data-theme="dark"] {
+    --bg: #101113;
+    --surface: #17191C;
+    --ink: #ECEAE4;
+    --ink-2: #B2B7BC;
+    --muted: #8A9097;
+    --faint: #6E747B;
+    --rule: #2A2D32;
+    --rule-soft: #212429;
+    --rule-strong: #474C53;
+    --accent: #6E93FF;
+    --accent-strong: #8FACFF;
+    --on-accent: #0D0F12;
+    --on-accent-rule: rgba(13,15,18,.4);
+    --error: #E08A7E;
+    --portrait-filter: grayscale(1) contrast(.94) brightness(.82);
+    color-scheme: dark;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #101113;
+      --surface: #17191C;
+      --ink: #ECEAE4;
+      --ink-2: #B2B7BC;
+      --muted: #8A9097;
+      --faint: #6E747B;
+      --rule: #2A2D32;
+      --rule-soft: #212429;
+      --rule-strong: #474C53;
+      --accent: #6E93FF;
+      --accent-strong: #8FACFF;
+      --on-accent: #0D0F12;
+      --on-accent-rule: rgba(13,15,18,.4);
+      --error: #E08A7E;
+      --portrait-filter: grayscale(1) contrast(.94) brightness(.82);
+      color-scheme: dark;
+    }
+  }
+
+  /* Theme toggle: same mono micro-type as the rest of the masthead. */
+  .theme-toggle {
+    appearance: none; background: transparent; border: 0; cursor: pointer;
+    padding: 0; color: inherit; font: inherit; letter-spacing: inherit;
+    text-transform: inherit; transition: color .15s ease;
+  }
+  .theme-toggle:hover { color: var(--accent); }
+
   /* Cross-document view transitions between this page and chat.html.
      Chrome/Edge 126+ animate the navigation; elsewhere it degrades to a
      plain navigation with no visual change. */
@@ -34,12 +114,12 @@
   .vt-meta     { view-transition-name: vt-meta; }
   .vt-title    { view-transition-name: vt-title; }
 
-  html, body { margin: 0; padding: 0; background: #F7F6F2; }
+  html, body { margin: 0; padding: 0; background: var(--bg); }
   body { -webkit-font-smoothing: antialiased; }
   a { color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; transition: color .15s ease; }
-  a:hover { color: #1747E5; }
-  ::selection { background: #1747E5; color: #F7F6F2; }
-  :focus-visible { outline: 2px solid #1747E5; outline-offset: 3px; }
+  a:hover { color: var(--accent); }
+  ::selection { background: var(--accent); color: var(--on-accent); }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
   /* Coordination diagram: horizontal on wide viewports, stacked on narrow.
      Replaces the design's JS-driven layout switch with a plain media query. */
@@ -55,7 +135,7 @@
   .hero { display: flex; align-items: flex-end; gap: clamp(32px, 5vw, 72px); }
   .hero-text { flex: 1 1 auto; min-width: 0; }
   .hero-portrait { flex: 0 0 auto; width: clamp(200px, 24vw, 320px); }
-  .hero-portrait img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 12%; filter: grayscale(1) contrast(1.04); }
+  .hero-portrait img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 12%; filter: var(--portrait-filter); }
   @media (max-width: 899px) {
     .hero { flex-direction: column; align-items: flex-start; }
     .hero-portrait { width: clamp(160px, 46vw, 240px); }
@@ -72,22 +152,25 @@
 </style>
 </head>
 <body>
-<div style="background:#F7F6F2;color:#16181A;font-family:Inter,'Helvetica Neue',Helvetica,sans-serif;font-size:17px;line-height:1.6;letter-spacing:-0.002em">
+<div style="background:var(--bg);color:var(--ink);font-family:Inter,'Helvetica Neue',Helvetica,sans-serif;font-size:17px;line-height:1.6;letter-spacing:-0.002em">
 
   <header style="min-height:100vh;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(28px,5vw,64px) clamp(20px,6vw,96px) clamp(28px,4vw,48px)">
-    <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;border-bottom:1px solid #DEDBD4;padding-bottom:14px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#6B7075">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;border-bottom:1px solid var(--rule);padding-bottom:14px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)">
       <span class="vt-wordmark">Kaustubh Trivedi</span>
-      <span class="vt-meta">Software Engineer — Dublin, IE</span>
+      <span style="display:flex;align-items:baseline;gap:22px">
+        <span class="vt-meta">Software Engineer — Dublin, IE</span>
+        <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false">Dark</button>
+      </span>
     </div>
 
     <div class="hero" style="max-width:1120px;margin:clamp(48px,9vh,110px) 0 0">
       <div class="hero-text">
       <div data-reveal>
-        <div style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#6B7075;margin-bottom:clamp(18px,3vw,30px)">Overview</div>
+        <div style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:clamp(18px,3vw,30px)">Overview</div>
         <h1 style="margin:0;font-size:clamp(52px,11.5vw,136px);line-height:0.92;font-weight:800;letter-spacing:-0.045em">Kaustubh<br>Trivedi</h1>
       </div>
       <p data-reveal style="transition-delay:.08s;margin:clamp(26px,4vw,40px) 0 0;max-width:34ch;font-size:clamp(19px,2.1vw,25px);line-height:1.35;font-weight:600;letter-spacing:-0.02em">Software engineer in Dublin. I build multi-agent systems and the infrastructure that keeps them running.</p>
-      <p data-reveal style="transition-delay:.16s;margin:22px 0 0;max-width:68ch;color:#3E4348">Most of my work sits at the point where LLM pipelines stop being demos and start needing real engineering: durable state, model routing, failure recovery, and knowing when not to trust the model's output.</p>
+      <p data-reveal style="transition-delay:.16s;margin:22px 0 0;max-width:68ch;color:var(--ink-2)">Most of my work sits at the point where LLM pipelines stop being demos and start needing real engineering: durable state, model routing, failure recovery, and knowing when not to trust the model's output.</p>
       <nav data-reveal style="transition-delay:.24s;display:flex;flex-wrap:wrap;gap:8px 26px;margin-top:clamp(30px,4vw,46px);font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase">
         <a href="https://github.com/KaustubhTrivedi" rel="me noopener">GitHub</a>
         <a href="https://www.linkedin.com/in/kaustubhtrivedi777-software-engineer/" rel="me noopener">LinkedIn</a>
@@ -100,57 +183,57 @@
       </div>
     </div>
 
-    <div style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9AA0A6">Scroll — Selected work</div>
+    <div style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint)">Scroll — Selected work</div>
   </header>
 
   <main style="padding:0 clamp(20px,6vw,96px)">
 
     <section style="max-width:1120px;margin:0 auto;padding:clamp(56px,8vw,110px) 0 0">
-      <div style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#6B7075">Selected work</div>
+      <div style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)">Selected work</div>
 
-      <article data-reveal style="border-top:1px solid #DEDBD4;margin-top:clamp(28px,4vw,44px);padding:clamp(32px,5vw,58px) 0">
-        <div style="display:flex;flex-wrap:wrap;gap:6px 22px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:#6B7075">
+      <article data-reveal style="border-top:1px solid var(--rule);margin-top:clamp(28px,4vw,44px);padding:clamp(32px,5vw,58px) 0">
+        <div style="display:flex;flex-wrap:wrap;gap:6px 22px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)">
           <span>Project 01</span>
           <span>Open source</span>
         </div>
         <h2 style="margin:18px 0 0;font-size:clamp(30px,4.2vw,52px);line-height:1.02;font-weight:800;letter-spacing:-0.035em">Rendure</h2>
         <p style="margin:12px 0 0;max-width:60ch;font-size:clamp(17px,1.5vw,19px);font-weight:600;letter-spacing:-0.015em">Multi-agent resume tailoring. Open source.</p>
-        <p style="margin:22px 0 0;max-width:68ch;color:#3E4348;text-wrap:pretty">Rendure takes a resume and a job description and produces typeset RenderCV YAML. The hard part is not generation, it is refusing to invent things. Language models will happily add a framework you have never touched if the job description mentions it. So Rendure runs a two-stage Generation to QA pipeline. The generation agent produces a candidate resume; a separate QA agent audits every claim back to the source resume under strict grounding rules and rejects anything unsupported. Splitting these into two agents with opposing incentives works far better than one agent asked politely to be accurate.</p>
-        <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:18px 32px;margin-top:clamp(26px,3.5vw,38px);padding-top:16px;border-top:1px solid #E8E5DE;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:#6B7075">
+        <p style="margin:22px 0 0;max-width:68ch;color:var(--ink-2);text-wrap:pretty">Rendure takes a resume and a job description and produces typeset RenderCV YAML. The hard part is not generation, it is refusing to invent things. Language models will happily add a framework you have never touched if the job description mentions it. So Rendure runs a two-stage Generation to QA pipeline. The generation agent produces a candidate resume; a separate QA agent audits every claim back to the source resume under strict grounding rules and rejects anything unsupported. Splitting these into two agents with opposing incentives works far better than one agent asked politely to be accurate.</p>
+        <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:18px 32px;margin-top:clamp(26px,3.5vw,38px);padding-top:16px;border-top:1px solid var(--rule-soft);font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)">
           <div style="display:flex;flex-wrap:wrap;gap:8px 14px">
-            <span>Next.js</span><span style="color:#C6C2B9">/</span><span>FastAPI</span><span style="color:#C6C2B9">/</span><span>RenderCV</span>
+            <span>Next.js</span><span style="color:var(--rule-strong)">/</span><span>FastAPI</span><span style="color:var(--rule-strong)">/</span><span>RenderCV</span>
           </div>
-          <div style="display:flex;gap:20px;color:#16181A">
+          <div style="display:flex;gap:20px;color:var(--ink)">
             <a href="https://rendure.kaustubhsstuff.com/#run" rel="noopener">Live</a>
             <a href="https://github.com/KaustubhTrivedi/rendure-v2" rel="noopener">Source</a>
           </div>
         </div>
       </article>
 
-      <article data-reveal style="border-top:1px solid #DEDBD4;padding:clamp(32px,5vw,58px) 0">
-        <div style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:#6B7075">Project 02</div>
+      <article data-reveal style="border-top:1px solid var(--rule);padding:clamp(32px,5vw,58px) 0">
+        <div style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)">Project 02</div>
         <h2 style="margin:18px 0 0;font-size:clamp(30px,4.2vw,52px);line-height:1.02;font-weight:800;letter-spacing:-0.035em">Agent orchestration platform</h2>
         <p style="margin:12px 0 0;max-width:60ch;font-size:clamp(17px,1.5vw,19px);font-weight:600;letter-spacing:-0.015em">Long-running multi-agent pipelines coordinated through Postgres.</p>
-        <p style="margin:22px 0 0;max-width:68ch;color:#3E4348;text-wrap:pretty">A set of specialised agents that run continuously and hand work down a chain, each stage enriching a shared record. Built to answer a question I kept hitting: how do you run agents for weeks rather than minutes? The answer turned out to be avoiding agent-to-agent chat entirely. Agents coordinate through a Postgres state machine and cron scheduling, not by talking to each other. Every transition is a durable row, so a crashed agent resumes from state rather than losing the run.</p>
+        <p style="margin:22px 0 0;max-width:68ch;color:var(--ink-2);text-wrap:pretty">A set of specialised agents that run continuously and hand work down a chain, each stage enriching a shared record. Built to answer a question I kept hitting: how do you run agents for weeks rather than minutes? The answer turned out to be avoiding agent-to-agent chat entirely. Agents coordinate through a Postgres state machine and cron scheduling, not by talking to each other. Every transition is a durable row, so a crashed agent resumes from state rather than losing the run.</p>
 
-        <figure style="margin:clamp(32px,4.5vw,52px) 0 0;padding:clamp(20px,3vw,34px) 0;border-top:1px solid #E8E5DE;border-bottom:1px solid #E8E5DE">
-          <div style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:#9AA0A6;margin-bottom:clamp(16px,2.5vw,26px)">Fig. 02.1 — Coordination topology</div>
+        <figure style="margin:clamp(32px,4.5vw,52px) 0 0;padding:clamp(20px,3vw,34px) 0;border-top:1px solid var(--rule-soft);border-bottom:1px solid var(--rule-soft)">
+          <div style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);margin-bottom:clamp(16px,2.5vw,26px)">Fig. 02.1 — Coordination topology</div>
 
           <div class="dg-wide">
             <svg viewBox="0 0 1000 362" width="100%" role="img" aria-label="Cron supervisor dispatches four pipeline stages — discovery, opportunity intel, people research, dispatch — which read from and write to a shared Postgres state node." style="display:block;font-family:'JetBrains Mono',ui-monospace,monospace">
               <defs>
-                <marker id="ahd" viewBox="0 0 9 9" refX="8" refY="4.5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0.5,0.5 L8.5,4.5 L0.5,8.5 z" fill="#16181A"></path></marker>
-                <marker id="ahda" viewBox="0 0 9 9" refX="8" refY="4.5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0.5,0.5 L8.5,4.5 L0.5,8.5 z" fill="#1747E5"></path></marker>
+                <marker id="ahd" viewBox="0 0 9 9" refX="8" refY="4.5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0.5,0.5 L8.5,4.5 L0.5,8.5 z" style="fill:var(--ink)"></path></marker>
+                <marker id="ahda" viewBox="0 0 9 9" refX="8" refY="4.5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0.5,0.5 L8.5,4.5 L0.5,8.5 z" style="fill:var(--accent)"></path></marker>
               </defs>
-              <g stroke="#16181A" stroke-width="1" fill="none">
+              <g stroke-width="1" fill="none" style="stroke:var(--ink)">
                 <rect x="380" y="8" width="240" height="46"></rect>
                 <rect x="20" y="140" width="210" height="50"></rect>
                 <rect x="270" y="140" width="210" height="50"></rect>
                 <rect x="520" y="140" width="210" height="50"></rect>
                 <rect x="770" y="140" width="210" height="50"></rect>
               </g>
-              <rect x="300" y="300" width="400" height="50" fill="#1747E5" stroke="#1747E5"></rect>
-              <g stroke="#16181A" stroke-width="1" fill="none" marker-end="url(#ahd)">
+              <rect x="300" y="300" width="400" height="50" style="fill:var(--accent);stroke:var(--accent)"></rect>
+              <g stroke-width="1" fill="none" marker-end="url(#ahd)" style="stroke:var(--ink)">
                 <path d="M500,54 V100 H125 V136"></path>
                 <path d="M500,54 V100 H375 V136"></path>
                 <path d="M500,54 V100 H625 V136"></path>
@@ -159,44 +242,44 @@
                 <path d="M480,165 H512"></path>
                 <path d="M730,165 H762"></path>
               </g>
-              <g stroke="#1747E5" stroke-width="1" fill="none" marker-end="url(#ahda)" marker-start="url(#ahda)">
+              <g stroke-width="1" fill="none" marker-end="url(#ahda)" marker-start="url(#ahda)" style="stroke:var(--accent)">
                 <path d="M125,194 V250 H340 V296"></path>
                 <path d="M375,194 V250 H440 V296"></path>
                 <path d="M625,194 V250 H560 V296"></path>
                 <path d="M875,194 V250 H660 V296"></path>
               </g>
-              <g fill="#16181A" font-size="13" letter-spacing="1.6" text-anchor="middle">
+              <g font-size="13" letter-spacing="1.6" text-anchor="middle" style="fill:var(--ink)">
                 <text x="500" y="36">CRON / SUPERVISOR</text>
                 <text x="125" y="170">DISCOVERY</text>
                 <text x="375" y="170">OPPORTUNITY INTEL</text>
                 <text x="625" y="170">PEOPLE RESEARCH</text>
                 <text x="875" y="170">DISPATCH</text>
               </g>
-              <text x="500" y="330" fill="#F7F6F2" font-size="13" letter-spacing="1.6" text-anchor="middle">POSTGRES STATE</text>
+              <text x="500" y="330" font-size="13" letter-spacing="1.6" text-anchor="middle" style="fill:var(--on-accent)">POSTGRES STATE</text>
             </svg>
           </div>
 
           <div class="dg-narrow">
             <svg viewBox="0 0 340 450" width="100%" role="img" aria-label="Cron supervisor dispatches four pipeline stages in sequence — discovery, opportunity intel, people research, dispatch — each reading from and writing to a shared Postgres state node." style="display:block;font-family:'JetBrains Mono',ui-monospace,monospace">
               <defs>
-                <marker id="ahm" viewBox="0 0 9 9" refX="8" refY="4.5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0.5,0.5 L8.5,4.5 L0.5,8.5 z" fill="#16181A"></path></marker>
-                <marker id="ahma" viewBox="0 0 9 9" refX="8" refY="4.5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0.5,0.5 L8.5,4.5 L0.5,8.5 z" fill="#1747E5"></path></marker>
+                <marker id="ahm" viewBox="0 0 9 9" refX="8" refY="4.5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0.5,0.5 L8.5,4.5 L0.5,8.5 z" style="fill:var(--ink)"></path></marker>
+                <marker id="ahma" viewBox="0 0 9 9" refX="8" refY="4.5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0.5,0.5 L8.5,4.5 L0.5,8.5 z" style="fill:var(--accent)"></path></marker>
               </defs>
-              <g stroke="#16181A" stroke-width="1" fill="none">
+              <g stroke-width="1" fill="none" style="stroke:var(--ink)">
                 <rect x="56" y="6" width="278" height="40"></rect>
                 <rect x="56" y="86" width="278" height="40"></rect>
                 <rect x="56" y="160" width="278" height="40"></rect>
                 <rect x="56" y="234" width="278" height="40"></rect>
                 <rect x="56" y="308" width="278" height="40"></rect>
               </g>
-              <rect x="56" y="392" width="278" height="44" fill="#1747E5" stroke="#1747E5"></rect>
-              <g stroke="#16181A" stroke-width="1" fill="none" marker-end="url(#ahm)">
+              <rect x="56" y="392" width="278" height="44" style="fill:var(--accent);stroke:var(--accent)"></rect>
+              <g stroke-width="1" fill="none" marker-end="url(#ahm)" style="stroke:var(--ink)">
                 <path d="M195,46 V82"></path>
                 <path d="M195,126 V156"></path>
                 <path d="M195,200 V230"></path>
                 <path d="M195,274 V304"></path>
               </g>
-              <g stroke="#1747E5" stroke-width="1" fill="none">
+              <g stroke-width="1" fill="none" style="stroke:var(--accent)">
                 <path d="M18,414 H52" marker-end="url(#ahma)" marker-start="url(#ahma)"></path>
                 <path d="M18,106 V414"></path>
                 <path d="M18,106 H52" marker-end="url(#ahma)" marker-start="url(#ahma)"></path>
@@ -204,77 +287,118 @@
                 <path d="M18,254 H52" marker-end="url(#ahma)" marker-start="url(#ahma)"></path>
                 <path d="M18,328 H52" marker-end="url(#ahma)" marker-start="url(#ahma)"></path>
               </g>
-              <g fill="#16181A" font-size="12" letter-spacing="1.2">
+              <g font-size="12" letter-spacing="1.2" style="fill:var(--ink)">
                 <text x="70" y="31">CRON / SUPERVISOR</text>
                 <text x="70" y="111">DISCOVERY</text>
                 <text x="70" y="185">OPPORTUNITY INTEL</text>
                 <text x="70" y="259">PEOPLE RESEARCH</text>
                 <text x="70" y="333">DISPATCH</text>
               </g>
-              <text x="70" y="419" fill="#F7F6F2" font-size="12" letter-spacing="1.2">POSTGRES STATE</text>
+              <text x="70" y="419" font-size="12" letter-spacing="1.2" style="fill:var(--on-accent)">POSTGRES STATE</text>
             </svg>
           </div>
 
-          <figcaption style="margin-top:clamp(16px,2.5vw,24px);font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;line-height:1.6;letter-spacing:.04em;color:#6B7075">Agents coordinate through durable state, not through each other.</figcaption>
+          <figcaption style="margin-top:clamp(16px,2.5vw,24px);font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;line-height:1.6;letter-spacing:.04em;color:var(--muted)">Agents coordinate through durable state, not through each other.</figcaption>
         </figure>
 
         <ul style="list-style:none;margin:clamp(28px,4vw,40px) 0 0;padding:0;display:flex;flex-direction:column;gap:18px;max-width:68ch">
-          <li style="display:flex;gap:14px;color:#3E4348"><span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;line-height:2.1;color:#1747E5">01</span><span><strong style="font-weight:600;color:#16181A">Model routing by stage.</strong> Structured extraction runs on cheap fast models; reasoning-heavy stages route to larger ones.</span></li>
-          <li style="display:flex;gap:14px;color:#3E4348"><span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;line-height:2.1;color:#1747E5">02</span><span><strong style="font-weight:600;color:#16181A">Supervisor loops over fixed schedules.</strong> A heartbeat process watches agent health and escalates to a human only when something needs it.</span></li>
-          <li style="display:flex;gap:14px;color:#3E4348"><span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;line-height:2.1;color:#1747E5">03</span><span><strong style="font-weight:600;color:#16181A">Evidence requirements.</strong> Every agent output carries typed provenance, and unverifiable claims are labelled as inferred rather than asserted.</span></li>
+          <li style="display:flex;gap:14px;color:var(--ink-2)"><span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;line-height:2.1;color:var(--accent)">01</span><span><strong style="font-weight:600;color:var(--ink)">Model routing by stage.</strong> Structured extraction runs on cheap fast models; reasoning-heavy stages route to larger ones.</span></li>
+          <li style="display:flex;gap:14px;color:var(--ink-2)"><span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;line-height:2.1;color:var(--accent)">02</span><span><strong style="font-weight:600;color:var(--ink)">Supervisor loops over fixed schedules.</strong> A heartbeat process watches agent health and escalates to a human only when something needs it.</span></li>
+          <li style="display:flex;gap:14px;color:var(--ink-2)"><span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;line-height:2.1;color:var(--accent)">03</span><span><strong style="font-weight:600;color:var(--ink)">Evidence requirements.</strong> Every agent output carries typed provenance, and unverifiable claims are labelled as inferred rather than asserted.</span></li>
         </ul>
 
-        <div style="margin-top:clamp(26px,3.5vw,38px);padding-top:16px;border-top:1px solid #E8E5DE;display:flex;flex-wrap:wrap;gap:8px 14px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:#6B7075">
-          <span>Postgres</span><span style="color:#C6C2B9">/</span><span>TypeScript</span><span style="color:#C6C2B9">/</span><span>Python</span><span style="color:#C6C2B9">/</span><span>OpenRouter</span><span style="color:#C6C2B9">/</span><span>Self-hosted</span>
+        <div style="margin-top:clamp(26px,3.5vw,38px);padding-top:16px;border-top:1px solid var(--rule-soft);display:flex;flex-wrap:wrap;gap:8px 14px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)">
+          <span>Postgres</span><span style="color:var(--rule-strong)">/</span><span>TypeScript</span><span style="color:var(--rule-strong)">/</span><span>Python</span><span style="color:var(--rule-strong)">/</span><span>OpenRouter</span><span style="color:var(--rule-strong)">/</span><span>Self-hosted</span>
         </div>
       </article>
 
-      <article data-reveal style="border-top:1px solid #DEDBD4;padding:clamp(32px,5vw,58px) 0">
-        <div style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:#6B7075">Project 03</div>
+      <article data-reveal style="border-top:1px solid var(--rule);padding:clamp(32px,5vw,58px) 0">
+        <div style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)">Project 03</div>
         <h2 style="margin:18px 0 0;font-size:clamp(30px,4.2vw,52px);line-height:1.02;font-weight:800;letter-spacing:-0.035em">Personal RAG</h2>
         <p style="margin:12px 0 0;max-width:60ch;font-size:clamp(17px,1.5vw,19px);font-weight:600;letter-spacing:-0.015em">Query my own notes and documentation from Telegram.</p>
-        <p style="margin:22px 0 0;max-width:68ch;color:#3E4348;text-wrap:pretty">Retrieval over several years of Obsidian notes and development docs, built on R2R with pgvector and Cohere embeddings and reranking. The reranking stage mattered more than the embedding model; raw vector search kept surfacing plausible but wrong chunks. Runs on my homelab alongside Obsidian LiveSync over CouchDB, behind Caddy.</p>
-        <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:18px 32px;margin-top:clamp(26px,3.5vw,38px);padding-top:16px;border-top:1px solid #E8E5DE;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:#6B7075">
+        <p style="margin:22px 0 0;max-width:68ch;color:var(--ink-2);text-wrap:pretty">Retrieval over several years of Obsidian notes and development docs, built on R2R with pgvector and Cohere embeddings and reranking. The reranking stage mattered more than the embedding model; raw vector search kept surfacing plausible but wrong chunks. Runs on my homelab alongside Obsidian LiveSync over CouchDB, behind Caddy.</p>
+        <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:18px 32px;margin-top:clamp(26px,3.5vw,38px);padding-top:16px;border-top:1px solid var(--rule-soft);font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)">
           <div style="display:flex;flex-wrap:wrap;gap:8px 14px">
-            <span>R2R</span><span style="color:#C6C2B9">/</span><span>pgvector</span><span style="color:#C6C2B9">/</span><span>Cohere</span><span style="color:#C6C2B9">/</span><span>CouchDB</span><span style="color:#C6C2B9">/</span><span>Caddy</span>
+            <span>R2R</span><span style="color:var(--rule-strong)">/</span><span>pgvector</span><span style="color:var(--rule-strong)">/</span><span>Cohere</span><span style="color:var(--rule-strong)">/</span><span>CouchDB</span><span style="color:var(--rule-strong)">/</span><span>Caddy</span>
           </div>
-          <div style="color:#16181A"><a class="vt-title" href="/chat">Ask it something</a></div>
+          <div style="color:var(--ink)"><a class="vt-title" href="/chat">Ask it something</a></div>
         </div>
       </article>
     </section>
 
-    <section data-reveal style="max-width:1120px;margin:0 auto;border-top:1px solid #DEDBD4;padding:clamp(56px,8vw,110px) 0">
-      <div style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#6B7075">About</div>
-      <div style="max-width:58ch;margin-top:clamp(26px,4vw,42px);display:flex;flex-direction:column;gap:20px;color:#3E4348">
-        <p style="margin:0;color:#16181A;font-size:clamp(18px,1.7vw,21px);line-height:1.5;font-weight:600;letter-spacing:-0.018em">Full stack engineer, roughly two years commercial experience across Ireland and India. MSc in Computer Science from TU Dublin.</p>
+    <section data-reveal style="max-width:1120px;margin:0 auto;border-top:1px solid var(--rule);padding:clamp(56px,8vw,110px) 0">
+      <div style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)">About</div>
+      <div style="max-width:58ch;margin-top:clamp(26px,4vw,42px);display:flex;flex-direction:column;gap:20px;color:var(--ink-2)">
+        <p style="margin:0;color:var(--ink);font-size:clamp(18px,1.7vw,21px);line-height:1.5;font-weight:600;letter-spacing:-0.018em">Full stack engineer, roughly two years commercial experience across Ireland and India. MSc in Computer Science from TU Dublin.</p>
         <p style="margin:0">Currently doing LLM and data science work at Orcawise in Dublin. Previously built a production real estate platform and payment processing infrastructure.</p>
-        <p style="margin:0">I run a homelab and write about self-hosting and agent tooling as <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:14.5px;color:#16181A">rackgremlin</span>. Comfortable in Java/Spring Boot, Python/FastAPI, TypeScript/Next.js, Go, Postgres, Docker and Kubernetes.</p>
+        <p style="margin:0">I run a homelab and write about self-hosting and agent tooling as <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:14.5px;color:var(--ink)">rackgremlin</span>. Comfortable in Java/Spring Boot, Python/FastAPI, TypeScript/Next.js, Go, Postgres, Docker and Kubernetes.</p>
         <p style="margin:0">Open to permanent mid-level engineering roles in Dublin or remote within Ireland.</p>
       </div>
     </section>
 
   </main>
 
-  <section style="background:#1747E5;color:#F7F6F2;padding:clamp(64px,10vw,130px) clamp(20px,6vw,96px)">
+  <section style="background:var(--accent);color:var(--on-accent);padding:clamp(64px,10vw,130px) clamp(20px,6vw,96px)">
     <div style="max-width:1120px;margin:0 auto">
       <div style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.72">Contact</div>
       <p style="margin:clamp(26px,4vw,44px) 0 0;max-width:30ch;font-size:clamp(30px,5vw,64px);line-height:1.04;font-weight:800;letter-spacing:-0.04em">Open to permanent mid-level engineering roles in Dublin or remote within Ireland.</p>
-      <div style="display:flex;flex-wrap:wrap;gap:14px 34px;margin-top:clamp(34px,5vw,58px);padding-top:20px;border-top:1px solid rgba(247,246,242,.4);font-family:'JetBrains Mono',ui-monospace,monospace;font-size:13px;letter-spacing:.1em;text-transform:uppercase">
-        <a href="mailto:kaus12tri@gmail.com" style="color:#F7F6F2">Email</a>
-        <a href="https://github.com/KaustubhTrivedi" rel="me noopener" style="color:#F7F6F2">GitHub</a>
-        <a href="https://www.linkedin.com/in/kaustubhtrivedi777-software-engineer/" rel="me noopener" style="color:#F7F6F2">LinkedIn</a>
-        <a href="Kaustubh_Trivedi_CV.pdf" style="color:#F7F6F2">Resume</a>
+      <div style="display:flex;flex-wrap:wrap;gap:14px 34px;margin-top:clamp(34px,5vw,58px);padding-top:20px;border-top:1px solid var(--on-accent-rule);font-family:'JetBrains Mono',ui-monospace,monospace;font-size:13px;letter-spacing:.1em;text-transform:uppercase">
+        <a href="mailto:kaus12tri@gmail.com" style="color:var(--on-accent)">Email</a>
+        <a href="https://github.com/KaustubhTrivedi" rel="me noopener" style="color:var(--on-accent)">GitHub</a>
+        <a href="https://www.linkedin.com/in/kaustubhtrivedi777-software-engineer/" rel="me noopener" style="color:var(--on-accent)">LinkedIn</a>
+        <a href="Kaustubh_Trivedi_CV.pdf" style="color:var(--on-accent)">Resume</a>
       </div>
     </div>
   </section>
 
   <footer style="padding:0 clamp(20px,6vw,96px) clamp(34px,5vw,54px)">
-    <div style="max-width:1120px;margin:0 auto;border-top:1px solid #DEDBD4;padding-top:18px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9AA0A6">
+    <div style="max-width:1120px;margin:0 auto;border-top:1px solid var(--rule);padding-top:18px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)">
       <span>Kaustubh Trivedi</span>
       <span>Dublin, IE</span>
     </div>
   </footer>
 </div>
+
+<script>
+  /* Theme toggle. The stored choice wins; with nothing stored the page
+     follows the OS preference and the label tracks it live. */
+  (function () {
+    var root   = document.documentElement;
+    var btn    = document.querySelector('[data-theme-toggle]');
+    var meta   = document.querySelector('meta[name="theme-color"]');
+    var system = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+
+    function current() {
+      var set = root.getAttribute('data-theme');
+      if (set) return set;
+      return system && system.matches ? 'dark' : 'light';
+    }
+
+    function sync() {
+      var dark = current() === 'dark';
+      if (meta) meta.setAttribute('content', dark ? '#101113' : '#F7F6F2');
+      if (!btn) return;
+      btn.textContent = dark ? 'Light' : 'Dark';
+      btn.setAttribute('aria-pressed', String(dark));
+      btn.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
+    }
+
+    if (btn) {
+      btn.addEventListener('click', function () {
+        var next = current() === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        try { localStorage.setItem('theme', next); } catch (e) {}
+        sync();
+      });
+    }
+    if (system && system.addEventListener) {
+      system.addEventListener('change', function () {
+        if (!root.getAttribute('data-theme')) sync();
+      });
+    }
+    sync();
+  })();
+</script>
 
 <script>
   (function () {
