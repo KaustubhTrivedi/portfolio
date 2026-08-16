@@ -32,8 +32,9 @@ USER appuser
 EXPOSE 5000
 
 # Health check
-HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
-    CMD curl -f http://localhost:5000/api/health || exit 1
+# Uses stdlib urllib rather than curl, which is not installed in this image.
+HEALTHCHECK --interval=30s --timeout=30s --start-period=40s --retries=3 \
+    CMD python -c "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://localhost:5000/api/health', timeout=10).status == 200 else 1)" || exit 1
 
 # Run the application
 CMD ["python", "app.py"] 

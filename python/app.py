@@ -56,7 +56,16 @@ RAG_RERANK_TOP_N = int(os.getenv("RAG_RERANK_TOP_N", "5"))
 _raw_threshold = os.getenv("RAG_DISTANCE_THRESHOLD", "").strip()
 RAG_DISTANCE_THRESHOLD = float(_raw_threshold) if _raw_threshold else None
 # Cheap/fast model used only to rerank retrieved chunks.
-RAG_RERANK_MODEL = os.getenv("RAG_RERANK_MODEL", "stepfun/step-3.5-flash:free")
+# Chat model. Must support tool calling and streaming. The previous default
+# (stepfun/step-3.5-flash:free) was retired from the free tier and now 404s;
+# set CHAT_MODEL to "stepfun/step-3.5-flash" to use the paid slug instead.
+CHAT_MODEL = os.getenv("CHAT_MODEL", "nvidia/nemotron-3.5-lightning:free")
+
+# A dedicated reranker model, served over OpenRouter's /rerank endpoint.
+RAG_RERANK_MODEL = os.getenv(
+    "RAG_RERANK_MODEL", "nvidia/llama-nemotron-rerank-vl-1b-v2:free"
+)
+OPENROUTER_BASE_URL = os.getenv("OPENROUTER_BASE_URL", "https://openrouter.ai/api/v1")
 # Per-doc-type chunking. "other" is the default until docs are categorized.
 DOC_TYPE_CHUNKING = {
     "resume": (500, 100),
@@ -142,7 +151,86 @@ class Me:
         self.name = "Kaustubh Trivedi"
         self.knowledge_path = "me/knowledge"
         
-        # Connect to ChromaDB
+        self.chroma_client = self._connect_chroma()
+        collection_name = "kaustubh_linkedin_profile"
+
+        # --- SMART DB INITIALIZATION ---
+
+        current_hash = self._get_folder_hash(self.knowledge_path)
+        print(f"Current Knowledge Hash: {current_hash}")
+        self._ensure_collection(collection_name, current_hash)
+
+        # Read summary
+        with open("me/summary.txt", "r", encoding="utf-8") as f:
+            self.summary = f.read()
+    def _ensure_collection(self, collection_name: str, current_hash: str):
+        """Point self.collection at a collection matching the knowledge folder.
+
+        The folder hash is stamped only once indexing has actually succeeded.
+        Stamping it at creation time meant a failed embedding run left an empty
+        collection marked up to date, so every later boot saw a hash match and
+        skipped indexing — the RAG then silently returned no context forever.
+        An empty collection is therefore also treated as stale."""
+        existing = None
+        try:
+            existing = self.chroma_client.get_collection(name=collection_name)
+        except Exception as e:
+            print(f"Collection not found ({type(e).__name__}). Creating new...")
+
+        if existing is not None:
+            stored_hash = (existing.metadata or {}).get("pdf_hash", "")
+            count = existing.count()
+            if stored_hash == current_hash and count > 0:
+                print(f"✅ Collection loaded successfully ({count} chunks). Hash matches.")
+                self.collection = existing
+                return
+            reason = "hash mismatch" if stored_hash != current_hash else "collection is empty"
+            print(f"⚠ Rebuilding — {reason} (stored: {stored_hash or 'none'})")
+            try:
+                self.chroma_client.delete_collection(collection_name)
+            except Exception as e:
+                print(f"Could not delete stale collection: {e}")
+
+        self.collection = self.chroma_client.create_collection(
+            name=collection_name,
+            metadata={"description": "Kaustubh Profile"},
+        )
+
+        try:
+            self._process_and_store_knowledge(current_hash)
+        except Exception as e:
+            # Leave the hash unstamped so the next boot retries instead of
+            # treating this half-built collection as current.
+            print(f"❌ Indexing failed, collection left unstamped for retry: {e}")
+            return
+
+        self.collection.modify(
+            metadata={"description": "Kaustubh Profile", "pdf_hash": current_hash}
+        )
+        print(f"✅ Indexed {self.collection.count()} chunks.")
+
+    def _connect_chroma(self):
+        """Connect to Chroma Cloud, or a self-hosted Chroma if no API key is set.
+
+        Production uses Chroma Cloud (CHROMA_API_KEY / CHROMA_TENANT /
+        CHROMA_DATABASE). Falling back to CHROMADB_HOST keeps a local or
+        homelab Chroma usable for development without cloud credentials."""
+        api_key = os.getenv("CHROMA_API_KEY")
+        if api_key:
+            tenant = os.getenv("CHROMA_TENANT")
+            database = os.getenv("CHROMA_DATABASE")
+            if not tenant or not database:
+                raise RuntimeError(
+                    "CHROMA_API_KEY is set but CHROMA_TENANT/CHROMA_DATABASE are missing"
+                )
+            print(f"Connecting to Chroma Cloud (database: {database})")
+            return chromadb.CloudClient(
+                tenant=tenant,
+                database=database,
+                api_key=api_key,
+                cloud_host=os.getenv("CHROMA_HOST", "api.trychroma.com"),
+            )
+
         chromadb_host = os.getenv("CHROMADB_HOST", "http://homelab:8000")
         use_ssl = chromadb_host.startswith("https://")
         host_part = chromadb_host.replace("https://", "").replace("http://", "").split("/")[0]
@@ -152,63 +240,10 @@ class Me:
         else:
             hostname = host_part
             port = 443 if use_ssl else 8000
-        
-        self.chroma_client = chromadb.HttpClient(host=hostname, port=port, ssl=use_ssl)
-        collection_name = "kaustubh_linkedin_profile"
 
-        # --- SMART DB INITIALIZATION ---
-        
-        # 1. Calculate Folder Hash
-        current_hash = self._get_folder_hash(self.knowledge_path)
-        print(f"Current Knowledge Hash: {current_hash}")
+        print(f"Connecting to self-hosted Chroma at {hostname}:{port}")
+        return chromadb.HttpClient(host=hostname, port=port, ssl=use_ssl)
 
-        try:
-            # 2. Try to get the existing collection
-            self.collection = self.chroma_client.get_collection(name=collection_name)
-            
-            # 3. Safely Check Metadata (Handle case where metadata is None)
-            existing_metadata = self.collection.metadata
-            if existing_metadata is None:
-                existing_metadata = {}
-                
-            stored_hash = existing_metadata.get("pdf_hash", "")
-            
-            # 4. Compare Hashes
-            if stored_hash != current_hash:
-                print(f"⚠ Hash Mismatch (Stored: {stored_hash} vs Current: {current_hash})")
-                print("Rebuilding database with new content...")
-                
-                # Delete the old one
-                self.chroma_client.delete_collection(collection_name)
-                
-                # Create the new one
-                self.collection = self.chroma_client.create_collection(
-                    name=collection_name,
-                    metadata={"description": "Kaustubh Profile", "pdf_hash": current_hash}
-                )
-                self._process_and_store_knowledge(current_hash)
-            else:
-                print(f"✅ Collection loaded successfully. Knowledge hash matches.")
-
-        except Exception as e:
-            # If get_collection failed (likely because it didn't exist), we create it here
-            print(f"Collection not found or error accessing it ({type(e).__name__}). Creating new...")
-            try:
-                # Ensure it's really gone before creating
-                try: self.chroma_client.delete_collection(collection_name)
-                except: pass
-                
-                self.collection = self.chroma_client.create_collection(
-                    name=collection_name,
-                    metadata={"description": "Kaustubh Profile", "pdf_hash": current_hash}
-                )
-                self._process_and_store_knowledge(current_hash)
-            except Exception as create_error:
-                print(f"Final Error creating collection: {create_error}")
-
-        # Read summary
-        with open("me/summary.txt", "r", encoding="utf-8") as f:
-            self.summary = f.read()
     def _get_folder_hash(self, folder_path: str) -> str:
         """Calculate a single hash for all files in a folder"""
         if not os.path.exists(folder_path):
@@ -390,35 +425,40 @@ class Me:
         return ""
 
     def _rerank(self, query: str, docs: List[str]) -> List[str]:
-        """Use a cheap LLM to pick the most relevant chunks for the query.
+        """Rerank candidate chunks with a dedicated cross-encoder reranker.
 
-        Returns up to RAG_RERANK_TOP_N docs in relevance order. On any failure,
-        falls back to the original vector-similarity order (truncated)."""
+        Uses OpenRouter's /rerank endpoint: reranker models are not served over
+        /chat/completions and return 404 there, so this cannot go through the
+        OpenAI client. Returns up to RAG_RERANK_TOP_N docs in relevance order;
+        on any failure falls back to the original vector order (truncated)."""
         if len(docs) <= RAG_RERANK_TOP_N:
             return docs
         try:
-            numbered = "\n\n".join(f"[{i}] {doc}" for i, doc in enumerate(docs))
-            rerank_prompt = (
-                f"You are ranking retrieved text passages by relevance to a user query.\n"
-                f"Query: {query}\n\n"
-                f"Passages:\n{numbered}\n\n"
-                f"Return ONLY a JSON array of the passage numbers of the "
-                f"{RAG_RERANK_TOP_N} most relevant passages, most relevant first. "
-                f'Example: [3, 0, 7, 1, 5]. If fewer are relevant, return fewer.'
+            resp = requests.post(
+                f"{OPENROUTER_BASE_URL}/rerank",
+                headers={
+                    "Authorization": f"Bearer {os.getenv('OPENROUTER_API_KEY')}",
+                    "Content-Type": "application/json",
+                    "HTTP-Referer": "https://kaustubhsstuff.com",
+                    "X-Title": "Kaustubh Trivedi Portfolio",
+                },
+                json={
+                    "model": RAG_RERANK_MODEL,
+                    "query": query,
+                    "documents": docs,
+                    "top_n": RAG_RERANK_TOP_N,
+                },
+                timeout=30,
             )
-            resp = self.openai.chat.completions.create(
-                model=RAG_RERANK_MODEL,
-                messages=[{"role": "user", "content": rerank_prompt}],
-                response_format={"type": "json_object"},
-            )
-            content = resp.choices[0].message.content or ""
-            # Model may return a bare array or an object wrapping one.
-            parsed = json.loads(content)
-            if isinstance(parsed, dict):
-                # Take the first list value found in the object.
-                parsed = next((v for v in parsed.values() if isinstance(v, list)), [])
-            order = [int(i) for i in parsed if isinstance(i, (int, float)) or str(i).isdigit()]
-            ranked = [docs[i] for i in order if 0 <= i < len(docs)]
+            resp.raise_for_status()
+            results = resp.json().get("results") or []
+            ranked = [
+                docs[r["index"]]
+                for r in sorted(
+                    results, key=lambda r: r.get("relevance_score", 0), reverse=True
+                )
+                if isinstance(r.get("index"), int) and 0 <= r["index"] < len(docs)
+            ]
             if ranked:
                 return ranked[:RAG_RERANK_TOP_N]
         except Exception as e:
@@ -451,7 +491,7 @@ If the user is engaging in discussion, try to steer them towards getting in touc
         messages = [{"role": "system", "content": system_content}] + history + [{"role": "user", "content": message}]
         done = False
         while not done:
-            response = self.openai.chat.completions.create(model="stepfun/step-3.5-flash:free", messages=messages, tools=tools)
+            response = self.openai.chat.completions.create(model=CHAT_MODEL, messages=messages, tools=tools)
             if response.choices[0].finish_reason=="tool_calls":
                 message = response.choices[0].message
                 tool_calls = message.tool_calls
@@ -475,7 +515,7 @@ If the user is engaging in discussion, try to steer them towards getting in touc
         # Handle tool calls in a blocking loop first
         while True:
             response = self.openai.chat.completions.create(
-                model="stepfun/step-3.5-flash:free",
+                model=CHAT_MODEL,
                 messages=messages,
                 tools=tools,
             )
@@ -490,7 +530,7 @@ If the user is engaging in discussion, try to steer them towards getting in touc
 
         # Now stream the final response
         stream = self.openai.chat.completions.create(
-            model="stepfun/step-3.5-flash:free",
+            model=CHAT_MODEL,
             messages=messages,
             stream=True,
         )
@@ -582,4 +622,6 @@ def clear_history():
 
 if __name__ == "__main__":
     debug_mode = os.getenv('FLASK_DEBUG', 'False').lower() == 'true'
-    app.run(host='0.0.0.0', port=5001, debug=debug_mode)
+    # Must match Dockerfile EXPOSE/HEALTHCHECK and the compose port mapping.
+    port = int(os.getenv('PORT', '5000'))
+    app.run(host='0.0.0.0', port=port, debug=debug_mode)

@@ -14,8 +14,20 @@ services:
       - OPENAI_API_KEY=${OPENAI_API_KEY}
       - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
       - DISCORD_WEBHOOK_URL=${DISCORD_WEBHOOK_URL}
-      - CHROMADB_HOST=${CHROMADB_HOST}
+      # Chroma Cloud. Setting CHROMA_API_KEY selects the cloud client; without
+      # it the app falls back to a self-hosted Chroma at CHROMADB_HOST.
+      - CHROMA_API_KEY=${CHROMA_API_KEY}
+      - CHROMA_TENANT=${CHROMA_TENANT}
+      - CHROMA_DATABASE=${CHROMA_DATABASE}
+      - CHROMA_HOST=${CHROMA_HOST:-api.trychroma.com}
       - CHROMA_TELEMETRY_ENABLED=false
+      # Without these the PostHog client initialises with an empty key and
+      # silently drops every event.
+      - POSTHOG_PROJECT_TOKEN=${POSTHOG_PROJECT_TOKEN}
+      - POSTHOG_HOST=${POSTHOG_HOST:-https://eu.i.posthog.com}
+      # Chat + rerank models (see CHAT_MODEL / RAG_RERANK_MODEL in app.py).
+      - CHAT_MODEL=${CHAT_MODEL:-nvidia/nemotron-3.5-lightning:free}
+      - RAG_RERANK_MODEL=${RAG_RERANK_MODEL:-nvidia/llama-nemotron-rerank-vl-1b-v2:free}
     restart: unless-stopped
     networks:
       - npm_default
