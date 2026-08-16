@@ -1,1 +1,13 @@
-Results-driven Software Engineer with over 2 years of experience in full-stack development, with a strong focus on Java-based backend systems using Spring Boot, Hibernate, and microservices architecture. Skilled in building scalable, robust RESTful APIs and deploying cloud-native applications with CI/CD pipelines. Demonstrates frontend expertise with modern frameworks like React, Next.js, and TypeScript, and a solid understanding of cloud platforms (AWS, Docker) and DevOps practices. Holds a Master’s degree in Advanced Software Development from TU Dublin, with hands-on experience in AI-assisted development (GitHub Copilot, ChatGPT), geospatial data visualization, and machine learning integration. Passionate about developing innovative solutions in the fields of Generative AI, process automation, and data-driven platforms.
+Kaustubh Trivedi is a full stack software engineer based in Dublin, Ireland, with roughly two years of professional experience across Ireland and India, and a Stamp 1G work permission.
+
+He is currently Founding Engineer at CueX10 in Dublin (since July 2026), where he designed and shipped a production multi-tenant B2B SaaS platform: tenant-scoped PostgreSQL with row-level security on every table, a backend of ~20 Supabase Edge Functions in Deno/TypeScript, a deterministic server-side intent-scoring engine, and a bidirectional HubSpot CRM integration. He led its pre-handover security audit and remediation.
+
+Before that he was a Data Scientist Intern (Custom LLM Scientist) at Orcawise from September 2025 to June 2026, building an end-to-end RAG chatbot over a 10,000+ document corpus with LangChain and a fine-tuned Gemma model, improving answer accuracy by over 20% under GDPR and HIPAA constraints. Earlier he was a full stack developer at Openspace Services (Spring Boot microservices and Next.js, 5,000+ MAU) and a software engineering intern at PPLWork (payment APIs handling 100K+ monthly transactions).
+
+He holds an MSc in Computer Science (Advanced Software Development) from TU Dublin (2:1) and a BE in Information Technology from the University of Pune (8.86/10).
+
+His core strengths are backend and systems engineering — Java/Spring Boot, Python, PostgreSQL schema design and row-level security, Docker and Kubernetes — alongside React/TypeScript/Next.js on the frontend, and production LLM work: RAG, fine-tuning, multi-agent orchestration, and model routing.
+
+Outside commercial work he open-sources Rendure (a self-hosted multi-agent resume tailoring pipeline) and MacSTT (a local-first on-device speech-to-text app for macOS in Swift), and runs a self-hosted Linux homelab where his agents run continuously. He writes about self-hosting and agent tooling as rackgremlin.
+
+He is open to permanent mid-level engineering roles in Dublin or remote within Ireland, and is best reached at kaus12tri@gmail.com.
