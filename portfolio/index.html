@@ -17,6 +17,23 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
+  /* Cross-document view transitions between this page and chat.html.
+     Chrome/Edge 126+ animate the navigation; elsewhere it degrades to a
+     plain navigation with no visual change. */
+  @view-transition { navigation: auto; }
+
+  ::view-transition-group(*) { animation-duration: .45s; animation-timing-function: cubic-bezier(.2,0,0,1); }
+  ::view-transition-old(root) { animation: vt-fade-out .3s cubic-bezier(.4,0,1,1) forwards; }
+  ::view-transition-new(root) { animation: vt-rise-in .45s cubic-bezier(0,0,.2,1) forwards; }
+  @keyframes vt-fade-out { to { opacity: 0 } }
+  @keyframes vt-rise-in { from { opacity: 0; transform: translateY(14px) } to { opacity: 1; transform: none } }
+
+  /* Paired with their counterparts on chat.html so they morph across the
+     navigation instead of cross-fading. */
+  .vt-wordmark { view-transition-name: vt-wordmark; }
+  .vt-meta     { view-transition-name: vt-meta; }
+  .vt-title    { view-transition-name: vt-title; }
+
   html, body { margin: 0; padding: 0; background: #F7F6F2; }
   body { -webkit-font-smoothing: antialiased; }
   a { color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; transition: color .15s ease; }
@@ -37,6 +54,9 @@
   [data-reveal].is-visible { opacity: 1; transform: none; }
   @media (prefers-reduced-motion: reduce) {
     [data-reveal] { opacity: 1; transform: none; transition: none; }
+    ::view-transition-group(*),
+    ::view-transition-old(*),
+    ::view-transition-new(*) { animation: none !important; }
   }
 </style>
 </head>
@@ -45,8 +65,8 @@
 
   <header style="min-height:100vh;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(28px,5vw,64px) clamp(20px,6vw,96px) clamp(28px,4vw,48px)">
     <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;border-bottom:1px solid #DEDBD4;padding-bottom:14px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#6B7075">
-      <span>Kaustubh Trivedi</span>
-      <span>Software Engineer — Dublin, IE</span>
+      <span class="vt-wordmark">Kaustubh Trivedi</span>
+      <span class="vt-meta">Software Engineer — Dublin, IE</span>
     </div>
 
     <div style="max-width:1120px;margin:clamp(48px,9vh,110px) 0 0">
@@ -202,7 +222,7 @@
           <div style="display:flex;flex-wrap:wrap;gap:8px 14px">
             <span>R2R</span><span style="color:#C6C2B9">/</span><span>pgvector</span><span style="color:#C6C2B9">/</span><span>Cohere</span><span style="color:#C6C2B9">/</span><span>CouchDB</span><span style="color:#C6C2B9">/</span><span>Caddy</span>
           </div>
-          <div style="color:#16181A"><a href="chat.html">Ask it something</a></div>
+          <div style="color:#16181A"><a class="vt-title" href="/chat">Ask it something</a></div>
         </div>
       </article>
     </section>
