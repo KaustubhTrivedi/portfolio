@@ -205,6 +205,7 @@
     .cursor { animation: none }
   }
 </style>
+<script src="analytics.js" defer></script>
 </head>
 <body>
 
@@ -364,10 +365,13 @@
       if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); form.requestSubmit(); }
     });
 
+    var fromSuggestion = false;
+
     suggestions.addEventListener('click', function (e) {
       var s = e.target.closest('.suggestion');
       if (!s || busy) return;
       input.value = s.textContent;
+      fromSuggestion = true;
       form.requestSubmit();
     });
 
@@ -379,6 +383,12 @@
       if (!text) return;
 
       history.push({ role: 'user', content: text });
+      // The question text is never sent to analytics, only that one was asked.
+      window.trackEvent && window.trackEvent('chat_question_asked', {
+        suggested: fromSuggestion,
+        turn: history.filter(function (m) { return m.role === 'user'; }).length
+      });
+      fromSuggestion = false;
       input.value = '';
       input.style.height = 'auto';
 

@@ -150,11 +150,12 @@
     ::view-transition-new(*) { animation: none !important; }
   }
 </style>
+<script src="analytics.js" defer></script>
 </head>
 <body>
 <div style="background:var(--bg);color:var(--ink);font-family:Inter,'Helvetica Neue',Helvetica,sans-serif;font-size:17px;line-height:1.6;letter-spacing:-0.002em">
 
-  <header style="min-height:100vh;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(28px,5vw,64px) clamp(20px,6vw,96px) clamp(28px,4vw,48px)">
+  <header data-track-section="hero" style="min-height:100vh;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(28px,5vw,64px) clamp(20px,6vw,96px) clamp(28px,4vw,48px)">
     <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;border-bottom:1px solid var(--rule);padding-bottom:14px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)">
       <span class="vt-wordmark">Kaustubh Trivedi</span>
       <span style="display:flex;align-items:baseline;gap:22px">
@@ -172,10 +173,10 @@
       <p data-reveal style="transition-delay:.08s;margin:clamp(26px,4vw,40px) 0 0;max-width:34ch;font-size:clamp(19px,2.1vw,25px);line-height:1.35;font-weight:600;letter-spacing:-0.02em">Software engineer in Dublin. I build multi-agent systems and the infrastructure that keeps them running.</p>
       <p data-reveal style="transition-delay:.16s;margin:22px 0 0;max-width:68ch;color:var(--ink-2)">Most of my work sits at the point where LLM pipelines stop being demos and start needing real engineering: durable state, model routing, failure recovery, and knowing when not to trust the model's output.</p>
       <nav data-reveal style="transition-delay:.24s;display:flex;flex-wrap:wrap;gap:8px 26px;margin-top:clamp(30px,4vw,46px);font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase">
-        <a href="https://github.com/KaustubhTrivedi" rel="me noopener">GitHub</a>
-        <a href="https://www.linkedin.com/in/kaustubhtrivedi777-software-engineer/" rel="me noopener">LinkedIn</a>
-        <a href="mailto:kaus12tri@gmail.com">Email</a>
-        <a href="Kaustubh_Trivedi_CV.pdf">Resume</a>
+        <a href="https://github.com/KaustubhTrivedi" data-track="contact_clicked" data-track-target="github" rel="me noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/kaustubhtrivedi777-software-engineer/" data-track="contact_clicked" data-track-target="linkedin" rel="me noopener">LinkedIn</a>
+        <a href="mailto:kaus12tri@gmail.com" data-track="contact_clicked" data-track-target="email">Email</a>
+        <a href="Kaustubh_Trivedi_CV.pdf" data-track="resume_opened">Resume</a>
       </nav>
       </div>
       <div class="hero-portrait" data-reveal style="transition-delay:.12s">
@@ -191,7 +192,7 @@
     <section style="max-width:1120px;margin:0 auto;padding:clamp(56px,8vw,110px) 0 0">
       <div style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)">Selected work</div>
 
-      <article data-reveal style="border-top:1px solid var(--rule);margin-top:clamp(28px,4vw,44px);padding:clamp(32px,5vw,58px) 0">
+      <article data-track-section="rendure" data-reveal style="border-top:1px solid var(--rule);margin-top:clamp(28px,4vw,44px);padding:clamp(32px,5vw,58px) 0">
         <div style="display:flex;flex-wrap:wrap;gap:6px 22px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)">
           <span>Project 01</span>
           <span>Open source</span>
@@ -204,13 +205,13 @@
             <span>Next.js</span><span style="color:var(--rule-strong)">/</span><span>FastAPI</span><span style="color:var(--rule-strong)">/</span><span>RenderCV</span>
           </div>
           <div style="display:flex;gap:20px;color:var(--ink)">
-            <a href="https://rendure.kaustubhsstuff.com/#run" rel="noopener">Live</a>
-            <a href="https://github.com/KaustubhTrivedi/rendure-v2" rel="noopener">Source</a>
+            <a href="https://rendure.kaustubhsstuff.com/#run" data-track="project_link_clicked" data-track-target="live" rel="noopener">Live</a>
+            <a href="https://github.com/KaustubhTrivedi/rendure-v2" data-track="project_link_clicked" data-track-target="source" rel="noopener">Source</a>
           </div>
         </div>
       </article>
 
-      <article data-reveal style="border-top:1px solid var(--rule);padding:clamp(32px,5vw,58px) 0">
+      <article data-track-section="orchestration" data-reveal style="border-top:1px solid var(--rule);padding:clamp(32px,5vw,58px) 0">
         <div style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)">Project 02</div>
         <h2 style="margin:18px 0 0;font-size:clamp(30px,4.2vw,52px);line-height:1.02;font-weight:800;letter-spacing:-0.035em">Agent orchestration platform</h2>
         <p style="margin:12px 0 0;max-width:60ch;font-size:clamp(17px,1.5vw,19px);font-weight:600;letter-spacing:-0.015em">Long-running multi-agent pipelines coordinated through Postgres.</p>
@@ -312,7 +313,7 @@
         </div>
       </article>
 
-      <article data-reveal style="border-top:1px solid var(--rule);padding:clamp(32px,5vw,58px) 0">
+      <article data-track-section="personal-rag" data-reveal style="border-top:1px solid var(--rule);padding:clamp(32px,5vw,58px) 0">
         <div style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)">Project 03</div>
         <h2 style="margin:18px 0 0;font-size:clamp(30px,4.2vw,52px);line-height:1.02;font-weight:800;letter-spacing:-0.035em">Personal RAG</h2>
         <p style="margin:12px 0 0;max-width:60ch;font-size:clamp(17px,1.5vw,19px);font-weight:600;letter-spacing:-0.015em">Query my own notes and documentation from Telegram.</p>
@@ -321,12 +322,12 @@
           <div style="display:flex;flex-wrap:wrap;gap:8px 14px">
             <span>R2R</span><span style="color:var(--rule-strong)">/</span><span>pgvector</span><span style="color:var(--rule-strong)">/</span><span>Cohere</span><span style="color:var(--rule-strong)">/</span><span>CouchDB</span><span style="color:var(--rule-strong)">/</span><span>Caddy</span>
           </div>
-          <div style="color:var(--ink)"><a class="vt-title" href="/chat">Ask it something</a></div>
+          <div style="color:var(--ink)"><a class="vt-title" href="/chat" data-track="project_link_clicked" data-track-target="chat">Ask it something</a></div>
         </div>
       </article>
     </section>
 
-    <section data-reveal style="max-width:1120px;margin:0 auto;border-top:1px solid var(--rule);padding:clamp(56px,8vw,110px) 0">
+    <section data-track-section="about" data-reveal style="max-width:1120px;margin:0 auto;border-top:1px solid var(--rule);padding:clamp(56px,8vw,110px) 0">
       <div style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)">About</div>
       <div style="max-width:58ch;margin-top:clamp(26px,4vw,42px);display:flex;flex-direction:column;gap:20px;color:var(--ink-2)">
         <p style="margin:0;color:var(--ink);font-size:clamp(18px,1.7vw,21px);line-height:1.5;font-weight:600;letter-spacing:-0.018em">Full stack engineer, roughly two years commercial experience across Ireland and India. MSc in Computer Science from TU Dublin.</p>
@@ -338,15 +339,15 @@
 
   </main>
 
-  <section style="background:var(--accent);color:var(--on-accent);padding:clamp(64px,10vw,130px) clamp(20px,6vw,96px)">
+  <section data-track-section="contact" style="background:var(--accent);color:var(--on-accent);padding:clamp(64px,10vw,130px) clamp(20px,6vw,96px)">
     <div style="max-width:1120px;margin:0 auto">
       <div style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.72">Contact</div>
       <p style="margin:clamp(26px,4vw,44px) 0 0;max-width:30ch;font-size:clamp(30px,5vw,64px);line-height:1.04;font-weight:800;letter-spacing:-0.04em">Open to permanent mid-level engineering roles in Dublin or remote within Ireland.</p>
       <div style="display:flex;flex-wrap:wrap;gap:14px 34px;margin-top:clamp(34px,5vw,58px);padding-top:20px;border-top:1px solid var(--on-accent-rule);font-family:'JetBrains Mono',ui-monospace,monospace;font-size:13px;letter-spacing:.1em;text-transform:uppercase">
-        <a href="mailto:kaus12tri@gmail.com" style="color:var(--on-accent)">Email</a>
-        <a href="https://github.com/KaustubhTrivedi" rel="me noopener" style="color:var(--on-accent)">GitHub</a>
-        <a href="https://www.linkedin.com/in/kaustubhtrivedi777-software-engineer/" rel="me noopener" style="color:var(--on-accent)">LinkedIn</a>
-        <a href="Kaustubh_Trivedi_CV.pdf" style="color:var(--on-accent)">Resume</a>
+        <a href="mailto:kaus12tri@gmail.com" data-track="contact_clicked" data-track-target="email" style="color:var(--on-accent)">Email</a>
+        <a href="https://github.com/KaustubhTrivedi" data-track="contact_clicked" data-track-target="github" rel="me noopener" style="color:var(--on-accent)">GitHub</a>
+        <a href="https://www.linkedin.com/in/kaustubhtrivedi777-software-engineer/" data-track="contact_clicked" data-track-target="linkedin" rel="me noopener" style="color:var(--on-accent)">LinkedIn</a>
+        <a href="Kaustubh_Trivedi_CV.pdf" data-track="resume_opened" style="color:var(--on-accent)">Resume</a>
       </div>
     </div>
   </section>
