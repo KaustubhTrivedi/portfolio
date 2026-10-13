@@ -73,15 +73,23 @@ jobs:
 
       - name: Smoke test the built image
         run: |
-          docker run -d --name portfolio-smoke -p 8080:80 portfolio:ci
+          # Clear a container left behind by an earlier failed run, and always
+          # clean up this one, so the self-hosted runner never keeps a stale
+          # container holding the name or a port.
+          docker rm -f portfolio-smoke 2>/dev/null || true
+          trap 'docker rm -f portfolio-smoke >/dev/null 2>&1 || true' EXIT
+          # Let Docker pick a free host port instead of assuming 8080 is free.
+          docker run -d --name portfolio-smoke -p 127.0.0.1::80 portfolio:ci
+          BASE="http://$(docker port portfolio-smoke 80/tcp | head -n1)"
           for i in $(seq 1 20); do
-            if curl -fsS http://127.0.0.1:8080/ >/dev/null; then break; fi
+            if curl -fsS "$BASE/" >/dev/null; then break; fi
             sleep 1
           done
-          curl -fsS http://127.0.0.1:8080/ | grep -q 'Kaustubh'
-          curl -fsS -o /dev/null http://127.0.0.1:8080/chat.html
-          curl -fsS -o /dev/null http://127.0.0.1:8080/Kaustubh_Trivedi_CV.pdf
-          docker rm -f portfolio-smoke
+          curl -fsS "$BASE/" | grep -q 'Kaustubh'
+          curl -fsS -o /dev/null "$BASE/chat.html"
+          curl -fsS -o /dev/null "$BASE/Kaustubh_Trivedi_CV.pdf"
+          curl -fsS -o /dev/null "$BASE/portrait.webp"
+          curl -fsS -o /dev/null "$BASE/llms.txt"
 
       - name: Push static portfolio Docker image
         if: github.event_name != 'pull_request'
