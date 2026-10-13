@@ -1,21 +1,18 @@
-from dotenv import load_dotenv
-from openai import OpenAI
+import atexit
+import hashlib
 import json
 import os
-import requests
-from pypdf import PdfReader
-import gradio as gr
-from flask import Flask, request, jsonify, Response
-from flask_cors import CORS
-import chromadb
-from chromadb.config import Settings
-from chromadb.errors import NotFoundError, ChromaError
-from langchain_text_splitters import RecursiveCharacterTextSplitter
-import hashlib
 from types import SimpleNamespace
-from typing import List
-import atexit
+
+import chromadb
+import requests
+from dotenv import load_dotenv
+from flask import Flask, Response, jsonify, request
+from flask_cors import CORS
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+from openai import OpenAI
 from posthog import Posthog
+from pypdf import PdfReader
 
 load_dotenv(override=True)
 
@@ -31,13 +28,21 @@ atexit.register(posthog_client.shutdown)
 app = Flask(__name__)
 
 # Configure CORS
-CORS(app, resources={
-    r"/api/*": {
-        "origins": ["*"],  # Allow all origins for dev
-        "methods": ["GET", "POST", "OPTIONS"],
-        "allow_headers": ["Content-Type", "Authorization", "X-POSTHOG-DISTINCT-ID", "X-POSTHOG-SESSION-ID"],
-    }
-})
+CORS(
+    app,
+    resources={
+        r"/api/*": {
+            "origins": ["*"],  # Allow all origins for dev
+            "methods": ["GET", "POST", "OPTIONS"],
+            "allow_headers": [
+                "Content-Type",
+                "Authorization",
+                "X-POSTHOG-DISTINCT-ID",
+                "X-POSTHOG-SESSION-ID",
+            ],
+        }
+    },
+)
 
 discord_webhook_url = os.getenv("DISCORD_WEBHOOK_URL")
 
@@ -80,11 +85,13 @@ DOC_TYPE_CHUNKING = {
     "other": (1000, 200),
 }
 
+
 def push(message):
     print(f"Discord: {message}")
     if discord_webhook_url:
         payload = {"content": message}
         requests.post(discord_webhook_url, data=payload)
+
 
 def _current_distinct_id():
     """Return the PostHog distinct ID from the request header, or a fallback anonymous ID."""
@@ -92,6 +99,7 @@ def _current_distinct_id():
         return request.headers.get("X-POSTHOG-DISTINCT-ID") or "anonymous"
     except RuntimeError:
         return "anonymous"
+
 
 def record_user_details(email, name="Name not provided", notes="not provided"):
     push(f"Recording {name} with email {email} and notes {notes}")
@@ -105,6 +113,7 @@ def record_user_details(email, name="Name not provided", notes="not provided"):
     )
     return {"recorded": "ok"}
 
+
 def record_unknown_question(question):
     push(f"Recording {question}")
     posthog_client.capture(
@@ -116,19 +125,26 @@ def record_unknown_question(question):
     )
     return {"recorded": "ok"}
 
+
 record_user_details_json = {
     "name": "record_user_details",
     "description": "Use this tool to record that a user is interested in being in touch and provided an email address",
     "parameters": {
         "type": "object",
         "properties": {
-            "email": {"type": "string", "description": "The email address of this user"},
-            "name": {"type": "string", "description": "The user's name, if they provided it"},
-            "notes": {"type": "string", "description": "Any additional information"}
+            "email": {
+                "type": "string",
+                "description": "The email address of this user",
+            },
+            "name": {
+                "type": "string",
+                "description": "The user's name, if they provided it",
+            },
+            "notes": {"type": "string", "description": "Any additional information"},
         },
         "required": ["email"],
-        "additionalProperties": False
-    }
+        "additionalProperties": False,
+    },
 }
 
 record_unknown_question_json = {
@@ -137,19 +153,23 @@ record_unknown_question_json = {
     "parameters": {
         "type": "object",
         "properties": {
-            "question": {"type": "string", "description": "The question that couldn't be answered"},
+            "question": {
+                "type": "string",
+                "description": "The question that couldn't be answered",
+            },
         },
         "required": ["question"],
-        "additionalProperties": False
-    }
+        "additionalProperties": False,
+    },
 }
 
-tools = [{"type": "function", "function": record_user_details_json},
-         {"type": "function", "function": record_unknown_question_json}]
+tools = [
+    {"type": "function", "function": record_user_details_json},
+    {"type": "function", "function": record_unknown_question_json},
+]
 
 
 class Me:
-
     def __init__(self):
         self.openai = OpenAI(
             base_url="https://openrouter.ai/api/v1",
@@ -157,7 +177,7 @@ class Me:
         )
         self.name = "Kaustubh Trivedi"
         self.knowledge_path = "me/knowledge"
-        
+
         self.chroma_client = self._connect_chroma()
         collection_name = "kaustubh_linkedin_profile"
 
@@ -170,6 +190,7 @@ class Me:
         # Read summary
         with open("me/summary.txt", "r", encoding="utf-8") as f:
             self.summary = f.read()
+
     def _ensure_collection(self, collection_name: str, current_hash: str):
         """Point self.collection at a collection matching the knowledge folder.
 
@@ -181,21 +202,27 @@ class Me:
         existing = None
         try:
             existing = self.chroma_client.get_collection(name=collection_name)
-        except Exception as e:
+        except Exception as e:  # noqa: BLE001 - fault boundary: log and fall back
             print(f"Collection not found ({type(e).__name__}). Creating new...")
 
         if existing is not None:
             stored_hash = (existing.metadata or {}).get("pdf_hash", "")
             count = existing.count()
             if stored_hash == current_hash and count > 0:
-                print(f"✅ Collection loaded successfully ({count} chunks). Hash matches.")
+                print(
+                    f"✅ Collection loaded successfully ({count} chunks). Hash matches."
+                )
                 self.collection = existing
                 return
-            reason = "hash mismatch" if stored_hash != current_hash else "collection is empty"
+            reason = (
+                "hash mismatch"
+                if stored_hash != current_hash
+                else "collection is empty"
+            )
             print(f"⚠ Rebuilding — {reason} (stored: {stored_hash or 'none'})")
             try:
                 self.chroma_client.delete_collection(collection_name)
-            except Exception as e:
+            except Exception as e:  # noqa: BLE001 - fault boundary: log and fall back
                 print(f"Could not delete stale collection: {e}")
 
         self.collection = self.chroma_client.create_collection(
@@ -205,7 +232,7 @@ class Me:
 
         try:
             self._process_and_store_knowledge(current_hash)
-        except Exception as e:
+        except Exception as e:  # noqa: BLE001 - fault boundary: log and fall back
             # Leave the hash unstamped so the next boot retries instead of
             # treating this half-built collection as current.
             print(f"❌ Indexing failed, collection left unstamped for retry: {e}")
@@ -240,7 +267,9 @@ class Me:
 
         chromadb_host = os.getenv("CHROMADB_HOST", "http://homelab:8000")
         use_ssl = chromadb_host.startswith("https://")
-        host_part = chromadb_host.replace("https://", "").replace("http://", "").split("/")[0]
+        host_part = (
+            chromadb_host.replace("https://", "").replace("http://", "").split("/")[0]
+        )
         if ":" in host_part:
             hostname, port_str = host_part.rsplit(":", 1)
             port = int(port_str)
@@ -255,7 +284,7 @@ class Me:
         """Calculate a single hash for all files in a folder"""
         if not os.path.exists(folder_path):
             return "no_folder"
-        
+
         hasher = hashlib.md5()
         # Sort files to ensure the hash is always the same for the same content
         for filename in sorted(os.listdir(folder_path)):
@@ -266,9 +295,9 @@ class Me:
                 # Hash the content
                 with open(filepath, "rb") as f:
                     hasher.update(f.read())
-                    
+
         return hasher.hexdigest()
-    
+
     def _doc_type_for(self, filename: str) -> str:
         """Classify a knowledge file into a doc_type for metadata + chunk sizing.
 
@@ -281,21 +310,23 @@ class Me:
             return "report"
         return "other"
 
-    def _chunk_text(self, text: str, chunk_size: int = 1000, chunk_overlap: int = 200) -> List[str]:
+    def _chunk_text(
+        self, text: str, chunk_size: int = 1000, chunk_overlap: int = 200
+    ) -> list[str]:
         """Recursive splitting to respect sentence boundaries"""
         text_splitter = RecursiveCharacterTextSplitter(
             chunk_size=chunk_size,
             chunk_overlap=chunk_overlap,
-            separators=["\n\n", "\n", ". ", " ", ""] 
+            separators=["\n\n", "\n", ". ", " ", ""],
         )
         return text_splitter.split_text(text)
-    
+
     def _process_and_store_knowledge(self, current_hash):
         """Ingest ALL files from the knowledge folder"""
         folder_path = "me/knowledge"
         all_chunks = []
         all_ids = []
-        all_metadatas = [] # We'll store which file the chunk came from!
+        all_metadatas = []  # We'll store which file the chunk came from!
 
         print(f"Processing knowledge from {folder_path}...")
 
@@ -307,22 +338,23 @@ class Me:
         for filename in os.listdir(folder_path):
             filepath = os.path.join(folder_path, filename)
             file_text = ""
-            
+
             try:
                 # Handle PDF
                 if filename.endswith(".pdf"):
                     reader = PdfReader(filepath)
                     for page in reader.pages:
                         text = page.extract_text()
-                        if text: file_text += text + "\n"
-                
+                        if text:
+                            file_text += text + "\n"
+
                 # Handle Text/Markdown
-                elif filename.endswith(".txt") or filename.endswith(".md"):
+                elif filename.endswith((".txt", ".md")):
                     with open(filepath, "r", encoding="utf-8") as f:
                         file_text = f.read()
-                
+
                 else:
-                    continue # Skip unsupported files
+                    continue  # Skip unsupported files
 
                 # Chunk this specific file, sized per doc_type
                 if file_text:
@@ -341,17 +373,17 @@ class Me:
                         # Store metadata so you know where this info came from later
                         all_metadatas.append({"source": filename, "doc_type": doc_type})
 
-            except Exception as e:
+            except Exception as e:  # noqa: BLE001 - fault boundary: log and fall back
                 print(f"Error processing file {filename}: {e}")
 
         # Batch Embed & Store (Same logic as before, just with the accumulated lists)
         if all_chunks:
             batch_size = 100
             all_embeddings = []
-            
+
             print(f"Generating embeddings for {len(all_chunks)} total chunks...")
             for i in range(0, len(all_chunks), batch_size):
-                batch = all_chunks[i:i + batch_size]
+                batch = all_chunks[i : i + batch_size]
                 response = self.openai.embeddings.create(
                     extra_headers={
                         "HTTP-Referer": "https://portfolio.kaustubhsstuff.com",
@@ -359,16 +391,16 @@ class Me:
                     },
                     model="thenlper/gte-base",
                     input=batch,
-                    encoding_format="float"
+                    encoding_format="float",
                 )
                 batch_embeddings = [item.embedding for item in response.data]
                 all_embeddings.extend(batch_embeddings)
-            
+
             self.collection.add(
                 ids=all_ids,
                 embeddings=all_embeddings,
                 documents=all_chunks,
-                metadatas=all_metadatas 
+                metadatas=all_metadatas,
             )
             print("Knowledge base updated successfully!")
 
@@ -380,7 +412,13 @@ class Me:
             print(f"Tool called: {tool_name}", flush=True)
             tool = globals().get(tool_name)
             result = tool(**arguments) if tool else {}
-            results.append({"role": "tool","content": json.dumps(result),"tool_call_id": tool_call.id})
+            results.append(
+                {
+                    "role": "tool",
+                    "content": json.dumps(result),
+                    "tool_call_id": tool_call.id,
+                }
+            )
         return results
 
     def _get_relevant_context(self, query: str) -> str:
@@ -396,7 +434,7 @@ class Me:
                 },
                 model="thenlper/gte-base",
                 input=query,
-                encoding_format="float"
+                encoding_format="float",
             )
             query_embedding = response.data[0].embedding
 
@@ -414,7 +452,8 @@ class Me:
             # Distance threshold: keep only candidates at/under the cutoff.
             if RAG_DISTANCE_THRESHOLD is not None and distances:
                 filtered = [
-                    doc for doc, dist in zip(docs, distances)
+                    doc
+                    for doc, dist in zip(docs, distances)
                     if dist <= RAG_DISTANCE_THRESHOLD
                 ]
                 docs = filtered
@@ -426,12 +465,12 @@ class Me:
             # LLM rerank down to the final N most relevant chunks.
             top_docs = self._rerank(query, docs)
             return "\n\n".join(top_docs)
-        except Exception as e:
+        except Exception as e:  # noqa: BLE001 - fault boundary: log and fall back
             print(f"Error during context retrieval: {e}")
 
         return ""
 
-    def _rerank(self, query: str, docs: List[str]) -> List[str]:
+    def _rerank(self, query: str, docs: list[str]) -> list[str]:
         """Rerank candidate chunks with a dedicated cross-encoder reranker.
 
         Uses OpenRouter's /rerank endpoint: reranker models are not served over
@@ -468,7 +507,7 @@ class Me:
             ]
             if ranked:
                 return ranked[:RAG_RERANK_TOP_N]
-        except Exception as e:
+        except Exception as e:  # noqa: BLE001 - fault boundary: log and fall back
             print(f"Rerank failed, falling back to vector order: {e}")
         return docs[:RAG_RERANK_TOP_N]
 
@@ -498,13 +537,20 @@ and record it with the record_user_details tool.
 
     def chat(self, message, history):
         system_content = self.system_prompt(user_query=message)
-        messages = [{"role": "system", "content": system_content}] + history + [{"role": "user", "content": message}]
+        messages = (
+            [{"role": "system", "content": system_content}]
+            + history
+            + [{"role": "user", "content": message}]
+        )
         done = False
         while not done:
             response = self.openai.chat.completions.create(
-                model=CHAT_MODEL, messages=messages, tools=tools, temperature=CHAT_TEMPERATURE
+                model=CHAT_MODEL,
+                messages=messages,
+                tools=tools,
+                temperature=CHAT_TEMPERATURE,
             )
-            if response.choices[0].finish_reason=="tool_calls":
+            if response.choices[0].finish_reason == "tool_calls":
                 message = response.choices[0].message
                 tool_calls = message.tool_calls
                 results = self.handle_tool_call(tool_calls)
@@ -528,7 +574,11 @@ and record it with the record_user_details tool.
         used to make a full non-streaming call first just to check for tool
         calls, then generate the answer a second time, doubling the wait.)"""
         system_content = self.system_prompt(user_query=message)
-        messages = [{"role": "system", "content": system_content}] + history + [{"role": "user", "content": message}]
+        messages = (
+            [{"role": "system", "content": system_content}]
+            + history
+            + [{"role": "user", "content": message}]
+        )
 
         for _ in range(4):  # bound tool round-trips
             stream = self.openai.chat.completions.create(
@@ -548,7 +598,9 @@ and record it with the record_user_details tool.
                     text_parts.append(delta.content)
                     yield delta.content
                 for tc in delta.tool_calls or []:
-                    call = calls.setdefault(tc.index, {"id": None, "name": "", "arguments": ""})
+                    call = calls.setdefault(
+                        tc.index, {"id": None, "name": "", "arguments": ""}
+                    )
                     if tc.id:
                         call["id"] = tc.id
                     if tc.function and tc.function.name:
@@ -560,32 +612,51 @@ and record it with the record_user_details tool.
                 return
 
             ordered = [calls[k] for k in sorted(calls)]
-            messages.append({
-                "role": "assistant",
-                "content": "".join(text_parts) or None,
-                "tool_calls": [
-                    {"id": c["id"], "type": "function",
-                     "function": {"name": c["name"], "arguments": c["arguments"] or "{}"}}
-                    for c in ordered
-                ],
-            })
-            messages.extend(self.handle_tool_call([
-                SimpleNamespace(id=c["id"], function=SimpleNamespace(name=c["name"], arguments=c["arguments"] or "{}"))
-                for c in ordered
-            ]))
+            messages.append(
+                {
+                    "role": "assistant",
+                    "content": "".join(text_parts) or None,
+                    "tool_calls": [
+                        {
+                            "id": c["id"],
+                            "type": "function",
+                            "function": {
+                                "name": c["name"],
+                                "arguments": c["arguments"] or "{}",
+                            },
+                        }
+                        for c in ordered
+                    ],
+                }
+            )
+            messages.extend(
+                self.handle_tool_call(
+                    [
+                        SimpleNamespace(
+                            id=c["id"],
+                            function=SimpleNamespace(
+                                name=c["name"], arguments=c["arguments"] or "{}"
+                            ),
+                        )
+                        for c in ordered
+                    ]
+                )
+            )
+
 
 # Initialize
 me_instance = Me()
 
+
 # Flask Routes
-@app.route('/api/chat', methods=['POST'])
+@app.route("/api/chat", methods=["POST"])
 def chat_endpoint():
     try:
         data = request.get_json()
-        message = data.get('message')
-        history = data.get('history', [])
+        message = data.get("message")
+        history = data.get("history", [])
         if not message:
-            return jsonify({'error': 'Message is required'}), 400
+            return jsonify({"error": "Message is required"}), 400
         distinct_id = _current_distinct_id()
         posthog_client.capture(
             distinct_id=distinct_id,
@@ -596,21 +667,21 @@ def chat_endpoint():
             },
         )
         response = me_instance.chat_api(message, history)
-        return jsonify({'response': response})
-    except Exception as e:
+        return jsonify({"response": response})
+    except Exception as e:  # noqa: BLE001 - fault boundary: log and fall back
         print(f"Error in chat endpoint: {e}")
         posthog_client.capture_exception(e, distinct_id=_current_distinct_id())
-        return jsonify({'error': 'Internal server error'}), 500
+        return jsonify({"error": "Internal server error"}), 500
 
 
-@app.route('/api/chat/stream', methods=['POST'])
+@app.route("/api/chat/stream", methods=["POST"])
 def chat_stream_endpoint():
     try:
         data = request.get_json()
-        message = data.get('message')
-        history = data.get('history', [])
+        message = data.get("message")
+        history = data.get("history", [])
         if not message:
-            return jsonify({'error': 'Message is required'}), 400
+            return jsonify({"error": "Message is required"}), 400
         distinct_id = _current_distinct_id()
         posthog_client.capture(
             distinct_id=distinct_id,
@@ -626,38 +697,42 @@ def chat_stream_endpoint():
                 for content_chunk in me_instance.chat_stream(message, history):
                     yield f"data: {json.dumps({'content': content_chunk})}\n\n"
                 yield "data: [DONE]\n\n"
-            except Exception as e:
+            except Exception as e:  # noqa: BLE001 - fault boundary: log and fall back
                 print(f"Error during streaming: {e}")
                 posthog_client.capture_exception(e, distinct_id=distinct_id)
-                yield f"data: {json.dumps({'error': str(e)})}\n\n"
+                # Details go to the log and PostHog, not to the visitor.
+                yield f"data: {json.dumps({'error': 'The assistant is unavailable right now.'})}\n\n"
 
         response = Response(
             generate(),
-            mimetype='text/event-stream',
+            mimetype="text/event-stream",
             headers={
-                'Cache-Control': 'no-cache',
-                'X-Accel-Buffering': 'no',
-                'Connection': 'keep-alive',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-            }
+                "Cache-Control": "no-cache",
+                "X-Accel-Buffering": "no",
+                "Connection": "keep-alive",
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Headers": "Content-Type, Authorization",
+            },
         )
         return response
-    except Exception as e:
+    except Exception as e:  # noqa: BLE001 - fault boundary: log and fall back
         print(f"Error in stream endpoint: {e}")
         posthog_client.capture_exception(e, distinct_id=_current_distinct_id())
-        return jsonify({'error': 'Internal server error'}), 500
+        return jsonify({"error": "Internal server error"}), 500
 
-@app.route('/api/health', methods=['GET'])
+
+@app.route("/api/health", methods=["GET"])
 def health_check():
-    return jsonify({'status': 'healthy'})
+    return jsonify({"status": "healthy"})
 
-@app.route('/api/clear_history', methods=['POST'])
+
+@app.route("/api/clear_history", methods=["POST"])
 def clear_history():
-    return jsonify({'status': 'success', 'message': 'Chat history cleared'})
+    return jsonify({"status": "success", "message": "Chat history cleared"})
+
 
 if __name__ == "__main__":
-    debug_mode = os.getenv('FLASK_DEBUG', 'False').lower() == 'true'
+    debug_mode = os.getenv("FLASK_DEBUG", "False").lower() == "true"
     # Must match Dockerfile EXPOSE/HEALTHCHECK and the compose port mapping.
-    port = int(os.getenv('PORT', '5000'))
-    app.run(host='0.0.0.0', port=port, debug=debug_mode)
+    port = int(os.getenv("PORT", "5000"))
+    app.run(host="0.0.0.0", port=port, debug=debug_mode)
