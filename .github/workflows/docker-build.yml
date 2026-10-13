@@ -31,6 +31,8 @@ jobs:
           test -s portfolio/chat.html
           test -s portfolio/nginx.conf
           test -s portfolio/Kaustubh_Trivedi_CV.pdf
+          test -s portfolio/analytics.js
+          test -s portfolio/posthog-config.sh
           # No unfilled design placeholders or dead links may ship.
           ! grep -Eiq 'PLACEHOLDER|\[Title\]|\[dates\]|\[confirm:|href="#"|\{\{' portfolio/index.html
           # The Claude Design runtime must have been compiled out.
@@ -81,6 +83,9 @@ jobs:
           curl -fsS http://127.0.0.1:8080/ | grep -q 'Kaustubh'
           curl -fsS -o /dev/null http://127.0.0.1:8080/chat.html
           curl -fsS -o /dev/null http://127.0.0.1:8080/Kaustubh_Trivedi_CV.pdf
+          curl -fsS -o /dev/null http://127.0.0.1:8080/analytics.js
+          # No token in CI, so the entrypoint script must write the "off" config.
+          curl -fsS http://127.0.0.1:8080/posthog-config.js | grep -q '__POSTHOG_CONFIG__ = undefined'
           docker rm -f portfolio-smoke
 
       - name: Push static portfolio Docker image
