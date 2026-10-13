@@ -4,13 +4,27 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Kaustubh Trivedi — Software Engineer, Dublin</title>
-<meta name="description" content="Software engineer in Dublin. I build multi-agent systems and the infrastructure that keeps them running.">
-<link rel="canonical" href="https://kaustubhsstuff.com/">
+<meta name="description" content="Software engineer in Dublin building multi-agent LLM systems and the infrastructure behind them. Python, TypeScript, Java, Go, FastAPI, Spring Boot, Next.js, Postgres, RAG, Docker, Kubernetes.">
+<link rel="canonical" href="https://portfolio.kaustubhsstuff.com/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Kaustubh Trivedi — Software Engineer, Dublin">
-<meta property="og:description" content="Software engineer in Dublin. I build multi-agent systems and the infrastructure that keeps them running.">
-<meta property="og:url" content="https://kaustubhsstuff.com/">
+<meta property="og:description" content="Software engineer in Dublin building multi-agent LLM systems and the infrastructure behind them. Python, TypeScript, Java, Go, FastAPI, Spring Boot, Next.js, Postgres, RAG, Docker, Kubernetes.">
+<meta property="og:url" content="https://portfolio.kaustubhsstuff.com/">
 <meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Kaustubh Trivedi",
+  "jobTitle": "Software Engineer",
+  "url": "https://portfolio.kaustubhsstuff.com/",
+  "address": { "@type": "PostalAddress", "addressLocality": "Dublin", "addressCountry": "IE" },
+  "alumniOf": "Technological University Dublin",
+  "worksFor": { "@type": "Organization", "name": "Orcawise" },
+  "knowsAbout": ["Multi-agent systems", "LLM pipelines", "RAG", "Python", "TypeScript", "Java", "Go", "FastAPI", "Spring Boot", "Next.js", "PostgreSQL", "pgvector", "Docker", "Kubernetes"],
+  "sameAs": ["https://github.com/KaustubhTrivedi", "https://www.linkedin.com/in/kaustubhtrivedi777-software-engineer/"]
+}
+</script>
 <meta name="theme-color" content="#F7F6F2">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231747E5'/%3E%3Ctext x='16' y='23' font-family='monospace' font-size='20' font-weight='700' fill='%23F7F6F2' text-anchor='middle'%3EK%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -141,6 +155,19 @@
     .hero-portrait { width: clamp(160px, 46vw, 240px); }
   }
 
+  /* Hero key facts: stack and experience at a glance, label column beside
+     the value on wide viewports, stacked on narrow ones. */
+  .hero-facts { margin: clamp(26px, 3.5vw, 36px) 0 0; max-width: 68ch; display: grid; grid-template-columns: max-content 1fr; column-gap: 28px; }
+  .hero-facts dt, .hero-facts dd { margin: 0; padding: 9px 0; border-top: 1px solid var(--rule-soft); }
+  .hero-facts dt { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; line-height: 2.1; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+  .hero-facts dd { font-size: 15px; line-height: 1.6; color: var(--ink-2); }
+  .hero-facts dd span { color: var(--rule-strong); padding: 0 .35em; }
+  @media (max-width: 599px) {
+    .hero-facts { grid-template-columns: 1fr; }
+    .hero-facts dt { padding-bottom: 0; }
+    .hero-facts dd { border-top: 0; padding-top: 2px; }
+  }
+
   [data-reveal] { opacity: 0; transform: translateY(14px); transition: opacity .7s ease, transform .7s ease; }
   [data-reveal].is-visible { opacity: 1; transform: none; }
   @media (prefers-reduced-motion: reduce) {
@@ -171,7 +198,15 @@
       </div>
       <p data-reveal style="transition-delay:.08s;margin:clamp(26px,4vw,40px) 0 0;max-width:34ch;font-size:clamp(19px,2.1vw,25px);line-height:1.35;font-weight:600;letter-spacing:-0.02em">Software engineer in Dublin. I build multi-agent systems and the infrastructure that keeps them running.</p>
       <p data-reveal style="transition-delay:.16s;margin:22px 0 0;max-width:68ch;color:var(--ink-2)">Most of my work sits at the point where LLM pipelines stop being demos and start needing real engineering: durable state, model routing, failure recovery, and knowing when not to trust the model's output.</p>
-      <nav data-reveal style="transition-delay:.24s;display:flex;flex-wrap:wrap;gap:8px 26px;margin-top:clamp(30px,4vw,46px);font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase">
+      <dl class="hero-facts" data-reveal style="transition-delay:.2s">
+        <dt>Languages</dt><dd>Python<span>/</span>TypeScript<span>/</span>Java<span>/</span>Go</dd>
+        <dt>AI / LLM</dt><dd>Multi-agent systems<span>/</span>RAG<span>/</span>pgvector<span>/</span>Model routing<span>/</span>OpenRouter<span>/</span>Cohere</dd>
+        <dt>Backend</dt><dd>FastAPI<span>/</span>Spring Boot<span>/</span>Next.js<span>/</span>Postgres</dd>
+        <dt>Infra</dt><dd>Docker<span>/</span>Kubernetes<span>/</span>Caddy<span>/</span>Self-hosted homelab</dd>
+        <dt>Experience</dt><dd>~2 yrs commercial<span>/</span>LLM &amp; data science at Orcawise<span>/</span>MSc CS, TU Dublin</dd>
+        <dt>Open to</dt><dd>Mid-level roles<span>/</span>Dublin or remote in Ireland</dd>
+      </dl>
+      <nav data-reveal style="transition-delay:.28s;display:flex;flex-wrap:wrap;gap:8px 26px;margin-top:clamp(30px,4vw,46px);font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase">
         <a href="https://github.com/KaustubhTrivedi" rel="me noopener">GitHub</a>
         <a href="https://www.linkedin.com/in/kaustubhtrivedi777-software-engineer/" rel="me noopener">LinkedIn</a>
         <a href="mailto:kaus12tri@gmail.com">Email</a>
@@ -183,7 +218,7 @@
       </div>
     </div>
 
-    <div style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint)">Scroll — Selected work</div>
+    <div style="margin-top:clamp(36px,5vw,56px);font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint)">Scroll — Selected work</div>
   </header>
 
   <main style="padding:0 clamp(20px,6vw,96px)">
@@ -198,11 +233,9 @@
         </div>
         <h2 style="margin:18px 0 0;font-size:clamp(30px,4.2vw,52px);line-height:1.02;font-weight:800;letter-spacing:-0.035em">Rendure</h2>
         <p style="margin:12px 0 0;max-width:60ch;font-size:clamp(17px,1.5vw,19px);font-weight:600;letter-spacing:-0.015em">Multi-agent resume tailoring. Open source.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px 14px;margin-top:16px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)"><span>Next.js</span><span style="color:var(--rule-strong)">/</span><span>FastAPI</span><span style="color:var(--rule-strong)">/</span><span>RenderCV</span></div>
         <p style="margin:22px 0 0;max-width:68ch;color:var(--ink-2);text-wrap:pretty">Rendure takes a resume and a job description and produces typeset RenderCV YAML. The hard part is not generation, it is refusing to invent things. Language models will happily add a framework you have never touched if the job description mentions it. So Rendure runs a two-stage Generation to QA pipeline. The generation agent produces a candidate resume; a separate QA agent audits every claim back to the source resume under strict grounding rules and rejects anything unsupported. Splitting these into two agents with opposing incentives works far better than one agent asked politely to be accurate.</p>
         <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:18px 32px;margin-top:clamp(26px,3.5vw,38px);padding-top:16px;border-top:1px solid var(--rule-soft);font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)">
-          <div style="display:flex;flex-wrap:wrap;gap:8px 14px">
-            <span>Next.js</span><span style="color:var(--rule-strong)">/</span><span>FastAPI</span><span style="color:var(--rule-strong)">/</span><span>RenderCV</span>
-          </div>
           <div style="display:flex;gap:20px;color:var(--ink)">
             <a href="https://rendure.kaustubhsstuff.com/#run" rel="noopener">Live</a>
             <a href="https://github.com/KaustubhTrivedi/rendure-v2" rel="noopener">Source</a>
@@ -214,6 +247,7 @@
         <div style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)">Project 02</div>
         <h2 style="margin:18px 0 0;font-size:clamp(30px,4.2vw,52px);line-height:1.02;font-weight:800;letter-spacing:-0.035em">Agent orchestration platform</h2>
         <p style="margin:12px 0 0;max-width:60ch;font-size:clamp(17px,1.5vw,19px);font-weight:600;letter-spacing:-0.015em">Long-running multi-agent pipelines coordinated through Postgres.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px 14px;margin-top:16px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)"><span>Postgres</span><span style="color:var(--rule-strong)">/</span><span>TypeScript</span><span style="color:var(--rule-strong)">/</span><span>Python</span><span style="color:var(--rule-strong)">/</span><span>OpenRouter</span><span style="color:var(--rule-strong)">/</span><span>Self-hosted</span></div>
         <p style="margin:22px 0 0;max-width:68ch;color:var(--ink-2);text-wrap:pretty">A set of specialised agents that run continuously and hand work down a chain, each stage enriching a shared record. Built to answer a question I kept hitting: how do you run agents for weeks rather than minutes? The answer turned out to be avoiding agent-to-agent chat entirely. Agents coordinate through a Postgres state machine and cron scheduling, not by talking to each other. Every transition is a durable row, so a crashed agent resumes from state rather than losing the run.</p>
 
         <figure style="margin:clamp(32px,4.5vw,52px) 0 0;padding:clamp(20px,3vw,34px) 0;border-top:1px solid var(--rule-soft);border-bottom:1px solid var(--rule-soft)">
@@ -307,20 +341,15 @@
           <li style="display:flex;gap:14px;color:var(--ink-2)"><span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;line-height:2.1;color:var(--accent)">03</span><span><strong style="font-weight:600;color:var(--ink)">Evidence requirements.</strong> Every agent output carries typed provenance, and unverifiable claims are labelled as inferred rather than asserted.</span></li>
         </ul>
 
-        <div style="margin-top:clamp(26px,3.5vw,38px);padding-top:16px;border-top:1px solid var(--rule-soft);display:flex;flex-wrap:wrap;gap:8px 14px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)">
-          <span>Postgres</span><span style="color:var(--rule-strong)">/</span><span>TypeScript</span><span style="color:var(--rule-strong)">/</span><span>Python</span><span style="color:var(--rule-strong)">/</span><span>OpenRouter</span><span style="color:var(--rule-strong)">/</span><span>Self-hosted</span>
-        </div>
       </article>
 
       <article data-reveal style="border-top:1px solid var(--rule);padding:clamp(32px,5vw,58px) 0">
         <div style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)">Project 03</div>
         <h2 style="margin:18px 0 0;font-size:clamp(30px,4.2vw,52px);line-height:1.02;font-weight:800;letter-spacing:-0.035em">Personal RAG</h2>
         <p style="margin:12px 0 0;max-width:60ch;font-size:clamp(17px,1.5vw,19px);font-weight:600;letter-spacing:-0.015em">Query my own notes and documentation from Telegram.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px 14px;margin-top:16px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)"><span>R2R</span><span style="color:var(--rule-strong)">/</span><span>pgvector</span><span style="color:var(--rule-strong)">/</span><span>Cohere</span><span style="color:var(--rule-strong)">/</span><span>CouchDB</span><span style="color:var(--rule-strong)">/</span><span>Caddy</span></div>
         <p style="margin:22px 0 0;max-width:68ch;color:var(--ink-2);text-wrap:pretty">Retrieval over several years of Obsidian notes and development docs, built on R2R with pgvector and Cohere embeddings and reranking. The reranking stage mattered more than the embedding model; raw vector search kept surfacing plausible but wrong chunks. Runs on my homelab alongside Obsidian LiveSync over CouchDB, behind Caddy.</p>
         <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:18px 32px;margin-top:clamp(26px,3.5vw,38px);padding-top:16px;border-top:1px solid var(--rule-soft);font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)">
-          <div style="display:flex;flex-wrap:wrap;gap:8px 14px">
-            <span>R2R</span><span style="color:var(--rule-strong)">/</span><span>pgvector</span><span style="color:var(--rule-strong)">/</span><span>Cohere</span><span style="color:var(--rule-strong)">/</span><span>CouchDB</span><span style="color:var(--rule-strong)">/</span><span>Caddy</span>
-          </div>
           <div style="color:var(--ink)"><a class="vt-title" href="/chat">Ask it something</a></div>
         </div>
       </article>
