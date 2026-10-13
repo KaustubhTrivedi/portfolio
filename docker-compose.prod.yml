@@ -38,6 +38,11 @@ services:
     build:
       context: ./portfolio
       dockerfile: Dockerfile
+    environment:
+      # Written into posthog-config.js at container start for analytics.js.
+      # Without them browser analytics stays off.
+      - POSTHOG_PROJECT_TOKEN=${POSTHOG_PROJECT_TOKEN}
+      - POSTHOG_HOST=${POSTHOG_HOST:-https://eu.i.posthog.com}
     networks:
       - npm_default
     ports:
