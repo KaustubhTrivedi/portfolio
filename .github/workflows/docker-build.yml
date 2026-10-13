@@ -90,6 +90,8 @@ jobs:
           curl -fsS "$BASE/" | grep -q 'Kaustubh'
           curl -fsS -o /dev/null "$BASE/chat.html"
           curl -fsS -o /dev/null "$BASE/Kaustubh_Trivedi_CV.pdf"
+          curl -fsS -o /dev/null "$BASE/portrait.webp"
+          curl -fsS -o /dev/null "$BASE/llms.txt"
           curl -fsS -o /dev/null "$BASE/analytics.js"
           # No token in CI, so the entrypoint script must write the "off" config.
           curl -fsS "$BASE/posthog-config.js" | grep -q '__POSTHOG_CONFIG__ = undefined'
