@@ -53,5 +53,9 @@ jobs:
       - name: Install Python
         run: uv python install 3.12
 
+      # Check uv.lock matches pyproject.toml without installing anything.
+      # A full `uv sync` took ~20 minutes and, running alongside the Docker
+      # image build on the same self-hosted machine, starved it until the
+      # runner dropped its connection.
       - name: Verify lockfile
-        run: uv sync --frozen --python 3.12
+        run: uv lock --check --python 3.12
