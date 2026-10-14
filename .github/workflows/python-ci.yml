@@ -24,11 +24,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-
+      # The self-hosted runner is Linux Mint, which actions/setup-python has
+      # no prebuilt Python for; ruff is a standalone binary and needs none.
       - name: Install uv
         uses: astral-sh/setup-uv@v4
 
@@ -48,13 +45,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-
+      # actions/setup-python has no prebuilt Python for the self-hosted Linux
+      # Mint runner, so let uv download and manage Python 3.12 itself.
       - name: Install uv
         uses: astral-sh/setup-uv@v4
 
+      - name: Install Python
+        run: uv python install 3.12
+
+      # Check uv.lock matches pyproject.toml without installing anything.
+      # A full `uv sync` took ~20 minutes and, running alongside the Docker
+      # image build on the same self-hosted machine, starved it until the
+      # runner dropped its connection.
       - name: Verify lockfile
-        run: uv sync --frozen
+        run: uv lock --check --python 3.12
