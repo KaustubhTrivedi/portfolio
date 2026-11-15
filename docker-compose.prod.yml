@@ -26,7 +26,7 @@ services:
       - POSTHOG_PROJECT_TOKEN=${POSTHOG_PROJECT_TOKEN}
       - POSTHOG_HOST=${POSTHOG_HOST:-https://eu.i.posthog.com}
       # Chat + rerank models (see CHAT_MODEL / RAG_RERANK_MODEL in app.py).
-      - CHAT_MODEL=${CHAT_MODEL:-nvidia/nemotron-3.5-lightning:free}
+      - CHAT_MODEL=${CHAT_MODEL:-anthropic/claude-haiku-5.5}
       - RAG_RERANK_MODEL=${RAG_RERANK_MODEL:-nvidia/llama-nemotron-rerank-vl-1b-v2:free}
     restart: unless-stopped
     networks:

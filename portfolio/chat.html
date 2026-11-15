@@ -157,6 +157,9 @@
   }
   @keyframes blink { 0%,50% { opacity: 1 } 50.01%,100% { opacity: 0 } }
 
+  /* Shown in the reply slot until the first words arrive. */
+  .waiting { margin-left: 10px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+
   /* ---- Composer ---- */
   .composer { flex: 0 0 auto; border-top: 1px solid var(--rule); padding: clamp(16px,2.5vw,22px) 0 clamp(20px,4vw,32px); }
 
@@ -410,6 +413,16 @@
       var bodyEl   = botTurn.body;
       bodyEl.appendChild(cursor);
 
+      // Until the first chunk lands, say what is happening; a slow model
+      // otherwise looks like a broken page.
+      var waiting = document.createElement('span');
+      waiting.className = 'waiting';
+      waiting.setAttribute('role', 'status');
+      waiting.textContent = 'Searching my notes…';
+      bodyEl.appendChild(waiting);
+      var slowTimer = setTimeout(function () { waiting.textContent = 'Still thinking — this can take a few seconds…'; }, 6000);
+      function clearWaiting() { clearTimeout(slowTimer); if (waiting.parentNode) waiting.remove(); }
+
       // One transition covers the whole submit: the question lands, the
       // suggestions clear, and the empty reply opens together.
       withTransition(function () {
@@ -422,11 +435,13 @@
       var full = '';
 
       streamChat(text, history.slice(0, -1), function (chunk) {
+        clearWaiting();
         full += chunk;
         bodyEl.textContent = full;
         bodyEl.appendChild(cursor);
         scrollDown();
       }, function (err) {
+        clearWaiting();
         cursor.remove();
         if (err) {
           window.trackEvent && window.trackEvent('chat_response_failed');
@@ -442,7 +457,9 @@
           });
         }
         if (err && !full) {
-          bodyEl.textContent = 'Could not reach the server. Try again in a moment.';
+          bodyEl.textContent = err.name === 'AbortError'
+            ? 'That took too long. Try again in a moment, or email kaus12tri@gmail.com.'
+            : 'Could not reach the server. Try again in a moment.';
           bodyEl.parentNode.classList.add('error');
         } else {
           bodyEl.textContent = full;
@@ -455,11 +472,23 @@
       });
     });
 
+    // Give up if no words arrive within this long; once the reply is
+    // streaming it is allowed to finish.
+    var FIRST_CHUNK_TIMEOUT_MS = 60000;
+
     function streamChat(message, hist, onChunk, onDone) {
+      var controller = window.AbortController ? new AbortController() : null;
+      var gotChunk = false;
+      var finished = false;
+      var timer = controller ? setTimeout(function () { if (!gotChunk) controller.abort(); }, FIRST_CHUNK_TIMEOUT_MS) : null;
+      var done = function (err) { if (finished) return; finished = true; clearTimeout(timer); onDone(err); };
+      var chunk = function (text) { gotChunk = true; clearTimeout(timer); onChunk(text); };
+
       fetch(API_BASE + '/api/chat/stream', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: message, history: hist })
+        body: JSON.stringify({ message: message, history: hist }),
+        signal: controller ? controller.signal : undefined
       }).then(function (res) {
         if (!res.ok || !res.body) throw new Error('Bad response ' + res.status);
 
@@ -469,7 +498,7 @@
 
         function pump() {
           return reader.read().then(function (result) {
-            if (result.done) { onDone(null); return; }
+            if (result.done) { done(null); return; }
 
             buffer += decoder.decode(result.value, { stream: true });
             var lines = buffer.split('\n');
@@ -480,19 +509,19 @@
               if (line.indexOf('data:') !== 0) continue;
 
               var payload = line.slice(5).trim();
-              if (payload === '[DONE]') { onDone(null); return; }
+              if (payload === '[DONE]') { done(null); return; }
 
               try {
                 var obj = JSON.parse(payload);
-                if (obj.error) { onDone(new Error(obj.error)); return; }
-                if (obj.content) onChunk(obj.content);
+                if (obj.error) { done(new Error(obj.error)); return; }
+                if (obj.content) chunk(obj.content);
               } catch (_) { /* keep-alive or partial frame */ }
             }
             return pump();
           });
         }
         return pump();
-      }).catch(function (err) { onDone(err); });
+      }).catch(function (err) { done(err); });
     }
 
     input.focus();
